@@ -1,198 +1,620 @@
-# Copyright (C) 2020 Automattic
-# This file is distributed under the GNU General Public License v2 or later.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: _s 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/_s\n"
+"Project-Id-Version: Hello Movie Engine\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-16 18:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-04-17T21:03:15+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
-"X-Domain: _s\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.2; wp-6.9.4; php-8.4.18\n"
+"X-Domain: hello-movieengine"
 
-#. Theme Name of the theme
-msgid "_s"
+#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:64
+msgid "%d selected"
 msgstr ""
 
-#. Theme URI of the theme
-msgid "https://underscores.me/"
+#. 1: current year, 2: site name
+#: inc/customizer/sanitize.php:79
+#, php-format
+msgid "&copy; %1$s %2$s. All rights reserved."
 msgstr ""
 
-#. Description of the theme
-msgid "Hi. I'm a starter theme called <code>_s</code>, or <em>underscores</em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme</em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for."
-msgstr ""
-
-#. Author of the theme
-msgid "Automattic"
-msgstr ""
-
-#. Author URI of the theme
-msgid "https://automattic.com/"
-msgstr ""
-
-#: 404.php:18
-msgid "Oops! That page can&rsquo;t be found."
-msgstr ""
-
-#: 404.php:22
-msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
-msgstr ""
-
-#: 404.php:31
-msgid "Most Used Categories"
-msgstr ""
-
-#. translators: %1$s: smiley
-#: 404.php:49
-msgid "Try looking in the monthly archives. %1$s"
-msgstr ""
-
-#. translators: 1: title.
-#: comments.php:35
-msgid "One thought on &ldquo;%1$s&rdquo;"
-msgstr ""
-
-#. translators: 1: comment count number, 2: title.
-#: comments.php:41
-msgctxt "comments title"
-msgid "%1$s thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
-
-#: comments.php:68
-msgid "Comments are closed."
-msgstr ""
-
-#: footer.php:18
-msgid "https://wordpress.org/"
-msgstr ""
-
-#. translators: %s: CMS name, i.e. WordPress.
-#: footer.php:21
-msgid "Proudly powered by %s"
-msgstr ""
-
-#. translators: 1: Theme name, 2: Theme author.
-#: footer.php:27
-msgid "Theme: %1$s by %2$s."
-msgstr ""
-
-#: functions.php:53
-msgid "Primary"
-msgstr ""
-
-#: functions.php:130
-msgid "Sidebar"
-msgstr ""
-
-#: functions.php:132
-msgid "Add widgets here."
-msgstr ""
-
-#: header.php:26
-msgid "Skip to content"
-msgstr ""
-
-#: header.php:49
-msgid "Primary Menu"
-msgstr ""
-
-#. translators: %s: post date.
-#: inc/template-tags.php:30
-msgctxt "post date"
-msgid "Posted on %s"
-msgstr ""
-
-#. translators: %s: post author.
-#: inc/template-tags.php:46
-msgctxt "post author"
-msgid "by %s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:63
+#: inc/template-tags.php:41
 msgid ", "
 msgstr ""
 
-#. translators: 1: list of categories.
-#: inc/template-tags.php:66
-msgid "Posted in %1$s"
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:155
+msgid "1 Column"
 msgstr ""
 
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:70
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:57
+msgid "180px"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:156
+msgid "2 Columns"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:58
+msgid "220px"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:59
+msgid "260px"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:157
+msgid "3 Columns"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:158
+msgid "4 Columns"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:51
+msgid "404"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:20
+msgid "404 Page"
+msgstr ""
+
+#. Description of the theme
+msgid ""
+"A lightweight, cinematic dark theme built as the official companion for the "
+"Movie Engine plugin. Delivers a modern OTT streaming experience with "
+"responsive layouts, dual header styles, and seamless plugin integration."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:143
+msgid "Applies to both solid and transparent (scrolled) headers."
+msgstr ""
+
+#: inc/template-functions.php:238 inc/template-functions.php:240
+msgid "Archive"
+msgstr ""
+
+#: inc/template-functions.php:235
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:48
+msgid "Archives"
+msgstr ""
+
+#: inc/template-functions.php:226
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:50
+msgid "Author"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:56
+msgid "Auto (natural height)"
+msgstr ""
+
+#: 404.php:24
+msgid "Back to Home"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:124
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:131
+msgid "Background"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:135
+msgid "Background Color"
+msgstr ""
+
+#: inc/template-functions.php:211
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:20
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:45
+msgid "Blog"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:151
+msgid "Blog Columns (Desktop)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:140
+msgid "Blog Grid"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:61
+msgid "Bottom"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:99
+msgid "Bottom Border"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:67
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:65
+msgid "Boxed"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-colors-section.php:34
+msgid "Brand"
+msgstr ""
+
+#: inc/template-functions.php:229
+msgid "Category"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:114
+msgid "Center"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:63
+msgid "Choose specific pages to show the title banner."
+msgstr ""
+
+#: template-parts/header/header-solid.php:64
+#: template-parts/header/header-transparent.php:65
+msgid "Close search"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-colors-section.php:25
+msgid "Colors"
+msgstr ""
+
+#: comments.php:53
+msgid "Comments are closed."
+msgstr ""
+
+#. 1: comment count, 2: title
+#: comments.php:28
+#, php-format
+msgctxt "comments title"
+msgid "%1$s comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:29
+msgid "Container"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:40
+msgid "Container Width (px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:52
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:34
+msgid "Content"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:81
+msgid "Content Padding"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:63
+msgid "Content Style"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:45
+msgid "Copyright Text"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:22
+msgid "Customize the \"Page Not Found\" error page."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:159
+msgid "Dark overlay on top of the background image for readability."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:146
+msgid "Default Background Image"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:45
+msgid "Description"
+msgstr ""
+
+#. %s: post title
+#: inc/template-tags.php:71 template-parts/content-page.php:35
+#, php-format
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:101
+msgid "Enable Sidebar"
+msgstr ""
+
+#: inc/template-functions.php:217
+msgid "Error 404"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:60
+msgid "Facebook URL"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:25
+msgid "Footer"
+msgstr ""
+
+#. %d: footer column number
+#: inc/widgets.php:27
+msgid "Footer Column %d"
+msgstr ""
+
+#: inc/theme-setup.php:50 template-parts/footer/footer-default.php:50
+msgid "Footer Menu"
+msgstr ""
+
+#. %d: footer column number
+#: inc/widgets.php:31
+msgid "Footer widget area column %d."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:68
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:66
+msgid "Full Width"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:25
+msgid "Header"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:142
+msgid "Header Background"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:122
+msgid "Header Padding"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:45
+msgid "Header Style"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:61
+msgid "Header Width"
+msgstr ""
+
+#. Name of the theme
+#: inc/customizer/class-hello-movieengine-customizer.php:46
+msgid "Hello Movie Engine"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:80
+msgid "Home Button Text"
+msgstr ""
+
+#. URI of the theme
+#. Author URI of the theme
+msgid "https://movieengine.pro/"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:51
+msgid "Image Height"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:158
+msgid "Image Overlay Color"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:62
+msgid "Instagram URL"
+msgstr ""
+
+#: template-parts/content-none.php:33
+msgid ""
+"It seems we can't find what you're looking for. Perhaps searching can help."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:20
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:34
+msgid "Layout"
+msgstr ""
+
+#. %s: post title
+#: inc/template-tags.php:58
+#, php-format
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:81
+msgid "Leave blank for default: \"Back to Home\"."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:33
+msgid "Leave blank for default: \"Page Not Found\"."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:46
+msgid "Leave blank for the default message."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:118
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:113
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:62
+msgid "Left"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:69
+msgid "Link / Unlink values"
+msgstr ""
+
+#: inc/template-tags.php:46
 msgctxt "list item separator"
 msgid ", "
 msgstr ""
 
-#. translators: 1: list of tags.
-#: inc/template-tags.php:73
-msgid "Tagged %1$s"
+#: template-parts/header/header-solid.php:81
+#: template-parts/header/header-transparent.php:82
+msgid "Log In"
 msgstr ""
 
-#. translators: %s: post title
-#: inc/template-tags.php:83
-msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+#: inc/widgets.php:17
+msgid "Main sidebar widget area."
 msgstr ""
 
-#. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:100
-#: template-parts/content-page.php:39
-msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:41
+msgid "Max width of the main content area."
 msgstr ""
 
-#: inc/woocommerce.php:186
-msgid "View your shopping cart"
+#: template-parts/header/header-solid.php:87
+#: template-parts/header/header-transparent.php:88
+msgid "Menu"
 msgstr ""
 
-#. translators: number of items in the mini cart.
-#: inc/woocommerce.php:190
-msgid "%d item"
-msgid_plural "%d items"
-msgstr[0] ""
-msgstr[1] ""
-
-#. translators: %s: search query.
-#: search.php:22
-msgid "Search Results for: %s"
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:83
+msgid "Min Height (px)"
 msgstr ""
 
-#: single.php:23
-msgid "Previous:"
+#: inc/movie-engine-compat.php:75
+msgid "Movies"
 msgstr ""
 
-#: single.php:24
+#: template-parts/header/header-solid.php:77
+#: template-parts/header/header-transparent.php:78
+msgid "My Account"
+msgstr ""
+
+#: index.php:37 archive.php:37 search.php:37
+msgid "Next"
+msgstr ""
+
+#: single.php:62
 msgid "Next:"
 msgstr ""
 
-#: template-parts/content-none.php:14
+#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:58
+msgid "No pages found."
+msgstr ""
+
+#: template-parts/content-none.php:12
 msgid "Nothing Found"
 msgstr ""
 
-#. translators: 1: link to WP admin new post page.
-#: template-parts/content-none.php:24
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+#. 1: title
+#: comments.php:22
+#, php-format
+msgid "One comment on &ldquo;%1$s&rdquo;"
 msgstr ""
 
-#: template-parts/content-none.php:37
-msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+#: inc/customizer/controls/class-hello-movieengine-alpha-color-control.php:72
+msgid "Opacity"
 msgstr ""
 
-#: template-parts/content-none.php:44
-msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:98
+msgid "Padding"
 msgstr ""
 
-#: template-parts/content-page.php:25
-#: template-parts/content.php:53
+#: inc/template-functions.php:223
+msgid "Page"
+msgstr ""
+
+#: 404.php:18 inc/template-functions.php:257
+msgid "Page Not Found"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:20
+msgid "Page Title"
+msgstr ""
+
+#: single.php:48 template-parts/content-page.php:22
 msgid "Pages:"
 msgstr ""
 
-#. translators: %s: Name of current post. Only visible to screen readers
-#: template-parts/content.php:40
-msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+#: inc/movie-engine-compat.php:79
+msgid "People"
+msgstr ""
+
+#: inc/template-functions.php:220
+msgid "Post"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:29
+msgid "Post Image"
+msgstr ""
+
+#: index.php:36 archive.php:36 search.php:36
+msgid "Previous"
+msgstr ""
+
+#: single.php:61
+msgid "Previous:"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-colors-section.php:45
+msgid "Primary Color"
+msgstr ""
+
+#: inc/theme-setup.php:49 template-parts/header/header-solid.php:39
+#: template-parts/header/header-transparent.php:40
+msgid "Primary Menu"
+msgstr ""
+
+#. 1: link to WP admin new post page
+#: template-parts/content-none.php:21
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:117
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:115
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:60
+msgid "Right"
+msgstr ""
+
+#: inc/template-functions.php:254 template-parts/header/header-solid.php:55
+#: template-parts/header/header-transparent.php:56
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:49
+msgid "Search"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:46
+msgid "Search pages…"
+msgstr ""
+
+#: inc/template-functions.php:214
+msgid "Search Results"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:62
+msgid "Select Pages"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:42
+msgid "Select where the page title banner appears."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:69
+msgid "Show Back to Home Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:40
+msgid "Show Featured Image"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:41
+msgid "Show Page Title On"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:100
+msgid "Show primary-color border at the bottom of the header."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:77
+msgid "Show Search"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:58
+msgid "Show Search Form"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:102
+msgid "Show sidebar on blog and archive pages."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:88
+msgid "Show User Menu"
+msgstr ""
+
+#: inc/widgets.php:15
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:90
+msgid "Sidebar"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:113
+msgid "Sidebar Position"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:129
+msgid "Sidebar Width (px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:47
+msgid "Single Page"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:46
+msgid "Single Post"
+msgstr ""
+
+#: header.php:30
+msgid "Skip to content"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:55
+msgid "Social Links"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:49
+msgid "Solid (Dark)"
+msgstr ""
+
+#: template-parts/content-none.php:28
+msgid ""
+"Sorry, nothing matched your search terms. Please try again with different "
+"keywords."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:109
+msgid "Spacing"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:72
+msgid "Style"
+msgstr ""
+
+#: inc/template-functions.php:232
+msgid "Tag"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:109
+msgid "Text Alignment"
+msgstr ""
+
+#: 404.php:21
+msgid ""
+"The page you are looking for might have been removed, had its name changed, "
+"or is temporarily unavailable."
+msgstr ""
+
+#. Author of the theme
+msgid "ThemePul"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:32
+msgid "Title"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:59
+msgid "Top"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:50
+msgid "Transparent (Overlay)"
+msgstr ""
+
+#: inc/movie-engine-compat.php:77
+msgid "TV Series"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:61
+msgid "Twitter / X URL"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:52
+msgid "Use \"Auto\" to keep natural image proportions."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:147
+msgid ""
+"Used as fallback. Pages can override this with their own featured image."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:29
+msgid "Visibility"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:63
+msgid "YouTube URL"
 msgstr ""
