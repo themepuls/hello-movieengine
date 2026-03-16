@@ -1,0 +1,444 @@
+/*
+ * customizer-controls.css
+ * Styles for custom Astra-style Customizer controls.
+ *
+ * @package Hello_Cine Movie Engine
+ */
+
+/* ==========================================================
+   Section Heading / Divider
+   ========================================================== */
+.hello-movieengine-heading-control {
+	margin: 4px 0 8px;
+	padding: 12px 0 6px;
+	border-top: 1px solid #ddd;
+}
+
+li:first-child .hello-movieengine-heading-control {
+	border-top: none;
+	padding-top: 0;
+}
+
+.hello-movieengine-heading-title {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1e1e1e;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	line-height: 1.4;
+}
+
+.hello-movieengine-heading-desc {
+	display: block;
+	margin-top: 3px;
+	font-size: 11px;
+	color: #888;
+	line-height: 1.4;
+}
+
+/* ==========================================================
+   Spacing Control
+   ========================================================== */
+.hello-movieengine-spacing-control {
+	margin-bottom: 4px;
+}
+
+.hello-movieengine-spacing-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 2px;
+}
+
+.hello-movieengine-spacing-header .customize-control-title {
+	margin-bottom: 0;
+}
+
+.hello-movieengine-spacing-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 26px;
+	height: 26px;
+	padding: 0;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	background: #fff;
+	color: #999;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.hello-movieengine-spacing-link:hover {
+	border-color: #0073aa;
+	color: #0073aa;
+}
+
+.hello-movieengine-spacing-link.is-linked {
+	background: #0073aa;
+	border-color: #0073aa;
+	color: #fff;
+}
+
+.hello-movieengine-spacing-link .hello-movieengine-icon-unlinked {
+	display: block;
+}
+
+.hello-movieengine-spacing-link .hello-movieengine-icon-linked {
+	display: none;
+}
+
+.hello-movieengine-spacing-link.is-linked .hello-movieengine-icon-unlinked {
+	display: none;
+}
+
+.hello-movieengine-spacing-link.is-linked .hello-movieengine-icon-linked {
+	display: block;
+}
+
+.hello-movieengine-spacing-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 4px;
+}
+
+.hello-movieengine-spacing-field {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex: 1;
+	min-width: 0;
+}
+
+.hello-movieengine-spacing-input {
+	width: 100%;
+	padding: 6px 2px;
+	text-align: center;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 13px;
+	line-height: 1.4;
+	background: #fff;
+	color: #1e1e1e;
+	-moz-appearance: textfield;
+	transition: border-color 0.2s ease;
+}
+
+.hello-movieengine-spacing-input::-webkit-outer-spin-button,
+.hello-movieengine-spacing-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.hello-movieengine-spacing-input:focus {
+	border-color: #0073aa;
+	box-shadow: 0 0 0 1px #0073aa;
+	outline: none;
+}
+
+.hello-movieengine-spacing-label {
+	display: block;
+	margin-top: 4px;
+	font-size: 9px;
+	text-transform: uppercase;
+	color: #999;
+	letter-spacing: 0.5px;
+	line-height: 1;
+}
+
+.hello-movieengine-spacing-unit {
+	flex: 0 0 auto;
+	width: 50px;
+}
+
+.hello-movieengine-spacing-unit-select {
+	width: 100%;
+	padding: 6px 2px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 11px;
+	line-height: 1.4;
+	text-align: center;
+	cursor: pointer;
+	background: #f7f7f7;
+	color: #555;
+	transition: border-color 0.2s ease;
+}
+
+.hello-movieengine-spacing-unit-select:focus {
+	border-color: #0073aa;
+	box-shadow: 0 0 0 1px #0073aa;
+	outline: none;
+}
+
+/* ==========================================================
+   Alpha Color Picker
+   ========================================================== */
+.hello-movieengine-alpha-color-control {
+	margin-bottom: 4px;
+}
+
+.hello-movieengine-color-field-wrap {
+	margin-top: 4px;
+}
+
+.hello-movieengine-alpha-color-input {
+	width: 100%;
+}
+
+.hello-movieengine-alpha-slider-wrap {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.hello-movieengine-alpha-label {
+	font-size: 11px;
+	color: #555;
+	white-space: nowrap;
+	min-width: 48px;
+}
+
+.hello-movieengine-alpha-slider {
+	flex: 1;
+	height: 4px;
+	-webkit-appearance: none;
+	appearance: none;
+	background: linear-gradient(to right, transparent, #000);
+	border-radius: 2px;
+	outline: none;
+	cursor: pointer;
+}
+
+.hello-movieengine-alpha-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: #0073aa;
+	border: 2px solid #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+
+.hello-movieengine-alpha-slider::-moz-range-thumb {
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: #0073aa;
+	border: 2px solid #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+
+.hello-movieengine-alpha-value {
+	font-size: 11px;
+	color: #555;
+	min-width: 32px;
+	text-align: right;
+}
+
+/* ==========================================================
+   Toggle Switch
+   ========================================================== */
+.hello-movieengine-toggle-control {
+	margin-bottom: 4px;
+}
+
+.hello-movieengine-toggle-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.hello-movieengine-toggle-label {
+	font-size: 13px;
+	font-weight: 600;
+	color: #1e1e1e;
+	line-height: 1.4;
+}
+
+.hello-movieengine-toggle-switch {
+	position: relative;
+	display: inline-flex;
+	cursor: pointer;
+}
+
+.hello-movieengine-toggle-input {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.hello-movieengine-toggle-track {
+	display: inline-block;
+	position: relative;
+	width: 40px;
+	height: 22px;
+	background: #ccc;
+	border-radius: 11px;
+	transition: background 0.25s ease;
+}
+
+.hello-movieengine-toggle-thumb {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 18px;
+	height: 18px;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	transition: transform 0.25s ease;
+}
+
+.hello-movieengine-toggle-input:checked + .hello-movieengine-toggle-track {
+	background: #0073aa;
+}
+
+.hello-movieengine-toggle-input:checked + .hello-movieengine-toggle-track .hello-movieengine-toggle-thumb {
+	transform: translateX(18px);
+}
+
+.hello-movieengine-toggle-input:focus + .hello-movieengine-toggle-track {
+	box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.4);
+}
+
+.hello-movieengine-toggle-control .customize-control-description {
+	margin-top: 4px;
+}
+
+/* --------------------------------------------------------
+   Multi-select (pill toggles)
+   -------------------------------------------------------- */
+.hello-movieengine-multiselect-control .customize-control-title {
+	margin-bottom: 6px;
+}
+
+.hello-movieengine-multiselect-control .customize-control-description {
+	margin-bottom: 10px;
+}
+
+.hello-movieengine-multiselect-pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.hello-movieengine-pill {
+	display: inline-flex;
+	align-items: center;
+	padding: 6px 14px;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1.4;
+	color: #50575e;
+	background: #f0f0f1;
+	border: 1px solid #dcdcde;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	user-select: none;
+}
+
+.hello-movieengine-pill:hover {
+	background: #e2e2e3;
+	border-color: #c3c4c7;
+}
+
+.hello-movieengine-pill.is-active {
+	background: #0073aa;
+	border-color: #0073aa;
+	color: #fff;
+}
+
+.hello-movieengine-pill.is-active:hover {
+	background: #005a87;
+	border-color: #005a87;
+}
+
+/* --------------------------------------------------------
+   Page Select (checkbox list)
+   -------------------------------------------------------- */
+.hello-movieengine-page-select-control .customize-control-title {
+	margin-bottom: 4px;
+}
+
+.hello-movieengine-page-select-control .customize-control-description {
+	margin-bottom: 8px;
+}
+
+.hello-movieengine-page-select-search {
+	width: 100%;
+	padding: 7px 10px;
+	font-size: 12px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px 4px 0 0;
+	border-bottom: none;
+	background: #fff;
+	outline: none;
+}
+
+.hello-movieengine-page-select-search:focus {
+	border-color: #0073aa;
+}
+
+.hello-movieengine-page-select-list {
+	max-height: 200px;
+	overflow-y: auto;
+	border: 1px solid #dcdcde;
+	border-radius: 0 0 4px 4px;
+	background: #fff;
+}
+
+.hello-movieengine-page-select-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 10px;
+	font-size: 12px;
+	cursor: pointer;
+	border-bottom: 1px solid #f0f0f1;
+	transition: background 0.15s ease;
+}
+
+.hello-movieengine-page-select-item:last-child {
+	border-bottom: none;
+}
+
+.hello-movieengine-page-select-item:hover {
+	background: #f0f6fc;
+}
+
+.hello-movieengine-page-select-item input[type="checkbox"] {
+	margin: 0;
+	flex-shrink: 0;
+}
+
+.hello-movieengine-page-select-label {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.hello-movieengine-page-select-item.is-hidden {
+	display: none;
+}
+
+.hello-movieengine-page-select-count {
+	display: block;
+	margin-top: 6px;
+	font-size: 11px;
+	color: #50575e;
+}
+
+.hello-movieengine-page-select-empty {
+	padding: 12px;
+	text-align: center;
+	color: #999;
+	font-size: 12px;
+	margin: 0;
+}

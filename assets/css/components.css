@@ -1,0 +1,738 @@
+/*
+ * components.css – Buttons, cards, posts, comments, widgets, media, gallery, pagination.
+ *
+ * @package Hello_Cine Movie Engine
+ */
+
+/* --------------------------------------------------------
+   Buttons
+   -------------------------------------------------------- */
+.hello-movieengine-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 24px;
+	font-size: 0.9rem;
+	font-weight: 600;
+	border: none;
+	border-radius: var(--hello-movieengine-radius);
+	cursor: pointer;
+	transition: background var(--hello-movieengine-transition), color var(--hello-movieengine-transition), transform 0.15s ease;
+	text-decoration: none;
+	line-height: 1.4;
+}
+
+.hello-movieengine-btn:active {
+	transform: scale(0.97);
+}
+
+.hello-movieengine-btn--primary {
+	background: var(--hello-movieengine-primary-color);
+	color: var(--hello-movieengine-white);
+}
+
+.hello-movieengine-btn--primary:hover {
+	background: var(--hello-movieengine-primary-hover);
+	color: var(--hello-movieengine-white);
+}
+
+.hello-movieengine-btn--secondary {
+	background: rgba(255, 255, 255, 0.1);
+	color: var(--hello-movieengine-white);
+}
+
+.hello-movieengine-btn--secondary:hover {
+	background: rgba(255, 255, 255, 0.18);
+}
+
+.hello-movieengine-btn--outline {
+	background: transparent;
+	border: 1px solid var(--hello-movieengine-border-color);
+	color: var(--hello-movieengine-text-color);
+}
+
+.hello-movieengine-btn--outline:hover {
+	border-color: var(--hello-movieengine-white);
+	color: var(--hello-movieengine-white);
+}
+
+.hello-movieengine-btn:focus-visible {
+	outline: 2px solid var(--hello-movieengine-primary-color);
+	outline-offset: 2px;
+}
+
+/* --------------------------------------------------------
+   Posts / Articles
+   -------------------------------------------------------- */
+.hello-movieengine-article {
+	background: var(--hello-movieengine-surface-color);
+	border: 1px solid var(--hello-movieengine-border-color);
+	border-radius: var(--hello-movieengine-radius-lg);
+	overflow: hidden;
+	transition: border-color var(--hello-movieengine-transition), box-shadow var(--hello-movieengine-transition);
+}
+
+.hello-movieengine-article:hover {
+	border-color: rgba(255, 255, 255, 0.12);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hello-movieengine-article .post-thumbnail {
+	display: block;
+	overflow: hidden;
+}
+
+.hello-movieengine-article .post-thumbnail img {
+	width: 100%;
+	height: var(--hello-movieengine-post-thumb-height, auto);
+	object-fit: cover;
+	transition: transform 0.4s ease;
+}
+
+.hello-movieengine-article:hover .post-thumbnail img {
+	transform: scale(1.04);
+}
+
+.hello-movieengine-article__content {
+	padding: 20px;
+}
+
+.hello-movieengine-article .entry-title {
+	font-size: 2rem;
+	margin-bottom: 0.5em;
+}
+
+.hello-movieengine-article .entry-title a {
+	color: var(--hello-movieengine-white);
+}
+
+.hello-movieengine-article .entry-title a:hover {
+	color: var(--hello-movieengine-primary-color);
+}
+
+.hello-movieengine-article .entry-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	font-size: 0.8rem;
+	color: var(--hello-movieengine-text-muted);
+	margin-bottom: 0.75em;
+}
+
+.hello-movieengine-article .entry-meta a {
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-article .entry-meta a:hover {
+	color: var(--hello-movieengine-primary-color);
+}
+
+.hello-movieengine-article .entry-content {
+	margin: 0;
+}
+
+.hello-movieengine-article .entry-content p:last-child {
+	margin-bottom: 0;
+}
+
+.hello-movieengine-article .entry-footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	padding: 12px 20px;
+	border-top: 1px solid var(--hello-movieengine-border-color);
+	font-size: 0.8rem;
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-article .entry-footer a {
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-article .entry-footer a:hover {
+	color: var(--hello-movieengine-primary-color);
+}
+
+/* Single post (no card wrapper) */
+.hello-movieengine-single-content .entry-header {
+	margin-bottom: 1.5em;
+}
+
+.hello-movieengine-single-content .entry-title {
+	font-size: 2rem;
+}
+
+.hello-movieengine-single-content .entry-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	font-size: 0.85rem;
+	color: var(--hello-movieengine-text-muted);
+	margin-top: 0.5em;
+}
+
+.hello-movieengine-single-content .entry-meta a {
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-single-content .entry-meta a:hover {
+	color: var(--hello-movieengine-primary-color);
+}
+
+.hello-movieengine-single-content .post-thumbnail {
+	margin-bottom: 2em;
+	border-radius: var(--hello-movieengine-radius-lg);
+	overflow: hidden;
+}
+
+.hello-movieengine-single-content .entry-content {
+	margin: 0 0 2em;
+	font-size: 1rem;
+	line-height: 1.75;
+}
+
+.hello-movieengine-single-content .entry-footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	padding-top: 1.5em;
+	border-top: 1px solid var(--hello-movieengine-border-color);
+	font-size: 0.85rem;
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-single-content .entry-footer a {
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-single-content .entry-footer a:hover {
+	color: var(--hello-movieengine-primary-color);
+}
+
+/* --------------------------------------------------------
+   Post navigation & pagination
+   -------------------------------------------------------- */
+.post-navigation,
+.posts-navigation,
+.navigation.posts-pagination {
+	margin: 3em 0 0;
+	padding-top: 1.5em;
+	border-top: 1px solid var(--hello-movieengine-border-color);
+}
+
+.post-navigation .nav-links,
+.posts-navigation .nav-links,
+.navigation.posts-pagination .nav-links {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.navigation.posts-pagination .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 38px;
+	height: 38px;
+	padding: 0 12px;
+	border-radius: var(--hello-movieengine-radius);
+	background: var(--hello-movieengine-surface-color);
+	border: 1px solid var(--hello-movieengine-border-color);
+	color: var(--hello-movieengine-text-color);
+	font-size: 0.875rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: background var(--hello-movieengine-transition), border-color var(--hello-movieengine-transition), color var(--hello-movieengine-transition);
+}
+
+.navigation.posts-pagination .page-numbers:hover {
+	background: var(--hello-movieengine-surface-alt);
+	border-color: var(--hello-movieengine-text-muted);
+	color: var(--hello-movieengine-white);
+}
+
+.navigation.posts-pagination .page-numbers.current {
+	background: var(--hello-movieengine-primary-color);
+	border-color: var(--hello-movieengine-primary-color);
+	color: var(--hello-movieengine-white);
+}
+
+.navigation.posts-pagination .page-numbers.dots {
+	background: transparent;
+	border-color: transparent;
+	cursor: default;
+}
+
+.navigation.posts-pagination .page-numbers.prev,
+.navigation.posts-pagination .page-numbers.next {
+	min-width: auto;
+	padding: 0 16px;
+}
+
+.post-navigation .nav-previous,
+.posts-navigation .nav-previous {
+	flex: 1 0 0;
+}
+
+.post-navigation .nav-next,
+.posts-navigation .nav-next {
+	flex: 1 0 0;
+	text-align: right;
+}
+
+.nav-subtitle {
+	display: block;
+	font-size: 0.75rem;
+	color: var(--hello-movieengine-text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-bottom: 4px;
+}
+
+.nav-title {
+	color: var(--hello-movieengine-white);
+	font-weight: 600;
+}
+
+/* --------------------------------------------------------
+   Comments
+   -------------------------------------------------------- */
+.comments-area {
+	margin-top: 2em;
+	padding-top: 2em;
+	border-top: 1px solid var(--hello-movieengine-border-color);
+}
+
+.comments-title {
+	font-size: 1.35rem;
+	margin-bottom: 1.5em;
+}
+
+.comment-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.comment-list .comment {
+	padding: 1.25em 0;
+	border-bottom: 1px solid var(--hello-movieengine-border-color);
+}
+
+.comment-list .children {
+	list-style: none;
+	padding-left: 2em;
+	margin: 0;
+}
+
+.comment-author {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 0.5em;
+}
+
+.comment-author .avatar {
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+}
+
+.comment-author .fn {
+	font-weight: 600;
+	color: var(--hello-movieengine-white);
+}
+
+.comment-metadata {
+	font-size: 0.8rem;
+	color: var(--hello-movieengine-text-muted);
+	margin-bottom: 0.75em;
+}
+
+.comment-metadata a {
+	color: var(--hello-movieengine-text-muted);
+}
+
+.comment-content p:last-child {
+	margin-bottom: 0;
+}
+
+.reply a {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--hello-movieengine-primary-color);
+}
+
+.comment-respond {
+	margin-top: 2em;
+}
+
+.comment-respond .comment-reply-title {
+	font-size: 1.2rem;
+	margin-bottom: 1em;
+}
+
+.comment-form label {
+	display: block;
+	font-size: 0.85rem;
+	color: var(--hello-movieengine-text-muted);
+	margin-bottom: 6px;
+}
+
+.comment-form .form-submit .submit {
+	background: var(--hello-movieengine-primary-color);
+	color: var(--hello-movieengine-white);
+	border: none;
+	padding: 10px 28px;
+	border-radius: var(--hello-movieengine-radius);
+	font-weight: 600;
+	cursor: pointer;
+	transition: background var(--hello-movieengine-transition);
+}
+
+.comment-form .form-submit .submit:hover {
+	background: var(--hello-movieengine-primary-hover);
+}
+
+.no-comments {
+	color: var(--hello-movieengine-text-muted);
+	font-style: italic;
+}
+
+/* --------------------------------------------------------
+   Widgets
+   -------------------------------------------------------- */
+.hello-movieengine-widget {
+	margin-bottom: 2em;
+}
+
+.hello-movieengine-widget .widget-title {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--hello-movieengine-white);
+	margin-bottom: 1em;
+}
+
+.hello-movieengine-widget ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.hello-movieengine-widget ul li {
+	margin-bottom: 0.5em;
+}
+
+.hello-movieengine-widget ul li a {
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-widget ul li a:hover {
+	color: var(--hello-movieengine-primary-color);
+}
+
+.hello-movieengine-widget select {
+	max-width: 100%;
+}
+
+/* --------------------------------------------------------
+   Sidebar – match main content top spacing and horizontal padding
+   -------------------------------------------------------- */
+.hello-movieengine-sidebar {
+	background: var(--hello-movieengine-surface-color);
+	border: 1px solid var(--hello-movieengine-border-color);
+	border-radius: var(--hello-movieengine-radius-lg);
+	padding: 20px;
+	margin-top: calc(var(--hello-movieengine-header-height) + 40px);
+}
+
+.hello-movieengine-sidebar .widget {
+	margin-bottom: 2em;
+}
+
+.hello-movieengine-sidebar .widget:last-child {
+	margin-bottom: 0;
+}
+
+.hello-movieengine-sidebar .widget-title {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--hello-movieengine-white);
+	margin: 0 0 1em;
+	padding: 0;
+	line-height: 1.3;
+}
+
+.hello-movieengine-sidebar .widget ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.hello-movieengine-sidebar .widget ul li {
+	margin-bottom: 0.5em;
+}
+
+.hello-movieengine-sidebar .widget ul li a {
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-sidebar .widget ul li a:hover {
+	color: var(--hello-movieengine-primary-color);
+}
+
+/* --------------------------------------------------------
+   Gallery
+   -------------------------------------------------------- */
+.gallery {
+	display: grid;
+	gap: 12px;
+	margin-bottom: 1.5em;
+}
+
+.gallery-columns-2 { grid-template-columns: repeat(2, 1fr); }
+.gallery-columns-3 { grid-template-columns: repeat(3, 1fr); }
+.gallery-columns-4 { grid-template-columns: repeat(4, 1fr); }
+.gallery-columns-5 { grid-template-columns: repeat(5, 1fr); }
+.gallery-columns-6 { grid-template-columns: repeat(6, 1fr); }
+
+.gallery-item {
+	overflow: hidden;
+	border-radius: var(--hello-movieengine-radius);
+}
+
+.gallery-item img {
+	width: 100%;
+	height: auto;
+}
+
+.gallery-caption {
+	font-size: 0.8rem;
+	color: var(--hello-movieengine-text-muted);
+	padding: 6px;
+}
+
+/* --------------------------------------------------------
+   Captions
+   -------------------------------------------------------- */
+.wp-caption {
+	max-width: 100%;
+	margin-bottom: 1.5em;
+}
+
+.wp-caption-text {
+	font-size: 0.85rem;
+	color: var(--hello-movieengine-text-muted);
+	text-align: center;
+	padding: 8px 0;
+}
+
+/* --------------------------------------------------------
+   Pagination (numeric)
+   -------------------------------------------------------- */
+.pagination,
+.nav-links {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 38px;
+	height: 38px;
+	padding: 0 10px;
+	border-radius: var(--hello-movieengine-radius);
+	background: var(--hello-movieengine-surface-color);
+	border: 1px solid var(--hello-movieengine-border-color);
+	color: var(--hello-movieengine-text-color);
+	font-size: 0.875rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: background var(--hello-movieengine-transition), border-color var(--hello-movieengine-transition), color var(--hello-movieengine-transition);
+}
+
+.page-numbers:hover {
+	background: var(--hello-movieengine-surface-alt);
+	border-color: var(--hello-movieengine-text-muted);
+	color: var(--hello-movieengine-white);
+}
+
+.page-numbers.current {
+	background: var(--hello-movieengine-primary-color);
+	border-color: var(--hello-movieengine-primary-color);
+	color: var(--hello-movieengine-white);
+}
+
+/* --------------------------------------------------------
+   Page links
+   -------------------------------------------------------- */
+.page-links {
+	clear: both;
+	margin: 1.5em 0;
+	font-weight: 500;
+}
+
+.page-links .page-number {
+	display: inline-block;
+	padding: 4px 12px;
+	margin: 0 2px;
+	background: var(--hello-movieengine-surface-color);
+	border-radius: var(--hello-movieengine-radius);
+}
+
+/* --------------------------------------------------------
+   Sticky indicator
+   -------------------------------------------------------- */
+.sticky .hello-movieengine-article {
+	border-left: 3px solid var(--hello-movieengine-primary-color);
+}
+
+/* --------------------------------------------------------
+   Media
+   -------------------------------------------------------- */
+.page-content .wp-smiley,
+.entry-content .wp-smiley,
+.comment-content .wp-smiley {
+	border: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+.custom-logo-link {
+	display: inline-block;
+}
+
+/* --------------------------------------------------------
+   404 page
+   -------------------------------------------------------- */
+.hello-movieengine-404 {
+	text-align: center;
+	padding: 80px 0;
+	min-height: 60vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.hello-movieengine-404__inner {
+	width: 100%;
+}
+
+.hello-movieengine-404__code {
+	font-size: 6rem;
+	font-weight: 800;
+	color: var(--hello-movieengine-primary-color);
+	line-height: 1;
+	margin-bottom: 0.15em;
+	letter-spacing: -0.02em;
+}
+
+.hello-movieengine-404__title {
+	font-size: 1.75rem;
+	font-weight: 700;
+	color: var(--hello-movieengine-white);
+	margin: 0 0 0.75em;
+	line-height: 1.3;
+}
+
+.hello-movieengine-404__description {
+	color: var(--hello-movieengine-text-muted);
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 0 0 2em;
+}
+
+.hello-movieengine-404__actions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.25rem;
+}
+
+.hello-movieengine-404 .search-form {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+	max-width: 400px;
+	margin: 0;
+}
+
+.hello-movieengine-404 .search-field {
+	flex: 1;
+	min-width: 0;
+	padding: 12px 18px;
+	font-size: 1rem;
+	background: var(--hello-movieengine-surface-color);
+	border: 1px solid var(--hello-movieengine-border-color);
+	border-radius: var(--hello-movieengine-radius);
+	color: var(--hello-movieengine-text-color);
+}
+
+.hello-movieengine-404 .search-field::placeholder {
+	color: var(--hello-movieengine-text-muted);
+}
+
+.hello-movieengine-404 .search-field:focus {
+	outline: none;
+	border-color: var(--hello-movieengine-primary-color);
+}
+
+.hello-movieengine-404 .search-submit {
+	background: var(--hello-movieengine-primary-color);
+	color: var(--hello-movieengine-white);
+	border: none;
+	padding: 12px 24px;
+	border-radius: var(--hello-movieengine-radius);
+	font-weight: 600;
+	font-size: 0.95rem;
+	cursor: pointer;
+	transition: background var(--hello-movieengine-transition);
+}
+
+.hello-movieengine-404 .search-submit:hover {
+	background: var(--hello-movieengine-primary-hover);
+}
+
+.hello-movieengine-404__home-btn {
+	margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------
+   Search results
+   -------------------------------------------------------- */
+.hello-movieengine-search-results .hello-movieengine-article {
+	display: flex;
+	flex-direction: row;
+}
+
+.hello-movieengine-search-results .hello-movieengine-article .post-thumbnail {
+	width: 200px;
+	flex-shrink: 0;
+}
+
+.hello-movieengine-search-results .hello-movieengine-article .post-thumbnail img {
+	height: 100%;
+	object-fit: cover;
+}
+
+.hello-movieengine-search-results .hello-movieengine-article__content {
+	flex: 1;
+}
+
+/* Jetpack infinite scroll */
+.infinite-scroll .posts-navigation,
+.infinite-scroll.neverending .site-footer {
+	display: none;
+}
+
+.infinity-end.neverending .site-footer {
+	display: block;
+}

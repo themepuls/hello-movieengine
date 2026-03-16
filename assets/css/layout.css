@@ -1,0 +1,228 @@
+/*
+ * layout.css – Container, grid, page structure.
+ *
+ * @package Hello_Cine Movie Engine
+ */
+
+/* --------------------------------------------------------
+   Container
+   -------------------------------------------------------- */
+.hello-movieengine-container {
+	width: 100%;
+	max-width: var(--hello-movieengine-container-width);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: var(--hello-movieengine-gap);
+	padding-right: var(--hello-movieengine-gap);
+}
+
+/* Align main content and page title with header: use same horizontal padding */
+.site-main > .hello-movieengine-container,
+.hello-movieengine-page-title-section .hello-movieengine-container {
+	padding-left: var(--hello-movieengine-header-pl, var(--hello-movieengine-gap));
+	padding-right: var(--hello-movieengine-header-pr, var(--hello-movieengine-gap));
+}
+
+/* --------------------------------------------------------
+   Site layout
+   -------------------------------------------------------- */
+.hello-movieengine-site {
+	display: flex;
+	flex-direction: column;
+}
+
+/* --------------------------------------------------------
+   Content area
+   -------------------------------------------------------- */
+.site-main {
+	padding: var(--hello-movieengine-content-pt) var(--hello-movieengine-content-pr) var(--hello-movieengine-content-pb) var(--hello-movieengine-content-pl);
+}
+
+/* Full-width content: no container constraint */
+.hello-movieengine-content-fullwidth .site-main {
+	max-width: 100%;
+}
+
+.hello-movieengine-content-fullwidth .hello-movieengine-content-area {
+	max-width: 100%;
+}
+
+/* Full-width for movie engine pages (no container needed, plugin handles it) */
+.hello-movieengine-has-movie-engine .site-main--me-fullwidth {
+	padding: 0;
+}
+
+/* Content with sidebar – use same horizontal padding as header so widths align */
+.hello-movieengine-content-area {
+	display: flex;
+	align-items: flex-start;
+	gap: 0;
+	width: 100%;
+	max-width: var(--hello-movieengine-container-width);
+	margin: 0 auto;
+	padding: var(--hello-movieengine-content-pt) var(--hello-movieengine-header-pr, var(--hello-movieengine-gap)) var(--hello-movieengine-content-pb) var(--hello-movieengine-header-pl, var(--hello-movieengine-gap));
+}
+
+.hello-movieengine-content-area .site-main {
+	flex: 1;
+	min-width: 0;
+	padding: 0;
+}
+
+/* Space between main content and sidebar – gap + margin so space is always visible */
+.hello-movieengine-content-area .hello-movieengine-sidebar {
+	width: var(--hello-movieengine-sidebar-width);
+	flex-shrink: 0;
+	margin-inline-start: 48px;
+}
+
+/* Sidebar left position – space on the other side */
+.hello-movieengine-sidebar-left .hello-movieengine-content-area {
+	flex-direction: row-reverse;
+}
+
+.hello-movieengine-sidebar-left .hello-movieengine-content-area .hello-movieengine-sidebar {
+	margin-inline-start: 0;
+	margin-inline-end: 48px;
+}
+
+/* Full-width content layout: expand content-area beyond container */
+.hello-movieengine-content-fullwidth .hello-movieengine-content-area {
+	max-width: 100%;
+	padding-left: var(--hello-movieengine-header-pl, var(--hello-movieengine-gap));
+	padding-right: var(--hello-movieengine-header-pr, var(--hello-movieengine-gap));
+}
+
+/* No sidebar */
+.no-sidebar .hello-movieengine-content-area .site-main {
+	max-width: 100%;
+}
+
+.no-sidebar .hello-movieengine-content-area .hello-movieengine-sidebar {
+	display: none;
+}
+
+/* --------------------------------------------------------
+   Page Title Section (banner)
+   -------------------------------------------------------- */
+.hello-movieengine-page-title-section {
+	position: relative;
+	background-color: var(--hello-movieengine-page-title-bg, var(--hello-movieengine-surface-color));
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	min-height: var(--hello-movieengine-pt-min-height, 200px);
+	display: flex;
+	align-items: center;
+	padding-top: var(--hello-movieengine-pt-pt, 48px);
+	padding-right: 0;
+	padding-bottom: var(--hello-movieengine-pt-pb, 48px);
+	padding-left: 0;
+	border-bottom: 1px solid var(--hello-movieengine-border-color);
+}
+
+.hello-movieengine-page-title-section__overlay {
+	position: absolute;
+	inset: 0;
+	background: var(--hello-movieengine-pt-overlay, rgba(20, 20, 20, 0.7));
+	z-index: 1;
+}
+
+.hello-movieengine-page-title-section__content {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+}
+
+.hello-movieengine-page-title-section.has-bg-image {
+	border-bottom: none;
+}
+
+.hello-movieengine-page-title-section__label {
+	display: inline-block;
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	color: var(--hello-movieengine-primary-color);
+	margin-bottom: 10px;
+}
+
+.hello-movieengine-page-title-section__title {
+	font-size: 2.5rem;
+	font-weight: 800;
+	color: var(--hello-movieengine-white);
+	margin: 0;
+	line-height: 1.2;
+}
+
+.hello-movieengine-page-title-section__desc {
+	color: var(--hello-movieengine-text-muted);
+	max-width: 640px;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	margin-top: 12px;
+}
+
+.hello-movieengine-page-title-section.has-bg-image .hello-movieengine-page-title-section__desc {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.hello-movieengine-page-title-section[style*="center"] .hello-movieengine-page-title-section__desc {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Legacy fallback (unused, kept for child themes) */
+.hello-movieengine-page-header {
+	padding: 50px 0 30px;
+	text-align: center;
+}
+
+.hello-movieengine-page-header .page-title {
+	font-size: 2rem;
+	margin-bottom: 0.3em;
+}
+
+.hello-movieengine-page-header .archive-description {
+	color: var(--hello-movieengine-text-muted);
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+/* --------------------------------------------------------
+   Transparent header: offset content so it's below the header
+   -------------------------------------------------------- */
+/* For non-ME pages with transparent header, add top padding */
+.hello-movieengine-header-transparent .site-main:not(.site-main--me-fullwidth) {
+	padding-top: calc(var(--hello-movieengine-header-height) + 40px);
+}
+
+/* When page title section exists, it handles the offset instead */
+.hello-movieengine-header-transparent .hello-movieengine-page-title-section {
+	padding-top: calc(var(--hello-movieengine-header-height) + 48px);
+}
+
+.hello-movieengine-header-transparent .hello-movieengine-page-title-section + .hello-movieengine-content-area,
+.hello-movieengine-header-transparent .hello-movieengine-page-title-section ~ main.site-main {
+	padding-top: 0;
+}
+
+.hello-movieengine-header-transparent .hello-movieengine-content-area {
+	padding-top: calc(var(--hello-movieengine-header-height) + 40px);
+}
+
+/* --------------------------------------------------------
+   Post grid (blog, archives)
+   -------------------------------------------------------- */
+.hello-movieengine-post-grid {
+	display: grid;
+	grid-template-columns: repeat( var(--hello-movieengine-blog-columns), 1fr );
+	gap: 30px;
+	margin-bottom: 2em;
+}
+
+/* Prevent grid items from overflowing when sidebar is present */
+.hello-movieengine-post-grid > * {
+	min-width: 0;
+}

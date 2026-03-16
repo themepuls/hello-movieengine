@@ -1,0 +1,159 @@
+/*
+ * footer.css – Footer widget columns, navigation, social icons, copyright.
+ *
+ * @package Hello_Cine Movie Engine
+ */
+
+/* --------------------------------------------------------
+   Footer wrapper
+   -------------------------------------------------------- */
+.hello-movieengine-footer {
+	background: var(--hello-movieengine-black);
+	border-top: 1px solid var(--hello-movieengine-border-color);
+	color: var(--hello-movieengine-text-muted);
+}
+
+/* --------------------------------------------------------
+   Widget area (4-column grid)
+   -------------------------------------------------------- */
+.hello-movieengine-footer__widgets {
+	padding: 60px 0 40px;
+}
+
+.hello-movieengine-footer__columns {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 30px;
+}
+
+.hello-movieengine-footer__col .widget-title {
+	color: var(--hello-movieengine-white);
+	font-size: 1rem;
+	font-weight: 600;
+	margin-bottom: 1.25em;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.hello-movieengine-footer__col .widget-title::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 30px;
+	height: 2px;
+	background: var(--hello-movieengine-primary-color);
+	border-radius: 1px;
+}
+
+.hello-movieengine-footer-widget {
+	margin-bottom: 1.5em;
+}
+
+.hello-movieengine-footer-widget ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.hello-movieengine-footer-widget ul li {
+	margin-bottom: 0.5em;
+}
+
+.hello-movieengine-footer-widget ul li a {
+	color: var(--hello-movieengine-text-muted);
+	font-size: 0.9rem;
+	transition: color var(--hello-movieengine-transition);
+}
+
+.hello-movieengine-footer-widget ul li a:hover {
+	color: var(--hello-movieengine-white);
+}
+
+/* --------------------------------------------------------
+   Bottom bar
+   -------------------------------------------------------- */
+.hello-movieengine-footer__bottom {
+	border-top: 1px solid var(--hello-movieengine-border-color);
+	padding: 20px 0;
+}
+
+.hello-movieengine-footer__bottom-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+/* Copyright */
+.hello-movieengine-footer__copyright {
+	font-size: 0.85rem;
+}
+
+/* Footer nav */
+.hello-movieengine-footer__nav .hello-movieengine-footer-menu {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 20px;
+}
+
+.hello-movieengine-footer-menu li a {
+	color: var(--hello-movieengine-text-muted);
+	font-size: 0.85rem;
+	transition: color var(--hello-movieengine-transition);
+}
+
+.hello-movieengine-footer-menu li a:hover {
+	color: var(--hello-movieengine-white);
+}
+
+/* Social icons */
+.hello-movieengine-footer__social {
+	display: flex;
+	gap: 10px;
+}
+
+.hello-movieengine-footer__social-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.06);
+	color: var(--hello-movieengine-text-muted);
+	transition: background var(--hello-movieengine-transition), color var(--hello-movieengine-transition);
+}
+
+.hello-movieengine-footer__social-link:hover {
+	background: var(--hello-movieengine-primary-color);
+	color: var(--hello-movieengine-white);
+}
+
+.hello-movieengine-footer__social-link:focus-visible {
+	outline: 2px solid var(--hello-movieengine-primary-color);
+	outline-offset: 2px;
+}
+
+/* --------------------------------------------------------
+   Responsive
+   -------------------------------------------------------- */
+@media (max-width: 991px) {
+	.hello-movieengine-footer__columns {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 575px) {
+	.hello-movieengine-footer__columns {
+		grid-template-columns: 1fr;
+	}
+
+	.hello-movieengine-footer__bottom-inner {
+		flex-direction: column;
+		text-align: center;
+	}
+}

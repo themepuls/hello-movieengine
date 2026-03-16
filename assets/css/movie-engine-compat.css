@@ -1,0 +1,104 @@
+/*
+ * movie-engine-compat.css
+ *
+ * Adjustments to ensure the Hello Cine Movie Engine theme works
+ * seamlessly with the Cine Movie Engine plugin's UI components.
+ * Only loaded when the Cine Movie Engine plugin is active.
+ *
+ * The plugin handles all its own post type templates via TemplateLoader.
+ * This theme only provides header.php + footer.php shell.
+ *
+ * @package Hello_Cine Movie Engine
+ */
+
+/* --------------------------------------------------------
+   Use plugin's CSS variables when available
+   -------------------------------------------------------- */
+.hello-movieengine-has-movie-engine {
+	--hello-movieengine-primary-color: var(--movie-engine-primary-color, #E50914);
+	--hello-movieengine-primary-hover: var(--movie-engine-primary-hover-color, #b2070f);
+	--hello-movieengine-primary-rgb: var(--movie-engine-primary-rgb, 229, 9, 20);
+	--hello-movieengine-bg-color: var(--movie-engine-bg-color, #141414);
+	--hello-movieengine-surface-color: var(--movie-engine-surface-color, #1c1c1c);
+	--hello-movieengine-border-color: var(--movie-engine-border-color, #23252c);
+	--hello-movieengine-text-color: var(--movie-engine-body-color, #d0d0cf);
+}
+
+/* --------------------------------------------------------
+   Cine Movie Engine pages: let plugin control the layout
+   -------------------------------------------------------- */
+.hello-movieengine-has-movie-engine.single-movie_engine_movie .site-main,
+.hello-movieengine-has-movie-engine.single-movie_engine_series .site-main,
+.hello-movieengine-has-movie-engine.single-movie_engine_episode .site-main,
+.hello-movieengine-has-movie-engine.single-movie_engine_person .site-main {
+	padding: 0;
+	max-width: 100%;
+}
+
+.hello-movieengine-has-movie-engine.post-type-archive-movie_engine_movie .site-main,
+.hello-movieengine-has-movie-engine.post-type-archive-movie_engine_series .site-main,
+.hello-movieengine-has-movie-engine.post-type-archive-movie_engine_person .site-main {
+	padding: 20px 0 0;
+	max-width: 100%;
+}
+
+/* Transparent header: plugin hero fills viewport under header */
+.hello-movieengine-header-transparent.single-movie_engine_movie .site-main,
+.hello-movieengine-header-transparent.single-movie_engine_series .site-main,
+.hello-movieengine-header-transparent.single-movie_engine_episode .site-main {
+	padding-top: 0;
+}
+
+/* --------------------------------------------------------
+   Plugin buttons: match theme radius
+   -------------------------------------------------------- */
+.hello-movieengine-has-movie-engine .movie-engine-btn,
+.hello-movieengine-has-movie-engine .me-btn-primary,
+.hello-movieengine-has-movie-engine .me-btn-secondary {
+	border-radius: var(--hello-movieengine-radius);
+}
+
+/* --------------------------------------------------------
+   Plugin section headings inside theme
+   -------------------------------------------------------- */
+.hello-movieengine-has-movie-engine .movie-engine-section .section-title {
+	font-family: var(--hello-movieengine-font-heading);
+}
+
+/* --------------------------------------------------------
+   Player: ensure it respects header z-index
+   -------------------------------------------------------- */
+.hello-movieengine-has-movie-engine .movie-engine-player-wrapper {
+	position: relative;
+	z-index: 1;
+}
+
+/* --------------------------------------------------------
+   Grid / card consistency
+   -------------------------------------------------------- */
+.hello-movieengine-has-movie-engine .movie-engine-items-grid {
+	gap: var(--hello-movieengine-gap);
+}
+
+/* --------------------------------------------------------
+   Pagination: inherit theme styling
+   -------------------------------------------------------- */
+.hello-movieengine-has-movie-engine .movie-engine-pagination .page-numbers {
+	background: var(--hello-movieengine-surface-color);
+	border: 1px solid var(--hello-movieengine-border-color);
+	color: var(--hello-movieengine-text-color);
+	border-radius: var(--hello-movieengine-radius);
+}
+
+.hello-movieengine-has-movie-engine .movie-engine-pagination .page-numbers.current {
+	background: var(--hello-movieengine-primary-color);
+	border-color: var(--hello-movieengine-primary-color);
+	color: var(--hello-movieengine-white);
+}
+
+/* --------------------------------------------------------
+   Dashboard pages
+   -------------------------------------------------------- */
+.hello-movieengine-has-movie-engine .movie-engine-dashboard {
+	min-height: calc(100vh - var(--hello-movieengine-header-height) - 200px);
+}
