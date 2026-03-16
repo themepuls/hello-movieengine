@@ -4,7 +4,7 @@
  *
  * Registers all header-related settings, controls, and headings.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Hello_Cine_Movie_Engine_Header_Section {
+class Hello_Movie_Engine_Header_Section {
 
 	/**
 	 * Register header controls.
@@ -30,7 +30,7 @@ class Hello_Cine_Movie_Engine_Header_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_header_layout', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_header_layout', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_header_layout', array(
 			'label'   => esc_html__( 'Layout', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_header_section',
 		) ) );
@@ -73,7 +73,7 @@ class Hello_Cine_Movie_Engine_Header_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_toggle',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_header_search', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_header_search', array(
 			'label'   => esc_html__( 'Show Search', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_header_section',
 		) ) );
@@ -84,7 +84,7 @@ class Hello_Cine_Movie_Engine_Header_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_toggle',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_header_user_menu', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_header_user_menu', array(
 			'label'   => esc_html__( 'Show User Menu', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_header_section',
 		) ) );
@@ -95,7 +95,7 @@ class Hello_Cine_Movie_Engine_Header_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_toggle',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_header_border', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_header_border', array(
 			'label'       => esc_html__( 'Bottom Border', 'hello-movieengine' ),
 			'description' => esc_html__( 'Show primary-color border at the bottom of the header.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_header_section',
@@ -105,7 +105,7 @@ class Hello_Cine_Movie_Engine_Header_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_header_spacing', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_header_spacing', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_header_spacing', array(
 			'label'   => esc_html__( 'Spacing', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_header_section',
 		) ) );
@@ -118,7 +118,7 @@ class Hello_Cine_Movie_Engine_Header_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_spacing',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Spacing_Control( $wp_customize, 'hello_movieengine_header_padding', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Spacing_Control( $wp_customize, 'hello_movieengine_header_padding', array(
 			'label'   => esc_html__( 'Header Padding', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_header_section',
 		) ) );
@@ -127,7 +127,7 @@ class Hello_Cine_Movie_Engine_Header_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_header_bg', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_header_bg', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_header_bg', array(
 			'label'   => esc_html__( 'Background', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_header_section',
 		) ) );
@@ -138,7 +138,7 @@ class Hello_Cine_Movie_Engine_Header_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_color_alpha',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_header_bg_color', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_header_bg_color', array(
 			'label'       => esc_html__( 'Header Background', 'hello-movieengine' ),
 			'description' => esc_html__( 'Applies to both solid and transparent (scrolled) headers.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_header_section',

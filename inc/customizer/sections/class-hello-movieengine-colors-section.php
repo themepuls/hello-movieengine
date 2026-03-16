@@ -4,7 +4,7 @@
  *
  * Registers brand / color settings.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Hello_Cine_Movie_Engine_Colors_Section {
+class Hello_Movie_Engine_Colors_Section {
 
 	/**
 	 * Register color controls.
@@ -30,7 +30,7 @@ class Hello_Cine_Movie_Engine_Colors_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_brand', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_brand', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_brand', array(
 			'label'   => esc_html__( 'Brand', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_colors_section',
 		) ) );

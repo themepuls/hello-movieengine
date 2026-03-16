@@ -2,10 +2,10 @@
 /**
  * Page Title Section.
  *
- * Styled banner matching the Cine Movie Engine taxonomy header design:
+ * Styled banner matching the Movie Engine taxonomy header design:
  * small uppercase context label, large bold title, optional description.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 

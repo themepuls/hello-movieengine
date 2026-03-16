@@ -6,7 +6,7 @@
  * Becomes sticky with blur/dark background on scroll.
  * Used on hero sections and single movie/series pages.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 

@@ -1,7 +1,7 @@
 /*
  * header.css – Both header styles: solid and transparent.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  */
 
 /* --------------------------------------------------------
@@ -228,7 +228,7 @@
 	flex-shrink: 0;
 }
 
-/* Cine Movie Engine user menu in header */
+/* Movie Engine user menu in header */
 .hello-movieengine-header__user-menu {
 	position: relative;
 }
@@ -386,7 +386,7 @@
 	background: var(--hello-movieengine-primary-hover);
 }
 
-/* Cine Movie Engine live search */
+/* Movie Engine live search */
 .hello-movieengine-header__search-box .movie-engine-live-search-wrapper {
 	flex: 1;
 	margin: 0;
@@ -416,7 +416,7 @@
 	font-size: 0.925rem;
 }
 
-/* Cine Movie Engine user menu in header */
+/* Movie Engine user menu in header */
 
 
 .hello-movieengine-header__search-close {
@@ -488,7 +488,7 @@
 }
 
 /* --------------------------------------------------------
-   Cine Movie Engine header ad:
+   Movie Engine header ad:
    Hide on transparent header pages to avoid overlap.
    -------------------------------------------------------- */
 .hello-movieengine-header-transparent .movie-engine-ad-slot.me-ad-header {

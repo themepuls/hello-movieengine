@@ -2,7 +2,7 @@
 /**
  * Custom template tags for this theme.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 

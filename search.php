@@ -2,7 +2,7 @@
 /**
  * The template for displaying search results pages.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 

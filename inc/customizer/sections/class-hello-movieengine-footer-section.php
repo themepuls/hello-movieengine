@@ -4,7 +4,7 @@
  *
  * Registers copyright text and social link settings.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Hello_Cine_Movie_Engine_Footer_Section {
+class Hello_Movie_Engine_Footer_Section {
 
 	/**
 	 * Register footer controls.
@@ -30,7 +30,7 @@ class Hello_Cine_Movie_Engine_Footer_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_footer_content', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_footer_content', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_footer_content', array(
 			'label'   => esc_html__( 'Content', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_footer_section',
 		) ) );
@@ -51,7 +51,7 @@ class Hello_Cine_Movie_Engine_Footer_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_social', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_social', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_social', array(
 			'label'   => esc_html__( 'Social Links', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_footer_section',
 		) ) );

@@ -3,9 +3,9 @@
  * The header template.
  *
  * Loads the appropriate header style (transparent or solid) based on
- * Customizer setting, page meta, or Cine Movie Engine context.
+ * Customizer setting, page meta, or Movie Engine context.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 

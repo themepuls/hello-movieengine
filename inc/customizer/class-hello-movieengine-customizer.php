@@ -4,7 +4,7 @@
  *
  * Loads all control classes, sanitize helpers, and section registrations.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -43,18 +43,18 @@ function hello_movieengine_customize_register( $wp_customize ) {
 
 	/* Main panel */
 	$wp_customize->add_panel( 'hello_movieengine_panel', array(
-		'title'    => esc_html__( 'Hello Cine Movie Engine', 'hello-movieengine' ),
+		'title'    => esc_html__( 'Hello Movie Engine', 'hello-movieengine' ),
 		'priority' => 30,
 	) );
 
 	/* Register each section */
-	Hello_Cine_Movie_Engine_Header_Section::register( $wp_customize );
-	Hello_Cine_Movie_Engine_Colors_Section::register( $wp_customize );
-	Hello_Cine_Movie_Engine_Layout_Section::register( $wp_customize );
-	Hello_Cine_Movie_Engine_Blog_Section::register( $wp_customize );
-	Hello_Cine_Movie_Engine_Page_Title_Section::register( $wp_customize );
-	Hello_Cine_Movie_Engine_404_Section::register( $wp_customize );
-	Hello_Cine_Movie_Engine_Footer_Section::register( $wp_customize );
+	Hello_Movie_Engine_Header_Section::register( $wp_customize );
+	Hello_Movie_Engine_Colors_Section::register( $wp_customize );
+	Hello_Movie_Engine_Layout_Section::register( $wp_customize );
+	Hello_Movie_Engine_Blog_Section::register( $wp_customize );
+	Hello_Movie_Engine_Page_Title_Section::register( $wp_customize );
+	Hello_Movie_Engine_404_Section::register( $wp_customize );
+	Hello_Movie_Engine_Footer_Section::register( $wp_customize );
 
 	/* Live-preview transports */
 	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';

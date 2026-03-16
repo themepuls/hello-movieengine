@@ -2,7 +2,7 @@
 /**
  * The template for displaying comments.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 

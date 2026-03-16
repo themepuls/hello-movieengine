@@ -5,7 +5,7 @@
  * Dark solid background, sticky navigation.
  * Used on normal pages and archives.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 

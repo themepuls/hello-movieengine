@@ -6,7 +6,7 @@
  * a choice that can be toggled on/off independently.
  * Value is stored as a JSON-encoded array of selected keys.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Hello_Cine_Movie_Engine_Customize_Multiselect_Control extends WP_Customize_Control {
+class Hello_Movie_Engine_Customize_Multiselect_Control extends WP_Customize_Control {
 
 	public $type = 'hello-movieengine-multiselect';
 

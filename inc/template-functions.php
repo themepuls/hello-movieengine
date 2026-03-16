@@ -2,7 +2,7 @@
 /**
  * Template helper functions hooked into WordPress.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Determine which header style to use.
  *
  * Priority: page-level meta → customizer default.
- * Cine Movie Engine single movie/series pages auto-use transparent.
+ * Movie Engine single movie/series pages auto-use transparent.
  *
  * @return string 'transparent' or 'solid'
  */

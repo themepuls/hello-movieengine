@@ -1,8 +1,8 @@
 <?php
 /**
- * Cine Movie Engine plugin detection and compatibility layer.
+ * Movie Engine plugin detection and compatibility layer.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -11,14 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Check if Cine Movie Engine plugin is active.
+ * Check if Movie Engine plugin is active.
  */
 function hello_movieengine_is_movie_engine_active() {
 	return defined( 'MOVIE_ENGINE_VERSION' ) || class_exists( 'MovieEngine\\Plugin' );
 }
 
 /**
- * Check if the current page is a Cine Movie Engine archive.
+ * Check if the current page is a Movie Engine archive.
  */
 function hello_movieengine_is_movie_engine_archive() {
 	if ( ! hello_movieengine_is_movie_engine_active() ) {
@@ -35,7 +35,7 @@ function hello_movieengine_is_movie_engine_archive() {
 }
 
 /**
- * Cine Movie Engine post types that this theme supports.
+ * Movie Engine post types that this theme supports.
  */
 function hello_movieengine_get_movie_engine_post_types() {
 	return array(
@@ -48,7 +48,7 @@ function hello_movieengine_get_movie_engine_post_types() {
 }
 
 /**
- * Add Cine Movie Engine post type support for thumbnails.
+ * Add Movie Engine post type support for thumbnails.
  */
 function hello_movieengine_movie_engine_post_type_support() {
 	if ( ! hello_movieengine_is_movie_engine_active() ) {
@@ -64,7 +64,7 @@ function hello_movieengine_movie_engine_post_type_support() {
 add_action( 'init', 'hello_movieengine_movie_engine_post_type_support', 20 );
 
 /**
- * Adjust the document title for Cine Movie Engine archives if needed.
+ * Adjust the document title for Movie Engine archives if needed.
  */
 function hello_movieengine_movie_engine_archive_title( $title ) {
 	if ( ! hello_movieengine_is_movie_engine_active() ) {

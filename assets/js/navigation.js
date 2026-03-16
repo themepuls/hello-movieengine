@@ -1,5 +1,5 @@
 /**
- * Hello Cine Movie Engine – Navigation & header behaviour.
+ * Hello Movie Engine – Navigation & header behaviour.
  *
  * Handles:
  * - Mobile menu toggle
@@ -7,7 +7,7 @@
  * - Inline expanding search
  * - Dropdown keyboard/focus handling
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  */
 ( function () {
 	'use strict';
@@ -271,7 +271,7 @@
 	} );
 
 	/* -------------------------------------------------------
-	   Make Cine Movie Engine user-trigger keyboard accessible
+	   Make Movie Engine user-trigger keyboard accessible
 	   (plugin outputs a plain <div>, not a <button> or <a>)
 	   ------------------------------------------------------- */
 	var userTrigger = document.querySelector( '.movie-engine-user-trigger' );

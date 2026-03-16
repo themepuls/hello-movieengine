@@ -1,12 +1,12 @@
 /**
- * Hello Cine Movie Engine – Customizer controls JS.
+ * Hello Movie Engine – Customizer controls JS.
  *
  * Handles:
  * - Spacing control with link/unlink
  * - Alpha color picker
  * - Toggle switch
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  */
 ( function ( $ ) {
 	'use strict';

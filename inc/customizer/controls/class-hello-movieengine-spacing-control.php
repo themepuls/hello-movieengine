@@ -4,7 +4,7 @@
  *
  * Features a link/unlink toggle to sync all 4 sides.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -16,7 +16,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) ) {
 	return;
 }
 
-class Hello_Cine_Movie_Engine_Customize_Spacing_Control extends WP_Customize_Control {
+class Hello_Movie_Engine_Customize_Spacing_Control extends WP_Customize_Control {
 
 	public $type = 'hello-movieengine-spacing';
 

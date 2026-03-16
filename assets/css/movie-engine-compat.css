@@ -1,14 +1,14 @@
 /*
  * movie-engine-compat.css
  *
- * Adjustments to ensure the Hello Cine Movie Engine theme works
- * seamlessly with the Cine Movie Engine plugin's UI components.
- * Only loaded when the Cine Movie Engine plugin is active.
+ * Adjustments to ensure the Hello Movie Engine theme works
+ * seamlessly with the Movie Engine plugin's UI components.
+ * Only loaded when the Movie Engine plugin is active.
  *
  * The plugin handles all its own post type templates via TemplateLoader.
  * This theme only provides header.php + footer.php shell.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  */
 
 /* --------------------------------------------------------
@@ -25,7 +25,7 @@
 }
 
 /* --------------------------------------------------------
-   Cine Movie Engine pages: let plugin control the layout
+   Movie Engine pages: let plugin control the layout
    -------------------------------------------------------- */
 .hello-movieengine-has-movie-engine.single-movie_engine_movie .site-main,
 .hello-movieengine-has-movie-engine.single-movie_engine_series .site-main,

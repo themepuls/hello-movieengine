@@ -1,7 +1,7 @@
 /**
- * Hello Cine Movie Engine – Customizer live preview.
+ * Hello Movie Engine – Customizer live preview.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  */
 ( function ( $ ) {
 	'use strict';

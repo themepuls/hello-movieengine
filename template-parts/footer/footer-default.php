@@ -2,7 +2,7 @@
 /**
  * Default footer layout with 4 widget columns, nav, social icons, and copyright.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 

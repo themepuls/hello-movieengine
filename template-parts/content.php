@@ -2,7 +2,7 @@
 /**
  * Template part for displaying posts in archive/index views.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 ?>

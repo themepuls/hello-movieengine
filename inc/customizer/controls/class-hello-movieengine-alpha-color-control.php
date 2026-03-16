@@ -8,7 +8,7 @@
  * Uses a hidden input for the Customizer API binding so that
  * wpColorPicker's DOM manipulation doesn't break the link.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -20,7 +20,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) ) {
 	return;
 }
 
-class Hello_Cine_Movie_Engine_Customize_Alpha_Color_Control extends WP_Customize_Control {
+class Hello_Movie_Engine_Customize_Alpha_Color_Control extends WP_Customize_Control {
 
 	public $type = 'hello-movieengine-alpha-color';
 

@@ -1,8 +1,8 @@
 <?php
 /**
- * Hello Cine Movie Engine functions and definitions
+ * Hello Movie Engine functions and definitions
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
@@ -45,6 +45,6 @@ require HELLO_MOVIEENGINE_DIR . '/inc/template-tags.php';
 require HELLO_MOVIEENGINE_DIR . '/inc/customizer/class-hello-movieengine-customizer.php';
 
 /**
- * Cine Movie Engine plugin compatibility.
+ * Movie Engine plugin compatibility.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/movie-engine-compat.php';

@@ -2,7 +2,7 @@
 /**
  * Theme setup: supports, menus, image sizes, content width.
  *
- * @package Hello_Cine Movie Engine
+ * @package Hello_Movie Engine
  * @since 1.0.0
  */
 
