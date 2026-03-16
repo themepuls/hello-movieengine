@@ -7,6 +7,10 @@
 /* --------------------------------------------------------
    Common header
    -------------------------------------------------------- */
+.me-dashboard-page .hello-movieengine-header--transparent {
+	position: relative;
+}
+
 .hello-movieengine-header {
 	width: 100%;
 	z-index: 1000;
@@ -100,7 +104,7 @@
 	position: relative;
 }
 
-.hello-movieengine-nav-menu > li > a {
+.hello-movieengine-nav-menu>li>a {
 	display: flex;
 	align-items: center;
 	padding: 10px 16px;
@@ -113,17 +117,18 @@
 	white-space: nowrap;
 }
 
-.hello-movieengine-nav-menu > li > a:hover,
-.hello-movieengine-nav-menu > li.current-menu-item > a,
-.hello-movieengine-nav-menu > li.current-menu-ancestor > a {
+.hello-movieengine-nav-menu>li>a:hover,
+.hello-movieengine-nav-menu>li.current-menu-item>a,
+.hello-movieengine-nav-menu>li.current-menu-ancestor>a {
 	color: var(--hello-movieengine-primary-color);
 	background: transparent;
 }
 
 /* Desktop dropdown indicator chevron */
 @media (min-width: 1025px) {
-	.hello-movieengine-nav-menu > li.menu-item-has-children > a::after,
-	.hello-movieengine-nav-menu > li.page_item_has_children > a::after {
+
+	.hello-movieengine-nav-menu>li.menu-item-has-children>a::after,
+	.hello-movieengine-nav-menu>li.page_item_has_children>a::after {
 		content: '';
 		display: inline-block;
 		width: 8px;
@@ -137,14 +142,14 @@
 		transition: transform 0.2s ease, opacity 0.2s ease;
 	}
 
-	.hello-movieengine-nav-menu > li.menu-item-has-children:hover > a::after,
-	.hello-movieengine-nav-menu > li.page_item_has_children:hover > a::after {
+	.hello-movieengine-nav-menu>li.menu-item-has-children:hover>a::after,
+	.hello-movieengine-nav-menu>li.page_item_has_children:hover>a::after {
 		transform: rotate(-135deg);
 		opacity: 1;
 	}
 
-	.hello-movieengine-nav-menu ul li.menu-item-has-children > a::after,
-	.hello-movieengine-nav-menu ul li.page_item_has_children > a::after {
+	.hello-movieengine-nav-menu ul li.menu-item-has-children>a::after,
+	.hello-movieengine-nav-menu ul li.page_item_has_children>a::after {
 		content: '';
 		display: inline-block;
 		width: 7px;
@@ -157,13 +162,13 @@
 		transition: opacity 0.2s ease;
 	}
 
-	.hello-movieengine-nav-menu ul li.menu-item-has-children:hover > a::after,
-	.hello-movieengine-nav-menu ul li.page_item_has_children:hover > a::after {
+	.hello-movieengine-nav-menu ul li.menu-item-has-children:hover>a::after,
+	.hello-movieengine-nav-menu ul li.page_item_has_children:hover>a::after {
 		opacity: 1;
 	}
 
-	.hello-movieengine-nav-menu ul li.menu-item-has-children > a,
-	.hello-movieengine-nav-menu ul li.page_item_has_children > a {
+	.hello-movieengine-nav-menu ul li.menu-item-has-children>a,
+	.hello-movieengine-nav-menu ul li.page_item_has_children>a {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -188,8 +193,8 @@
 	overflow: visible;
 }
 
-.hello-movieengine-nav-menu li:hover > ul,
-.hello-movieengine-nav-menu li.focus > ul {
+.hello-movieengine-nav-menu li:hover>ul,
+.hello-movieengine-nav-menu li.focus>ul {
 	display: block;
 }
 
@@ -273,7 +278,7 @@
 	outline-offset: 2px;
 }
 
-.hello-movieengine-nav-menu > li > a:focus-visible {
+.hello-movieengine-nav-menu>li>a:focus-visible {
 	outline: 2px solid var(--hello-movieengine-primary-color);
 	outline-offset: -2px;
 	border-radius: var(--hello-movieengine-radius);
@@ -441,12 +446,20 @@
 /* --------------------------------------------------------
    Header Style 1: Transparent
    -------------------------------------------------------- */
+/* Mobile-first: relative by default so header scrolls with content */
 .hello-movieengine-header--transparent {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
+	position: relative;
 	background: var(--hello-movieengine-header-bg, transparent);
+}
+
+/* Desktop only: fixed header */
+@media (min-width: 1025px) {
+	.hello-movieengine-header--transparent {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
 }
 
 .hello-movieengine-header--transparent.is-scrolled {
@@ -456,14 +469,20 @@
 	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* WordPress admin bar offset for fixed header */
-.admin-bar .hello-movieengine-header--transparent {
-	top: 32px;
+/* Mobile: no scroll styling (header is in flow, not fixed) */
+@media (max-width: 1024px) {
+	.hello-movieengine-header--transparent.is-scrolled {
+		background: var(--hello-movieengine-header-bg, transparent);
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		box-shadow: none;
+	}
 }
 
-@media screen and (max-width: 782px) {
+/* WordPress admin bar offset for fixed header (desktop only; mobile uses relative) */
+@media (min-width: 1025px) {
 	.admin-bar .hello-movieengine-header--transparent {
-		top: 46px;
+		top: 32px;
 	}
 }
 
@@ -577,22 +596,23 @@ body.hello-movieengine-mobile-nav-open::before {
 		justify-content: flex-start;
 	}
 
-	.hello-movieengine-nav-menu > li {
+	.hello-movieengine-nav-menu>li {
 		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 	}
 
-	.hello-movieengine-nav-menu > li > a {
-		padding: 14px 48px 14px 14px; /* room for submenu toggle */
+	.hello-movieengine-nav-menu>li>a {
+		padding: 14px 48px 14px 14px;
+		/* room for submenu toggle */
 		font-size: 1.05rem;
 		border-radius: 0;
 	}
 
-	.hello-movieengine-nav-menu ul li > a {
+	.hello-movieengine-nav-menu ul li>a {
 		padding-right: 48px;
 	}
 
 	/* Submenu toggle button (injected by JS) – above link so it receives clicks */
-	.hello-movieengine-nav-menu > li,
+	.hello-movieengine-nav-menu>li,
 	.hello-movieengine-nav-menu ul li {
 		position: relative;
 	}
@@ -650,11 +670,12 @@ body.hello-movieengine-mobile-nav-open::before {
 		transition: max-height 0.25s ease;
 	}
 
-	.hello-movieengine-nav-menu li.is-submenu-open > ul {
-		max-height: 900px; /* enough for typical menus */
+	.hello-movieengine-nav-menu li.is-submenu-open>ul {
+		max-height: 900px;
+		/* enough for typical menus */
 	}
 
-	.hello-movieengine-nav-menu li.is-submenu-open > .hello-movieengine-submenu-toggle svg {
+	.hello-movieengine-nav-menu li.is-submenu-open>.hello-movieengine-submenu-toggle svg {
 		transform: rotate(180deg);
 	}
 

@@ -212,6 +212,15 @@
 	padding-top: calc(var(--hello-movieengine-header-height) + 40px);
 }
 
+/* Mobile: transparent header is relative, so no extra top padding needed */
+@media (max-width: 1024px) {
+	.hello-movieengine-header-transparent .site-main:not(.site-main--me-fullwidth),
+	.hello-movieengine-header-transparent .hello-movieengine-page-title-section,
+	.hello-movieengine-header-transparent .hello-movieengine-content-area {
+		padding-top: var(--hello-movieengine-content-pt);
+	}
+}
+
 /* --------------------------------------------------------
    Post grid (blog, archives)
    -------------------------------------------------------- */
