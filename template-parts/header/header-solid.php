@@ -44,7 +44,7 @@ $hello_movieengine_container_cl = hello_movieengine_header_container_class();
 				'menu_class'     => 'hello-movieengine-nav-menu',
 				'container'      => false,
 				'fallback_cb'    => false,
-				'depth'          => 3,
+				'depth'          => 0,
 			) );
 			?>
 		</nav>

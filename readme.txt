@@ -19,7 +19,7 @@ Hello Movie Engine delivers a modern OTT streaming experience with responsive la
 Features:
 * Dual header styles: Transparent (over hero) or solid, configurable via Customizer
 * Responsive header: Transparent header scrolls with content on mobile; fixed only on desktop
-* Movie Engine integration: Transparent header on single movie/series; solid header on episodes and playlist page
+* Movie Engine integration: Transparent header only on front page, single movie, series, and episode; solid everywhere else
 * Page title hidden on playlist page
 * Dark cinema-style interface optimized for streaming
 * Customizer options for header, layout, colors, and page title
@@ -41,7 +41,7 @@ No. The theme works standalone, but the Movie Engine plugin enables movie, serie
 
 = Which pages use the transparent header? =
 
-Single movie and series pages use the transparent header on desktop. Episodes, the playlist page, and mobile views use the solid header.
+Only the front page, single movie, single series, and single episode pages use the transparent (position fixed) header. All other pages (playlist, archives, search, blog, single post, etc.) use the solid header. On mobile, the transparent header scrolls with content (position relative).
 
 == Changelog ==
 
@@ -49,7 +49,7 @@ Single movie and series pages use the transparent header on desktop. Episodes, t
 * Initial release
 * Dual header styles (transparent/solid)
 * Mobile-responsive header (relative on mobile, fixed on desktop)
-* Movie Engine integration: solid header for episodes and playlist
+* Movie Engine integration: transparent only on front page, movie, series, episode; solid elsewhere
 * Page title hidden on playlist page
 
 == Credits ==

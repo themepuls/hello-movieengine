@@ -13,36 +13,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Determine which header style to use.
  *
- * Priority: page-level meta → customizer default.
- * Movie Engine single movie/series pages auto-use transparent (episodes use solid).
+ * Transparent (position fixed) ONLY on: front page, single movie, single series, single episode.
+ * All other pages use solid header (reviews, player endpoint, playlist, archives, search, blog, etc.).
  *
  * @return string 'transparent' or 'solid'
  */
 function hello_movieengine_get_header_style() {
-	$style = get_theme_mod( 'hello_movieengine_header_style', 'solid' );
+	/* 1. Front page */
+	if ( is_front_page() ) {
+		return 'transparent';
+	}
 
-	/* Episodes and playlist page always use solid header */
+	/* 2. Single movie, series, episode – but NOT reviews or player endpoints */
 	if ( hello_movieengine_is_movie_engine_active() ) {
-		if ( is_singular( 'movie_engine_episode' ) || get_query_var( 'movie_engine_playlist_page' ) ) {
+		global $wp_query;
+		/* Reviews page (/movies/xxx/reviews/) → solid */
+		if ( isset( $wp_query->query_vars['reviews'] ) ) {
 			return 'solid';
 		}
-	}
-
-	if ( is_singular() ) {
-		$per_page = get_post_meta( get_the_ID(), '_hello_movieengine_header_style', true );
-		if ( $per_page && in_array( $per_page, array( 'transparent', 'solid' ), true ) ) {
-			return $per_page;
+		/* Player endpoint (/movies/xxx/player/) → solid */
+		if ( isset( $wp_query->query_vars['player'] ) ) {
+			return 'solid';
 		}
-	}
-
-	if ( hello_movieengine_is_movie_engine_active() ) {
-		$me_types = array( 'movie_engine_movie', 'movie_engine_series' );
+		/* Main single movie, series, episode → transparent */
+		$me_types = array( 'movie_engine_movie', 'movie_engine_series', 'movie_engine_episode' );
 		if ( is_singular( $me_types ) ) {
 			return 'transparent';
 		}
 	}
 
-	return $style;
+	/* 3. All other pages: solid */
+	return 'solid';
 }
 
 /**

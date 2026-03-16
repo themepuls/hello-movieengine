@@ -6,10 +6,7 @@ A lightweight, cinematic dark theme built as the official companion for the [Mov
 
 - **Dual header styles**: Transparent (over hero) or solid, configurable via Customizer
 - **Responsive header**: Transparent header uses `position: relative` on mobile (≤1024px) so it scrolls with content; fixed only on desktop
-- **Movie Engine integration**: Automatic header style per page type:
-  - **Single movie & series**: Transparent header (desktop)
-  - **Episodes**: Solid header
-  - **Playlist page**: Solid header, no theme page title
+- **Movie Engine integration**: Transparent header only on front page, single movie, series, and episode; solid everywhere else (playlist, archives, search, blog, etc.)
 - **Customizer options**: Header style, width, colors, padding, page title locations
 - **Dark theme**: Cinema-style dark interface optimized for streaming
 - **Translation ready**: Full text domain support

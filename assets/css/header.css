@@ -14,6 +14,7 @@
 .hello-movieengine-header {
 	width: 100%;
 	z-index: 1000;
+	overflow: visible;
 	transition: background var(--hello-movieengine-transition), box-shadow var(--hello-movieengine-transition), backdrop-filter var(--hello-movieengine-transition);
 }
 
@@ -88,6 +89,7 @@
 	flex: 1;
 	display: none;
 	justify-content: center;
+	overflow: visible;
 }
 
 .hello-movieengine-nav-menu {
@@ -187,7 +189,7 @@
 	border-radius: var(--hello-movieengine-radius);
 	padding: 6px 0;
 	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-	z-index: 999;
+	z-index: 10000;
 	list-style: none;
 	margin: 0;
 	overflow: visible;
@@ -216,11 +218,27 @@
 	color: var(--hello-movieengine-primary-color);
 }
 
-/* Sub-sub dropdown */
+/* Sub-sub dropdown and deeper levels (ul ul, ul ul ul, etc.) */
 .hello-movieengine-nav-menu ul ul {
 	top: -6px;
 	left: 100%;
 	margin-left: -2px;
+	margin-top: 0;
+	z-index: 10001;
+}
+
+/* Nested dropdown: open left when it would overflow right edge */
+.hello-movieengine-nav-menu ul li:last-child > ul,
+.hello-movieengine-nav-menu > li:last-child ul ul {
+	left: auto;
+	right: 100%;
+	margin-left: 0;
+	margin-right: -2px;
+}
+
+/* Deeper levels: ensure stacking and consistent positioning */
+.hello-movieengine-nav-menu ul ul ul {
+	z-index: 10002;
 }
 
 /* --------------------------------------------------------
