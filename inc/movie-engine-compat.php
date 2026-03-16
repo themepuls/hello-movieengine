@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Check if Cine Movie Engine plugin is active.
  */
 function hello_movieengine_is_movie_engine_active() {
-	return defined( 'MOVIE_ENGINE_VERSION' ) || class_exists( 'Cine Movie Engine\\Plugin' );
+	return defined( 'MOVIE_ENGINE_VERSION' ) || class_exists( 'MovieEngine\\Plugin' );
 }
 
 /**

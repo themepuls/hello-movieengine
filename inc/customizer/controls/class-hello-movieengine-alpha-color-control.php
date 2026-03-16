@@ -20,7 +20,7 @@ if ( ! class_exists( 'WP_Customize_Control' ) ) {
 	return;
 }
 
-class Hello_Cine Movie Engine_Customize_Alpha_Color_Control extends WP_Customize_Control {
+class Hello_Cine_Movie_Engine_Customize_Alpha_Color_Control extends WP_Customize_Control {
 
 	public $type = 'hello-movieengine-alpha-color';
 

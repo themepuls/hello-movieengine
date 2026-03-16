@@ -48,13 +48,13 @@ function hello_movieengine_customize_register( $wp_customize ) {
 	) );
 
 	/* Register each section */
-	Hello_Cine Movie Engine_Header_Section::register( $wp_customize );
-	Hello_Cine Movie Engine_Colors_Section::register( $wp_customize );
-	Hello_Cine Movie Engine_Layout_Section::register( $wp_customize );
-	Hello_Cine Movie Engine_Blog_Section::register( $wp_customize );
-	Hello_Cine Movie Engine_Page_Title_Section::register( $wp_customize );
-	Hello_Cine Movie Engine_404_Section::register( $wp_customize );
-	Hello_Cine Movie Engine_Footer_Section::register( $wp_customize );
+	Hello_Cine_Movie_Engine_Header_Section::register( $wp_customize );
+	Hello_Cine_Movie_Engine_Colors_Section::register( $wp_customize );
+	Hello_Cine_Movie_Engine_Layout_Section::register( $wp_customize );
+	Hello_Cine_Movie_Engine_Blog_Section::register( $wp_customize );
+	Hello_Cine_Movie_Engine_Page_Title_Section::register( $wp_customize );
+	Hello_Cine_Movie_Engine_404_Section::register( $wp_customize );
+	Hello_Cine_Movie_Engine_Footer_Section::register( $wp_customize );
 
 	/* Live-preview transports */
 	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';

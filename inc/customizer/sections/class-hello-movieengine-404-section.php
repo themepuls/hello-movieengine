@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Hello_Cine Movie Engine_404_Section {
+class Hello_Cine_Movie_Engine_404_Section {
 
 	public static function register( $wp_customize ) {
 
@@ -54,7 +54,7 @@ class Hello_Cine Movie Engine_404_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_toggle',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_404_show_search', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_404_show_search', array(
 			'label'   => esc_html__( 'Show Search Form', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_404_section',
 		) ) );
@@ -65,7 +65,7 @@ class Hello_Cine Movie Engine_404_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_toggle',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_404_show_home_button', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_404_show_home_button', array(
 			'label'   => esc_html__( 'Show Back to Home Button', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_404_section',
 		) ) );

@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Hello_Cine Movie Engine_Page_Title_Section {
+class Hello_Cine_Movie_Engine_Page_Title_Section {
 
 	public static function register( $wp_customize ) {
 
@@ -25,7 +25,7 @@ class Hello_Cine Movie Engine_Page_Title_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_page_title_visibility', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_page_title_visibility', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_page_title_visibility', array(
 			'label'   => esc_html__( 'Visibility', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_page_title_section',
 		) ) );
@@ -37,7 +37,7 @@ class Hello_Cine Movie Engine_Page_Title_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_multiselect',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Multiselect_Control( $wp_customize, 'hello_movieengine_page_title_locations', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Multiselect_Control( $wp_customize, 'hello_movieengine_page_title_locations', array(
 			'label'       => esc_html__( 'Show Page Title On', 'hello-movieengine' ),
 			'description' => esc_html__( 'Select where the page title banner appears.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_page_title_section',
@@ -58,7 +58,7 @@ class Hello_Cine Movie Engine_Page_Title_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_page_select',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Page_Select_Control( $wp_customize, 'hello_movieengine_page_title_pages', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Page_Select_Control( $wp_customize, 'hello_movieengine_page_title_pages', array(
 			'label'       => esc_html__( 'Select Pages', 'hello-movieengine' ),
 			'description' => esc_html__( 'Choose specific pages to show the title banner.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_page_title_section',
@@ -68,7 +68,7 @@ class Hello_Cine Movie Engine_Page_Title_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_page_title_style', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_page_title_style', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_page_title_style', array(
 			'label'   => esc_html__( 'Style', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_page_title_section',
 		) ) );
@@ -94,7 +94,7 @@ class Hello_Cine Movie Engine_Page_Title_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_spacing',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Spacing_Control( $wp_customize, 'hello_movieengine_page_title_padding', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Spacing_Control( $wp_customize, 'hello_movieengine_page_title_padding', array(
 			'label'   => esc_html__( 'Padding', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_page_title_section',
 		) ) );
@@ -120,7 +120,7 @@ class Hello_Cine Movie Engine_Page_Title_Section {
 		$wp_customize->add_setting( 'hello_movieengine_heading_page_title_background', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_page_title_background', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_page_title_background', array(
 			'label'   => esc_html__( 'Background', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_page_title_section',
 		) ) );
@@ -131,7 +131,7 @@ class Hello_Cine Movie Engine_Page_Title_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_color_alpha',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_page_title_bg', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_page_title_bg', array(
 			'label'   => esc_html__( 'Background Color', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_page_title_section',
 		) ) );
@@ -154,7 +154,7 @@ class Hello_Cine Movie Engine_Page_Title_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_color_alpha',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( new Hello_Cine Movie Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_page_title_overlay', array(
+		$wp_customize->add_control( new Hello_Cine_Movie_Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_page_title_overlay', array(
 			'label'       => esc_html__( 'Image Overlay Color', 'hello-movieengine' ),
 			'description' => esc_html__( 'Dark overlay on top of the background image for readability.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_page_title_section',

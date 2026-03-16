@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Hello_Cine Movie Engine_Customize_Multiselect_Control extends WP_Customize_Control {
+class Hello_Cine_Movie_Engine_Customize_Multiselect_Control extends WP_Customize_Control {
 
 	public $type = 'hello-movieengine-multiselect';
 
