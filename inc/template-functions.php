@@ -14,12 +14,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Determine which header style to use.
  *
  * Priority: page-level meta → customizer default.
- * Movie Engine single movie/series pages auto-use transparent.
+ * Movie Engine single movie/series pages auto-use transparent (episodes use solid).
  *
  * @return string 'transparent' or 'solid'
  */
 function hello_movieengine_get_header_style() {
 	$style = get_theme_mod( 'hello_movieengine_header_style', 'solid' );
+
+	/* Episodes and playlist page always use solid header */
+	if ( hello_movieengine_is_movie_engine_active() ) {
+		if ( is_singular( 'movie_engine_episode' ) || get_query_var( 'movie_engine_playlist_page' ) ) {
+			return 'solid';
+		}
+	}
 
 	if ( is_singular() ) {
 		$per_page = get_post_meta( get_the_ID(), '_hello_movieengine_header_style', true );
@@ -29,7 +36,7 @@ function hello_movieengine_get_header_style() {
 	}
 
 	if ( hello_movieengine_is_movie_engine_active() ) {
-		$me_types = array( 'movie_engine_movie', 'movie_engine_series', 'movie_engine_episode' );
+		$me_types = array( 'movie_engine_movie', 'movie_engine_series' );
 		if ( is_singular( $me_types ) ) {
 			return 'transparent';
 		}
@@ -139,6 +146,11 @@ function hello_movieengine_show_sidebar() {
  */
 function hello_movieengine_show_page_title() {
 	if ( is_front_page() ) {
+		return false;
+	}
+
+	/* Playlist page has its own layout; no theme page title */
+	if ( hello_movieengine_is_movie_engine_active() && get_query_var( 'movie_engine_playlist_page' ) ) {
 		return false;
 	}
 
