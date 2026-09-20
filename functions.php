@@ -48,3 +48,8 @@ require HELLO_MOVIEENGINE_DIR . '/inc/customizer/class-hello-movieengine-customi
  * Movie Engine plugin compatibility.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/movie-engine-compat.php';
+
+/**
+ * GitHub theme updates (REMOVE this require + delete the file before WordPress.org submit).
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/github-theme-updater.php';
