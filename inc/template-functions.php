@@ -11,39 +11,95 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Whether the current view should use a fixed (overlay) header.
+ *
+ * Controlled by Customizer → Header → Fixed Header On.
+ *
+ * @return bool
+ */
+function hello_movieengine_is_header_fixed_here() {
+	$default   = wp_json_encode( array( 'front_page', 'single_movie', 'single_series', 'single_episode' ) );
+	$locations = json_decode( get_theme_mod( 'hello_movieengine_header_fixed_locations', $default ), true );
+
+	if ( ! is_array( $locations ) ) {
+		$locations = array();
+	}
+
+	/* Movie Engine endpoints that should never be fixed overlay */
+	if ( hello_movieengine_is_movie_engine_active() ) {
+		global $wp_query;
+		if ( isset( $wp_query->query_vars['reviews'] ) || isset( $wp_query->query_vars['player'] ) ) {
+			return false;
+		}
+	}
+
+	if ( in_array( 'front_page', $locations, true ) && is_front_page() ) {
+		return true;
+	}
+
+	if ( hello_movieengine_is_movie_engine_active() ) {
+		if ( in_array( 'single_movie', $locations, true ) && is_singular( 'movie_engine_movie' ) ) {
+			return true;
+		}
+		if ( in_array( 'single_series', $locations, true ) && is_singular( 'movie_engine_series' ) ) {
+			return true;
+		}
+		if ( in_array( 'single_episode', $locations, true ) && is_singular( 'movie_engine_episode' ) ) {
+			return true;
+		}
+	}
+
+	if ( in_array( 'blog', $locations, true ) && is_home() && ! is_front_page() ) {
+		return true;
+	}
+	if ( in_array( 'single_post', $locations, true ) && is_singular( 'post' ) ) {
+		return true;
+	}
+	if ( in_array( 'single_page', $locations, true ) && is_page() && ! is_front_page() ) {
+		return true;
+	}
+	if ( in_array( 'archives', $locations, true ) && ( is_category() || is_tag() || is_post_type_archive() || is_date() ) ) {
+		return true;
+	}
+	if ( in_array( 'search', $locations, true ) && is_search() ) {
+		return true;
+	}
+	if ( in_array( 'author', $locations, true ) && is_author() ) {
+		return true;
+	}
+	if ( in_array( '404', $locations, true ) && is_404() ) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
  * Determine which header style to use.
  *
- * Transparent (position fixed) ONLY on: front page, single movie, single series, single episode.
- * All other pages use solid header (reviews, player endpoint, playlist, archives, search, blog, etc.).
+ * Transparent (position fixed) only on pages selected in Fixed Header On,
+ * and only when Header Style is Transparent. Otherwise solid (normal).
  *
  * @return string 'transparent' or 'solid'
  */
 function hello_movieengine_get_header_style() {
-	/* 1. Front page */
-	if ( is_front_page() ) {
-		return 'transparent';
-	}
-
-	/* 2. Single movie, series, episode – but NOT reviews or player endpoints */
+	/* Reviews / player endpoints always use solid */
 	if ( hello_movieengine_is_movie_engine_active() ) {
 		global $wp_query;
-		/* Reviews page (/movies/xxx/reviews/) → solid */
-		if ( isset( $wp_query->query_vars['reviews'] ) ) {
+		if ( isset( $wp_query->query_vars['reviews'] ) || isset( $wp_query->query_vars['player'] ) ) {
 			return 'solid';
-		}
-		/* Player endpoint (/movies/xxx/player/) → solid */
-		if ( isset( $wp_query->query_vars['player'] ) ) {
-			return 'solid';
-		}
-		/* Main single movie, series, episode → transparent */
-		$me_types = array( 'movie_engine_movie', 'movie_engine_series', 'movie_engine_episode' );
-		if ( is_singular( $me_types ) ) {
-			return 'transparent';
 		}
 	}
 
-	/* 3. All other pages: solid */
-	return 'solid';
+	$style = get_theme_mod( 'hello_movieengine_header_style', 'solid' );
+
+	/* Solid mode: never fixed overlay */
+	if ( 'transparent' !== $style ) {
+		return 'solid';
+	}
+
+	/* Transparent mode: fixed only on selected locations */
+	return hello_movieengine_is_header_fixed_here() ? 'transparent' : 'solid';
 }
 
 /**
@@ -84,6 +140,12 @@ function hello_movieengine_body_classes( $classes ) {
 	$header_style = hello_movieengine_get_header_style();
 	$classes[]    = 'hello-movieengine-header-' . $header_style;
 	$classes[]    = 'hello-movieengine-header-width-' . hello_movieengine_get_header_width();
+
+	if ( 'transparent' === $header_style ) {
+		$classes[] = 'hello-movieengine-header-fixed';
+	} else {
+		$classes[] = 'hello-movieengine-header-normal';
+	}
 
 	$content_layout = get_theme_mod( 'hello_movieengine_content_layout', 'boxed' );
 	if ( 'fullwidth' === $content_layout ) {

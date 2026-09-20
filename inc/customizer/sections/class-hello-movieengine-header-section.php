@@ -42,10 +42,11 @@ class Hello_Movie_Engine_Header_Section {
 			'transport'         => 'refresh',
 		) );
 		$wp_customize->add_control( 'hello_movieengine_header_style', array(
-			'label'   => esc_html__( 'Header Style', 'hello-movieengine' ),
-			'section' => 'hello_movieengine_header_section',
-			'type'    => 'select',
-			'choices' => array(
+			'label'       => esc_html__( 'Header Style', 'hello-movieengine' ),
+			'description' => esc_html__( 'Transparent uses a fixed overlay on pages selected in “Fixed Header On”. Solid is always a normal header.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_header_section',
+			'type'        => 'select',
+			'choices'     => array(
 				'solid'       => esc_html__( 'Solid (Dark)', 'hello-movieengine' ),
 				'transparent' => esc_html__( 'Transparent (Overlay)', 'hello-movieengine' ),
 			),
@@ -66,6 +67,32 @@ class Hello_Movie_Engine_Header_Section {
 				'fullwidth' => esc_html__( 'Full Width', 'hello-movieengine' ),
 			),
 		) );
+
+		/* Fixed header on selected pages (Transparent overlay + position fixed) */
+		$default_fixed = wp_json_encode( array( 'front_page', 'single_movie', 'single_series', 'single_episode' ) );
+		$wp_customize->add_setting( 'hello_movieengine_header_fixed_locations', array(
+			'default'           => $default_fixed,
+			'sanitize_callback' => 'hello_movieengine_sanitize_multiselect',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Multiselect_Control( $wp_customize, 'hello_movieengine_header_fixed_locations', array(
+			'label'       => esc_html__( 'Fixed Header On', 'hello-movieengine' ),
+			'description' => esc_html__( 'Choose where the header is fixed (overlay). Unselected pages use a normal solid header.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_header_section',
+			'choices'     => array(
+				'front_page'     => esc_html__( 'Front Page', 'hello-movieengine' ),
+				'single_movie'   => esc_html__( 'Single Movie', 'hello-movieengine' ),
+				'single_series'  => esc_html__( 'Single Series', 'hello-movieengine' ),
+				'single_episode' => esc_html__( 'Single Episode', 'hello-movieengine' ),
+				'blog'           => esc_html__( 'Blog', 'hello-movieengine' ),
+				'single_post'    => esc_html__( 'Single Post', 'hello-movieengine' ),
+				'single_page'    => esc_html__( 'Pages', 'hello-movieengine' ),
+				'archives'       => esc_html__( 'Archives', 'hello-movieengine' ),
+				'search'         => esc_html__( 'Search', 'hello-movieengine' ),
+				'author'         => esc_html__( 'Author', 'hello-movieengine' ),
+				'404'            => esc_html__( '404', 'hello-movieengine' ),
+			),
+		) ) );
 
 		/* Show search */
 		$wp_customize->add_setting( 'hello_movieengine_header_search', array(
