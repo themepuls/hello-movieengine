@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'HELLO_MOVIEENGINE_VERSION', '1.0.3' );
+define( 'HELLO_MOVIEENGINE_VERSION', '1.0.4' );
 define( 'HELLO_MOVIEENGINE_DIR', get_template_directory() );
 define( 'HELLO_MOVIEENGINE_URI', get_template_directory_uri() );
 

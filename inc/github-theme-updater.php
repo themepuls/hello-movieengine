@@ -190,8 +190,16 @@ class Hello_MovieEngine_GitHub_Updater {
 	 */
 	private static function get_latest_release() {
 		$cached = get_site_transient( self::CACHE_KEY );
-		if ( is_array( $cached ) ) {
-			return $cached;
+		if ( is_array( $cached ) && ! empty( $cached['version'] ) && ! empty( $cached['package'] ) ) {
+			/*
+			 * If the cached release is not newer than the installed theme,
+			 * re-check GitHub sooner so a new Release is not hidden for 12 hours.
+			 */
+			$theme   = wp_get_theme( self::SLUG );
+			$current = $theme->exists() ? $theme->get( 'Version' ) : '';
+			if ( '' === $current || version_compare( $cached['version'], $current, '>' ) ) {
+				return $cached;
+			}
 		}
 
 		$response = wp_remote_get(
