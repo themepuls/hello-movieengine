@@ -6,6 +6,7 @@ A lightweight, cinematic dark theme built as the official companion for the [Mov
 
 - **Dual header styles**: Transparent (over hero) or solid, configurable via Customizer
 - **Responsive header**: Transparent header uses `position: relative` on mobile (≤1024px) so it scrolls with content; fixed only on desktop
+- **Mega Menu**: Enable per menu item in Appearance → Menus (Enable Mega Menu + Columns); optional column headings on nested items; mobile keeps the accordion menu
 - **Movie Engine integration**: Transparent header only on front page, single movie, series, and episode; solid everywhere else (playlist, archives, search, blog, etc.)
 - **Customizer options**: Header style, width, colors, padding, page title locations
 - **Dark theme**: Cinema-style dark interface optimized for streaming
@@ -24,6 +25,28 @@ A lightweight, cinematic dark theme built as the official companion for the [Mov
 3. Install and activate the Movie Engine plugin for movie/series/episode support
 4. Customize via **Appearance → Customize**
 
+## Mega Menu
+
+1. Go to **Appearance → Menus**
+2. Expand a **top-level** Primary Menu item
+3. Check **Enable Mega Menu**
+4. Choose **Mega Menu Columns** (2–8)
+5. Nest column groups under that item. On a nested item, check **Mega column heading** to style it as a column title
+6. Save the menu
+
+Example structure:
+
+```
+Movies                    ← Enable Mega Menu + 3 columns
+├── Genres                ← Mega column heading
+│   ├── Action
+│   └── Drama
+├── By Year
+└── Lists
+```
+
+Desktop (≥1025px) shows the multi-column panel. Mobile keeps the existing accordion submenu.
+
 ## Customization
 
 - **Header**: Style (transparent/solid), width (boxed/fullwidth), background color, padding
@@ -40,6 +63,7 @@ hello-movieengine/
 │   └── js/           # navigation, customizer
 ├── inc/
 │   ├── customizer/   # Customizer sections and controls
+│   ├── mega-menu.php
 │   ├── movie-engine-compat.php
 │   └── template-functions.php
 ├── template-parts/

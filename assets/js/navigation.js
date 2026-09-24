@@ -313,5 +313,52 @@
 				} );
 			}, 0 );
 		} );
+
+		/* Touch / no-hover desktops: tap top-level parent to open mega/dropdown */
+		navMenu.addEventListener( 'click', function ( e ) {
+			if ( ! window.matchMedia( '(min-width: 1025px)' ).matches ) {
+				return;
+			}
+			if ( ! window.matchMedia( '(hover: none)' ).matches ) {
+				return;
+			}
+
+			var link = e.target.closest( 'a' );
+			if ( ! link || ! navMenu.contains( link ) ) {
+				return;
+			}
+
+			var li = link.parentElement;
+			if ( ! li || li.parentElement !== navMenu ) {
+				return;
+			}
+			if ( ! li.classList.contains( 'menu-item-has-children' ) && ! li.classList.contains( 'page_item_has_children' ) ) {
+				return;
+			}
+
+			var isOpen = li.classList.contains( 'focus' );
+			navMenu.querySelectorAll( ':scope > li.focus' ).forEach( function ( openLi ) {
+				if ( openLi !== li ) {
+					openLi.classList.remove( 'focus' );
+				}
+			} );
+
+			if ( ! isOpen ) {
+				e.preventDefault();
+				li.classList.add( 'focus' );
+			}
+		} );
+
+		document.addEventListener( 'click', function ( e ) {
+			if ( ! window.matchMedia( '(min-width: 1025px)' ).matches ) {
+				return;
+			}
+			if ( navMenu.contains( e.target ) ) {
+				return;
+			}
+			navMenu.querySelectorAll( ':scope > li.focus' ).forEach( function ( li ) {
+				li.classList.remove( 'focus' );
+			} );
+		} );
 	}
 } )();

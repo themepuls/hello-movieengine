@@ -6,7 +6,7 @@ Tags: dark, entertainment, one-column, two-columns, custom-background, custom-lo
 Requires at least: 4.5
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.3
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,7 @@ Hello Movie Engine delivers a modern OTT streaming experience with responsive la
 Features:
 * Dual header styles: Transparent (over hero) or solid, configurable via Customizer
 * Responsive header: Transparent header scrolls with content on mobile; fixed only on desktop
+* Mega Menu: multi-column desktop panels via Appearance → Menus (Enable Mega Menu + Columns)
 * Movie Engine integration: Transparent header only on front page, single movie, series, and episode; solid everywhere else
 * Page title hidden on playlist page
 * Dark cinema-style interface optimized for streaming
@@ -43,7 +44,26 @@ No. The theme works standalone, but the Movie Engine plugin enables movie, serie
 
 Only the front page, single movie, single series, and single episode pages use the transparent (position fixed) header. All other pages (playlist, archives, search, blog, single post, etc.) use the solid header. On mobile, the transparent header scrolls with content (position relative).
 
+= How do I enable a mega menu? =
+
+1. Go to Appearance → Menus.
+2. Expand a top-level Primary Menu item.
+3. Check Enable Mega Menu.
+4. Choose Mega Menu Columns (2–8).
+5. Nest column groups under that item. On a nested item, check Mega column heading to style it as a column title.
+6. Save the menu.
+
+Desktop shows a multi-column panel. Mobile keeps the accordion submenu.
+
 == Changelog ==
+
+= 1.0.3 =
+* Mega Menu: Enable Mega Menu + Columns (2–8) controls on Appearance → Menus
+* Mega Menu: desktop multi-column panels with responsive column caps; hover bridge fix; parent/child typography
+* Mega Menu: mobile/tablet accordion unchanged; touch open support on no-hover desktops
+
+= 1.0.2 =
+* Theme updates and GitHub updater support
 
 = 1.0.0 =
 * Initial release

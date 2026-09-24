@@ -242,6 +242,176 @@
 }
 
 /* --------------------------------------------------------
+   Mega Menu (desktop ≥1025px)
+   Enable via Appearance → Menus (Enable Mega Menu + Columns 2–8).
+   Mobile/tablet ≤1024px: existing accordion — no mega grid.
+   -------------------------------------------------------- */
+@media (min-width: 1025px) {
+	.hello-movieengine-header__inner {
+		position: relative;
+	}
+
+	/* Full-height hover hit area so the pointer never “falls through”
+	   the gap between the link and the mega panel. */
+	.hello-movieengine-header__nav {
+		align-self: stretch;
+		align-items: stretch;
+	}
+
+	.hello-movieengine-nav-menu {
+		height: 100%;
+		align-items: stretch;
+	}
+
+	.hello-movieengine-nav-menu > li {
+		display: flex;
+		align-items: center;
+	}
+
+	/* Anchor panel to the header inner, not the single link */
+	.hello-movieengine-nav-menu > li.mega-menu {
+		position: static;
+	}
+
+	.hello-movieengine-nav-menu > li.mega-menu > ul {
+		--mega-cols: 3;
+		left: 0;
+		right: 0;
+		top: 100%;
+		width: 100%;
+		max-width: none;
+		min-width: 0;
+		margin: 0;
+		padding: 1.25rem 1.5rem;
+		display: none;
+		grid-template-columns: repeat(var(--mega-cols), minmax(0, 1fr));
+		gap: 1rem 1.25rem;
+		box-sizing: border-box;
+		z-index: 10020;
+		max-height: min(70vh, 560px);
+		overflow-x: hidden;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	/* Invisible bridge above the panel (covers any sub-pixel / border gap) */
+	.hello-movieengine-nav-menu > li.mega-menu > ul::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 100%;
+		height: 16px;
+	}
+
+	.hello-movieengine-nav-menu > li.mega-menu:hover > ul,
+	.hello-movieengine-nav-menu > li.mega-menu.focus > ul {
+		display: grid;
+	}
+
+	.hello-movieengine-nav-menu > li.mega-menu.mega-columns-2 > ul { --mega-cols: 2; }
+	.hello-movieengine-nav-menu > li.mega-menu.mega-columns-3 > ul { --mega-cols: 3; }
+	.hello-movieengine-nav-menu > li.mega-menu.mega-columns-4 > ul { --mega-cols: 4; }
+	.hello-movieengine-nav-menu > li.mega-menu.mega-columns-5 > ul { --mega-cols: 5; }
+	.hello-movieengine-nav-menu > li.mega-menu.mega-columns-6 > ul { --mega-cols: 6; }
+	.hello-movieengine-nav-menu > li.mega-menu.mega-columns-7 > ul { --mega-cols: 7; }
+	.hello-movieengine-nav-menu > li.mega-menu.mega-columns-8 > ul { --mega-cols: 8; }
+
+	/* Depth-1 items become columns */
+	.hello-movieengine-nav-menu > li.mega-menu > ul > li {
+		position: static;
+		display: block;
+		min-width: 0;
+	}
+
+	.hello-movieengine-nav-menu > li.mega-menu > ul > li > a {
+		white-space: normal;
+		font-size: 1.05rem;
+		font-weight: 700;
+		line-height: 1.35;
+		padding: 6px 8px 12px;
+		word-break: break-word;
+		color: var(--hello-movieengine-white);
+	}
+
+	/* Column title styling */
+	.hello-movieengine-nav-menu > li.mega-menu > ul > li.mega-heading > a {
+		color: var(--hello-movieengine-text-muted);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		padding-bottom: 8px;
+		margin-bottom: 4px;
+		border-bottom: 1px solid var(--hello-movieengine-border-color);
+		pointer-events: none;
+		cursor: default;
+	}
+
+	.hello-movieengine-nav-menu > li.mega-menu > ul > li.mega-heading > a:hover {
+		background: transparent;
+		color: var(--hello-movieengine-text-muted);
+	}
+
+	/* Nested lists stay in-column (no flyout) */
+	.hello-movieengine-nav-menu > li.mega-menu > ul ul {
+		position: static;
+		display: block !important;
+		left: auto;
+		right: auto;
+		top: auto;
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		border: none;
+		box-shadow: none;
+		background: transparent;
+		border-radius: 0;
+		z-index: auto;
+		max-height: none;
+		overflow: visible;
+	}
+
+	.hello-movieengine-nav-menu > li.mega-menu > ul ul li a {
+		white-space: normal;
+		padding: 7px 8px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		line-height: 1.4;
+		word-break: break-word;
+		color: var(--hello-movieengine-text-color);
+	}
+
+	/* Hide side-chevron on mega column parents */
+	.hello-movieengine-nav-menu > li.mega-menu ul li.menu-item-has-children > a::after,
+	.hello-movieengine-nav-menu > li.mega-menu ul li.page_item_has_children > a::after {
+		display: none;
+	}
+}
+
+/* Mid desktop: cap dense grids so columns stay readable */
+@media (min-width: 1025px) and (max-width: 1279px) {
+	.hello-movieengine-nav-menu > li.mega-menu > ul {
+		grid-template-columns: repeat(min(var(--mega-cols), 3), minmax(0, 1fr));
+		padding: 1rem 1.15rem;
+		gap: 0.85rem 1rem;
+	}
+}
+
+@media (min-width: 1280px) and (max-width: 1535px) {
+	.hello-movieengine-nav-menu > li.mega-menu > ul {
+		grid-template-columns: repeat(min(var(--mega-cols), 5), minmax(0, 1fr));
+	}
+}
+
+/* Large screens: honor full 2–8 selection */
+@media (min-width: 1536px) {
+	.hello-movieengine-nav-menu > li.mega-menu > ul {
+		grid-template-columns: repeat(var(--mega-cols), minmax(0, 1fr));
+	}
+}
+
+/* --------------------------------------------------------
    Header actions (search icon, user, mobile toggle)
    -------------------------------------------------------- */
 .hello-movieengine-header__actions {
@@ -689,8 +859,8 @@ body.hello-movieengine-mobile-nav-open::before {
 	}
 
 	.hello-movieengine-nav-menu li.is-submenu-open>ul {
-		max-height: 900px;
-		/* enough for typical menus */
+		max-height: 5000px;
+		/* enough for deep / mega-style nested menus */
 	}
 
 	.hello-movieengine-nav-menu li.is-submenu-open>.hello-movieengine-submenu-toggle svg {
