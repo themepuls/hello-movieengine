@@ -6,7 +6,7 @@ Tags: dark, entertainment, one-column, two-columns, custom-background, custom-lo
 Requires at least: 4.5
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,10 @@ Only the front page, single movie, single series, and single episode pages use t
 Desktop shows a multi-column panel. Mobile keeps the accordion submenu.
 
 == Changelog ==
+
+= 1.0.5 =
+* Footer: copyright stays full width on its own row, and the menu sits full width on the next row
+* Footer stacks and centers on small screens so the copyright text and menu are no longer cut off
 
 = 1.0.4 =
 * GitHub updater: re-check for newer releases sooner when the site is already on the cached version (avoids missing update notices for up to 12 hours)
