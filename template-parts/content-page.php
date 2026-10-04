@@ -8,9 +8,11 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'hello-movieengine-single-content' ); ?>>
+	<?php if ( ! hello_movieengine_show_page_title() && ! hello_movieengine_is_static_front_page() ) : ?>
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header>
+	<?php endif; ?>
 
 	<?php hello_movieengine_post_thumbnail(); ?>
 

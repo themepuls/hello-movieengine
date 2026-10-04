@@ -42,6 +42,7 @@ class Hello_Movie_Engine_Page_Title_Section {
 			'description' => esc_html__( 'Select where the page title banner appears.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_page_title_section',
 			'choices'     => array(
+				'front_page'  => esc_html__( 'Front Page', 'hello-movieengine' ),
 				'blog'        => esc_html__( 'Blog', 'hello-movieengine' ),
 				'single_post' => esc_html__( 'Single Post', 'hello-movieengine' ),
 				'single_page' => esc_html__( 'Single Page', 'hello-movieengine' ),
@@ -60,7 +61,7 @@ class Hello_Movie_Engine_Page_Title_Section {
 		) );
 		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Page_Select_Control( $wp_customize, 'hello_movieengine_page_title_pages', array(
 			'label'       => esc_html__( 'Select Pages', 'hello-movieengine' ),
-			'description' => esc_html__( 'Choose specific pages to show the title banner.', 'hello-movieengine' ),
+			'description' => esc_html__( 'Choose specific pages to show the title banner. The homepage follows Front Page above, not this list.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_page_title_section',
 		) ) );
 

@@ -6,7 +6,7 @@ Tags: dark, entertainment, one-column, two-columns, custom-background, custom-lo
 Requires at least: 4.5
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ Features:
 * Dual header styles: Transparent (over hero) or solid, configurable via Customizer
 * Responsive header: Transparent header scrolls with content on mobile; fixed only on desktop
 * Mega Menu: multi-column desktop panels via Appearance → Menus (Enable Mega Menu + Columns)
-* Movie Engine integration: Transparent header only on front page, single movie, series, and episode; solid everywhere else
+* Movie Engine integration: fixed header on the locations and specific pages chosen in the Customizer
 * Page title hidden on playlist page
 * Dark cinema-style interface optimized for streaming
 * Customizer options for header, layout, colors, and page title
@@ -42,7 +42,7 @@ No. The theme works standalone, but the Movie Engine plugin enables movie, serie
 
 = Which pages use the transparent header? =
 
-Only the front page, single movie, single series, and single episode pages use the transparent (position fixed) header. All other pages (playlist, archives, search, blog, single post, etc.) use the solid header. On mobile, the transparent header scrolls with content (position relative).
+Set Header Style to Transparent, then choose locations under Fixed Header On. Select Pages adds extra pages. Unselected pages use the solid header. The homepage title banner appears only when Page Title → Front Page is selected. On mobile, the transparent header scrolls with content (position relative).
 
 = How do I enable a mega menu? =
 
@@ -56,6 +56,11 @@ Only the front page, single movie, single series, and single episode pages use t
 Desktop shows a multi-column panel. Mobile keeps the accordion submenu.
 
 == Changelog ==
+
+= 1.0.6 =
+* Header: Select Pages picker for the fixed header, in addition to the location buttons
+* Page title: Front Page is its own option. The homepage banner stays off unless Front Page is selected
+* A page no longer prints a second title when the page title banner is already showing
 
 = 1.0.5 =
 * Footer: copyright stays full width on its own row, and the menu sits full width on the next row

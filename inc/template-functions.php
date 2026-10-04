@@ -71,6 +71,14 @@ function hello_movieengine_is_header_fixed_here() {
 		return true;
 	}
 
+	$page_id = hello_movieengine_current_page_id();
+	if ( $page_id ) {
+		$selected_pages = json_decode( get_theme_mod( 'hello_movieengine_header_fixed_pages', '[]' ), true );
+		if ( is_array( $selected_pages ) && in_array( $page_id, array_map( 'intval', $selected_pages ), true ) ) {
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -203,15 +211,53 @@ function hello_movieengine_show_sidebar() {
 }
 
 /**
+ * Current page ID, including the static front page.
+ *
+ * @return int
+ */
+function hello_movieengine_current_page_id() {
+	if ( is_singular() ) {
+		return (int) get_queried_object_id();
+	}
+
+	if ( is_front_page() && 'page' === get_option( 'show_on_front' ) ) {
+		return (int) get_option( 'page_on_front' );
+	}
+
+	return 0;
+}
+
+/**
+ * True for the page assigned as the site homepage.
+ *
+ * @param int $page_id Optional page ID. Uses the current page when empty.
+ * @return bool
+ */
+function hello_movieengine_is_static_front_page( $page_id = 0 ) {
+	if ( 'page' !== get_option( 'show_on_front' ) ) {
+		return is_front_page();
+	}
+
+	$front_id = (int) get_option( 'page_on_front' );
+	if ( ! $front_id ) {
+		return false;
+	}
+
+	if ( is_front_page() ) {
+		return true;
+	}
+
+	$page_id = $page_id ? (int) $page_id : hello_movieengine_current_page_id();
+
+	return $page_id === $front_id;
+}
+
+/**
  * Check if the page title section should display on the current page.
  *
  * @return bool
  */
 function hello_movieengine_show_page_title() {
-	if ( is_front_page() ) {
-		return false;
-	}
-
 	/* Playlist page has its own layout; no theme page title */
 	if ( hello_movieengine_is_movie_engine_active() && get_query_var( 'movie_engine_playlist_page' ) ) {
 		return false;
@@ -224,6 +270,16 @@ function hello_movieengine_show_page_title() {
 		$locations = array();
 	}
 
+	$page_id = hello_movieengine_current_page_id();
+
+	/*
+	 * The static front page is not a normal page. It shows a title only when
+	 * Front Page is selected, even if that page is checked under Select Pages.
+	 */
+	if ( hello_movieengine_is_static_front_page( $page_id ) ) {
+		return in_array( 'front_page', $locations, true );
+	}
+
 	if ( hello_movieengine_is_movie_engine_active() && hello_movieengine_is_movie_engine_archive() ) {
 		return false;
 	}
@@ -234,7 +290,7 @@ function hello_movieengine_show_page_title() {
 	if ( in_array( 'single_post', $locations, true ) && is_singular( 'post' ) ) {
 		return true;
 	}
-	if ( in_array( 'single_page', $locations, true ) && is_page() ) {
+	if ( in_array( 'single_page', $locations, true ) && is_page() && ! is_front_page() ) {
 		return true;
 	}
 	if ( in_array( 'archives', $locations, true ) && ( is_category() || is_tag() || is_post_type_archive() || is_date() ) ) {

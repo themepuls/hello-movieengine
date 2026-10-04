@@ -94,6 +94,18 @@ class Hello_Movie_Engine_Header_Section {
 			),
 		) ) );
 
+		/* Specific pages, same picker as Page Title */
+		$wp_customize->add_setting( 'hello_movieengine_header_fixed_pages', array(
+			'default'           => '[]',
+			'sanitize_callback' => 'hello_movieengine_sanitize_page_select',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Page_Select_Control( $wp_customize, 'hello_movieengine_header_fixed_pages', array(
+			'label'       => esc_html__( 'Select Pages', 'hello-movieengine' ),
+			'description' => esc_html__( 'Choose specific pages for the fixed header. These are in addition to the locations above.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_header_section',
+		) ) );
+
 		/* Show search */
 		$wp_customize->add_setting( 'hello_movieengine_header_search', array(
 			'default'           => true,
