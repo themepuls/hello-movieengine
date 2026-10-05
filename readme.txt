@@ -6,7 +6,7 @@ Tags: dark, entertainment, one-column, two-columns, custom-background, custom-lo
 Requires at least: 4.5
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,10 @@ Set Header Style to Transparent, then choose locations under Fixed Header On. Se
 Desktop shows a multi-column panel. Mobile keeps the accordion submenu.
 
 == Changelog ==
+
+= 1.0.7 =
+* Fix: Form fields use one focus ring (border + soft shadow) instead of a stacked outline on keyboard focus
+* Fix: Header live search input no longer adds an extra outline on top of the search box ring
 
 = 1.0.6 =
 * Header: Select Pages picker for the fixed header, in addition to the location buttons

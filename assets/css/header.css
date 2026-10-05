@@ -609,6 +609,13 @@
 	font-size: 0.925rem;
 }
 
+.hello-movieengine-header__search-box .movie-engine-ls-input:focus,
+.hello-movieengine-header__search-box .movie-engine-ls-input:focus-visible {
+	outline: none;
+	box-shadow: none;
+	border: none;
+}
+
 /* Movie Engine user menu in header */
 
 

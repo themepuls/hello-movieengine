@@ -257,19 +257,14 @@ select {
 
 input:focus,
 textarea:focus,
-select:focus {
-	border-color: var(--hello-movieengine-primary-color);
-	outline: none;
-	box-shadow: 0 0 0 2px rgba(var(--hello-movieengine-primary-rgb), 0.35);
-}
-
+select:focus,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
 	border-color: var(--hello-movieengine-primary-color);
-	outline: 2px solid var(--hello-movieengine-primary-color);
-	outline-offset: -2px;
-	box-shadow: none;
+	outline: none;
+	outline-offset: 0;
+	box-shadow: 0 0 0 2px rgba(var(--hello-movieengine-primary-rgb), 0.35);
 }
 
 /* --------------------------------------------------------
