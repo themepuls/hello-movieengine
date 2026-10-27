@@ -1,0 +1,264 @@
+/**
+ * Hello MovieEngine Mobile Bottom Navigation
+ *
+ * App-style bottom navigation bar for mobile and tablet devices.
+ *
+ * @package Hello_Movie Engine
+ * @since 1.0.8
+ */
+
+:root {
+	--hello-bottom-nav-bg: rgba(18, 18, 18, 0.96);
+	--hello-bottom-nav-border: rgba(255, 255, 255, 0.08);
+	--hello-bottom-nav-icon: #a0a0a0;
+	--hello-bottom-nav-label: #8d8d8d;
+	--hello-bottom-nav-active: #ff0055;
+	--hello-bottom-nav-height: 62px;
+}
+
+/* ==========================================================
+   Base Bottom Navigation Bar
+   ========================================================== */
+.hello-movieengine-bottom-nav {
+	display: none; /* Hidden on desktop by default */
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 99999;
+	background-color: var(--hello-bottom-nav-bg);
+	border-top: 1px solid var(--hello-bottom-nav-border);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.35);
+	padding-bottom: env(safe-area-inset-bottom, 0px);
+	transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+/* Container */
+.hello-movieengine-bottom-nav__container {
+	width: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	padding: 0 4px;
+}
+
+/* List */
+.hello-movieengine-bottom-nav__items {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-around;
+	height: var(--hello-bottom-nav-height);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Individual Item */
+.hello-movieengine-bottom-nav__item {
+	flex: 1 1 0;
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: stretch;
+	position: relative;
+}
+
+/* Link and Button Targets */
+.hello-movieengine-bottom-nav__link,
+.hello-movieengine-bottom-nav__btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	min-height: 48px;
+	padding: 6px 2px;
+	background: transparent;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	text-decoration: none;
+	color: var(--hello-bottom-nav-icon);
+	position: relative;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+	transition: color 0.18s ease, transform 0.12s ease;
+}
+
+.hello-movieengine-bottom-nav__link:hover,
+.hello-movieengine-bottom-nav__btn:hover,
+.hello-movieengine-bottom-nav__link:focus-visible,
+.hello-movieengine-bottom-nav__btn:focus-visible {
+	color: #ffffff;
+	outline: none;
+}
+
+.hello-movieengine-bottom-nav__link:active,
+.hello-movieengine-bottom-nav__btn:active {
+	transform: scale(0.92);
+}
+
+/* Icon Container */
+.hello-movieengine-bottom-nav__icon-wrap {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	font-size: 20px;
+	line-height: 1;
+	position: relative;
+	transition: transform 0.18s ease;
+}
+
+.hello-movieengine-bottom-nav__icon-wrap svg {
+	width: 22px;
+	height: 22px;
+	stroke: currentColor;
+	fill: none;
+	stroke-width: 1.75;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	display: block;
+	transition: stroke 0.18s ease;
+}
+
+.hello-movieengine-bottom-nav__icon-wrap i {
+	font-size: 19px;
+	line-height: 1;
+}
+
+/* Text Label */
+.hello-movieengine-bottom-nav__label {
+	display: block;
+	font-size: 10px;
+	font-weight: 500;
+	letter-spacing: 0.2px;
+	line-height: 1.2;
+	margin-top: 4px;
+	color: var(--hello-bottom-nav-label);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 68px;
+	text-align: center;
+	transition: color 0.18s ease, font-weight 0.18s ease;
+}
+
+/* Active State */
+.hello-movieengine-bottom-nav__item.is-active .hello-movieengine-bottom-nav__link,
+.hello-movieengine-bottom-nav__item.is-active .hello-movieengine-bottom-nav__btn {
+	color: var(--hello-bottom-nav-active);
+}
+
+.hello-movieengine-bottom-nav__item.is-active .hello-movieengine-bottom-nav__icon-wrap {
+	transform: translateY(-1px);
+}
+
+.hello-movieengine-bottom-nav__item.is-active .hello-movieengine-bottom-nav__icon-wrap svg {
+	stroke: var(--hello-bottom-nav-active);
+}
+
+.hello-movieengine-bottom-nav__item.is-active .hello-movieengine-bottom-nav__label {
+	color: var(--hello-bottom-nav-active);
+	font-weight: 700;
+}
+
+/* Active Accent Dot */
+.hello-movieengine-bottom-nav__item.is-active::after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 4px;
+	height: 4px;
+	background-color: var(--hello-bottom-nav-active);
+	border-radius: 50%;
+	box-shadow: 0 0 6px var(--hello-bottom-nav-active);
+	pointer-events: none;
+}
+
+/* When labels are hidden (icon-only mode) */
+.hello-movieengine-bottom-nav.no-labels .hello-movieengine-bottom-nav__items {
+	height: 54px;
+}
+
+.hello-movieengine-bottom-nav.no-labels .hello-movieengine-bottom-nav__icon-wrap {
+	width: 28px;
+	height: 28px;
+	font-size: 22px;
+}
+
+.hello-movieengine-bottom-nav.no-labels .hello-movieengine-bottom-nav__icon-wrap svg {
+	width: 24px;
+	height: 24px;
+}
+
+/* Screen reader text for icon-only accessibility */
+.hello-movieengine-bottom-nav .screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+/* ==========================================================
+   Responsive Display & Body Clearance
+   ========================================================== */
+
+/* Mobile Only (default, <= 767px) */
+@media (max-width: 767px) {
+	.hello-movieengine-bottom-nav--mobile {
+		display: block;
+	}
+
+	body.has-hello-bottom-nav.hello-bottom-nav--bp-mobile {
+		padding-bottom: calc(var(--hello-bottom-nav-height) + env(safe-area-inset-bottom, 0px)) !important;
+	}
+
+	body.has-hello-bottom-nav.hello-bottom-nav--bp-mobile.hello-bottom-nav--no-labels {
+		padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)) !important;
+	}
+}
+
+/* Mobile & Tablet (<= 1024px) */
+@media (max-width: 1024px) {
+	.hello-movieengine-bottom-nav--tablet {
+		display: block;
+	}
+
+	body.has-hello-bottom-nav.hello-bottom-nav--bp-tablet {
+		padding-bottom: calc(var(--hello-bottom-nav-height) + env(safe-area-inset-bottom, 0px)) !important;
+	}
+
+	body.has-hello-bottom-nav.hello-bottom-nav--bp-tablet.hello-bottom-nav--no-labels {
+		padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)) !important;
+	}
+}
+
+/* ==========================================================
+   Hide During Fullscreen Video
+   ========================================================== */
+:fullscreen .hello-movieengine-bottom-nav,
+:-webkit-full-screen .hello-movieengine-bottom-nav,
+:-moz-full-screen .hello-movieengine-bottom-nav,
+:-ms-fullscreen .hello-movieengine-bottom-nav,
+body.is-fullscreen .hello-movieengine-bottom-nav,
+body.vjs-full-window .hello-movieengine-bottom-nav,
+.jw-flag-fullscreen ~ .hello-movieengine-bottom-nav {
+	display: none !important;
+}

@@ -31,6 +31,7 @@ function hello_movieengine_customize_register( $wp_customize ) {
 	require_once $dir . '/controls/class-hello-movieengine-heading-control.php';
 	require_once $dir . '/controls/class-hello-movieengine-multiselect-control.php';
 	require_once $dir . '/controls/class-hello-movieengine-page-select-control.php';
+	require_once $dir . '/controls/class-hello-movieengine-nav-repeater-control.php';
 
 	/* Sections */
 	require_once $dir . '/sections/class-hello-movieengine-header-section.php';
@@ -38,6 +39,7 @@ function hello_movieengine_customize_register( $wp_customize ) {
 	require_once $dir . '/sections/class-hello-movieengine-layout-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-blog-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-page-title-section.php';
+	require_once $dir . '/sections/class-hello-movieengine-bottom-nav-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-404-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-footer-section.php';
 
@@ -53,6 +55,7 @@ function hello_movieengine_customize_register( $wp_customize ) {
 	Hello_Movie_Engine_Layout_Section::register( $wp_customize );
 	Hello_Movie_Engine_Blog_Section::register( $wp_customize );
 	Hello_Movie_Engine_Page_Title_Section::register( $wp_customize );
+	Hello_Movie_Engine_Bottom_Nav_Section::register( $wp_customize );
 	Hello_Movie_Engine_404_Section::register( $wp_customize );
 	Hello_Movie_Engine_Footer_Section::register( $wp_customize );
 

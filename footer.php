@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 </div><!-- #page -->
 
+<?php get_template_part( 'template-parts/navigation/bottom-nav' ); ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>

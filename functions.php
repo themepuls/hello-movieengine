@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'HELLO_MOVIEENGINE_VERSION', '1.0.7' );
+define( 'HELLO_MOVIEENGINE_VERSION', '1.0.8' );
 define( 'HELLO_MOVIEENGINE_DIR', get_template_directory() );
 define( 'HELLO_MOVIEENGINE_URI', get_template_directory_uri() );
 
@@ -48,6 +48,11 @@ require HELLO_MOVIEENGINE_DIR . '/inc/template-tags.php';
  * Customizer options.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/customizer/class-hello-movieengine-customizer.php';
+
+/**
+ * Mobile Bottom Navigation.
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/class-hello-movieengine-bottom-nav.php';
 
 /**
  * Movie Engine plugin compatibility.

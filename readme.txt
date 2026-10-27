@@ -6,7 +6,7 @@ Tags: dark, entertainment, one-column, two-columns, custom-background, custom-lo
 Requires at least: 4.5
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,13 @@ Set Header Style to Transparent, then choose locations under Fixed Header On. Se
 Desktop shows a multi-column panel. Mobile keeps the accordion submenu.
 
 == Changelog ==
+
+= 1.0.8 =
+* New: Mobile Bottom Navigation Bar with live Customizer controls under Header & Navigation → Bottom Navigation
+* New: Reorderable navigation repeater items with custom icons, labels, links, target, and badge counters
+* New: Dynamic layout options (floating vs dock), visibility controls (mobile-only, always, or hidden), blur effect, and custom color presets
+* New: Responsive padding compensation on body and footer to prevent content overlap
+* Fix: Prevent duplicate header focus rings on live search input
 
 = 1.0.7 =
 * Fix: Form fields use one focus ring (border + soft shadow) instead of a stacked outline on keyboard focus

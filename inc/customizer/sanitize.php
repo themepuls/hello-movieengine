@@ -59,6 +59,54 @@ function hello_movieengine_sanitize_multiselect( $value ) {
 	return wp_json_encode( array_values( $clean ) );
 }
 
+function hello_movieengine_sanitize_nav_repeater( $value ) {
+	if ( is_string( $value ) ) {
+		$decoded = json_decode( $value, true );
+	} elseif ( is_array( $value ) ) {
+		$decoded = $value;
+	} else {
+		$decoded = null;
+	}
+
+	if ( ! is_array( $decoded ) ) {
+		return '[]';
+	}
+
+	$valid_types       = array( 'home', 'movies', 'series', 'watchlist', 'account', 'search', 'genres', 'subscription', 'custom' );
+	$valid_visibility  = array( 'all', 'logged_in', 'logged_out' );
+	$clean_items       = array();
+
+	foreach ( $decoded as $index => $item ) {
+		if ( ! is_array( $item ) ) {
+			continue;
+		}
+
+		$type = isset( $item['type'] ) ? sanitize_key( $item['type'] ) : 'custom';
+		if ( ! in_array( $type, $valid_types, true ) ) {
+			$type = 'custom';
+		}
+
+		$visibility = isset( $item['visibility'] ) ? sanitize_key( $item['visibility'] ) : 'all';
+		if ( ! in_array( $visibility, $valid_visibility, true ) ) {
+			$visibility = 'all';
+		}
+
+		$clean_items[] = array(
+			'id'          => ! empty( $item['id'] ) ? sanitize_key( $item['id'] ) : 'item_' . $index,
+			'type'        => $type,
+			'label'       => isset( $item['label'] ) ? sanitize_text_field( $item['label'] ) : '',
+			'icon'        => isset( $item['icon'] ) ? sanitize_text_field( $item['icon'] ) : '',
+			'custom_icon' => isset( $item['custom_icon'] ) ? sanitize_text_field( $item['custom_icon'] ) : '',
+			'page_id'     => isset( $item['page_id'] ) ? absint( $item['page_id'] ) : 0,
+			'url'         => isset( $item['url'] ) ? esc_url_raw( trim( $item['url'] ) ) : '',
+			'visibility'  => $visibility,
+			'enabled'     => ! isset( $item['enabled'] ) || ! empty( $item['enabled'] ),
+		);
+	}
+
+	return wp_json_encode( $clean_items );
+}
+
 function hello_movieengine_sanitize_page_select( $value ) {
 	$decoded = json_decode( $value, true );
 	if ( ! is_array( $decoded ) ) {
