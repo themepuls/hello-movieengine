@@ -124,8 +124,36 @@
 		--hello-movieengine-header-height: 60px;
 	}
 
-	.hello-movieengine-header__search-box {
-		width: 260px;
+	.hello-movieengine-header.is-search-open .hello-movieengine-header__logo,
+	.hello-movieengine-header:has(.hello-movieengine-header__search.is-open) .hello-movieengine-header__logo,
+	.hello-movieengine-header.is-search-open .hello-movieengine-header__mobile-toggle,
+	.hello-movieengine-header:has(.hello-movieengine-header__search.is-open) .hello-movieengine-header__mobile-toggle {
+		opacity: 0 !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+	}
+
+	.hello-movieengine-header__search.is-open {
+		position: static !important;
+	}
+
+	.hello-movieengine-header__search.is-open .hello-movieengine-header__search-box {
+		position: absolute !important;
+		top: 0 !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		height: 100% !important;
+		transform: none !important;
+		z-index: 100 !important;
+		background: var(--hello-movieengine-bg-color, #141414) !important;
+		padding: 8px 16px !important;
+		display: flex !important;
+		align-items: center !important;
+		gap: 10px !important;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
 	}
 
 	.hello-movieengine-container-fluid,
@@ -143,8 +171,7 @@
    Ultra small (≤475px)
    -------------------------------------------------------- */
 @media (max-width: 475px) {
-	/* Hide header search on very small screens */
 	.hello-movieengine-header__search {
-		display: none !important;
+		display: flex !important;
 	}
 }

@@ -220,6 +220,10 @@
 	function openSearch() {
 		if ( ! searchWrapper ) return;
 		searchWrapper.classList.add( 'is-open' );
+		var header = searchWrapper.closest( '.hello-movieengine-header' );
+		if ( header ) {
+			header.classList.add( 'is-search-open' );
+		}
 		if ( searchToggle ) searchToggle.setAttribute( 'aria-expanded', 'true' );
 
 		var input = searchBox.querySelector( 'input[type="text"], input[type="search"], .movie-engine-ls-input' );
@@ -231,6 +235,10 @@
 	function closeSearch() {
 		if ( ! searchWrapper ) return;
 		searchWrapper.classList.remove( 'is-open' );
+		var header = searchWrapper.closest( '.hello-movieengine-header' );
+		if ( header ) {
+			header.classList.remove( 'is-search-open' );
+		}
 		if ( searchToggle ) searchToggle.setAttribute( 'aria-expanded', 'false' );
 	}
 

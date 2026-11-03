@@ -6,7 +6,7 @@ Tags: dark, entertainment, one-column, two-columns, custom-background, custom-lo
 Requires at least: 4.5
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,12 @@ Set Header Style to Transparent, then choose locations under Fixed Header On. Se
 Desktop shows a multi-column panel. Mobile keeps the accordion submenu.
 
 == Changelog ==
+
+= 1.0.9 =
+* Fix: Mobile header site title & logo click blocking resolved.
+* Fix: Mobile search toggle icon visibility restored across responsive breakpoints.
+* Fix: Mobile search bar collision fixed with clean full-width header takeover, smoothly hiding the logo and menu toggle while search is open.
+* New: Added is-search-open state handling in navigation.js for seamless mobile search animation.
 
 = 1.0.8 =
 * New: Mobile Bottom Navigation Bar with live Customizer controls under Header & Navigation → Bottom Navigation
