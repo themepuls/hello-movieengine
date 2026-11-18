@@ -6,7 +6,7 @@ Tags: dark, entertainment, one-column, two-columns, custom-background, custom-lo
 Requires at least: 4.5
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.9
+Stable tag: 1.1.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,11 @@ Set Header Style to Transparent, then choose locations under Fixed Header On. Se
 Desktop shows a multi-column panel. Mobile keeps the accordion submenu.
 
 == Changelog ==
+
+= 1.1.0 =
+* New: Customizer → Header → Header Max Width (px) for boxed headers (0 uses Layout → Container Width).
+* Fix: Reduced default header side padding and unified padding output so boxed and full-width headers match Customizer values.
+* Improved: Header Width control description and Layout container width note for boxed headers.
 
 = 1.0.9 =
 * Fix: Mobile header site title & logo click blocking resolved.

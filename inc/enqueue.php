@@ -41,13 +41,13 @@ function hello_movieengine_inline_custom_css() {
 	$header_bg     = get_theme_mod( 'hello_movieengine_header_bg_color', '' );
 
 	$pad_default = wp_json_encode( array(
-		'top' => '0', 'right' => '4', 'bottom' => '0', 'left' => '4', 'unit' => 'rem',
+		'top' => '0', 'right' => '1.25', 'bottom' => '0', 'left' => '1.25', 'unit' => 'rem',
 	) );
 	$pad_raw  = get_theme_mod( 'hello_movieengine_header_padding', $pad_default );
 	$pad_data = json_decode( $pad_raw, true );
 
 	if ( ! is_array( $pad_data ) ) {
-		$pad_data = array( 'top' => '0', 'right' => '4', 'bottom' => '0', 'left' => '4', 'unit' => 'rem' );
+		$pad_data = array( 'top' => '0', 'right' => '1.25', 'bottom' => '0', 'left' => '1.25', 'unit' => 'rem' );
 	}
 
 	$pu = isset( $pad_data['unit'] ) ? $pad_data['unit'] : 'rem';
@@ -84,19 +84,14 @@ function hello_movieengine_inline_custom_css() {
 	}
 
 	$pt = isset( $pad_data['top'] )    ? floatval( $pad_data['top'] )    : 0;
-	$pr = isset( $pad_data['right'] )  ? floatval( $pad_data['right'] )  : 4;
+	$pr = isset( $pad_data['right'] )  ? floatval( $pad_data['right'] )  : 1.25;
 	$pb = isset( $pad_data['bottom'] ) ? floatval( $pad_data['bottom'] ) : 0;
-	$pl = isset( $pad_data['left'] )   ? floatval( $pad_data['left'] )   : 4;
+	$pl = isset( $pad_data['left'] )   ? floatval( $pad_data['left'] )   : 1.25;
 
-	$defaults = array( 'top' => 0, 'right' => 4, 'bottom' => 0, 'left' => 4 );
-	$is_default = ( $pt === $defaults['top'] && $pr === $defaults['right'] && $pb === $defaults['bottom'] && $pl === $defaults['left'] && 'rem' === $pu );
-
-	if ( ! $is_default ) {
-		$root_vars .= '--hello-movieengine-header-pt:' . $pt . $pu . ';';
-		$root_vars .= '--hello-movieengine-header-pr:' . $pr . $pu . ';';
-		$root_vars .= '--hello-movieengine-header-pb:' . $pb . $pu . ';';
-		$root_vars .= '--hello-movieengine-header-pl:' . $pl . $pu . ';';
-	}
+	$root_vars .= '--hello-movieengine-header-pt:' . $pt . $pu . ';';
+	$root_vars .= '--hello-movieengine-header-pr:' . $pr . $pu . ';';
+	$root_vars .= '--hello-movieengine-header-pb:' . $pb . $pu . ';';
+	$root_vars .= '--hello-movieengine-header-pl:' . $pl . $pu . ';';
 
 	if ( '' !== $header_bg ) {
 		$root_vars .= '--hello-movieengine-header-bg:' . esc_attr( $header_bg ) . ';';
@@ -138,6 +133,11 @@ function hello_movieengine_inline_custom_css() {
 	$container_w = absint( get_theme_mod( 'hello_movieengine_container_width', 1340 ) );
 	if ( 1340 !== $container_w ) {
 		$root_vars .= '--hello-movieengine-container-width:' . $container_w . 'px;';
+	}
+
+	$header_container_w = hello_movieengine_get_header_container_width();
+	if ( $header_container_w > 0 && 'boxed' === hello_movieengine_get_header_width() ) {
+		$root_vars .= '--hello-movieengine-header-container-width:' . $header_container_w . 'px;';
 	}
 
 	/* Layout: content padding */

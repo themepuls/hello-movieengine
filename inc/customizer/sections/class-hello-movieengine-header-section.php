@@ -59,13 +59,28 @@ class Hello_Movie_Engine_Header_Section {
 			'transport'         => 'refresh',
 		) );
 		$wp_customize->add_control( 'hello_movieengine_header_width', array(
-			'label'   => esc_html__( 'Header Width', 'hello-movieengine' ),
-			'section' => 'hello_movieengine_header_section',
-			'type'    => 'select',
-			'choices' => array(
+			'label'       => esc_html__( 'Header Width', 'hello-movieengine' ),
+			'description' => esc_html__( 'Boxed keeps the logo and menu inside a max width. Full Width spans the screen with side padding only.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_header_section',
+			'type'        => 'select',
+			'choices'     => array(
 				'boxed'     => esc_html__( 'Boxed', 'hello-movieengine' ),
 				'fullwidth' => esc_html__( 'Full Width', 'hello-movieengine' ),
 			),
+		) );
+
+		$wp_customize->add_setting( 'hello_movieengine_header_container_width', array(
+			'default'           => 0,
+			'sanitize_callback' => 'absint',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( 'hello_movieengine_header_container_width', array(
+			'label'             => esc_html__( 'Header Max Width (px)', 'hello-movieengine' ),
+			'description'       => esc_html__( 'Used when Header Width is Boxed. Set 0 to match Layout → Container Width.', 'hello-movieengine' ),
+			'section'           => 'hello_movieengine_header_section',
+			'type'              => 'number',
+			'input_attrs'       => array( 'min' => 0, 'max' => 1920, 'step' => 10 ),
+			'active_callback'   => 'hello_movieengine_customize_header_is_boxed',
 		) );
 
 		/* Fixed header on selected pages (Transparent overlay + position fixed) */
@@ -152,7 +167,7 @@ class Hello_Movie_Engine_Header_Section {
 		/* Header padding */
 		$wp_customize->add_setting( 'hello_movieengine_header_padding', array(
 			'default'           => wp_json_encode( array(
-				'top' => '0', 'right' => '4', 'bottom' => '0', 'left' => '4', 'unit' => 'rem', 'linked' => false,
+				'top' => '0', 'right' => '1.25', 'bottom' => '0', 'left' => '1.25', 'unit' => 'rem', 'linked' => true,
 			) ),
 			'sanitize_callback' => 'hello_movieengine_sanitize_spacing',
 			'transport'         => 'refresh',

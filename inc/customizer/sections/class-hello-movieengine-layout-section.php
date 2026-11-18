@@ -38,7 +38,7 @@ class Hello_Movie_Engine_Layout_Section {
 		) );
 		$wp_customize->add_control( 'hello_movieengine_container_width', array(
 			'label'       => esc_html__( 'Container Width (px)', 'hello-movieengine' ),
-			'description' => esc_html__( 'Max width of the main content area.', 'hello-movieengine' ),
+			'description' => esc_html__( 'Max width of the main content area and the boxed header (unless Header → Header Max Width is set).', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_layout_section',
 			'type'        => 'number',
 			'input_attrs' => array( 'min' => 800, 'max' => 1920, 'step' => 10 ),

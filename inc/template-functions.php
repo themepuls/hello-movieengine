@@ -120,6 +120,28 @@ function hello_movieengine_get_header_width() {
 }
 
 /**
+ * Customizer: show boxed-only header controls.
+ *
+ * @return bool
+ */
+function hello_movieengine_customize_header_is_boxed() {
+	return 'boxed' === hello_movieengine_get_header_width();
+}
+
+/**
+ * Max width for the boxed header inner container (0 = use site container width).
+ *
+ * @return int
+ */
+function hello_movieengine_get_header_container_width() {
+	$width = absint( get_theme_mod( 'hello_movieengine_header_container_width', 0 ) );
+	if ( $width < 800 ) {
+		return 0;
+	}
+	return min( 1920, $width );
+}
+
+/**
  * Return the CSS class for the header inner container.
  *
  * @return string

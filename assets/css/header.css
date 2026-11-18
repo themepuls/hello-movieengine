@@ -29,14 +29,19 @@
 /* Full-width container for header */
 .hello-movieengine-container-fluid {
 	width: 100%;
+	max-width: 100%;
 	padding-top: var(--hello-movieengine-header-pt, 0px);
-	padding-right: var(--hello-movieengine-header-pr, 4rem);
+	padding-right: var(--hello-movieengine-header-pr, var(--hello-movieengine-gap));
 	padding-bottom: var(--hello-movieengine-header-pb, 0px);
-	padding-left: var(--hello-movieengine-header-pl, 4rem);
+	padding-left: var(--hello-movieengine-header-pl, var(--hello-movieengine-gap));
 }
 
 /* Boxed container inside header: use header padding if set */
 .hello-movieengine-header .hello-movieengine-container {
+	width: 100%;
+	max-width: var(--hello-movieengine-header-container-width, var(--hello-movieengine-container-width));
+	margin-left: auto;
+	margin-right: auto;
 	padding-top: var(--hello-movieengine-header-pt, 0px);
 	padding-right: var(--hello-movieengine-header-pr, var(--hello-movieengine-gap));
 	padding-bottom: var(--hello-movieengine-header-pb, 0px);
