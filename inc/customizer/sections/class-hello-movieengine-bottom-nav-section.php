@@ -24,7 +24,7 @@ class Hello_Movie_Engine_Bottom_Nav_Section {
 
 		$wp_customize->add_section( 'hello_movieengine_bottom_nav_section', array(
 			'title'       => esc_html__( 'Mobile Bottom Navigation', 'hello-movieengine' ),
-			'description' => esc_html__( 'Configure an app-like bottom navigation bar for mobile and tablet visitors.', 'hello-movieengine' ),
+			'description' => esc_html__( 'Menu items here power Style One mobile bottom navigation and Style Two fixed left navigation on all pages.', 'hello-movieengine' ),
 			'panel'       => 'hello_movieengine_panel',
 			'priority'    => 45,
 		) );

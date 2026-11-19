@@ -216,6 +216,7 @@ function hello_movieengine_mega_menu_admin_assets( $hook_suffix ) {
 	$css = '
 		.hello-movieengine-mega-field { margin: 8px 0 0; }
 		.menu-item:not(.menu-item-depth-0) .hello-movieengine-mega-field--top { display: none !important; }
+		.menu-item:not(.menu-item-depth-0) .hello-movieengine-menu-icon-field { display: none !important; }
 		.menu-item-depth-0 .hello-movieengine-mega-field--child { display: none !important; }
 	';
 

@@ -23,7 +23,7 @@ class Hello_Movie_Engine_Customize_Heading_Control extends WP_Customize_Control 
 	public function enqueue() {
 		wp_enqueue_style(
 			'hello-movieengine-customizer-controls',
-			HELLO_MOVIEENGINE_URI . '/assets/css/customizer-controls.css',
+			HELLO_MOVIEENGINE_URI . '/assets/admin/css/customizer-controls.css',
 			array(),
 			HELLO_MOVIEENGINE_VERSION
 		);

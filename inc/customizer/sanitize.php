@@ -10,6 +10,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function hello_movieengine_sanitize_feed_title_size( $value ) {
+	$size = (float) $value;
+	if ( $size < 0.75 ) {
+		return 0.75;
+	}
+	if ( $size > 2.5 ) {
+		return 2.5;
+	}
+	return round( $size, 4 );
+}
+
+function hello_movieengine_sanitize_site_style( $value ) {
+	$value  = sanitize_key( (string) $value );
+	$styles = Hello_Movie_Engine_Style_Registry::get_styles();
+
+	return array_key_exists( $value, $styles ) ? $value : Hello_Movie_Engine_Style_Registry::DEFAULT_STYLE;
+}
+
 function hello_movieengine_sanitize_select( $value, $setting ) {
 	$choices = $setting->manager->get_control( $setting->id )->choices;
 	return array_key_exists( $value, $choices ) ? $value : $setting->default;

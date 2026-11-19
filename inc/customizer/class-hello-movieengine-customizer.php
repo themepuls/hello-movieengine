@@ -34,6 +34,8 @@ function hello_movieengine_customize_register( $wp_customize ) {
 	require_once $dir . '/controls/class-hello-movieengine-nav-repeater-control.php';
 
 	/* Sections */
+	require_once $dir . '/sections/site-style/class-hello-movieengine-site-style-section.php';
+	require_once $dir . '/sections/ott-feed/class-hello-movieengine-ott-feed-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-header-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-colors-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-layout-section.php';
@@ -50,6 +52,8 @@ function hello_movieengine_customize_register( $wp_customize ) {
 	) );
 
 	/* Register each section */
+	Hello_Movie_Engine_Site_Style_Section::register( $wp_customize );
+	Hello_Movie_Engine_Ott_Feed_Section::register( $wp_customize );
 	Hello_Movie_Engine_Header_Section::register( $wp_customize );
 	Hello_Movie_Engine_Colors_Section::register( $wp_customize );
 	Hello_Movie_Engine_Layout_Section::register( $wp_customize );

@@ -6,7 +6,7 @@ Tags: dark, entertainment, one-column, two-columns, custom-background, custom-lo
 Requires at least: 4.5
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,11 @@ Set Header Style to Transparent, then choose locations under Fixed Header On. Se
 Desktop shows a multi-column panel. Mobile keeps the accordion submenu.
 
 == Changelog ==
+
+= 1.2.0 =
+* New: Customizer → Site Style — Classic (Style One) or OTT Feed (Style Two); only the selected pack’s assets load.
+* New: Assets under `assets/core/`, `assets/style-one/`, `assets/style-two/`; Customizer assets under `assets/admin/`.
+* New: Layout views under `inc/templates/{header|footer|navigation}/{style-one|style-two}/`; plugin overrides under `inc/templates/movie-engine/{style}/`. Blog fragments stay in `template-parts/`.
 
 = 1.1.0 =
 * New: Customizer → Header → Header Max Width (px) for boxed headers (0 uses Layout → Container Width).

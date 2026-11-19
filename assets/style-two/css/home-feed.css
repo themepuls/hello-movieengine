@@ -1,0 +1,151 @@
+/*
+ * Style Two – OTT feed (rows, sliders, section spacing).
+ *
+ * @package Hello_Movie Engine
+ */
+
+.hmestyle-style-two .movie-engine-section {
+	margin-bottom: var(--hm-feed-row-gap, 1.75rem);
+}
+
+.hmestyle-style-two .movie-engine-library-content,
+.hmestyle-style-two .movie-engine-library-container .movie-engine-library-content {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.hmestyle-style-two.hello-movieengine-has-side-rail .me-section-header,
+.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-items-grid,
+.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-studios-slider,
+.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-taxonomy-slider {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.hmestyle-style-two .me-section-header {
+	padding-left: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pl, 1.25rem));
+	padding-right: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pr, 1.25rem));
+}
+
+.hmestyle-style-two .movie-engine-section-title,
+.hmestyle-style-two .me-section-header .movie-engine-section-title {
+	font-size: var(--hm-feed-section-title-size, 1.125rem);
+}
+
+.hmestyle-style-two .movie-engine-items-grid {
+	padding-left: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pl, 1.25rem));
+	padding-right: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pr, 1.25rem));
+}
+
+.hmestyle-style-two .me-slider-layout .movie-engine-bulk-card,
+.hmestyle-style-two .me-slider-layout .movie-engine-card {
+	min-width: var(--hm-feed-card-min-width, 140px);
+}
+
+.hmestyle-style-two.hello-movieengine-feed-page .site-main {
+	padding-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.hmestyle-style-two.hello-movieengine-feed-page.hello-movieengine-feed-main-zero .site-main {
+	padding: 0;
+}
+
+.hmestyle-style-two.hello-movieengine-feed-page .hello-movieengine-content-area,
+.hmestyle-style-two.hello-movieengine-feed-page .site-main--me-fullwidth {
+	max-width: var(--hm-feed-container-width, 100%);
+}
+
+.hmestyle-style-two .movie-engine-hero-section,
+.hmestyle-style-two .movie-engine-hero {
+	min-height: var(--hm-feed-hero-min-height, 100vh);
+}
+
+@media (min-width: 768px) {
+	.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-hero-section .me-hero-item {
+		flex-direction: column;
+		justify-content: center;
+		align-items: stretch;
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-hero-section .me-hero-item .movie-engine-container,
+	.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-hero-section .me-hero-item .movie-engine-container-fluid {
+		flex: 0 0 auto;
+		width: 100%;
+		align-self: auto;
+	}
+}
+
+.hmestyle-style-two .me-hero-overlay,
+.hmestyle-style-two .movie-engine-hero-overlay {
+	background:
+		linear-gradient(90deg, rgba(5, 5, 7, 0.92) 0%, rgba(5, 5, 7, 0.6) 32%, transparent 68%),
+		linear-gradient(0deg, rgb(5, 5, 7) 0%, rgba(5, 5, 7, 0.45) 22%, transparent 48%),
+		linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 18%);
+}
+
+/* Hero arrows: both on the right, stacked (next above prev) */
+.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav {
+	left: auto !important;
+	right: 28px !important;
+	top: 50%;
+	transform: none;
+}
+
+.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-next {
+	transform: translateY(calc(-100% - 10px));
+}
+
+.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-prev {
+	transform: translateY(10px);
+}
+
+.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav:hover {
+	background: rgba(255, 255, 255, 0.16);
+	border-color: rgba(255, 255, 255, 0.28);
+	color: #fff;
+}
+
+.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-next:hover {
+	transform: translateY(calc(-100% - 10px)) scale(1.06);
+}
+
+.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-prev:hover {
+	transform: translateY(10px) scale(1.06);
+}
+
+/* Top 10: add custom_class="me-top10" on [movie_engine_library] rows */
+.hello-movieengine-top10-rows .movie-engine-section.me-top10 {
+	counter-reset: me-top10;
+}
+
+.hello-movieengine-top10-rows .movie-engine-section.me-top10 .movie-engine-bulk-card,
+.hello-movieengine-top10-rows .movie-engine-section.me-top10 .movie-engine-card {
+	counter-increment: me-top10;
+	position: relative;
+}
+
+.hello-movieengine-top10-rows .movie-engine-section.me-top10 .movie-engine-bulk-card::before,
+.hello-movieengine-top10-rows .movie-engine-section.me-top10 .movie-engine-card::before {
+	content: counter(me-top10);
+	position: absolute;
+	left: -0.15em;
+	bottom: 0.05em;
+	font-size: clamp(3rem, 8vw, 5.5rem);
+	font-weight: 800;
+	line-height: 1;
+	color: rgba(255, 255, 255, 0.35);
+	z-index: 0;
+	pointer-events: none;
+}
+
+/* Studio chip bar — target studios shortcode wrapper */
+.hello-movieengine-studio-chips .movie-engine-studios-slider,
+.hello-movieengine-studio-chips .movie-engine-taxonomy-slider {
+	gap: 0.5rem;
+	padding-left: var(--hm-feed-row-padding-x, 1.25rem);
+	padding-right: var(--hm-feed-row-padding-x, 1.25rem);
+}

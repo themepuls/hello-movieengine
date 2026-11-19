@@ -10,11 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-	<?php get_template_part( 'template-parts/footer/footer', 'default' ); ?>
+	<?php
+	if ( hello_movieengine_show_site_footer() ) {
+		hello_movieengine_get_style_template_part( 'footer', 'default' );
+	}
+	?>
 
 </div><!-- #page -->
 
-<?php get_template_part( 'template-parts/navigation/bottom-nav' ); ?>
+<?php hello_movieengine_get_style_template_part( 'navigation', 'bottom-nav' ); ?>
 
 <?php wp_footer(); ?>
 </body>

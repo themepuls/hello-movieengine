@@ -27,7 +27,7 @@ class Hello_Movie_Engine_Customize_Nav_Repeater_Control extends WP_Customize_Con
 	public function enqueue() {
 		wp_enqueue_style(
 			'hello-movieengine-customizer-controls',
-			HELLO_MOVIEENGINE_URI . '/assets/css/customizer-controls.css',
+			HELLO_MOVIEENGINE_URI . '/assets/admin/css/customizer-controls.css',
 			array(),
 			HELLO_MOVIEENGINE_VERSION
 		);
@@ -43,7 +43,7 @@ class Hello_Movie_Engine_Customize_Nav_Repeater_Control extends WP_Customize_Con
 
 		wp_enqueue_script(
 			'hello-movieengine-customizer-controls',
-			HELLO_MOVIEENGINE_URI . '/assets/js/customizer-controls.js',
+			HELLO_MOVIEENGINE_URI . '/assets/admin/js/customizer-controls.js',
 			array( 'jquery', 'jquery-ui-sortable', 'customize-controls' ),
 			HELLO_MOVIEENGINE_VERSION,
 			true
@@ -108,6 +108,11 @@ class Hello_Movie_Engine_Customize_Nav_Repeater_Control extends WP_Customize_Con
 		$val = ! empty( $custom_icon ) ? trim( $custom_icon ) : trim( $icon );
 		if ( empty( $val ) ) {
 			return '<span class="dashicons dashicons-format-image"></span>';
+		}
+		if ( strpos( $val, '<svg' ) !== false ) {
+			return function_exists( 'hello_movieengine_sanitize_menu_custom_icon' )
+				? hello_movieengine_sanitize_menu_custom_icon( $val )
+				: $val;
 		}
 		if ( strpos( $val, 'svg:' ) === 0 || Hello_Movie_Engine_Bottom_Nav::get_registered_svg( $val ) ) {
 			$svg = Hello_Movie_Engine_Bottom_Nav::get_registered_svg( $val );

@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'HELLO_MOVIEENGINE_VERSION', '1.1.0' );
+define( 'HELLO_MOVIEENGINE_VERSION', '1.2.0' );
 define( 'HELLO_MOVIEENGINE_DIR', get_template_directory() );
 define( 'HELLO_MOVIEENGINE_URI', get_template_directory_uri() );
 
@@ -23,6 +23,17 @@ require HELLO_MOVIEENGINE_DIR . '/inc/theme-setup.php';
  * Widget areas.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/widgets.php';
+
+/**
+ * Site style registry (Style One / Style Two).
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/styles/class-hello-movieengine-style-registry.php';
+Hello_Movie_Engine_Style_Registry::init();
+
+/**
+ * OTT Feed (Style Two) helpers.
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/ott-feed/functions.php';
 
 /**
  * Enqueue styles and scripts.
@@ -40,6 +51,16 @@ require HELLO_MOVIEENGINE_DIR . '/inc/template-functions.php';
 require HELLO_MOVIEENGINE_DIR . '/inc/mega-menu.php';
 
 /**
+ * Side rail menu icons (Appearance → Menus).
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/menu-icons.php';
+
+/**
+ * Side rail WP menu walker.
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/class-hello-movieengine-side-rail-walker.php';
+
+/**
  * Template tags.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/template-tags.php';
@@ -48,6 +69,11 @@ require HELLO_MOVIEENGINE_DIR . '/inc/template-tags.php';
  * Customizer options.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/customizer/class-hello-movieengine-customizer.php';
+
+/**
+ * Style Two global left navigation.
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/class-hello-movieengine-side-rail.php';
 
 /**
  * Mobile Bottom Navigation.

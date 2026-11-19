@@ -280,6 +280,12 @@ function hello_movieengine_is_static_front_page( $page_id = 0 ) {
  * @return bool
  */
 function hello_movieengine_show_page_title() {
+	if ( function_exists( 'hello_movieengine_is_feed_page' ) && hello_movieengine_is_feed_page() ) {
+		if ( get_theme_mod( 'hello_movieengine_feed_hide_page_title', true ) ) {
+			return false;
+		}
+	}
+
 	/* Playlist page has its own layout; no theme page title */
 	if ( hello_movieengine_is_movie_engine_active() && get_query_var( 'movie_engine_playlist_page' ) ) {
 		return false;

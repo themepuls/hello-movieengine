@@ -23,13 +23,13 @@ class Hello_Movie_Engine_Customize_Toggle_Control extends WP_Customize_Control {
 	public function enqueue() {
 		wp_enqueue_style(
 			'hello-movieengine-customizer-controls',
-			HELLO_MOVIEENGINE_URI . '/assets/css/customizer-controls.css',
+			HELLO_MOVIEENGINE_URI . '/assets/admin/css/customizer-controls.css',
 			array(),
 			HELLO_MOVIEENGINE_VERSION
 		);
 		wp_enqueue_script(
 			'hello-movieengine-customizer-controls',
-			HELLO_MOVIEENGINE_URI . '/assets/js/customizer-controls.js',
+			HELLO_MOVIEENGINE_URI . '/assets/admin/js/customizer-controls.js',
 			array( 'jquery', 'customize-controls' ),
 			HELLO_MOVIEENGINE_VERSION,
 			true

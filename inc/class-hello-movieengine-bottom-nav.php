@@ -93,6 +93,10 @@ class Hello_Movie_Engine_Bottom_Nav {
 	 * @return bool
 	 */
 	public static function is_enabled() {
+		if ( function_exists( 'hello_movieengine_uses_side_rail' ) && hello_movieengine_uses_side_rail() ) {
+			return false;
+		}
+
 		$enabled = get_theme_mod( 'hello_movieengine_bottom_nav_enable', true );
 		if ( ! $enabled ) {
 			return false;
@@ -155,16 +159,23 @@ class Hello_Movie_Engine_Bottom_Nav {
 
 		$v = HELLO_MOVIEENGINE_VERSION;
 
+		$style_css = Hello_Movie_Engine_Style_Registry::style_path( 'css/bottom-nav.css' );
+		$style_js  = Hello_Movie_Engine_Style_Registry::style_path( 'js/bottom-nav.js' );
+
+		if ( ! file_exists( $style_css ) || ! file_exists( $style_js ) ) {
+			return;
+		}
+
 		wp_enqueue_style(
 			'hello-movieengine-bottom-nav',
-			HELLO_MOVIEENGINE_URI . '/assets/css/bottom-nav.css',
+			Hello_Movie_Engine_Style_Registry::style_uri( 'css/bottom-nav.css' ),
 			array( 'hello-movieengine-base' ),
 			$v
 		);
 
 		wp_enqueue_script(
 			'hello-movieengine-bottom-nav',
-			HELLO_MOVIEENGINE_URI . '/assets/js/bottom-nav.js',
+			Hello_Movie_Engine_Style_Registry::style_uri( 'js/bottom-nav.js' ),
 			array( 'jquery' ),
 			$v,
 			true
@@ -1354,7 +1365,13 @@ class Hello_Movie_Engine_Bottom_Nav {
 			}
 		}
 
-		// 2. FontAwesome or custom class
+		// Custom inline SVG (upload / paste).
+		if ( $custom_icon && stripos( $custom_icon, '<svg' ) !== false ) {
+			echo hello_movieengine_sanitize_menu_custom_icon( $custom_icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return;
+		}
+
+		// FontAwesome (solid / regular / thin) or custom class.
 		if ( $active_icon && ( strpos( $active_icon, 'fa-' ) !== false || strpos( $active_icon, 'fa ' ) !== false ) ) {
 			echo '<i class="' . esc_attr( $active_icon ) . '" aria-hidden="true"></i>';
 			return;

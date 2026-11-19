@@ -34,13 +34,13 @@ class Hello_Movie_Engine_Customize_Alpha_Color_Control extends WP_Customize_Cont
 
 		wp_enqueue_style(
 			'hello-movieengine-customizer-controls',
-			HELLO_MOVIEENGINE_URI . '/assets/css/customizer-controls.css',
+			HELLO_MOVIEENGINE_URI . '/assets/admin/css/customizer-controls.css',
 			array( 'wp-color-picker' ),
 			HELLO_MOVIEENGINE_VERSION
 		);
 		wp_enqueue_script(
 			'hello-movieengine-customizer-controls',
-			HELLO_MOVIEENGINE_URI . '/assets/js/customizer-controls.js',
+			HELLO_MOVIEENGINE_URI . '/assets/admin/js/customizer-controls.js',
 			array( 'jquery', 'wp-color-picker', 'customize-controls' ),
 			HELLO_MOVIEENGINE_VERSION,
 			true
