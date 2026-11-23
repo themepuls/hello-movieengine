@@ -36,6 +36,78 @@ function hello_movieengine_is_feed_page() {
 }
 
 /**
+ * Page (or CPT archive) that outputs [movie_engine_library] with search on.
+ *
+ * @return bool
+ */
+function hello_movieengine_is_style_two_browse() {
+	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
+		return false;
+	}
+
+	if ( is_front_page() ) {
+		return false;
+	}
+
+	if ( is_post_type_archive( array( 'movie_engine_movie', 'movie_engine_series' ) ) ) {
+		return true;
+	}
+
+	if ( ! is_singular() ) {
+		return false;
+	}
+
+	$post = get_post();
+	if ( ! $post ) {
+		return false;
+	}
+
+	$content = $post->post_content;
+
+	if ( has_shortcode( $content, 'movie_engine_search' ) ) {
+		return true;
+	}
+
+	if ( function_exists( 'has_block' ) && has_block( 'cine-movie-engine/search', $post ) ) {
+		return true;
+	}
+
+	if ( has_shortcode( $content, 'movie_engine_library' )
+		&& preg_match( '/\[movie_engine_library[^\]]*show_(?:search|filters)=(["\'])true\1/i', $content ) ) {
+		return true;
+	}
+
+	if ( function_exists( 'has_block' ) && has_block( 'cine-movie-engine/library', $post ) ) {
+		return hello_movieengine_block_has_library_search( parse_blocks( $content ) );
+	}
+
+	return false;
+}
+
+/**
+ * Whether a Gutenberg library block has search enabled.
+ *
+ * @param array $blocks Parsed blocks.
+ * @return bool
+ */
+function hello_movieengine_block_has_library_search( $blocks ) {
+	foreach ( $blocks as $block ) {
+		$name = $block['blockName'] ?? '';
+		if ( 'cine-movie-engine/library' === $name ) {
+			$attrs = $block['attrs'] ?? array();
+			if ( ! empty( $attrs['showSearch'] ) || ! empty( $attrs['showFilters'] ) ) {
+				return true;
+			}
+		}
+		if ( ! empty( $block['innerBlocks'] ) && hello_movieengine_block_has_library_search( $block['innerBlocks'] ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
  * Whether the site footer should render.
  *
  * @return bool
@@ -61,9 +133,14 @@ function hello_movieengine_ott_feed_body_class( $classes ) {
 
 	if ( hello_movieengine_is_feed_page() ) {
 		$classes[] = 'hello-movieengine-feed-page';
-		if ( get_theme_mod( 'hello_movieengine_feed_main_padding_zero', true ) ) {
-			$classes[] = 'hello-movieengine-feed-main-zero';
-		}
+	}
+
+	if ( hello_movieengine_is_style_two_browse() ) {
+		$classes[] = 'hello-me-browse-page';
+	}
+
+	if ( get_theme_mod( 'hello_movieengine_feed_main_padding_zero', true ) ) {
+		$classes[] = 'hello-movieengine-feed-main-zero';
 	}
 
 	if ( get_theme_mod( 'hello_movieengine_feed_top10_style', false ) ) {
@@ -72,6 +149,13 @@ function hello_movieengine_ott_feed_body_class( $classes ) {
 
 	if ( get_theme_mod( 'hello_movieengine_feed_studio_chips', true ) ) {
 		$classes[] = 'hello-movieengine-studio-chips';
+	}
+
+	if ( is_singular( 'movie_engine_movie' ) ) {
+		$design = get_option( 'movie_engine_design_settings', array() );
+		if ( ( $design['movie_single_layout'] ?? 'fullwidth' ) === 'inline' ) {
+			$classes[] = 'hello-me-watch-page';
+		}
 	}
 
 	return $classes;
@@ -112,3 +196,104 @@ function hello_movieengine_ott_feed_root_vars() {
 
 	return $vars;
 }
+
+/**
+ * First-paint hide + fade-in (Style Two). Mirrors the cmes-ready idea
+ * without using cmes class names.
+ */
+function hello_movieengine_ott_feed_paint_head() {
+	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
+		return;
+	}
+
+	if ( is_customize_preview() ) {
+		return;
+	}
+
+	echo '<style id="hello-movieengine-paint">html.hmestyle-style-two:not(.hmestyle-ready) #page{opacity:0}html.hmestyle-ready #page{opacity:1;transition:opacity .28s ease}@media (prefers-reduced-motion:reduce){html.hmestyle-style-two #page{opacity:1!important;transition:none!important}}</style>' . "\n";
+	echo '<script>!function(){function r(){document.documentElement.classList.add("hmestyle-ready")}if("complete"===document.readyState)r();else{document.addEventListener("DOMContentLoaded",function(){requestAnimationFrame(r)});window.addEventListener("load",r)}setTimeout(r,2500)}();</script>' . "\n";
+	echo '<noscript><style>html.hmestyle-style-two #page{opacity:1}</style></noscript>' . "\n";
+}
+add_action( 'wp_head', 'hello_movieengine_ott_feed_paint_head', 1 );
+
+/**
+ * Section fade-in as rows enter the viewport (Style Two).
+ */
+function hello_movieengine_ott_feed_enqueue_motion() {
+	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
+		return;
+	}
+
+	$path = Hello_Movie_Engine_Style_Registry::style_path( 'js/motion.js' );
+	if ( ! file_exists( $path ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'hello-movieengine-motion',
+		Hello_Movie_Engine_Style_Registry::style_uri( 'js/motion.js' ),
+		array(),
+		filemtime( $path ),
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'hello_movieengine_ott_feed_enqueue_motion' );
+
+/**
+ * Studio taxonomy type tabs (Style Two).
+ */
+function hello_movieengine_enqueue_studio_tax_tabs() {
+	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
+		return;
+	}
+
+	if ( ! function_exists( 'hello_movieengine_is_studio_taxonomy' ) || ! hello_movieengine_is_studio_taxonomy() ) {
+		return;
+	}
+
+	$path = Hello_Movie_Engine_Style_Registry::style_path( 'js/studio-tax-tabs.js' );
+	if ( ! file_exists( $path ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'hello-movieengine-studio-tax-tabs',
+		Hello_Movie_Engine_Style_Registry::style_uri( 'js/studio-tax-tabs.js' ),
+		array( 'jquery', 'movie-engine' ),
+		filemtime( $path ),
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'hello_movieengine_enqueue_studio_tax_tabs', 25 );
+
+/**
+ * Single movie inline watch — reveal full-width player on Watch Now (Style Two).
+ */
+function hello_movieengine_enqueue_single_watch() {
+	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
+		return;
+	}
+
+	if ( ! is_singular( 'movie_engine_movie' ) ) {
+		return;
+	}
+
+	$design = get_option( 'movie_engine_design_settings', array() );
+	if ( ( $design['movie_single_layout'] ?? 'fullwidth' ) !== 'inline' ) {
+		return;
+	}
+
+	$path = Hello_Movie_Engine_Style_Registry::style_path( 'js/single-watch.js' );
+	if ( ! file_exists( $path ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'hello-movieengine-single-watch',
+		Hello_Movie_Engine_Style_Registry::style_uri( 'js/single-watch.js' ),
+		array(),
+		filemtime( $path ),
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'hello_movieengine_enqueue_single_watch' );

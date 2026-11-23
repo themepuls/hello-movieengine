@@ -41,12 +41,22 @@
 	}
 
 	function closeMobileNav() {
+		/* Only unwind scroll/focus when a menu was actually open. On every
+		   page load syncMobileMenuEnhancements() runs this on desktop with
+		   savedScrollY = 0 — an unconditional scrollTo(0, 0) here cancelled
+		   the browser's reload scroll restore (animated to top by
+		   scroll-behavior: smooth in base.css). */
+		var wasOpen = siteBody.classList.contains( 'hello-movieengine-mobile-nav-open' );
 		siteBody.classList.remove( 'hello-movieengine-mobile-nav-open' );
 		siteBody.style.top = '';
-		window.scrollTo( 0, savedScrollY );
+		if ( wasOpen ) {
+			window.scrollTo( 0, savedScrollY );
+		}
 		if ( mobileToggle ) {
 			mobileToggle.setAttribute( 'aria-expanded', 'false' );
-			mobileToggle.focus();
+			if ( wasOpen ) {
+				mobileToggle.focus();
+			}
 		}
 	}
 

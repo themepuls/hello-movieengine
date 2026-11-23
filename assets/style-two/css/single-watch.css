@@ -1,0 +1,398 @@
+/*
+ * Style Two – single movie cinema hero + collapsible full-width player.
+ *
+ * @package Hello_Movie Engine
+ */
+
+.hmestyle-style-two .movie-engine-layout-inline {
+	background: var(--movie-engine-bg-color, #141414);
+	padding-bottom: 2rem;
+}
+
+.hmestyle-style-two .hme-single-cinema {
+	--hme-watch-hero-floor: var(--movie-engine-bg-color, #141414);
+	--hme-single-section-gap: 50px;
+	width: 100%;
+}
+
+/* —— Hero —— */
+.hmestyle-style-two .hme-watch-hero {
+	position: relative;
+	min-height: clamp(440px, 74vh, 840px);
+	display: flex;
+	align-items: flex-end;
+	background-color: var(--hme-watch-hero-floor);
+	background-image: var(--hme-watch-hero-bg);
+	background-size: cover;
+	background-position: center 18%;
+	overflow: hidden;
+	margin-bottom: 0;
+}
+
+/* Bottom scrim: solid floor → image (matches reference + row bg) */
+.hmestyle-style-two .hme-watch-hero::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 62%;
+	pointer-events: none;
+	z-index: 0;
+	background: linear-gradient(
+		to top,
+		var(--hme-watch-hero-floor) 0%,
+		var(--hme-watch-hero-floor) 12%,
+		color-mix(in srgb, var(--hme-watch-hero-floor) 98%, transparent) 22%,
+		color-mix(in srgb, var(--hme-watch-hero-floor) 88%, transparent) 38%,
+		color-mix(in srgb, var(--hme-watch-hero-floor) 55%, transparent) 52%,
+		transparent 100%
+	);
+}
+
+.hmestyle-style-two .hme-watch-hero__back {
+	position: absolute;
+	top: 1.15rem;
+	left: var(--hm-feed-row-padding-x, 1.25rem);
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	padding: 0.35rem 0.15rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	line-height: 1.2;
+	color: rgba(255, 255, 255, 0.88);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.hmestyle-style-two .hme-watch-hero__back .fa-arrow-left {
+	font-size: 0.82rem;
+	opacity: 0.92;
+}
+
+.hmestyle-style-two .hme-watch-hero__back:hover {
+	color: #fff;
+}
+
+.hmestyle-style-two .hme-watch-hero__shade {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 0;
+	background:
+		linear-gradient(
+			90deg,
+			var(--hme-watch-hero-floor) 0%,
+			color-mix(in srgb, var(--hme-watch-hero-floor) 92%, transparent) 16%,
+			color-mix(in srgb, var(--hme-watch-hero-floor) 50%, transparent) 38%,
+			transparent 68%
+		),
+		linear-gradient(
+			180deg,
+			rgba(0, 0, 0, 0.42) 0%,
+			transparent 20%,
+			transparent 55%
+		);
+}
+
+.hmestyle-style-two .hme-watch-hero__inner {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	max-width: 720px;
+	padding: 2.5rem var(--hm-feed-row-padding-x, 1.25rem) 4.5rem;
+	box-sizing: border-box;
+}
+
+.hmestyle-style-two .hme-watch-hero__title {
+	margin: 0 0 0.65rem;
+	font-size: clamp(2rem, 4.5vw, 3.25rem);
+	font-weight: 800;
+	line-height: 1.08;
+	letter-spacing: -0.03em;
+	color: #fff;
+}
+
+.hmestyle-style-two .hme-watch-hero__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.35rem 0.85rem;
+	margin-bottom: 1rem;
+	font-size: 0.88rem;
+	color: rgba(255, 255, 255, 0.72);
+}
+
+.hmestyle-style-two .hme-watch-hero__meta-item:not(:first-child)::before {
+	content: '·';
+	margin-right: 0.85rem;
+	color: rgba(255, 255, 255, 0.35);
+}
+
+.hmestyle-style-two .hme-watch-hero__rating {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	color: #fff;
+	font-weight: 700;
+}
+
+.hmestyle-style-two .hme-watch-hero__rating .fa-star {
+	color: #ffcc00;
+	font-size: 0.8rem;
+}
+
+.hmestyle-style-two .hme-watch-hero__quality {
+	text-transform: uppercase;
+	font-size: 0.72rem;
+	font-weight: 700;
+}
+
+.hmestyle-style-two .hme-watch-hero__synopsis {
+	margin: 0 0 1.1rem;
+	max-width: 58ch;
+	font-size: 0.92rem;
+	line-height: 1.55;
+	color: rgba(255, 255, 255, 0.62);
+}
+
+.hmestyle-style-two .hme-watch-hero__genres {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.45rem;
+	margin-bottom: 1.35rem;
+}
+
+.hmestyle-style-two .hme-watch-hero__genre {
+	display: inline-flex;
+	padding: 0.35rem 0.75rem;
+	border-radius: 999px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.9);
+	text-decoration: none;
+	background: rgba(255, 255, 255, 0.06);
+}
+
+.hmestyle-style-two .hme-watch-hero__genre:hover {
+	border-color: rgba(255, 255, 255, 0.45);
+	color: #fff;
+}
+
+.hmestyle-style-two .hme-watch-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.65rem;
+}
+
+.hmestyle-style-two .hme-watch-hero__play {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	padding: 0.65rem 1.35rem;
+	border-radius: 999px;
+	font-size: 0.92rem;
+	font-weight: 700;
+	color: #0a0a0a !important;
+	background: #fff !important;
+	border: 0;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+	text-decoration: none;
+}
+
+.hmestyle-style-two .hme-watch-hero__play:hover {
+	background: #f0f0f0 !important;
+	color: #000 !important;
+}
+
+.hmestyle-style-two .hme-watch-hero__play .fa-play {
+	font-size: 0.75rem;
+}
+
+.hmestyle-style-two .hme-watch-hero__icon-btn,
+.hmestyle-style-two .hme-watch-hero__actions .movie-engine-action-btn {
+	width: 42px;
+	height: 42px;
+	min-width: 42px;
+	padding: 0;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(255, 255, 255, 0.22);
+	background: rgba(255, 255, 255, 0.08);
+	color: #fff;
+}
+
+.hmestyle-style-two .hme-watch-hero__actions .movie-engine-social-actions {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.hmestyle-style-two .hme-watch-hero__actions .movie-engine-count {
+	display: none;
+}
+
+/* —— Player stage (hidden until Watch Now) —— */
+.hmestyle-style-two .hme-watch-player-stage {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 var(--hm-feed-row-padding-x, 1.25rem) 0.5rem;
+}
+
+.hmestyle-style-two .hme-watch-player-stage[hidden] {
+	display: none !important;
+}
+
+.hmestyle-style-two .hme-watch-player-stage.is-open {
+	padding-top: 0.25rem;
+	padding-bottom: 1.25rem;
+}
+
+.hmestyle-style-two .hme-watch-player-back {
+	display: none;
+	align-items: center;
+	gap: 0.65rem;
+	max-width: 100%;
+	margin: 0 0 0.35rem;
+	padding: 0.15rem 0 0.85rem;
+	font-size: clamp(1rem, 2vw, 1.15rem);
+	font-weight: 600;
+	line-height: 1.25;
+	color: #fff;
+	text-decoration: none;
+	box-sizing: border-box;
+}
+
+.hmestyle-style-two .hme-watch-player-stage.is-open .hme-watch-player-back {
+	display: inline-flex;
+}
+
+.hmestyle-style-two .hme-watch-player-back .fa-arrow-left {
+	font-size: 0.9rem;
+	opacity: 0.9;
+	flex-shrink: 0;
+}
+
+.hmestyle-style-two .hme-watch-player-back__title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-width: 0;
+}
+
+.hmestyle-style-two .hme-watch-player-back:hover {
+	color: rgba(255, 255, 255, 0.82);
+}
+
+.hmestyle-style-two .hme-single-cinema--player-open .hme-watch-hero {
+	min-height: clamp(280px, 42vh, 480px);
+}
+
+.hmestyle-style-two .hme-watch-player,
+.hmestyle-style-two .hme-watch-player .movie-engine-player-wrapper,
+.hmestyle-style-two .hme-watch-player .movie-engine-player-container {
+	width: 100%;
+	max-width: none;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #000;
+}
+
+/* Open player: cap video stage at 90vh (servers sit below, hero stays reachable) */
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 90vh;
+	max-height: 90vh;
+	min-height: min(320px, 50vh);
+	box-sizing: border-box;
+}
+
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-screen-area {
+	flex: 1 1 auto;
+	min-height: 0;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-container {
+	flex: 1 1 auto;
+	min-height: 0 !important;
+	height: 100% !important;
+	max-height: 100% !important;
+	aspect-ratio: auto !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-container iframe,
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-container video,
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-container .cmeplayer,
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-container .cmeplayer__stage,
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-container .plyr,
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-player-container .plyr__video-wrapper {
+	width: 100% !important;
+	height: 100% !important;
+	max-height: 100% !important;
+	object-fit: contain !important;
+}
+
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-server-switcher,
+.hmestyle-style-two .hme-watch-player-stage.is-open .movie-engine-affiliate-buttons {
+	flex-shrink: 0;
+}
+
+.hmestyle-style-two .hme-watch-player .movie-engine-affiliate-buttons {
+	justify-content: center;
+	padding: 10px 12px 8px;
+	background: transparent;
+	border-top: 0;
+	gap: 8px;
+}
+
+.hmestyle-style-two .hme-watch-player .movie-engine-server-switcher {
+	padding: 8px 12px 12px;
+}
+
+.hmestyle-style-two .hme-single-cinema > .me-inline-below {
+	margin-top: var(--hme-single-section-gap, 50px);
+}
+
+@media (min-width: 768px) {
+	body.hello-movieengine-has-side-rail .hme-watch-hero__inner {
+		padding-left: var(--hm-ott-content-x, calc(80px + 56px));
+		padding-right: var(--hm-ott-row-inset, 56px);
+		max-width: min(820px, 58vw);
+	}
+
+	body.hello-movieengine-has-side-rail .hme-watch-hero__back {
+		left: var(--hm-ott-content-x, calc(80px + 56px));
+	}
+
+	body.hello-movieengine-has-side-rail .hme-watch-player-stage.is-open {
+		padding-left: var(--hm-ott-row-inset, 56px);
+		padding-right: var(--hm-ott-row-inset, 56px);
+	}
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .hme-watch-hero {
+		min-height: 65vh;
+	}
+
+	.hmestyle-style-two .hme-watch-hero__inner {
+		padding-bottom: 2rem;
+	}
+
+	.hmestyle-style-two .hme-watch-hero__play {
+		flex: 1 1 100%;
+		justify-content: center;
+	}
+}

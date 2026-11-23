@@ -312,6 +312,15 @@ function hello_movieengine_show_page_title() {
 		return false;
 	}
 
+	if (
+		function_exists( 'hello_movieengine_is_studio_taxonomy' )
+		&& hello_movieengine_is_studio_taxonomy()
+		&& function_exists( 'hello_movieengine_get_active_style' )
+		&& 'style-two' === hello_movieengine_get_active_style()
+	) {
+		return false;
+	}
+
 	if ( in_array( 'blog', $locations, true ) && ( is_home() && ! is_front_page() ) ) {
 		return true;
 	}
@@ -344,6 +353,16 @@ function hello_movieengine_show_page_title() {
 		}
 	}
 
+	if (
+		is_page()
+		&& function_exists( 'hello_movieengine_get_active_style' )
+		&& 'style-two' === hello_movieengine_get_active_style()
+		&& function_exists( 'hello_movieengine_is_studios_page' )
+		&& hello_movieengine_is_studios_page()
+	) {
+		return true;
+	}
+
 	return false;
 }
 
@@ -366,6 +385,16 @@ function hello_movieengine_get_page_title_label() {
 		return esc_html__( 'Post', 'hello-movieengine' );
 	}
 	if ( is_page() ) {
+		if ( function_exists( 'hello_movieengine_is_style_two_browse' ) && hello_movieengine_is_style_two_browse() ) {
+			$post = get_post();
+			if ( $post && false !== strpos( $post->post_content, 'movie_engine_series' ) ) {
+				return esc_html__( 'TV Series Archive', 'hello-movieengine' );
+			}
+			return esc_html__( 'Movie Archive', 'hello-movieengine' );
+		}
+		if ( function_exists( 'hello_movieengine_is_studios_page' ) && hello_movieengine_is_studios_page() ) {
+			return esc_html__( 'Studios', 'hello-movieengine' );
+		}
 		return esc_html__( 'Page', 'hello-movieengine' );
 	}
 	if ( is_author() ) {
@@ -384,6 +413,28 @@ function hello_movieengine_get_page_title_label() {
 		return esc_html__( 'Archive', 'hello-movieengine' );
 	}
 	return esc_html__( 'Archive', 'hello-movieengine' );
+}
+
+/**
+ * Last word accent for Style Two cinema page titles (e.g. Movies <span>Archive</span>).
+ *
+ * @param string $title Plain or HTML title.
+ * @return string
+ */
+function hello_movieengine_format_cinema_page_title( $title ) {
+	$plain = trim( wp_strip_all_tags( $title ) );
+	if ( '' === $plain ) {
+		return '';
+	}
+
+	$parts = preg_split( '/\s+/', $plain );
+	if ( ! is_array( $parts ) || count( $parts ) < 2 ) {
+		return esc_html( $plain );
+	}
+
+	$last = array_pop( $parts );
+
+	return esc_html( implode( ' ', $parts ) ) . ' <span>' . esc_html( $last ) . '</span>';
 }
 
 /**
@@ -406,19 +457,35 @@ function hello_movieengine_get_page_title_text() {
 		return get_the_title();
 	}
 	if ( is_page() ) {
-		return get_the_title();
+		$title = get_the_title();
+		if ( function_exists( 'hello_movieengine_get_active_style' ) && 'style-two' === hello_movieengine_get_active_style() ) {
+			return hello_movieengine_format_cinema_page_title( $title );
+		}
+		return $title;
 	}
 	if ( is_author() ) {
 		return get_the_author();
 	}
 	if ( is_category() ) {
-		return single_cat_title( '', false );
+		$title = single_cat_title( '', false );
+		if ( function_exists( 'hello_movieengine_get_active_style' ) && 'style-two' === hello_movieengine_get_active_style() ) {
+			return hello_movieengine_format_cinema_page_title( $title );
+		}
+		return $title;
 	}
 	if ( is_tag() ) {
-		return single_tag_title( '', false );
+		$title = single_tag_title( '', false );
+		if ( function_exists( 'hello_movieengine_get_active_style' ) && 'style-two' === hello_movieengine_get_active_style() ) {
+			return hello_movieengine_format_cinema_page_title( $title );
+		}
+		return $title;
 	}
 	if ( is_post_type_archive() ) {
-		return post_type_archive_title( '', false );
+		$title = post_type_archive_title( '', false );
+		if ( function_exists( 'hello_movieengine_get_active_style' ) && 'style-two' === hello_movieengine_get_active_style() ) {
+			return hello_movieengine_format_cinema_page_title( $title );
+		}
+		return $title;
 	}
 	if ( is_date() ) {
 		if ( is_year() ) {
@@ -438,6 +505,23 @@ function hello_movieengine_get_page_title_text() {
  * @return string
  */
 function hello_movieengine_get_page_title_description() {
+	if ( is_page() && function_exists( 'hello_movieengine_is_style_two_browse' ) && hello_movieengine_is_style_two_browse() ) {
+		$post = get_post();
+		if ( $post && $post->post_excerpt ) {
+			return $post->post_excerpt;
+		}
+		if ( $post && false !== strpos( $post->post_content, 'movie_engine_series' ) ) {
+			return esc_html__( 'Discover, search and filter from our complete TV series collection', 'hello-movieengine' );
+		}
+		return esc_html__( 'Discover, search and filter from our complete movie collection', 'hello-movieengine' );
+	}
+	if ( is_page() && function_exists( 'hello_movieengine_is_studios_page' ) && hello_movieengine_is_studios_page() ) {
+		$post = get_post();
+		if ( $post && $post->post_excerpt ) {
+			return $post->post_excerpt;
+		}
+		return esc_html__( 'Browse movie and TV studios from our catalog', 'hello-movieengine' );
+	}
 	if ( is_category() || is_tag() || is_tax() ) {
 		return get_the_archive_description();
 	}

@@ -30,7 +30,7 @@ class Hello_Movie_Engine_Ott_Feed_Section {
 
 		$wp_customize->add_section( 'hello_movieengine_ott_feed_section', array(
 			'title'           => esc_html__( 'OTT Feed (Style Two)', 'hello-movieengine' ),
-			'description'     => esc_html__( 'Fixed left menu and logo appear on every page (configure items under Mobile Bottom Navigation). Options below apply to the static front page only.', 'hello-movieengine' ),
+			'description'     => esc_html__( 'Style Two is a full-site OTT look (home, Movies/Series pages, singles, account). The left rail is global. Row, card, and hero options apply across those pages, not only the homepage.', 'hello-movieengine' ),
 			'panel'           => 'hello_movieengine_panel',
 			'priority'        => 2,
 			'active_callback' => array( __CLASS__, 'is_style_two' ),
@@ -53,6 +53,54 @@ class Hello_Movie_Engine_Ott_Feed_Section {
 		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_side_rail_enable', array(
 			'label'           => esc_html__( 'Fixed left navigation (all pages)', 'hello-movieengine' ),
 			'description'     => esc_html__( 'Uses Appearance → Menus (Primary Menu by default). If no menu is assigned, falls back to Mobile Bottom Navigation items.', 'hello-movieengine' ),
+			'section'         => 'hello_movieengine_ott_feed_section',
+			'active_callback' => array( __CLASS__, 'is_style_two' ),
+		) ) );
+
+		$wp_customize->add_setting( 'hello_movieengine_side_rail_show_logo', array(
+			'default'           => true,
+			'sanitize_callback' => 'hello_movieengine_sanitize_toggle',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_side_rail_show_logo', array(
+			'label'           => esc_html__( 'Show logo in left rail', 'hello-movieengine' ),
+			'section'         => 'hello_movieengine_ott_feed_section',
+			'active_callback' => array( __CLASS__, 'is_style_two' ),
+		) ) );
+
+		$wp_customize->add_setting( 'hello_movieengine_side_rail_custom_logo', array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hello_movieengine_side_rail_custom_logo', array(
+			'label'           => esc_html__( 'Custom rail logo / icon mark', 'hello-movieengine' ),
+			'description'     => esc_html__( 'Upload a compact square/monogram logo or icon for the left rail. If empty, falls back to the default site logo.', 'hello-movieengine' ),
+			'section'         => 'hello_movieengine_ott_feed_section',
+			'active_callback' => array( __CLASS__, 'is_style_two' ),
+		) ) );
+
+		$wp_customize->add_setting( 'hello_movieengine_side_rail_logo_height', array(
+			'default'           => 34,
+			'sanitize_callback' => 'absint',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( 'hello_movieengine_side_rail_logo_height', array(
+			'label'           => esc_html__( 'Rail logo height (px)', 'hello-movieengine' ),
+			'section'         => 'hello_movieengine_ott_feed_section',
+			'type'            => 'number',
+			'input_attrs'     => array( 'min' => 20, 'max' => 60, 'step' => 2 ),
+			'active_callback' => array( __CLASS__, 'is_style_two' ),
+		) );
+
+		$wp_customize->add_setting( 'hello_movieengine_side_rail_exclude_pages', array(
+			'default'           => '[]',
+			'sanitize_callback' => 'hello_movieengine_sanitize_page_select',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Page_Select_Control( $wp_customize, 'hello_movieengine_side_rail_exclude_pages', array(
+			'label'           => esc_html__( 'Show default top header on specific pages', 'hello-movieengine' ),
+			'description'     => esc_html__( 'Selected pages will disable the left rail and display the classic top header/menu instead (e.g. Blog, Contact, etc.).', 'hello-movieengine' ),
 			'section'         => 'hello_movieengine_ott_feed_section',
 			'active_callback' => array( __CLASS__, 'is_style_two' ),
 		) ) );
@@ -179,7 +227,7 @@ class Hello_Movie_Engine_Ott_Feed_Section {
 			'transport'         => 'refresh',
 		) );
 		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_feed_main_padding_zero', array(
-			'label'           => esc_html__( 'Remove main content padding (front page)', 'hello-movieengine' ),
+			'label'           => esc_html__( 'Remove main content padding', 'hello-movieengine' ),
 			'section'         => 'hello_movieengine_ott_feed_section',
 			'active_callback' => array( __CLASS__, 'is_style_two' ),
 		) ) );
@@ -264,7 +312,7 @@ class Hello_Movie_Engine_Ott_Feed_Section {
 		) );
 		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_feed_studio_chips', array(
 			'label'           => esc_html__( 'Studio chip bar styling', 'hello-movieengine' ),
-			'description'     => esc_html__( 'Styles [movie_engine_studios] / taxonomy chip rows on the feed.', 'hello-movieengine' ),
+			'description'     => esc_html__( 'Styles [movie_engine_studios] / taxonomy chip rows wherever they appear.', 'hello-movieengine' ),
 			'section'         => 'hello_movieengine_ott_feed_section',
 			'active_callback' => array( __CLASS__, 'is_style_two' ),
 		) ) );
@@ -308,8 +356,8 @@ class Hello_Movie_Engine_Ott_Feed_Section {
 			'transport'         => 'refresh',
 		) );
 		$wp_customize->add_control( 'hello_movieengine_feed_container_width', array(
-			'label'           => esc_html__( 'Feed content max width (px)', 'hello-movieengine' ),
-			'description'     => esc_html__( '0 = full width rows. Set a value to cap inner feed width.', 'hello-movieengine' ),
+			'label'           => esc_html__( 'Content max width (px)', 'hello-movieengine' ),
+			'description'     => esc_html__( '0 = full width. Set a value to cap inner content width on Style Two pages.', 'hello-movieengine' ),
 			'section'         => 'hello_movieengine_ott_feed_section',
 			'type'            => 'number',
 			'input_attrs'       => array( 'min' => 0, 'max' => 1920, 'step' => 10 ),

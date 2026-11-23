@@ -22,7 +22,21 @@ class Hello_Movie_Engine_Side_Rail {
 			return false;
 		}
 
-		return (bool) get_theme_mod( 'hello_movieengine_side_rail_enable', true );
+		if ( ! (bool) get_theme_mod( 'hello_movieengine_side_rail_enable', true ) ) {
+			return false;
+		}
+
+		// Check pages excluded from side rail (pages that use default top header).
+		$excluded_raw = get_theme_mod( 'hello_movieengine_side_rail_exclude_pages', '[]' );
+		$excluded     = json_decode( (string) $excluded_raw, true );
+		if ( is_array( $excluded ) && ! empty( $excluded ) ) {
+			$current_id = get_queried_object_id();
+			if ( $current_id && in_array( $current_id, array_map( 'absint', $excluded ), true ) ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -91,18 +105,25 @@ class Hello_Movie_Engine_Side_Rail {
 				'hello-movieengine-side-rail',
 				Hello_Movie_Engine_Style_Registry::style_uri( 'css/side-rail.css' ),
 				array( 'hello-movieengine-base' ),
-				HELLO_MOVIEENGINE_VERSION
+				filemtime( $css )
 			);
 
 			$widths  = self::get_widths();
 			$sh1     = max( 120, min( 400, absint( get_theme_mod( 'hello_movieengine_side_rail_sh1_width', 200 ) ) ) );
 			$sh2     = max( 200, min( 600, absint( get_theme_mod( 'hello_movieengine_side_rail_sh2_width', 450 ) ) ) );
+			$logo_h  = max( 20, min( 60, absint( get_theme_mod( 'hello_movieengine_side_rail_logo_height', 34 ) ) ) );
 			$inline  = ':root{';
 			$inline .= '--hm-side-rail-width:' . $widths['width'] . 'px;';
 			$inline .= '--hm-side-rail-compact:' . $widths['compact'] . 'px;';
 			$inline .= '--hm-side-rail-sh1-width:' . $sh1 . 'px;';
 			$inline .= '--hm-side-rail-sh2-width:' . $sh2 . 'px;';
+			$inline .= '--hm-side-rail-logo-h:' . $logo_h . 'px;';
 			$inline .= '}';
+			$inline .= '.hello-movieengine-side-rail__fly.hello-movieengine-side-rail__fly--mega-rich{position:absolute!important;left:100%!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;max-height:calc(100vh - 32px)!important;padding:0!important;border-radius:18px;clip-path:inset(0 round 18px);}';
+			$inline .= '.hello-movieengine-side-rail__fly--mega-rich>.hello-movieengine-mega-panel{flex:1 1 auto!important;min-height:0!important;max-height:calc(100vh - 32px)!important;overflow-x:hidden!important;overflow-y:auto!important;padding:20px 14px 18px 22px!important;}';
+			$inline .= '.hello-movieengine-mega-panel,.hello-movieengine-side-rail__fly-list{color-scheme:dark;scrollbar-width:thin!important;scrollbar-color:rgba(255,255,255,.4) rgba(255,255,255,.06)!important;}';
+			$inline .= '.hello-movieengine-mega-panel::-webkit-scrollbar,.hello-movieengine-side-rail__fly-list::-webkit-scrollbar,.hello-movieengine-side-rail__fly::-webkit-scrollbar{-webkit-appearance:none!important;width:2px!important;height:2px!important;background:transparent!important;}';
+			$inline .= '.hello-movieengine-mega-panel::-webkit-scrollbar-thumb,.hello-movieengine-side-rail__fly-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.4)!important;border-radius:99px!important;}';
 			wp_add_inline_style( 'hello-movieengine-side-rail', $inline );
 		}
 
@@ -111,7 +132,7 @@ class Hello_Movie_Engine_Side_Rail {
 				'hello-movieengine-side-rail',
 				Hello_Movie_Engine_Style_Registry::style_uri( 'js/side-rail.js' ),
 				array( 'jquery' ),
-				HELLO_MOVIEENGINE_VERSION,
+				filemtime( $js ),
 				true
 			);
 		}

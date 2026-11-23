@@ -53,6 +53,7 @@ class Hello_Movie_Engine_Style_Registry {
 	 */
 	public static function init() {
 		add_filter( 'body_class', array( __CLASS__, 'filter_body_class' ) );
+		add_filter( 'language_attributes', array( __CLASS__, 'filter_language_attributes' ) );
 		add_filter( 'movie_engine_get_template_part', array( __CLASS__, 'filter_movie_engine_template' ), 10, 3 );
 	}
 
@@ -68,6 +69,31 @@ class Hello_Movie_Engine_Style_Registry {
 		$classes[] = 'hello-movieengine-' . $style;
 
 		return $classes;
+	}
+
+	/**
+	 * Put the active style class on <html> (needed for first-paint CSS).
+	 *
+	 * @param string $output language_attributes HTML.
+	 * @return string
+	 */
+	public static function filter_language_attributes( $output ) {
+		$class = 'hmestyle-' . self::get_active_style();
+
+		if ( preg_match( '/\bclass=(["\'])(.*?)\1/', $output, $m ) ) {
+			if ( false !== strpos( $m[2], $class ) ) {
+				return $output;
+			}
+
+			return preg_replace(
+				'/\bclass=(["\'])/',
+				'class=$1' . esc_attr( $class ) . ' ',
+				$output,
+				1
+			);
+		}
+
+		return $output . ' class="' . esc_attr( $class ) . '"';
 	}
 
 	/**
@@ -151,7 +177,10 @@ class Hello_Movie_Engine_Style_Registry {
 		}
 
 		if ( 'style-two' === $style ) {
+			$files[] = 'motion';
 			$files[] = 'home-feed';
+			$files[] = 'archive-browse';
+			$files[] = 'single-watch';
 		}
 
 		return apply_filters( 'hello_movieengine_style_stylesheet_bundle', $files, $style );
@@ -204,7 +233,7 @@ class Hello_Movie_Engine_Style_Registry {
 				continue;
 			}
 
-			wp_enqueue_style( $handle, self::style_uri( 'css/' . $name . '.css' ), array( $previous ), $version );
+			wp_enqueue_style( $handle, self::style_uri( 'css/' . $name . '.css' ), array( $previous ), filemtime( $path ) );
 			$previous = $handle;
 		}
 	}

@@ -1,11 +1,48 @@
 /*
- * Style Two – OTT feed (rows, sliders, section spacing).
+ * Style Two – OTT layout (home, browse, single, account — not homepage-only).
  *
  * @package Hello_Movie Engine
  */
 
+/* Plugin _related.scss uses margin-top: 40px + padding-top: 40px per section.
+   Sliders then zero padding via .me-slider-layout { padding: 0 !important },
+   so row gaps were uneven. Style Two uses one token for the space between rows. */
 .hmestyle-style-two .movie-engine-section {
-	margin-bottom: var(--hm-feed-row-gap, 1.75rem);
+	padding-bottom: 0px;
+	padding-top: 0px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+.movie-engine-library-container,
+.movie-engine-taxonomies-wrapper,
+.movie-engine-single-movie-wrapper .movie-engine-section {
+	padding-top: 50px;
+	padding-bottom: 0px;
+	margin-top: 30px;
+	margin-bottom: 0px;
+}
+
+/* Single movie cinema: 50px hero → rows, and 50px between each section */
+.hmestyle-style-two .hme-single-cinema .me-inline-below {
+	margin-top: 50px;
+}
+
+.hmestyle-style-two .hme-single-cinema .me-inline-below > .movie-engine-section {
+	margin-top: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+.hmestyle-style-two .hme-single-cinema .me-inline-below > .movie-engine-section ~ .movie-engine-section,
+.hmestyle-style-two .hme-single-cinema .me-inline-below > .movie-engine-section ~ .movie-engine-reviews-area,
+.hmestyle-style-two .hme-single-cinema .me-inline-below > .movie-engine-reviews-area {
+	margin-top: 50px;
+}
+.hmestyle-style-two .movie-engine-section-title,
+.hmestyle-style-two .me-section-header {
+	margin-top: 0px;
+	margin-bottom: 30px;
 }
 
 .hmestyle-style-two .movie-engine-library-content,
@@ -22,9 +59,19 @@
 	padding-right: 0;
 }
 
+.hmestyle-style-two .movie-engine-section-title,
 .hmestyle-style-two .me-section-header {
+	display: flex !important;
+	align-items: baseline;
+	justify-content: space-between;
 	padding-left: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pl, 1.25rem));
-	padding-right: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pr, 1.25rem));
+	padding-right: var(--hm-ott-row-inset, 56px);
+}
+
+.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-section-title,
+.hmestyle-style-two.hello-movieengine-has-side-rail .me-section-header {
+	padding-left: 0;
+	padding-right: var(--hm-ott-row-inset, 56px);
 }
 
 .hmestyle-style-two .movie-engine-section-title,
@@ -32,34 +79,242 @@
 	font-size: var(--hm-feed-section-title-size, 1.125rem);
 }
 
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-section-title,
+	.hmestyle-style-two .me-section-header,
+	.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-section-title,
+	.hmestyle-style-two.hello-movieengine-has-side-rail .me-section-header {
+		padding-right: 16px;
+	}
+}
+
 .hmestyle-style-two .movie-engine-items-grid {
 	padding-left: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pl, 1.25rem));
 	padding-right: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pr, 1.25rem));
 }
 
-.hmestyle-style-two .me-slider-layout .movie-engine-bulk-card,
-.hmestyle-style-two .me-slider-layout .movie-engine-card {
-	min-width: var(--hm-feed-card-min-width, 140px);
+/* Slider rows: last poster clips at the viewport edge (not boxed inside columns) */
+.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section),
+.hmestyle-style-two .movie-engine-library-content,
+.hmestyle-style-two .movie-engine-taxonomies-wrapper,
+.hmestyle-style-two .movie-engine-page-template {
+	overflow: visible;
 }
 
-.hmestyle-style-two.hello-movieengine-feed-page .site-main {
+/* Plugin sets overflow-y:hidden on slider grids — allow hover scale / badges */
+html.hmestyle-style-two .movie-engine-slider-enabled .movie-engine-items-grid,
+html.hmestyle-style-two .me-slider-layout .movie-engine-items-grid,
+html.hmestyle-style-two .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid,
+html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid {
+	padding-right: 0 !important;
+	padding-top: 22px;
+	padding-bottom: 14px;
+	margin-top: 0;
+	overflow-x: auto;
+	overflow-y: visible !important;
+	scrollbar-width: none;
+	overscroll-behavior-y: auto;
+}
+
+.hmestyle-style-two .movie-engine-library-container,
+.hmestyle-style-two .movie-engine-library-content,
+.hmestyle-style-two .movie-engine-taxonomies-wrapper,
+.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section).movie-engine-slider-enabled,
+.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section).me-slider-layout,
+.hmestyle-style-two .movie-engine-library-container.movie-engine-slider-enabled,
+.hmestyle-style-two .movie-engine-library-container.me-slider-layout {
+	overflow: visible !important;
+}
+
+.hmestyle-style-two .movie-engine-taxonomies-wrapper .me-slider-layout .movie-engine-items-grid {
+	overflow-x: auto !important;
+	overflow-y: visible !important;
+	padding-top: 22px;
+	padding-bottom: 14px;
+}
+
+
+.hmestyle-style-two .movie-engine-slider-enabled .movie-engine-items-grid::-webkit-scrollbar,
+.hmestyle-style-two .me-slider-layout .movie-engine-items-grid::-webkit-scrollbar {
+	display: none;
+}
+
+.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card {
+	flex: 0 0 clamp(var(--hm-feed-card-min-width, 140px), 12.4vw, 220px) !important;
+	width: auto !important;
+	max-width: none !important;
+	min-width: 0 !important;
+}
+
+/* Single movie/series rows: same full-bleed column as home (hero excluded). */
+.hmestyle-style-two .movie-engine-single-movie-wrapper > .me-main-content,
+.hmestyle-style-two .movie-engine-single-movie-wrapper > .me-inline-watch-page > .me-main-content {
+	max-width: none !important;
+	width: 100% !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-single-movie-wrapper > .me-inline-watch-page > .me-main-content {
+	padding-left: var(--hm-ott-row-inset, 56px) !important;
+	padding-right: 0 !important;
+	box-sizing: border-box;
+}
+
+.hmestyle-style-two .movie-engine-single-movie-wrapper .movie-engine-episodes-section .movie-engine-grid-layout,
+.hmestyle-style-two .movie-engine-single-movie-wrapper .movie-engine-episodes-section .movie-engine-list-layout {
+	width: 100%;
+	max-width: none;
+}
+
+/*
+ * Single movie rows: column counts come from plugin design settings
+ * (--grid-columns* on each section). Style Two only skins cast cards.
+ */
+.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card {
+	flex: 0 0 auto;
+	width: calc((100% - (var(--grid-columns, 6) - 1) * 20px) / var(--grid-columns, 6));
+	max-width: none;
+	min-width: 0;
+}
+
+@media (max-width: 1440px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card {
+		width: calc((100% - (var(--grid-columns-laptop, 5) - 1) * 20px) / var(--grid-columns-laptop, 5));
+	}
+}
+
+@media (max-width: 1200px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card {
+		width: calc((100% - (var(--grid-columns-tablet, 4) - 1) * 20px) / var(--grid-columns-tablet, 4));
+	}
+}
+
+@media (max-width: 768px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card {
+		width: calc((100% - (var(--grid-columns-mobile, 3) - 1) * 15px) / var(--grid-columns-mobile, 3));
+	}
+}
+
+@media (max-width: 480px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card {
+		width: calc((100% - 12px) / 2);
+	}
+}
+
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section .movie-engine-cast-item {
+	width: 100%;
+	max-width: none;
+	background: transparent;
+}
+
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--grid-columns, 6), minmax(0, 1fr));
+	gap: 20px;
+}
+
+@media (max-width: 1440px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-laptop, 5), minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 1200px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-tablet, 4), minmax(0, 1fr));
+		gap: 18px;
+	}
+}
+
+@media (max-width: 768px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-mobile, 3), minmax(0, 1fr));
+		gap: 12px;
+	}
+}
+
+@media (max-width: 480px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 10px;
+	}
+}
+
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section .movie-engine-item-placeholder .fa-user,
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section .movie-engine-item-placeholder .fa-users {
+	font-size: 2rem;
+}
+
+/* Grids keep a right inset; sliders still clip at the viewport edge. */
+.hmestyle-style-two .movie-engine-single-movie-wrapper .movie-engine-episodes-section,
+.hmestyle-style-two .movie-engine-single-movie-wrapper .movie-engine-section:not(.movie-engine-slider-enabled):not(.movie-engine-hero-section):not(.movie-engine-movie-hero) {
+	padding-right: var(--hm-ott-row-inset, 56px);
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-single-movie-wrapper .movie-engine-episodes-section,
+	.hmestyle-style-two .movie-engine-single-movie-wrapper .movie-engine-section:not(.movie-engine-slider-enabled):not(.movie-engine-hero-section):not(.movie-engine-movie-hero) {
+		padding-right: 16px;
+	}
+}
+
+.hmestyle-style-two .site-main {
 	padding-top: 0;
 	padding-left: 0;
 	padding-right: 0;
 }
 
-.hmestyle-style-two.hello-movieengine-feed-page.hello-movieengine-feed-main-zero .site-main {
+.hmestyle-style-two.hello-movieengine-feed-main-zero .site-main {
 	padding: 0;
 }
 
-.hmestyle-style-two.hello-movieengine-feed-page .hello-movieengine-content-area,
-.hmestyle-style-two.hello-movieengine-feed-page .site-main--me-fullwidth {
+.hmestyle-style-two .hello-movieengine-content-area,
+.hmestyle-style-two .site-main--me-fullwidth {
 	max-width: var(--hm-feed-container-width, 100%);
 }
 
 .hmestyle-style-two .movie-engine-hero-section,
 .hmestyle-style-two .movie-engine-hero {
 	min-height: var(--hm-feed-hero-min-height, 100vh);
+	overflow: hidden;
+}
+
+.hmestyle-style-two .movie-engine-hero-section .me-hero-slider.movie-engine-items-grid {
+	overflow-x: auto;
+	overflow-y: hidden !important;
+	padding-right: 0 !important;
+	overscroll-behavior-y: auto;
+}
+
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style4,
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 {
+	position: relative;
+	/* Tallest of OTT feed setting, hero shortcode height, or full viewport */
+	min-height: max(var(--hm-feed-hero-min-height, 100vh), var(--me-hero-height, 700px));
+}
+
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style4 .me-hero-slider.movie-engine-items-grid,
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-hero-slider.movie-engine-items-grid {
+	overflow: hidden !important;
+	height: 100%;
+	min-height: 100%;
+}
+
+/* Style 5: hide static “Featured Movie” kicker — eyebrow/genre stays */
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-hero-kicker--featured {
+	display: none !important;
+}
+
+.hmestyle-style-two .movie-engine-slider-enabled:not(.movie-engine-hero-section) .movie-engine-slider-nav.movie-engine-slider-next {
+	right: 45px !important;
 }
 
 @media (min-width: 768px) {
@@ -82,9 +337,9 @@
 .hmestyle-style-two .me-hero-overlay,
 .hmestyle-style-two .movie-engine-hero-overlay {
 	background:
-		linear-gradient(90deg, rgba(5, 5, 7, 0.92) 0%, rgba(5, 5, 7, 0.6) 32%, transparent 68%),
-		linear-gradient(0deg, rgb(5, 5, 7) 0%, rgba(5, 5, 7, 0.45) 22%, transparent 48%),
-		linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 18%);
+		linear-gradient(90deg, color-mix(in srgb, var(--movie-engine-bg-color) 92%, transparent) 0%, color-mix(in srgb, var(--movie-engine-bg-color) 60%, transparent) 32%, transparent 68%),
+		linear-gradient(0deg, var(--movie-engine-bg-color) 0%, color-mix(in srgb, var(--movie-engine-bg-color) 45%, transparent) 22%, transparent 48%),
+		linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 18%) !important;
 }
 
 /* Hero arrows: both on the right, stacked (next above prev) */
@@ -117,30 +372,24 @@
 	transform: translateY(10px) scale(1.06);
 }
 
-/* Top 10: add custom_class="me-top10" on [movie_engine_library] rows */
-.hello-movieengine-top10-rows .movie-engine-section.me-top10 {
-	counter-reset: me-top10;
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-thumb-nav-btns .movie-engine-slider-nav,
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-thumb-nav-btns .movie-engine-slider-nav.movie-engine-slider-next,
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-thumb-nav-btns .movie-engine-slider-nav.movie-engine-slider-prev,
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-thumb-nav-btns .movie-engine-slider-nav.movie-engine-slider-next:hover,
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-thumb-nav-btns .movie-engine-slider-nav.movie-engine-slider-prev:hover {
+	position: static !important;
+	left: auto !important;
+	right: auto !important;
+	top: auto !important;
+	transform: none !important;
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	width: auto !important;
+	height: auto !important;
 }
 
-.hello-movieengine-top10-rows .movie-engine-section.me-top10 .movie-engine-bulk-card,
-.hello-movieengine-top10-rows .movie-engine-section.me-top10 .movie-engine-card {
-	counter-increment: me-top10;
-	position: relative;
-}
-
-.hello-movieengine-top10-rows .movie-engine-section.me-top10 .movie-engine-bulk-card::before,
-.hello-movieengine-top10-rows .movie-engine-section.me-top10 .movie-engine-card::before {
-	content: counter(me-top10);
-	position: absolute;
-	left: -0.15em;
-	bottom: 0.05em;
-	font-size: clamp(3rem, 8vw, 5.5rem);
-	font-weight: 800;
-	line-height: 1;
-	color: rgba(255, 255, 255, 0.35);
-	z-index: 0;
-	pointer-events: none;
-}
+/* Ranked Top 10: plugin [movie_engine_top10] / .movie-engine-top10 — ranks live in plugin CSS */
 
 /* Studio chip bar — target studios shortcode wrapper */
 .hello-movieengine-studio-chips .movie-engine-studios-slider,

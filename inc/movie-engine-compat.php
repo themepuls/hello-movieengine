@@ -35,6 +35,33 @@ function hello_movieengine_is_movie_engine_archive() {
 }
 
 /**
+ * Whether the current page is the Movie Engine “Studios” page from Design settings.
+ *
+ * @return bool
+ */
+function hello_movieengine_is_studios_page() {
+	if ( ! hello_movieengine_is_movie_engine_active() || ! is_page() ) {
+		return false;
+	}
+
+	$options = get_option( 'movie_engine_design_settings', array() );
+	if ( empty( $options['studios_page'] ) ) {
+		return false;
+	}
+
+	return (int) $options['studios_page'] === (int) get_queried_object_id();
+}
+
+/**
+ * Whether the request is a single Movie Engine studio taxonomy archive.
+ *
+ * @return bool
+ */
+function hello_movieengine_is_studio_taxonomy() {
+	return hello_movieengine_is_movie_engine_active() && is_tax( 'movie_engine_studio' );
+}
+
+/**
  * Movie Engine post types that this theme supports.
  */
 function hello_movieengine_get_movie_engine_post_types() {

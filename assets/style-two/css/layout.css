@@ -29,6 +29,11 @@
 .hello-movieengine-site {
 	display: flex;
 	flex-direction: column;
+	/* Sticky footer: short pages (login/register/404/…) keep the footer on
+	   the viewport floor instead of floating it right under the content.
+	   WP sets --wp-admin--admin-bar--height when the admin bar shows. */
+	min-height: calc(100vh - var(--wp-admin--admin-bar--height, 0px));
+	min-height: calc(100dvh - var(--wp-admin--admin-bar--height, 0px));
 }
 
 /* --------------------------------------------------------

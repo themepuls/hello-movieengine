@@ -118,15 +118,44 @@
 				return;
 			}
 
-			$fly.css( { top: '', maxHeight: '', transform: '' } );
+			$fly.css( { top: '', left: '', maxHeight: '', transform: '' } );
 
-			var isMega   = $fly.hasClass( 'hello-movieengine-side-rail__fly--mega' );
-			var itemRect = item.getBoundingClientRect();
-			var grpRect  = grp.getBoundingClientRect();
-			var flyH     = $fly.outerHeight();
-			var pad      = 16;
-			var vh       = window.innerHeight;
+			var isMega     = $fly.hasClass( 'hello-movieengine-side-rail__fly--mega' );
+			var isMegaRich = $fly.hasClass( 'hello-movieengine-side-rail__fly--mega-rich' );
+			var itemRect   = item.getBoundingClientRect();
+			var grpRect    = grp.getBoundingClientRect();
+			var pad        = 16;
+			var vh         = window.innerHeight;
+			var maxH       = vh - pad * 2;
+			var flyH;
 			var absTop;
+
+			if ( isMegaRich ) {
+				$fly.css( {
+					left: '',
+					transform: 'none',
+					'max-height': maxH + 'px',
+					overflow: 'hidden'
+				} );
+				$fly.children( '.hello-movieengine-mega-panel' ).css( {
+					'max-height': maxH + 'px',
+					'overflow-x': 'hidden',
+					'overflow-y': 'auto'
+				} );
+				void $fly[ 0 ].offsetHeight;
+				flyH   = Math.min( maxH, $fly[ 0 ].offsetHeight );
+				absTop = itemRect.top + ( itemRect.height / 2 ) - ( flyH / 2 );
+				if ( absTop < pad ) {
+					absTop = pad;
+				}
+				if ( absTop + flyH > vh - pad ) {
+					absTop = Math.max( pad, vh - pad - flyH );
+				}
+				$fly.css( 'top', ( absTop - grpRect.top ) + 'px' );
+				return;
+			}
+
+			flyH = $fly.outerHeight();
 
 			if ( isMega ) {
 				absTop = itemRect.top + ( itemRect.height / 2 ) - ( flyH / 2 );
@@ -134,9 +163,9 @@
 				absTop = itemRect.top;
 			}
 
-			if ( flyH > vh - pad * 2 ) {
-				$fly.css( 'max-height', ( vh - pad * 2 ) + 'px' );
-				flyH   = vh - pad * 2;
+			if ( flyH > maxH ) {
+				$fly.css( 'max-height', maxH + 'px' );
+				flyH   = maxH;
 				absTop = pad;
 			} else {
 				if ( absTop < pad ) {
@@ -162,12 +191,17 @@
 			$rail.find( '.hello-movieengine-side-rail__grp.is-fly-open' ).not( $grp ).each( function () {
 				$( this ).removeClass( 'is-fly-open' )
 					.children( '.hello-movieengine-side-rail__fly' )
-					.css( { top: '', maxHeight: '', transform: '' } );
+					.css( { top: '', left: '', maxHeight: '', transform: '' } );
 			} );
 
 			$grp.addClass( 'is-fly-open' );
 			$rail.addClass( 'is-fly-open' );
+			$grp.children( '.hello-movieengine-side-rail__fly' ).removeAttr( 'hidden' );
 			positionFly( $grp );
+
+			$grp.children( '.hello-movieengine-side-rail__fly' ).find( 'img' ).one( 'load', function () {
+				positionFly( $grp );
+			} );
 		}
 
 		function scheduleCloseFly( $grp ) {
@@ -177,11 +211,14 @@
 
 			flyHideTimer = window.setTimeout( function () {
 				$grp.removeClass( 'is-fly-open' );
-				$grp.children( '.hello-movieengine-side-rail__fly' ).css( {
-					top: '',
-					maxHeight: '',
-					transform: ''
-				} );
+				$grp.children( '.hello-movieengine-side-rail__fly' )
+					.attr( 'hidden', '' )
+					.css( {
+						top: '',
+						left: '',
+						maxHeight: '',
+						transform: ''
+					} );
 
 				if ( ! $rail.find( '.hello-movieengine-side-rail__grp.is-fly-open' ).length ) {
 					$rail.removeClass( 'is-fly-open' );
@@ -195,8 +232,36 @@
 			openFly( $( this ) );
 		} );
 
-		$rail.on( 'mouseleave', '.hello-movieengine-side-rail__grp.has-flyout', function () {
-			scheduleCloseFly( $( this ) );
+		$rail.on( 'mouseleave', '.hello-movieengine-side-rail__grp.has-flyout', function ( e ) {
+			var $grp  = $( this );
+			var $fly  = $grp.children( '.hello-movieengine-side-rail__fly' );
+			var flyEl = $fly.get( 0 );
+			var next  = e.relatedTarget;
+
+			if ( flyEl && next && ( flyEl === next || $.contains( flyEl, next ) ) ) {
+				return;
+			}
+
+			scheduleCloseFly( $grp );
+		} );
+
+		$rail.on( 'mouseenter', '.hello-movieengine-side-rail__fly', function () {
+			var $grp = $( this ).closest( '.hello-movieengine-side-rail__grp' );
+			if ( ! $grp.length || ! $grp.hasClass( 'is-fly-open' ) ) {
+				return;
+			}
+			if ( flyHideTimer ) {
+				window.clearTimeout( flyHideTimer );
+				flyHideTimer = null;
+			}
+			$rail.addClass( 'is-fly-open' );
+		} );
+
+		$rail.on( 'mouseleave', '.hello-movieengine-side-rail__fly', function () {
+			var $grp = $( this ).closest( '.hello-movieengine-side-rail__grp' );
+			if ( $grp.length ) {
+				scheduleCloseFly( $grp );
+			}
 		} );
 
 		// Submenu / mega flyouts (touch: tap parent toggles panel).

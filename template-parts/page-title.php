@@ -22,8 +22,11 @@ $hello_movieengine_pt_title = hello_movieengine_get_page_title_text();
 $hello_movieengine_pt_desc  = hello_movieengine_get_page_title_description();
 $hello_movieengine_pt_align = get_theme_mod( 'hello_movieengine_page_title_align', 'center' );
 
+$hello_movieengine_is_style_two = function_exists( 'hello_movieengine_get_active_style' )
+	&& 'style-two' === hello_movieengine_get_active_style();
+
 $hello_movieengine_pt_bg_image = '';
-if ( ( is_page() || is_singular() ) && has_post_thumbnail() ) {
+if ( ! $hello_movieengine_is_style_two && ( is_page() || is_singular() ) && has_post_thumbnail() ) {
 	$hello_movieengine_pt_bg_image = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 }
 if ( ! $hello_movieengine_pt_bg_image ) {
@@ -32,18 +35,21 @@ if ( ! $hello_movieengine_pt_bg_image ) {
 
 $hello_movieengine_pt_has_image = ! empty( $hello_movieengine_pt_bg_image );
 $hello_movieengine_pt_classes   = 'hello-movieengine-page-title-section';
-if ( $hello_movieengine_pt_has_image ) {
+if ( $hello_movieengine_is_style_two ) {
+	$hello_movieengine_pt_classes .= ' hello-movieengine-page-title-section--cinema';
+	$hello_movieengine_pt_align    = 'left';
+} elseif ( $hello_movieengine_pt_has_image ) {
 	$hello_movieengine_pt_classes .= ' has-bg-image';
 }
 
 $hello_movieengine_pt_style = 'text-align:' . esc_attr( $hello_movieengine_pt_align ) . ';';
-if ( $hello_movieengine_pt_has_image ) {
+if ( $hello_movieengine_pt_has_image && ! $hello_movieengine_is_style_two ) {
 	$hello_movieengine_pt_style .= 'background-image:url(' . esc_url( $hello_movieengine_pt_bg_image ) . ');';
 }
 ?>
-<div class="<?php echo esc_attr( $hello_movieengine_pt_classes ); ?>" style="<?php echo $hello_movieengine_pt_style; ?>">
-	<?php if ( $hello_movieengine_pt_has_image ) : ?>
-		<div class="hello-movieengine-page-title-section__overlay"></div>
+<div class="<?php echo esc_attr( $hello_movieengine_pt_classes ); ?>" style="<?php echo esc_attr( $hello_movieengine_pt_style ); ?>">
+	<?php if ( $hello_movieengine_pt_has_image || $hello_movieengine_is_style_two ) : ?>
+		<div class="hello-movieengine-page-title-section__overlay" aria-hidden="true"></div>
 	<?php endif; ?>
 	<div class="hello-movieengine-container hello-movieengine-page-title-section__content">
 		<?php if ( $hello_movieengine_pt_label ) : ?>

@@ -11,6 +11,12 @@
  * @package Hello_Movie Engine
  */
 
+/* Style Two — Movie Engine palette */
+html.hmestyle-style-two {
+	--movie-engine-black-color: #050507;
+	--movie-engine-black-rgb: 5, 5, 7;
+}
+
 /* --------------------------------------------------------
    Use plugin's CSS variables when available
    -------------------------------------------------------- */
@@ -101,4 +107,140 @@
    -------------------------------------------------------- */
 .hello-movieengine-has-movie-engine .movie-engine-dashboard {
 	min-height: calc(100vh - var(--hello-movieengine-header-height) - 200px);
+}
+
+/* --------------------------------------------------------
+   Style Two — Dashboard design (reference: themoviestime)
+   Scoped to html.hmestyle-style-two so Style One and the
+   standalone plugin never receive these overrides.
+   -------------------------------------------------------- */
+
+/* Header as a rounded card */
+html.hmestyle-style-two .movie-engine-dashboard-header {
+	background: linear-gradient(180deg, #14161c 0%, #101217 100%);
+	border: 1px solid rgba(255, 255, 255, 0.07);
+	border-radius: 14px;
+	padding: 16px 22px;
+	align-items: center;
+	gap: 20px;
+}
+
+/* Avatar — rounded square like the reference */
+html.hmestyle-style-two .movie-engine-dashboard-header .movie-engine-avatar img {
+	width: 54px;
+	height: 54px;
+	object-fit: cover;
+	border-radius: 14px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Right-side action cluster: keep on one comfortable row (desktop) */
+@media (min-width: 769px) {
+	html.hmestyle-style-two .movie-engine-header-actions {
+		flex-wrap: nowrap;
+		gap: 14px;
+	}
+
+	html.hmestyle-style-two .movie-engine-header-actions > * {
+		flex-shrink: 0;
+	}
+
+	html.hmestyle-style-two .movie-engine-membership-status {
+		min-width: 300px;
+		gap: 7px;
+	}
+
+	html.hmestyle-style-two .movie-engine-status-row {
+		white-space: nowrap;
+		gap: 8px;
+	}
+
+	html.hmestyle-style-two .movie-engine-membership-progress-wrap {
+		min-width: 300px;
+		gap: 7px;
+	}
+
+	html.hmestyle-style-two .movie-engine-progress-dates,
+	html.hmestyle-style-two .movie-engine-progress-dates span {
+		white-space: nowrap;
+	}
+}
+
+/* Tablet: let the header wrap so the action cluster never overflows */
+@media (min-width: 769px) and (max-width: 1024px) {
+	html.hmestyle-style-two .movie-engine-dashboard-header {
+		flex-wrap: wrap;
+	}
+
+	html.hmestyle-style-two .movie-engine-membership-status,
+	html.hmestyle-style-two .movie-engine-membership-progress-wrap {
+		min-width: 260px;
+	}
+}
+
+/* Settings / logout as rounded icon buttons */
+html.hmestyle-style-two .movie-engine-btn-settings,
+html.hmestyle-style-two .movie-engine-btn-logout-header {
+	width: 40px;
+	height: 40px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	color: #c9ced6;
+	transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+html.hmestyle-style-two .movie-engine-btn-settings:hover,
+html.hmestyle-style-two .movie-engine-btn-logout-header:hover {
+	background: rgba(255, 255, 255, 0.12);
+	border-color: rgba(255, 255, 255, 0.16);
+	color: #ffffff;
+}
+
+/* Sidebar nav items as pills (inactive gets a subtle plate) */
+html.hmestyle-style-two .movie-engine-nav-item {
+	background: rgba(255, 255, 255, 0.035);
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	border-radius: 8px;
+	transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+html.hmestyle-style-two .movie-engine-nav-item:hover {
+	background: rgba(255, 255, 255, 0.08);
+	border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Active state keeps the plugin's blue highlight but matches pill shape */
+html.hmestyle-style-two .movie-engine-nav-item.active {
+	background: rgb(0, 168, 225);
+	border-color: transparent;
+}
+
+/* Sticky sidebar — desktop grid layout only.
+   Grid children stretch by default, which gives position:sticky
+   no scroll runway, so align-self:start is required. */
+@media (min-width: 1025px) {
+	html.hmestyle-style-two .movie-engine-dashboard-body .movie-engine-dashboard-sidebar {
+		position: sticky;
+		align-self: start;
+		top: calc(var(--hello-movieengine-header-height, 70px) + var(--wp-admin--admin-bar--height, 0px) + 16px);
+		max-height: calc(100vh - var(--hello-movieengine-header-height, 70px) - var(--wp-admin--admin-bar--height, 0px) - 32px);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-width: thin;
+		scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+		padding-right: 4px;
+	}
+
+	html.hmestyle-style-two .movie-engine-dashboard-body .movie-engine-dashboard-sidebar::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	html.hmestyle-style-two .movie-engine-dashboard-body .movie-engine-dashboard-sidebar::-webkit-scrollbar-thumb {
+		background: rgba(255, 255, 255, 0.2);
+		border-radius: 99px;
+	}
 }

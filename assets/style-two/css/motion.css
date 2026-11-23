@@ -1,0 +1,350 @@
+/*
+ * Style Two – reusable motion + tokens (site-wide OTT).
+ * Use these variables / keyframes / utility classes instead of repeating values.
+ *
+ * @package Hello_Movie Engine
+ */
+
+html.hmestyle-style-two {
+	--hme-ease: cubic-bezier(0.22, 1, 0.36, 1);
+	--hme-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+	--hme-hover: 1.04;
+	--hme-press: 0.96;
+	--hme-radius: 10px;
+	--hme-glass: rgba(255, 255, 255, 0.08);
+	--hme-glass-b: rgba(255, 255, 255, 0.14);
+	--hme-dim: rgba(255, 255, 255, 0.62);
+	--hm-side-rail-ease: var(--hme-ease);
+	touch-action: manipulation;
+}
+
+html.hmestyle-style-two * {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+html.hmestyle-style-two ::selection {
+	background: var(--hello-movieengine-primary-color, #e50914);
+	color: #fff;
+}
+
+@keyframes hmePop {
+	from {
+		opacity: 0;
+		transform: translateY(14px) scale(0.97);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes hmeCardIn {
+	from {
+		opacity: 0;
+		transform: translateY(16px) scale(0.98);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes hmeFade {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes hmeUp {
+	from {
+		opacity: 0;
+		transform: translateY(22px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes hmeNavPop {
+	0% {
+		transform: scale(0.8);
+	}
+
+	60% {
+		transform: scale(1.12);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes hmeSpin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Reusable: scroll-into-view (JS adds .hme-reveal then .hme-in) */
+.hmestyle-style-two .hme-reveal {
+	opacity: 0;
+	transform: translateY(26px);
+}
+
+.hmestyle-style-two .hme-reveal.hme-in {
+	opacity: 1;
+	transform: none;
+	transition: opacity 0.7s ease, transform 0.8s var(--hme-ease-out);
+}
+
+/* Reusable glass surface */
+.hmestyle-style-two .hme-glass {
+	background: var(--hme-glass);
+	border: 1px solid var(--hme-glass-b);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-movie-card {
+	animation: hmeCardIn 0.5s var(--hme-ease-out) both;
+	transition: transform 0.3s var(--hme-ease-out);
+}
+
+/* Term cards (studios, genres, …) — same fade-in as movie cards */
+.hmestyle-style-two .movie-engine-items-grid > .me-term-card {
+	/* backwards (not both): a finished `both` fill keeps applying the keyframe's
+	   `transform: none` at the animation origin — that beats every author rule and
+	   permanently blocks the plugin's hover zoom on the card itself (scale(1.06)
+	   studio cards, translateY(-5px) term cards). backwards still hides cards
+	   during the stagger delay; after the run the card falls back to base styles
+	   so :hover transforms apply. */
+	animation: hmeCardIn 0.5s var(--hme-ease-out) backwards;
+	transition: transform 0.3s var(--hme-ease-out), box-shadow 0.45s ease, background 0.45s ease;
+}
+
+/* Genre / taxonomy pills */
+.hmestyle-style-two .movie-engine-genres-widget .me-genre-tag {
+	animation: hmeCardIn 0.5s var(--hme-ease-out) both;
+	transition: transform 0.3s var(--hme-ease-out);
+}
+
+/* Generic item cards (cast, crew, …) */
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-item-card {
+	/* backwards so the plugin's :hover lift (translateY(-8px)) isn't blocked
+	   by a finished animation fill — same reason as term cards above. */
+	animation: hmeCardIn 0.5s var(--hme-ease-out) backwards;
+	transition: transform 0.3s var(--hme-ease-out);
+}
+
+/* Plugin lift on item cards (cast, etc.) — keep inside visible overflow */
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-item-card {
+	position: relative;
+	z-index: 0;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-item-card:hover {
+	z-index: 2;
+}
+
+/* Stagger delays — term cards */
+.hmestyle-style-two .movie-engine-items-grid > .me-term-card:nth-child(6n+2) {
+	animation-delay: 0.04s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .me-term-card:nth-child(6n+3) {
+	animation-delay: 0.08s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .me-term-card:nth-child(6n+4) {
+	animation-delay: 0.12s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .me-term-card:nth-child(6n+5) {
+	animation-delay: 0.16s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .me-term-card:nth-child(6n) {
+	animation-delay: 0.2s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-movie-card:nth-child(6n+2) {
+	animation-delay: 0.04s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-movie-card:nth-child(6n+3) {
+	animation-delay: 0.08s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-movie-card:nth-child(6n+4) {
+	animation-delay: 0.12s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-movie-card:nth-child(6n+5) {
+	animation-delay: 0.16s;
+}
+
+.hmestyle-style-two .movie-engine-items-grid > .movie-engine-movie-card:nth-child(6n) {
+	animation-delay: 0.2s;
+}
+
+.hmestyle-style-two .movie-engine-movie-card {
+	background: none;
+	border: 0;
+	box-shadow: none;
+	overflow: visible;
+}
+
+.hmestyle-style-two .movie-engine-movie-card .movie-engine-card-poster {
+	display: block;
+	position: relative;
+	border-radius: var(--hme-radius);
+	overflow: hidden;
+	transform-origin: 50% 92%;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+	outline: none;
+	transition: transform 0.45s var(--hme-ease), box-shadow 0.45s var(--hme-ease);
+}
+
+.hmestyle-style-two .movie-engine-movie-card .movie-engine-card-poster img {
+	border-radius: 0;
+	transition: transform 0.6s var(--hme-ease), filter 0.3s;
+}
+
+.hmestyle-style-two .movie-engine-card-overlay {
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), transparent 55%) !important;
+	opacity: 0;
+	transition: opacity 0.3s !important;
+}
+
+.hmestyle-style-two .movie-engine-card-overlay .fa-play {
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	display: grid !important;
+	place-items: center;
+	background: rgba(255, 255, 255, 0.95);
+	color: #000 !important;
+	font-size: 15px !important;
+	padding-left: 3px;
+	text-shadow: none;
+	transform: scale(0.8);
+	transition: transform 0.4s var(--hme-ease);
+}
+
+.hmestyle-style-two .movie-engine-card-rating {
+	background: rgba(0, 0, 0, 0.6) !important;
+	backdrop-filter: blur(6px);
+	border-radius: 6px !important;
+}
+
+@media (hover: hover) {
+	.hmestyle-style-two .movie-engine-movie-card:hover {
+		z-index: 3;
+		position: relative;
+		transform: none;
+	}
+
+	.hmestyle-style-two .movie-engine-movie-card:hover .movie-engine-card-poster,
+	.hmestyle-style-two .movie-engine-card-poster:focus-visible {
+		transform: scale(var(--hme-hover));
+		overflow: visible;
+		box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65), 0 0 0 2px rgba(255, 255, 255, 0.85);
+		z-index: 3;
+	}
+
+	/* Scale poster only — image stays put so badges are not clipped */
+	.hmestyle-style-two .movie-engine-movie-card:hover .movie-engine-card-poster img {
+		transform: none;
+		border-radius: var(--hme-radius);
+	}
+
+	.hmestyle-style-two .movie-engine-movie-card:hover .movie-engine-card-badges,
+	.hmestyle-style-two .movie-engine-movie-card:hover .movie-engine-card-quality {
+		z-index: 4;
+	}
+
+	.hmestyle-style-two .movie-engine-movie-card:hover .movie-engine-card-overlay {
+		opacity: 1;
+	}
+
+	.hmestyle-style-two .movie-engine-movie-card:hover .movie-engine-card-overlay .fa-play {
+		transform: scale(1);
+	}
+
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-movie-card:hover .movie-engine-card-poster,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-movie-card:hover .movie-engine-card-poster,
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-card-poster:focus-visible,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-card-poster:focus-visible {
+		transform: scale(var(--hme-hover));
+		border: 0;
+		outline: none;
+		overflow: hidden;
+		border-radius: var(--hme-radius);
+		box-shadow: -12px 0 30px rgba(0, 0, 0, 0.55);
+	}
+
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-movie-card:hover .movie-engine-card-poster img,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-movie-card:hover .movie-engine-card-poster img {
+		transform: none !important;
+	}
+}
+
+.hmestyle-style-two .movie-engine-movie-card:active {
+	transform: scale(var(--hme-press));
+}
+
+.hmestyle-style-two .movie-engine-btn {
+	transition: transform 0.25s var(--hme-ease-out), background-color 0.25s, filter 0.25s, color 0.25s;
+}
+
+.hmestyle-style-two .movie-engine-btn:active {
+	transform: scale(0.95);
+}
+
+.hmestyle-style-two .me-hero-item.is-active .me-hero-content-inner > * {
+	animation: hmePop 0.7s var(--hme-ease-out) both;
+}
+
+.hmestyle-style-two .me-hero-item.is-active .me-hero-content-inner > *:nth-child(2) {
+	animation-delay: 0.06s;
+}
+
+.hmestyle-style-two .me-hero-item.is-active .me-hero-content-inner > *:nth-child(3) {
+	animation-delay: 0.12s;
+}
+
+.hmestyle-style-two .me-hero-item.is-active .me-hero-content-inner > *:nth-child(4) {
+	animation-delay: 0.18s;
+}
+
+.hmestyle-style-two .me-hero-item.is-active .me-hero-content-inner > *:nth-child(5) {
+	animation-delay: 0.24s;
+}
+
+.hmestyle-style-two .me-hero-item.is-active .me-hero-content-inner > *:nth-child(n+6) {
+	animation-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.hmestyle-style-two {
+		scroll-behavior: auto;
+	}
+
+	.hmestyle-style-two .hme-reveal,
+	.hmestyle-style-two .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .me-hero-item.is-active .me-hero-content-inner > * {
+		animation: none !important;
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}

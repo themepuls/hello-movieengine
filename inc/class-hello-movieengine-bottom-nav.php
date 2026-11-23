@@ -93,10 +93,6 @@ class Hello_Movie_Engine_Bottom_Nav {
 	 * @return bool
 	 */
 	public static function is_enabled() {
-		if ( function_exists( 'hello_movieengine_uses_side_rail' ) && hello_movieengine_uses_side_rail() ) {
-			return false;
-		}
-
 		$enabled = get_theme_mod( 'hello_movieengine_bottom_nav_enable', true );
 		if ( ! $enabled ) {
 			return false;
@@ -166,10 +162,15 @@ class Hello_Movie_Engine_Bottom_Nav {
 			return;
 		}
 
+		$style_deps = array( 'hello-movieengine-base' );
+		if ( 'style-two' === hello_movieengine_get_active_style() ) {
+			$style_deps[] = 'hello-movieengine-motion';
+		}
+
 		wp_enqueue_style(
 			'hello-movieengine-bottom-nav',
 			Hello_Movie_Engine_Style_Registry::style_uri( 'css/bottom-nav.css' ),
-			array( 'hello-movieengine-base' ),
+			$style_deps,
 			$v
 		);
 

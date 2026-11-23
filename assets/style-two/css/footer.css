@@ -11,6 +11,10 @@
 	background: var(--hello-movieengine-black);
 	border-top: 1px solid var(--hello-movieengine-border-color);
 	color: var(--hello-movieengine-text-muted);
+	/* Sticky footer: in the #page flex column this only takes effect when
+	   the viewport is taller than the content (auto = 0 otherwise), so tall
+	   pages are unaffected. */
+	margin-top: auto;
 }
 
 /* --------------------------------------------------------
