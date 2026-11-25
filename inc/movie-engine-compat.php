@@ -109,3 +109,24 @@ function hello_movieengine_movie_engine_archive_title( $title ) {
 	return $title;
 }
 add_filter( 'get_the_archive_title', 'hello_movieengine_movie_engine_archive_title' );
+
+/**
+ * Sanitize Movie Engine design settings to prevent layout breakdowns.
+ *
+ * Cine Movie Engine series episodes template only supports 'list' and 'grid'.
+ * If 'tabs' or any legacy invalid value is stored, normalize it to 'list'.
+ *
+ * @param mixed $settings Options array.
+ * @return mixed Normalized options array.
+ */
+function hello_movieengine_sanitize_design_settings( $settings ) {
+	if ( is_array( $settings ) ) {
+		if ( isset( $settings['series_seasons_layout'] ) && ! in_array( $settings['series_seasons_layout'], array( 'list', 'grid' ), true ) ) {
+			$settings['series_seasons_layout'] = 'list';
+		}
+	}
+	return $settings;
+}
+add_filter( 'option_movie_engine_design_settings', 'hello_movieengine_sanitize_design_settings' );
+add_filter( 'default_option_movie_engine_design_settings', 'hello_movieengine_sanitize_design_settings' );
+

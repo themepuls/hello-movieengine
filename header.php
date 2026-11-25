@@ -35,8 +35,6 @@ $hello_movieengine_uses_side_rail = hello_movieengine_uses_side_rail();
 <div id="page" class="hello-movieengine-site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'hello-movieengine' ); ?></a>
 
-	<?php if ( ! $hello_movieengine_uses_side_rail ) : ?>
-		<?php hello_movieengine_get_style_template_part( 'header', $hello_movieengine_header_style ); ?>
-	<?php endif; ?>
+	<?php hello_movieengine_get_style_template_part( 'header', $hello_movieengine_header_style ); ?>
 
 	<?php get_template_part( 'template-parts/page-title' ); ?>

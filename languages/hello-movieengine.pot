@@ -1,575 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Hello Movie Engine\n"
+"Project-Id-Version: Hello Movie Engine 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-16 18:57+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2026-11-24 11:38+0600\n"
+"PO-Revision-Date: 2026-11-24 11:38+0600\n"
+"Last-Translator: Cine Movie Engine Team\n"
+"Language-Team: Cine Movie Engine\n"
 "Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.2; wp-6.9.4; php-8.4.18\n"
-"X-Domain: hello-movieengine"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:64
-msgid "%d selected"
+#: movie-engine/taxonomy-studio.php:97
+msgid "Studio"
 msgstr ""
 
-#. 1: current year, 2: site name
-#: inc/customizer/sanitize.php:79
+#: movie-engine/taxonomy-studio.php:107
 #, php-format
-msgid "&copy; %1$s %2$s. All rights reserved."
-msgstr ""
-
-#: inc/template-tags.php:41
-msgid ", "
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:155
-msgid "1 Column"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:57
-msgid "180px"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:156
-msgid "2 Columns"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:58
-msgid "220px"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:59
-msgid "260px"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:157
-msgid "3 Columns"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:158
-msgid "4 Columns"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:51
-msgid "404"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:20
-msgid "404 Page"
-msgstr ""
-
-#. Description of the theme
-msgid ""
-"A lightweight, cinematic dark theme built as the official companion for the "
-"Movie Engine plugin. Delivers a modern OTT streaming experience with "
-"responsive layouts, dual header styles, and seamless plugin integration."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:143
-msgid "Applies to both solid and transparent (scrolled) headers."
-msgstr ""
-
-#: inc/template-functions.php:238 inc/template-functions.php:240
-msgid "Archive"
-msgstr ""
-
-#: inc/template-functions.php:235
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:48
-msgid "Archives"
-msgstr ""
-
-#: inc/template-functions.php:226
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:50
-msgid "Author"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:56
-msgid "Auto (natural height)"
-msgstr ""
-
-#: 404.php:24
-msgid "Back to Home"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:124
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:131
-msgid "Background"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:135
-msgid "Background Color"
-msgstr ""
-
-#: inc/template-functions.php:211
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:20
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:45
-msgid "Blog"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:151
-msgid "Blog Columns (Desktop)"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:140
-msgid "Blog Grid"
-msgstr ""
-
-#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:61
-msgid "Bottom"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:99
-msgid "Bottom Border"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:67
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:65
-msgid "Boxed"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-colors-section.php:34
-msgid "Brand"
-msgstr ""
-
-#: inc/template-functions.php:229
-msgid "Category"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:114
-msgid "Center"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:63
-msgid "Choose specific pages to show the title banner."
-msgstr ""
-
-#: template-parts/header/header-solid.php:64
-#: template-parts/header/header-transparent.php:65
-msgid "Close search"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-colors-section.php:25
-msgid "Colors"
-msgstr ""
-
-#: comments.php:53
-msgid "Comments are closed."
-msgstr ""
-
-#. 1: comment count, 2: title
-#: comments.php:28
-#, php-format
-msgctxt "comments title"
-msgid "%1$s comment on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
+msgid "%s Title"
+msgid_plural "%s Titles"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:29
-msgid "Container"
+#: movie-engine/taxonomy-studio.php:167
+msgid "Pagination"
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:40
-msgid "Container Width (px)"
+#: movie-engine/taxonomy-studio.php:171
+msgid "Load more movies"
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:52
-#: inc/customizer/sections/class-hello-movieengine-footer-section.php:34
-msgid "Content"
+#: movie-engine/taxonomy-studio.php:171
+msgid "Load More"
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:81
-msgid "Content Padding"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:63
-msgid "Content Style"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-footer-section.php:45
-msgid "Copyright Text"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:22
-msgid "Customize the \"Page Not Found\" error page."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:159
-msgid "Dark overlay on top of the background image for readability."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:146
-msgid "Default Background Image"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:45
-msgid "Description"
-msgstr ""
-
-#. %s: post title
-#: inc/template-tags.php:71 template-parts/content-page.php:35
-#, php-format
-msgid "Edit <span class=\"screen-reader-text\">%s</span>"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:101
-msgid "Enable Sidebar"
-msgstr ""
-
-#: inc/template-functions.php:217
-msgid "Error 404"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-footer-section.php:60
-msgid "Facebook URL"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-footer-section.php:25
-msgid "Footer"
-msgstr ""
-
-#. %d: footer column number
-#: inc/widgets.php:27
-msgid "Footer Column %d"
-msgstr ""
-
-#: inc/theme-setup.php:50 template-parts/footer/footer-default.php:50
-msgid "Footer Menu"
-msgstr ""
-
-#. %d: footer column number
-#: inc/widgets.php:31
-msgid "Footer widget area column %d."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:68
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:66
-msgid "Full Width"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:25
-msgid "Header"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:142
-msgid "Header Background"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:122
-msgid "Header Padding"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:45
-msgid "Header Style"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:61
-msgid "Header Width"
-msgstr ""
-
-#. Name of the theme
-#: inc/customizer/class-hello-movieengine-customizer.php:46
-msgid "Hello Movie Engine"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:80
-msgid "Home Button Text"
-msgstr ""
-
-#. URI of the theme
-#. Author URI of the theme
-msgid "https://movieengine.pro/"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:51
-msgid "Image Height"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:158
-msgid "Image Overlay Color"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-footer-section.php:62
-msgid "Instagram URL"
-msgstr ""
-
-#: template-parts/content-none.php:33
-msgid ""
-"It seems we can't find what you're looking for. Perhaps searching can help."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:20
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:34
-msgid "Layout"
-msgstr ""
-
-#. %s: post title
-#: inc/template-tags.php:58
-#, php-format
-msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:81
-msgid "Leave blank for default: \"Back to Home\"."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:33
-msgid "Leave blank for default: \"Page Not Found\"."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:46
-msgid "Leave blank for the default message."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:118
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:113
-#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:62
-msgid "Left"
-msgstr ""
-
-#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:69
-msgid "Link / Unlink values"
-msgstr ""
-
-#: inc/template-tags.php:46
-msgctxt "list item separator"
-msgid ", "
-msgstr ""
-
-#: template-parts/header/header-solid.php:81
-#: template-parts/header/header-transparent.php:82
-msgid "Log In"
-msgstr ""
-
-#: inc/widgets.php:17
-msgid "Main sidebar widget area."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:41
-msgid "Max width of the main content area."
-msgstr ""
-
-#: template-parts/header/header-solid.php:87
-#: template-parts/header/header-transparent.php:88
-msgid "Menu"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:83
-msgid "Min Height (px)"
-msgstr ""
-
-#: inc/movie-engine-compat.php:75
-msgid "Movies"
-msgstr ""
-
-#: template-parts/header/header-solid.php:77
-#: template-parts/header/header-transparent.php:78
-msgid "My Account"
-msgstr ""
-
-#: index.php:37 archive.php:37 search.php:37
-msgid "Next"
-msgstr ""
-
-#: single.php:62
-msgid "Next:"
-msgstr ""
-
-#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:58
-msgid "No pages found."
-msgstr ""
-
-#: template-parts/content-none.php:12
-msgid "Nothing Found"
-msgstr ""
-
-#. 1: title
-#: comments.php:22
-#, php-format
-msgid "One comment on &ldquo;%1$s&rdquo;"
-msgstr ""
-
-#: inc/customizer/controls/class-hello-movieengine-alpha-color-control.php:72
-msgid "Opacity"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:98
-msgid "Padding"
-msgstr ""
-
-#: inc/template-functions.php:223
-msgid "Page"
-msgstr ""
-
-#: 404.php:18 inc/template-functions.php:257
-msgid "Page Not Found"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:20
-msgid "Page Title"
-msgstr ""
-
-#: single.php:48 template-parts/content-page.php:22
-msgid "Pages:"
-msgstr ""
-
-#: inc/movie-engine-compat.php:79
-msgid "People"
-msgstr ""
-
-#: inc/template-functions.php:220
-msgid "Post"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:29
-msgid "Post Image"
-msgstr ""
-
-#: index.php:36 archive.php:36 search.php:36
+#: movie-engine/taxonomy-studio.php:179 index.php:36 archive.php:36
+#: search.php:36
 msgid "Previous"
 msgstr ""
 
-#: single.php:61
-msgid "Previous:"
+#: movie-engine/taxonomy-studio.php:180 index.php:37 archive.php:37
+#: search.php:37
+msgid "Next"
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-colors-section.php:45
-msgid "Primary Color"
+#: movie-engine/taxonomy-studio.php:184
+msgid "Previous Page"
 msgstr ""
 
-#: inc/theme-setup.php:49 template-parts/header/header-solid.php:39
-#: template-parts/header/header-transparent.php:40
-msgid "Primary Menu"
+#: movie-engine/taxonomy-studio.php:185
+msgid "Next Page"
 msgstr ""
 
-#. 1: link to WP admin new post page
-#: template-parts/content-none.php:21
+#: movie-engine/taxonomy-studio.php:198
 #, php-format
-msgid ""
-"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgid "No content found for this %s."
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:117
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:115
-#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:60
-msgid "Right"
-msgstr ""
-
-#: inc/template-functions.php:254 template-parts/header/header-solid.php:55
-#: template-parts/header/header-transparent.php:56
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:49
-msgid "Search"
-msgstr ""
-
-#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:46
-msgid "Search pages…"
-msgstr ""
-
-#: inc/template-functions.php:214
-msgid "Search Results"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:62
-msgid "Select Pages"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:42
-msgid "Select where the page title banner appears."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:69
-msgid "Show Back to Home Button"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:40
-msgid "Show Featured Image"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:41
-msgid "Show Page Title On"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:100
-msgid "Show primary-color border at the bottom of the header."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:77
-msgid "Show Search"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:58
-msgid "Show Search Form"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:102
-msgid "Show sidebar on blog and archive pages."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:88
-msgid "Show User Menu"
-msgstr ""
-
-#: inc/widgets.php:15
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:90
-msgid "Sidebar"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:113
-msgid "Sidebar Position"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-layout-section.php:129
-msgid "Sidebar Width (px)"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:47
-msgid "Single Page"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:46
-msgid "Single Post"
-msgstr ""
-
-#: header.php:30
-msgid "Skip to content"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-footer-section.php:55
-msgid "Social Links"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:49
-msgid "Solid (Dark)"
-msgstr ""
-
-#: template-parts/content-none.php:28
-msgid ""
-"Sorry, nothing matched your search terms. Please try again with different "
-"keywords."
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:109
-msgid "Spacing"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:72
-msgid "Style"
-msgstr ""
-
-#: inc/template-functions.php:232
-msgid "Tag"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:109
-msgid "Text Alignment"
+#: 404.php:18 inc/template-functions.php:454
+msgid "Page Not Found"
 msgstr ""
 
 #: 404.php:21
@@ -578,32 +74,421 @@ msgid ""
 "or is temporarily unavailable."
 msgstr ""
 
-#. Author of the theme
-msgid "ThemePul"
+#: 404.php:24
+msgid "Back to Home"
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-404-section.php:32
-msgid "Title"
+#: inc/movie-engine-compat.php:102
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:61
+#: inc/class-hello-movieengine-bottom-nav.php:271 inc/mega-menu-blocks.php:471
+#: inc/templates/movie-engine/style-two/archive/studio-type-tabs.php:28
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:71
+msgid "Movies"
 msgstr ""
 
-#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:59
-msgid "Top"
-msgstr ""
-
-#: inc/customizer/sections/class-hello-movieengine-header-section.php:50
-msgid "Transparent (Overlay)"
-msgstr ""
-
-#: inc/movie-engine-compat.php:77
+#: inc/movie-engine-compat.php:104 inc/mega-menu-blocks.php:472
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:72
 msgid "TV Series"
+msgstr ""
+
+#: inc/movie-engine-compat.php:106
+msgid "People"
+msgstr ""
+
+#: inc/widgets.php:15
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:98
+msgid "Sidebar"
+msgstr ""
+
+#: inc/widgets.php:17
+msgid "Main sidebar widget area."
+msgstr ""
+
+#: inc/widgets.php:27
+#, php-format
+msgid "Footer Column %d"
+msgstr ""
+
+#: inc/widgets.php:31
+#, php-format
+msgid "Footer widget area column %d."
+msgstr ""
+
+#: inc/theme-setup.php:49 inc/templates/header/style-two/solid.php:39
+#: inc/templates/header/style-two/transparent.php:40
+#: inc/templates/header/style-one/solid.php:39
+#: inc/templates/header/style-one/transparent.php:40
+msgid "Primary Menu"
+msgstr ""
+
+#: inc/theme-setup.php:50 inc/templates/footer/style-two/default.php:50
+#: inc/templates/footer/style-one/default.php:50
+msgid "Footer Menu"
+msgstr ""
+
+#: inc/customizer/class-hello-movieengine-customizer.php:60
+msgid "General Options"
+msgstr ""
+
+#: inc/customizer/class-hello-movieengine-customizer.php:73
+msgid "Movie & OTT Streaming"
+msgstr ""
+
+#: inc/customizer/class-hello-movieengine-customizer.php:88
+msgid "Post Types & Pages"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:20
+msgid "Sidebar & Layout"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:38
+msgid "Container"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:49
+msgid "Container Width (px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:50
+msgid ""
+"Max width of the main content area and the boxed header (unless Header → "
+"Header Max Width is set)."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:61
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:34
+msgid "Content"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:72
+msgid "Content Style"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:75
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:74
+msgid "Boxed"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:76
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:75
+msgid "Full Width"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:89
+msgid "Content Padding"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:109
+msgid "Enable Sidebar"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:110
+msgid "Show sidebar on blog and archive pages."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:121
+msgid "Sidebar Position"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:122
+msgid "Select sidebar position for archive and single post pages."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:126
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:130
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:143
+msgid "Sidebar Width (px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:154
+msgid "Blog Grid"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:165
+msgid "Blog Columns (Desktop)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:169
+msgid "1 Column"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:170
+msgid "2 Columns"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:171
+msgid "3 Columns"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-layout-section.php:172
+msgid "4 Columns"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:25
+msgid "Footer"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:45
+msgid "Copyright Text"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:55
+msgid "Social Links"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:60
+msgid "Facebook URL"
 msgstr ""
 
 #: inc/customizer/sections/class-hello-movieengine-footer-section.php:61
 msgid "Twitter / X URL"
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-blog-section.php:52
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:62
+msgid "Instagram URL"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-footer-section.php:63
+msgid "YouTube URL"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:28
+msgid "Front Page (Homepage Builder)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:29
+msgid ""
+"Configure your homepage layout, drag-and-drop feed rows, and content source."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:55
+msgid "Homepage Content Source"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:56
+msgid ""
+"Choose how your homepage feed is built. \"Page Content\" preserves your "
+"Elementor / Block Editor page."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:60
+msgid "Page Content"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:61
+msgid "OTT Builder"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:62
+msgid "Hybrid"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:73
+msgid "Homepage Section Manager"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:74
+msgid ""
+"Drag and drop rows to reorder. Toggle visibility (👁️) or expand (▾) to "
+"configure parameters."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:89
+msgid "Hide page title on front page"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:90
+msgid "Hides the default page heading bar on the homepage."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:101
+msgid "Hide footer on front page"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:102
+msgid "Clean infinite streaming look without footer widgets."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:113
+msgid "Remove main content padding"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:114
+msgid "Allows hero banners and full-width rows to touch screen edges."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:125
+msgid "Content max width (px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-front-page-section.php:126
+msgid ""
+"0 = full width (recommended). Set a value (e.g. 1400) to cap inner feed row "
+"width."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:20
+msgid "Blog Posts"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:38
+msgid "Post Image"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:49
+msgid "Show Featured Image"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:60
+msgid "Image Height"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:61
 msgid "Use \"Auto\" to keep natural image proportions."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:65
+msgid "Auto (natural height)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:66
+msgid "180px"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:67
+msgid "220px"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-blog-section.php:68
+msgid "260px"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:20
+msgid "Page Title"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:29
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:289
+msgid "Visibility"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:41
+msgid "Show Page Title On"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:42
+msgid "Select where the page title banner appears."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:45
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:105
+msgid "Front Page"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:46
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:109
+#: inc/template-functions.php:376
+msgid "Blog"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:47
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:110
+msgid "Single Post"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:48
+msgid "Single Page"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:49
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:112
+#: inc/template-functions.php:410
+msgid "Archives"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:50
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:113
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:65
+#: inc/class-hello-movieengine-bottom-nav.php:323
+#: inc/class-hello-movieengine-bottom-nav.php:831
+#: inc/templates/header/style-two/solid.php:55
+#: inc/templates/header/style-two/transparent.php:56
+#: inc/templates/header/style-one/solid.php:55
+#: inc/templates/header/style-one/transparent.php:56
+#: inc/template-functions.php:451
+msgid "Search"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:51
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:114
+#: inc/template-functions.php:401
+msgid "Author"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:52
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:115
+msgid "404"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:63
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:126
+msgid "Select Pages"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:64
+msgid ""
+"Choose specific pages to show the title banner. The homepage follows Front "
+"Page above, not this list."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:73
+msgid "Style"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:84
+msgid "Min Height (px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:99
+msgid "Padding"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:110
+msgid "Text Alignment"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:113
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:62
+msgid "Left"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:114
+msgid "Center"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:115
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:60
+msgid "Right"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:124
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:192
+msgid "Background"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:135
+msgid "Background Color"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:146
+msgid "Default Background Image"
 msgstr ""
 
 #: inc/customizer/sections/class-hello-movieengine-page-title-section.php:147
@@ -611,10 +496,2708 @@ msgid ""
 "Used as fallback. Pages can override this with their own featured image."
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:29
-msgid "Visibility"
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:158
+msgid "Image Overlay Color"
 msgstr ""
 
-#: inc/customizer/sections/class-hello-movieengine-footer-section.php:63
-msgid "YouTube URL"
+#: inc/customizer/sections/class-hello-movieengine-page-title-section.php:159
+msgid "Dark overlay on top of the background image for readability."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:38
+msgid "Movie & Series Archive"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:39
+msgid ""
+"Configure grid columns, poster badges, search/filter bars, and studio "
+"branding."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:65
+msgid "Show Quality Badge (HD / 4K)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:77
+msgid "Show IMDb Star Rating"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:89
+msgid "Show Release Year"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:102
+msgid "Show Archive Filter Bar"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:114
+msgid "Filter Bar: Search Input"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:126
+msgid "Filter Bar: Genre Dropdown"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:138
+msgid "Filter Bar: Year Dropdown"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:150
+msgid "Filter Bar: Sorting Dropdown"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:163
+msgid "Show Studio/Taxonomy Hero Banner"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:175
+msgid "Show Studio Brand Logo"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:191
+msgid "Grid Columns: Desktop (>1200px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:205
+msgid "Grid Columns: Laptop (992px - 1199px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:219
+msgid "Grid Columns: Tablet (768px - 991px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-movie-archive-section.php:233
+msgid "Grid Columns: Mobile (<768px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:37
+msgid "Video Player Settings"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:38
+msgid ""
+"Configure playback behavior, ambient glow lighting, and server switching."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:60
+msgid "Autoplay Video on Page Load"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:61
+msgid "Note: Most modern browsers require muted audio for autoplay."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:74
+msgid "Ambient Glow Lighting"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:75
+msgid ""
+"Creates an immersive colored glow effect behind the video player matching "
+"the video scene."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:88
+msgid "Show Server Switcher Pills"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:89
+msgid "Allows users to switch between multiple streaming sources/mirrors."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:102
+msgid "Default Video Quality"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:106
+msgid "Auto (Recommended)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:122
+msgid "Video Preload Strategy"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:126
+msgid "Metadata Only (Fast)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:127
+msgid "Auto Preload Video"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-player-section.php:128
+msgid "None (Save Bandwidth)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:25
+msgid "Header"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:43
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:655
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:688
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:737
+msgid "Layout"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:54
+msgid "Header Style"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:55
+msgid ""
+"Transparent uses a fixed overlay on selected pages. Solid is always a normal "
+"header."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:58
+msgid "Solid"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:59
+msgid "Transparent"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:70
+msgid "Header Width"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:71
+msgid ""
+"Boxed keeps the logo and menu inside a max width. Full Width spans the "
+"screen with side padding only."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:85
+msgid "Header Max Width (px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:86
+msgid ""
+"Used when Header Width is Boxed. Set 0 to match Layout → Container Width."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:101
+msgid "Fixed Header On"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:102
+msgid ""
+"Choose where the header is fixed (overlay). Unselected pages use a normal "
+"solid header."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:106
+msgid "Single Movie"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:107
+msgid "Single Series"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:108
+msgid "Single Episode"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:111
+msgid "Pages"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:127
+msgid ""
+"Choose specific pages for the fixed header. These are in addition to the "
+"locations above."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:138
+msgid "Show Search"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:149
+msgid "Show User Menu"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:160
+msgid "Bottom Border"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:161
+msgid "Show primary-color border at the bottom of the header."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:170
+msgid "Spacing"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:183
+msgid "Header Padding"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:203
+msgid "Header Background"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:204
+msgid "Applies to both solid and transparent (scrolled) headers."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:37
+msgid "TV Series & Episodes"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:38
+msgid ""
+"Manage season tabs, episode grids, and recommendation rows for web series "
+"and TV shows."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:64
+msgid "Show Seasons & Episodes"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:77
+msgid "Seasons Layout"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:81
+msgid "Tabs View"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:82
+#: inc/class-hello-movieengine-bottom-nav.php:861
+msgid "List View"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:94
+msgid "Episodes Sorting Order"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:98
+msgid "Latest First (DESC)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:99
+msgid "Episode 1 First (ASC)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:111
+msgid "Series Like Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:123
+msgid "Series Watchlist Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:135
+msgid "Series Share Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:148
+msgid "Single Episode Page Layout"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:152
+msgid "Player with Sidebar"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:153
+msgid "Fullwidth Cinema"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:164
+msgid "Show Episode Views Count"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:176
+msgid "Show Episode Comments"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:189
+msgid "Show Series Cast Row"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:201
+msgid "Show Trending Series Row"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:213
+msgid "Show New Series Row"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:230
+msgid "Series Hero Backdrop Opacity"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:231
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:312
+msgid "0 = Transparent, 1 = Black"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:246
+msgid "Episodes Grid Columns (Desktop)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-tv-series-section.php:260
+msgid "Episodes Count Per Season"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-colors-section.php:25
+msgid "Colors"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-colors-section.php:34
+msgid "Brand"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-colors-section.php:45
+msgid "Primary Color"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:40
+#: inc/styles/class-hello-movieengine-style-registry.php:31
+msgid "OTT Feed (Style Two)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:41
+msgid ""
+"Style Two is a full-site OTT streaming look (home, Movies/Series pages, "
+"singles, account). The left rail is global. Row, card, and hero options "
+"apply across those pages."
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:52
+msgid "Global Left Navigation"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:74
+msgid "Fixed left navigation (all pages)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:75
+msgid ""
+"Uses Appearance → Menus (Primary Menu by default). If no menu is assigned, "
+"falls back to Mobile Bottom Navigation items."
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:88
+msgid "Show logo in left rail"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:101
+msgid "Custom rail logo / icon mark"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:102
+msgid ""
+"Upload a compact square/monogram logo or icon for the left rail. If empty, "
+"falls back to the default site logo."
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:115
+msgid "Show default top header on specific pages"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:116
+msgid ""
+"Selected pages will disable the left rail and display the classic top header/"
+"menu instead (e.g. Blog, Contact, etc.)."
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:136
+msgid "Menu location for left rail"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:151
+msgid "Always show menu labels"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:152
+msgid "Off = icons only until you hover the left bar (recommended)."
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:165
+msgid "Rail logo height (px)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:179
+msgid "Rail width on large screens (px)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:193
+msgid "Icon column width (px)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:194
+msgid "How far content is inset. Labels expand over the hero on hover."
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:208
+msgid "Left scrim width — layer 1 (px)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:222
+msgid "Left scrim width — layer 2 on hover (px)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:236
+msgid "Rows & Cards"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:257
+msgid "Top 10 row styling"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:258
+msgid ""
+"Adds large rank numbers on rows that use the top-10 CSS class (add "
+"custom_class on library shortcodes)."
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:270
+msgid "Studio chip bar styling"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:271
+msgid ""
+"Styles [movie_engine_studios] / taxonomy chip rows wherever they appear."
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:284
+msgid "Space between rows (px)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:298
+msgid "Row side padding (px)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:312
+msgid "Section title size (rem)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:326
+msgid "Minimum card width in sliders (px)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:340
+msgid "Hero Banner"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:352
+msgid "Hero minimum height (vh)"
+msgstr ""
+
+#: inc/customizer/sections/ott-feed/class-hello-movieengine-ott-feed-section.php:366
+msgid "Hero overlay color"
+msgstr ""
+
+#: inc/customizer/sections/site-style/class-hello-movieengine-site-style-section.php:23
+msgid "Site Style"
+msgstr ""
+
+#: inc/customizer/sections/site-style/class-hello-movieengine-site-style-section.php:24
+msgid ""
+"Choose which design pack loads. Only the selected style's CSS, templates, "
+"and Movie Engine overrides are used."
+msgstr ""
+
+#: inc/customizer/sections/site-style/class-hello-movieengine-site-style-section.php:30
+msgid "Style One (Classic Cinema)"
+msgstr ""
+
+#: inc/customizer/sections/site-style/class-hello-movieengine-site-style-section.php:34
+msgid "Style Two (OTT Streaming)"
+msgstr ""
+
+#: inc/customizer/sections/site-style/class-hello-movieengine-site-style-section.php:46
+msgid "Design Pack Selection"
+msgstr ""
+
+#: inc/customizer/sections/site-style/class-hello-movieengine-site-style-section.php:47
+msgid ""
+"Select your site layout style. Style Two enables the global OTT left "
+"navigation and cinema features."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:26
+msgid "Mobile Bottom Navigation"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:27
+msgid ""
+"Menu items here power Style One mobile bottom navigation and Style Two fixed "
+"left navigation on all pages."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:38
+msgid "General Settings"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:49
+msgid "Enable Bottom Navigation"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:50
+msgid "Display the fixed bottom navigation bar."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:61
+msgid "Display On"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:62
+msgid "Choose screen sizes where navigation should be visible."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:65
+msgid "Mobile (≤ 767px)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:66
+msgid "Mobile + Tablet"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:77
+msgid "Show Text Labels"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:78
+msgid "Display text labels underneath item icons."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:89
+msgid "Exclude Pages"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:90
+msgid "Select pages where bottom navigation should be hidden."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:101
+msgid "Navigation Items"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:112
+msgid "Menu Items (3–5 recommended)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:113
+msgid ""
+"Drag items to reorder. Expand an item to configure type, label, icon, and "
+"visibility."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:124
+msgid "Colors & Styling"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:135
+msgid "Bar Background Color"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:146
+msgid "Top Border Color"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:157
+msgid "Icon Color (Default)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:168
+msgid "Label Text Color (Default)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:179
+msgid "Active & Accent Color"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-bottom-nav-section.php:180
+msgid "Color used for active item icon, label, and indicator dot."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:37
+msgid "Single Movie (Watch Page)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:38
+msgid ""
+"Control watch page layout, action buttons, and recommendation rows for "
+"single movies."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:64
+msgid "Single Movie Layout"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:68
+msgid "Fullwidth"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:69
+msgid "Inline Cinema"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:81
+msgid "Like Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:93
+msgid "Watchlist Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:105
+msgid "Playlist Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:117
+msgid "Share Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:130
+msgid "Show Title in Content"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:142
+msgid "Enable Comments / Reviews"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:159
+msgid "Show Cast Row"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:166
+msgid "Cast"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:171
+msgid "Cast Row Title"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:185
+msgid "Show Trending Row"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:192
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:296
+#: inc/templates/movie-engine/style-two/single-movie/section-trending.php:19
+msgid "Trending Now"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:197
+msgid "Trending Row Title"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:211
+msgid "Show New Releases Row"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:218
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:118
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:297
+#: inc/templates/movie-engine/style-two/single-movie/section-new-releases.php:18
+msgid "New Releases"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:223
+msgid "New Releases Title"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:237
+msgid "Show Upcoming Movies Row"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:244
+msgid "Upcoming Movies"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:249
+msgid "Upcoming Movies Title"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:263
+msgid "Show Related Movies Row"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:270
+msgid "Related Movies"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:275
+msgid "Related Movies Title"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:288
+msgid "Related Movies Logic"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:292
+msgid "By Same Genre"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:293
+msgid "By Same Tag"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:294
+msgid "Random Movies"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:311
+msgid "Hero Backdrop Overlay Opacity"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:327
+msgid "Cast Items Count"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:341
+msgid "Trending Items Count"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:355
+msgid "New Releases Items Count"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:369
+msgid "Upcoming Items Count"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-single-movie-section.php:383
+msgid "Related Movies Count"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:20
+msgid "404 Page"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:21
+msgid "Customize the \"Page Not Found\" error page."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:32
+msgid "Title"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:33
+msgid "Leave blank for default: \"Page Not Found\"."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:45
+msgid "Description"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:46
+msgid "Leave blank for the default message."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:58
+msgid "Show Search Form"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:69
+msgid "Show Back to Home Button"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:80
+msgid "Home Button Text"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-404-section.php:81
+msgid "Leave blank for default: \"Back to Home\"."
+msgstr ""
+
+#: inc/customizer/sanitize.php:145
+#, php-format
+msgid "&copy; %1$s %2$s. All rights reserved."
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:32
+msgid "Hero Billboard / Banner"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:33
+msgid "Movie / Series Carousel (Slider)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:34
+msgid "Top 10 (Rank Numbers)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:35
+msgid "Cast & Stars (Celebrities)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:36
+msgid "Studio / Brand Chips"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:37
+msgid "Genre Category Bar"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:38
+msgid "Continue Watching (User History)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:39
+msgid "Release Years Filter"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:40
+msgid "Interactive Live Search Bar"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:41
+msgid "Page Content (From Editor)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:42
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:773
+msgid "Custom Shortcode"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:57
+msgid "Featured Spotlight"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:76
+msgid "Popular Studios"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:85
+msgid "Trending Movies"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:97
+msgid "Top 10 in Movies Today"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:106
+msgid "Trending TV Shows"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:130
+msgid "Coming Soon to Theaters"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:249
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:216
+msgid "Drag to reorder"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:252
+msgid "Toggle Visibility"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:260
+msgid "Configure section"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:263
+msgid "Remove section"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:271
+msgid "Section Type"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:282
+msgid "Section Title / Heading"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:283
+msgid "e.g. Trending Now"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:290
+msgid "Content Query & Filters"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:294
+msgid "Content Query Source"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:298
+msgid "Upcoming Releases"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:299
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:490
+msgid "Most Popular"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:300
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:491
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:116
+msgid "Top Rated"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:306
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:496
+msgid "Post Type"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:308
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:499
+msgid "Movies Only"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:309
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:500
+msgid "TV Series Only"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:310
+msgid "Both Movies & TV Series"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:315
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:479
+msgid "Specific Post IDs (optional)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:316
+msgid "e.g. 101, 204, 315 (leave blank for dynamic query)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:322
+msgid "Genre Slug"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:326
+msgid "Year"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:330
+msgid "Language"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:337
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:610
+msgid "Order By"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:339
+msgid "Release Date"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:340
+msgid "Views Count"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:341
+msgid "Title (Alphabetical)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:342
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:614
+msgid "Random"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:346
+msgid "Sort Direction"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:348
+msgid "Descending (High to Low)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:349
+msgid "Ascending (Low to High)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:355
+msgid "Layout & Display"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:359
+msgid "Items Count"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:363
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:662
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:723
+msgid "Columns (Desktop)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:372
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:658
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:691
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:740
+msgid "Slider Carousel"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:379
+msgid "Show \"View All\" link"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:385
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:516
+msgid "Slider & Carousel Options"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:391
+msgid "Auto-slide carousel"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:395
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:526
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:641
+msgid "Speed (ms)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:404
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:535
+msgid "Infinite Loop"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:410
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:541
+msgid "Pause on Hover"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:418
+msgid "Show Dot Indicators"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:423
+msgid "Card Badges & Meta"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:429
+msgid "Rating Badge"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:435
+msgid "Release Year"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:441
+msgid "Quality (4K/HD)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:452
+msgid "Hero Style & Layout"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:455
+msgid "Hero Banner Style"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:457
+msgid "Style 1 — Classic Fullwidth Billboard"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:458
+msgid "Style 2 — Bottom Thumbnail Slider"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:459
+msgid "Style 3 — Compact Thumbnail Strip"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:460
+msgid "Style 4 — Cinema Poster Cards"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:461
+msgid "Style 5 — Arc / Curved Thumbnails Rail"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:467
+msgid "Slides Count"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:471
+msgid "Hero Height (vh or px)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:476
+msgid "Content Source & Query"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:480
+msgid "e.g. 101, 204, 315 (leave blank for preset)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:481
+msgid "Overrides preset below when entered."
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:486
+msgid "Preset Source"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:488
+msgid "Trending Spotlight"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:489
+msgid "Latest Releases"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:492
+msgid "Upcoming"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:498
+msgid "Both"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:507
+msgid "Genre Slug (optional)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:511
+msgid "Year (optional)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:522
+msgid "Enable Autoplay"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:550
+msgid "Prev/Next Arrows"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:556
+msgid "Dot Indicators"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:561
+msgid "Action Buttons & Badges"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:567
+msgid "Show Trailer Button"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:573
+msgid "Show Watchlist Button"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:582
+msgid "Show IMDb Rating"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:588
+msgid "Show Synopsis Text"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:598
+msgid "Cast & Stars Query"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:601
+msgid "Department / Role"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:603
+msgid "All Roles (Actors, Directors, etc.)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:604
+msgid "Acting (Actors)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:605
+msgid "Directing (Directors)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:606
+msgid "Writing (Writers)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:612
+msgid "Name (A to Z)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:613
+msgid "Recently Added"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:619
+msgid "Stars Count"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:623
+#: inc/mega-menu-blocks.php:488
+msgid "Columns"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:630
+msgid "Enable Horizontal Slider Carousel"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:637
+msgid "Auto-slide"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:651
+msgid "Studio Display & Layout"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:657
+msgid "Grid"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:668
+msgid "Max Studios Limit"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:674
+msgid "Show Name Text"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:684
+msgid "Genre Bar Settings"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:690
+msgid "Pill Buttons"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:692
+msgid "Grid Cards"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:696
+msgid "Max Genres Count"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:703
+msgid "Show Title Counts (e.g. Action (42))"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:712
+msgid "Continue Watching Settings"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:715
+msgid ""
+"Shows unfinished movies/episodes with progress bar for logged-in users. "
+"Automatically hidden if user is a guest or history is empty."
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:719
+msgid "Max History Items"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:733
+msgid "Release Years Settings"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:739
+msgid "Pills (Buttons)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:744
+msgid "Years Count"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:754
+msgid "Live Search Bar Settings"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:757
+msgid "Search Input Placeholder"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:758
+msgid "Search movies & TV series..."
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:763
+msgid "Show Search Icon"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:783
+msgid ""
+"This block will render any text, Gutenberg blocks, or Elementor content "
+"written inside your homepage editor."
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:793
+msgid "Add Section Row"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:795
+msgid "Reset to standard OTT feed layout"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-builder-control.php:796
+msgid "Reset Default"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:46
+msgid "Search pages…"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:58
+msgid "No pages found."
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-page-select-control.php:64
+#, php-format
+msgid "%d selected"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-tabs-control.php:28
+msgid "GENERAL"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-section-tabs-control.php:31
+msgid "DESIGN"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:59
+msgid "Top"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:61
+msgid "Bottom"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-spacing-control.php:69
+msgid "Link / Unlink values"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:60
+#: inc/class-hello-movieengine-bottom-nav.php:264
+#: inc/class-hello-movieengine-bottom-nav.php:617
+msgid "Home"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:62
+#: inc/class-hello-movieengine-bottom-nav.php:287 inc/mega-menu-blocks.php:270
+#: inc/templates/movie-engine/style-two/archive/studio-type-tabs.php:33
+msgid "Series"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:63
+#: inc/class-hello-movieengine-bottom-nav.php:303
+#: inc/templates/movie-engine/style-two/single-movie/layout-inline.php:130
+msgid "Watchlist"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:64
+#: inc/class-hello-movieengine-bottom-nav.php:316
+msgid "Account"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:66
+#: inc/class-hello-movieengine-bottom-nav.php:335
+msgid "Genres"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:67
+msgid "Subscription"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:68
+msgid "Custom Link"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:139
+msgid "Default Icon"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:224
+msgid "Edit item"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:227
+msgid "Remove item"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:235
+msgid "Item Type"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:246
+msgid "Custom Label"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:247
+msgid "Default is based on type"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:252
+msgid "Item Icon"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:254
+#: inc/menu-icons.php:89
+msgid "Click to change icon"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:263
+#: inc/menu-icons.php:98
+msgid "Choose Icon…"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:272
+msgid "Page Override (Optional)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:274
+msgid "— Use Default Resolution —"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:284
+msgid "Custom URL (Optional)"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:285
+msgid "or /custom-link"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:291
+msgid "Everyone"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:292
+msgid "Logged In Only"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:293
+msgid "Logged Out Only"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:300
+msgid "Enable this menu item"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:307
+msgid "Move Up"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:311
+msgid "Move Down"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:315
+msgid "Remove Item"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:326
+msgid "Add Menu Item"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:339
+#: inc/menu-icons.php:276
+msgid "Select Icon"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:340
+#: inc/menu-icons.php:277
+#, php-format
+msgid "%d icons"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:342
+#: inc/menu-icons.php:279
+msgid "Close"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:348
+msgid "Search modern streaming, media, watchlist & UI icons..."
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:352
+#: inc/menu-icons.php:289
+#: inc/templates/movie-engine/style-two/archive/studio-type-tabs.php:23
+msgid "All"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:353
+#: inc/menu-icons.php:290
+msgid "Streaming & Cinema"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:354
+#: inc/menu-icons.php:291
+msgid "Navigation"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:355
+#: inc/menu-icons.php:292
+msgid "Watchlist & Actions"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:356
+#: inc/menu-icons.php:293
+msgid "User & Account"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:357
+#: inc/menu-icons.php:294
+msgid "Genres & Moods"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:358
+msgid "Custom Class"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:378
+msgid "Use Custom Icon Class"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:379
+msgid ""
+"Enter any FontAwesome 6 class name (e.g. fa-solid fa-sparkles, fa-regular fa-"
+"bell) or custom class:"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-nav-repeater-control.php:382
+msgid "Set Custom Icon"
+msgstr ""
+
+#: inc/customizer/controls/class-hello-movieengine-alpha-color-control.php:72
+msgid "Opacity"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:316
+msgid "Sign In"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:342
+msgid "Subscribe"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:350
+msgid "Link"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:622
+msgid "Movies / Film"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:627
+msgid "Filmstrip / Reel"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:632
+msgid "Series / TV"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:637
+msgid "Retro TV / Shows"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:642
+msgid "Play"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:647
+msgid "Play Circle"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:652
+msgid "Pause"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:657
+msgid "Pause Circle"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:662
+msgid "Clapperboard"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:667
+msgid "Cinema Ticket"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:672
+msgid "Popcorn / Snacks"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:677
+msgid "Video Camera"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:682
+msgid "Video Off"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:687
+msgid "Camera / Photos"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:692
+msgid "Projector / Cinema"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:697
+msgid "Live Broadcast / Stream"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:702
+msgid "Chromecast / Cast"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:707
+msgid "AirPlay"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:712
+msgid "Screen Share"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:717
+msgid "Monitor / Display"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:722
+msgid "Mobile Phone"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:727
+msgid "Tablet"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:732
+msgid "Subtitles / CC"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:737
+msgid "Disc / CD / DVD"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:742
+msgid "Rewind (10s)"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:747
+msgid "Fast Forward"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:752
+msgid "Previous Track"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:757
+msgid "Next Episode"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:762
+msgid "Repeat / Loop"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:767
+msgid "Headphones"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:772
+msgid "Volume Low"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:777
+msgid "Volume Medium"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:782
+msgid "Volume High"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:787
+msgid "Mute Audio"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:792
+msgid "Microphone"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:797
+msgid "Music / OST"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:802
+msgid "Oscars / Award"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:807
+msgid "Trophy / Winner"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:812
+msgid "Medal"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:817
+msgid "Fullscreen / Theater"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:822
+msgid "Exit Fullscreen"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:836
+msgid "Explore / Discover"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:841
+msgid "Trending / Hot"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:846
+msgid "Browse / Grid"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:851
+msgid "Gallery Layout"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:856
+msgid "Portal Layout"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:866
+msgid "Genres / Tags"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:871
+msgid "Single Tag / Category"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:876
+msgid "Collections / Library"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:881
+msgid "World / International"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:886
+msgid "Location / Regions"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:891
+msgid "Navigate / Quick Jump"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:896
+msgid "Top Charts / Popular"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:901
+msgid "Trending Down"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:906
+msgid "Rankings / Stats"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:911
+msgid "Activity / Live Feed"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:916
+msgid "Filter / Sort Movies"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:921
+msgid "Adjust / Advanced Filters"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:926
+msgid "Release Schedule"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:931
+msgid "Watch History / Clock"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:936
+msgid "Recently Viewed"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:941
+msgid "Folder / Category"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:946
+msgid "Archive / Past Seasons"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:951
+msgid "Box Office / Bundles"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:956
+msgid "Watch / Views"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:961
+msgid "Hide / Unseen"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:966
+msgid "Dark Mode / Night"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:971
+msgid "Light Mode / Day"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:980
+msgid "Watchlist (+)"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:985
+msgid "Bookmark / Saved"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:990
+msgid "Already Watched"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:995
+msgid "Plus (+)"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1000
+msgid "Add to Queue"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1005
+msgid "Minus (-)"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1010
+msgid "Checkmark"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1015
+msgid "Completed / Done"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1020
+msgid "Favorites / Heart"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1025
+msgid "Top Rated / Star"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1030
+msgid "Like / Thumbs Up"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1035
+msgid "Dislike"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1040
+msgid "Featured / Recommendations"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1045
+msgid "Offline Downloads"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1050
+msgid "Cloud Download"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1055
+msgid "Upload Video"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1060
+msgid "Share Movie"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1065
+msgid "Trailer Link"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1070
+msgid "External Website"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1075
+msgid "Surprise Me / Random"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1080
+msgid "Refresh / Reload"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1085
+msgid "Remove / Clear"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1090
+msgid "Write Review / Edit"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1095
+msgid "Discussion / Comments"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1100
+msgid "Live Chat"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1105
+msgid "Send / Direct"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1110
+msgid "Notifications / Alerts"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1115
+msgid "Mute Notifications"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1120
+msgid "Security / Parental Control"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1125
+msgid "Verified / Safe Stream"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1130
+msgid "Private / Premium Lock"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1135
+msgid "Unlocked Access"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1140
+msgid "API Key / Access Code"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1145
+msgid "Fast Play / Energy"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1150
+msgid "Power / Sleep"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1155
+msgid "Settings / Preferences"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1160
+msgid "Help / FAQ"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1165
+msgid "Movie Info / Details"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1170
+msgid "Notice / Warning"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1175
+msgid "Log In / Sign In"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1180
+msgid "Log Out"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1189
+msgid "Account / Profile"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1194
+msgid "Register / Add Profile"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1199
+msgid "Verified Member"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1204
+msgid "Profile Settings"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1209
+msgid "Community / Friends"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1214
+msgid "VIP / Premium Subscription"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1219
+msgid "Diamond / Exclusive"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1224
+msgid "Membership / Billing"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1229
+msgid "Wallet / Balance"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1234
+msgid "Free Trial / Gift Code"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1239
+msgid "Store / Merch"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1244
+msgid "Official Badge"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1249
+msgid "Inbox / Contact"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1254
+msgid "Social Handle"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1259
+msgid "Support Hotline"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1268
+msgid "Action & Adventure"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1273
+msgid "Horror / Paranormal"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1278
+msgid "Crime / Mystery / Thriller"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1283
+msgid "Comedy / Feel Good"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1288
+msgid "Drama / Emotional"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1293
+msgid "Romance / Passion"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1298
+msgid "Fantasy / Sci-Magic"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1303
+msgid "Sci-Fi / Space Exploration"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1308
+msgid "War / Military / Sniper"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1313
+msgid "Documentary / Biography"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1318
+msgid "Educational / Academy"
+msgstr ""
+
+#: inc/class-hello-movieengine-bottom-nav.php:1323
+msgid "Sports / Fitness"
+msgstr ""
+
+#: inc/styles/class-hello-movieengine-style-registry.php:27
+msgid "Classic (Style One)"
+msgstr ""
+
+#: inc/styles/class-hello-movieengine-style-registry.php:28
+msgid "Default Hello MovieEngine layout and spacing."
+msgstr ""
+
+#: inc/styles/class-hello-movieengine-style-registry.php:32
+msgid ""
+"Full-width home rows and streaming-style sections (themoviestime-style)."
+msgstr ""
+
+#: inc/mega-menu-blocks.php:134
+msgid "HD"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:236
+#, php-format
+msgid "Browse All %s"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:237
+msgid "Titles"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:256
+msgid "Trending"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:270
+msgid "Movie"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:277
+#: inc/templates/movie-engine/style-two/single-movie/section-upcoming.php:53
+#: inc/templates/movie-engine/style-two/single-movie/section-trending.php:58
+#: inc/templates/movie-engine/style-two/single-movie/section-new-releases.php:53
+#: inc/templates/movie-engine/style-two/global/related.php:54
+msgid "View All"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:320
+msgid "No titles found. Publish movies or series with Cine Movie Engine."
+msgstr ""
+
+#: inc/mega-menu-blocks.php:373
+msgid "Mega panel block"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:379
+msgid "Link column (default)"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:380
+msgid "Promo banner"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:381
+msgid "Movie / series row"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:385
+msgid ""
+"Reference layout: Promo banner (left) + link columns (top), Trending row "
+"full width at the bottom. Put Movie row last."
+msgstr ""
+
+#: inc/mega-menu-blocks.php:392
+msgid "Banner eyebrow (e.g. TV SERIES)"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:399
+msgid "Optional — defaults to parent menu title"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:406
+msgid "Banner width (px)"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:420
+msgid "Banner height (px)"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:430
+msgid "Auto"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:435
+msgid ""
+"Width 120–560. Height 160–800, or leave height empty to stretch with the "
+"panel."
+msgstr ""
+
+#: inc/mega-menu-blocks.php:440
+msgid "Banner description"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:461
+msgid "Banner image"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:462
+msgid "Remove"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:469
+#: inc/templates/movie-engine/style-two/archive/studio-type-tabs.php:53
+msgid "Content type"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:478
+msgid "Source"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:480
+msgid "Latest"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:481
+msgid "Most viewed"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:482
+msgid "Top rated"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:494 inc/mega-menu.php:156
+#, php-format
+msgid "%d column"
+msgid_plural "%d columns"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/mega-menu-blocks.php:503
+msgid "Card style"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:505
+msgid "Landscape (title on poster)"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:506
+msgid "Poster card (quality, play, rating)"
+msgstr ""
+
+#: inc/mega-menu-blocks.php:510
+msgid ""
+"Poster card matches the library movie card: quality badge, play icon, "
+"rating, year."
+msgstr ""
+
+#: inc/mega-menu-blocks.php:515
+msgid "Number of posters"
+msgstr ""
+
+#: inc/menu-icons.php:78
+msgid "Menu icon"
+msgstr ""
+
+#: inc/menu-icons.php:84
+msgid "Side rail icon"
+msgstr ""
+
+#: inc/menu-icons.php:86
+msgid ""
+"Style Two left rail. Pick a thin line SVG, Font Awesome / FA Thin class, or "
+"upload custom SVG."
+msgstr ""
+
+#: inc/menu-icons.php:285
+msgid "Search icons…"
+msgstr ""
+
+#: inc/menu-icons.php:295
+msgid "Custom / Upload"
+msgstr ""
+
+#: inc/menu-icons.php:313
+msgid "Font Awesome / thin icon class"
+msgstr ""
+
+#: inc/menu-icons.php:314
+msgid "Examples: fa-solid fa-film, fa-regular fa-user, fa-thin fa-house"
+msgstr ""
+
+#: inc/menu-icons.php:317
+msgid "Set Icon Class"
+msgstr ""
+
+#: inc/menu-icons.php:320
+msgid "Upload custom SVG"
+msgstr ""
+
+#: inc/menu-icons.php:321
+msgid "Select an SVG from the Media Library or paste SVG markup below."
+msgstr ""
+
+#: inc/menu-icons.php:323
+msgid "Upload SVG…"
+msgstr ""
+
+#: inc/menu-icons.php:327
+msgid "Set Custom SVG"
+msgstr ""
+
+#: inc/mega-menu.php:138
+msgid "Enable Mega Menu"
+msgstr ""
+
+#: inc/mega-menu.php:141
+msgid ""
+"Top-level items only. Turns the submenu into a multi-column panel on desktop."
+msgstr ""
+
+#: inc/mega-menu.php:147
+msgid "Mega Menu Columns"
+msgstr ""
+
+#: inc/mega-menu.php:166
+msgid "Mega menu container width"
+msgstr ""
+
+#: inc/mega-menu.php:172
+msgid "Compact (640px)"
+msgstr ""
+
+#: inc/mega-menu.php:173
+msgid "Default (860px)"
+msgstr ""
+
+#: inc/mega-menu.php:174
+msgid "Wide (1080px)"
+msgstr ""
+
+#: inc/mega-menu.php:175
+msgid "Extra wide (1280px)"
+msgstr ""
+
+#: inc/mega-menu.php:176
+msgid "Match hero / content column"
+msgstr ""
+
+#: inc/mega-menu.php:177
+msgid "Custom (px)"
+msgstr ""
+
+#: inc/mega-menu.php:181
+msgid ""
+"Style Two: panel overlays the hero/content column beside the side rail. "
+"Shrinks on smaller screens."
+msgstr ""
+
+#: inc/mega-menu.php:187
+msgid "Custom width (px)"
+msgstr ""
+
+#: inc/mega-menu.php:210
+msgid "Mega column heading"
+msgstr ""
+
+#: inc/mega-menu.php:213
+msgid ""
+"For items nested under a mega menu parent. Styles this link as a column "
+"title."
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/single-movie/section-upcoming.php:18
+msgid "Coming Soon"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/single-movie/section-cast.php:24
+msgid "Top Cast"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/single-movie/section-cast.php:46
+#, php-format
+msgid "%1$s (%2$d)"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/single-movie/layout-inline.php:34
+#, php-format
+msgid "%1$dh %2$dm"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/single-movie/layout-inline.php:77
+msgid "Back"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/single-movie/layout-inline.php:125
+msgid "Watch Now"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/studio-type-tabs.php:40
+#, php-format
+msgid "Trending on %s"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:40
+msgid "Search TV series..."
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:41
+msgid "Search movies..."
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:60
+msgid "Submit Search"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:63
+msgid "Search Movies"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:68
+msgid "Filter by Type"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:70
+msgid "All Types"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:81
+msgid "Filter by Genre"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:83
+msgid "All Genres"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:97
+msgid "Filter by Year"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:99
+msgid "All Years"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:112
+msgid "Sort by"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:114
+msgid "Newest First"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:115
+msgid "A-Z"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:117
+msgid "Most Viewed"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:122
+msgid "Reset Filters"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:124
+msgid "Reset"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/archive/filter-bar.php:128
+msgid "Filter"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/global/related.php:14
+msgid "More Like This"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/browse-library.php:16
+#: inc/template-functions.php:391
+msgid "TV Series Archive"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/browse-library.php:17
+#: inc/template-functions.php:393
+msgid "Movie Archive"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/browse-library.php:22
+#, php-format
+msgid "TV %1$sSeries%2$s"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/browse-library.php:28
+#, php-format
+msgid "Movies %1$sArchive%2$s"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/browse-library.php:34
+#: inc/template-functions.php:514
+msgid "Discover, search and filter from our complete TV series collection"
+msgstr ""
+
+#: inc/templates/movie-engine/style-two/browse-library.php:35
+#: inc/template-functions.php:516
+msgid "Discover, search and filter from our complete movie collection"
+msgstr ""
+
+#: inc/templates/navigation/style-two/bottom-nav.php:31
+#: inc/templates/navigation/style-one/bottom-nav.php:31
+msgid "Mobile Navigation"
+msgstr ""
+
+#: inc/templates/navigation/style-two/side-rail.php:34
+msgid "Global navigation"
+msgstr ""
+
+#: inc/templates/navigation/style-two/side-rail.php:67
+msgid "Primary"
+msgstr ""
+
+#: inc/templates/header/style-two/solid.php:64
+#: inc/templates/header/style-two/transparent.php:65
+#: inc/templates/header/style-one/solid.php:64
+#: inc/templates/header/style-one/transparent.php:65
+msgid "Close search"
+msgstr ""
+
+#: inc/templates/header/style-two/solid.php:77
+#: inc/templates/header/style-two/transparent.php:78
+#: inc/templates/header/style-one/solid.php:77
+#: inc/templates/header/style-one/transparent.php:78
+msgid "My Account"
+msgstr ""
+
+#: inc/templates/header/style-two/solid.php:81
+#: inc/templates/header/style-two/transparent.php:82
+#: inc/templates/header/style-one/solid.php:81
+#: inc/templates/header/style-one/transparent.php:82
+msgid "Log In"
+msgstr ""
+
+#: inc/templates/header/style-two/solid.php:87
+#: inc/templates/header/style-two/transparent.php:88
+#: inc/templates/header/style-one/solid.php:87
+#: inc/templates/header/style-one/transparent.php:88
+msgid "Menu"
+msgstr ""
+
+#: inc/github-theme-updater.php:179
+msgid "Could not rename the theme update package folder."
+msgstr ""
+
+#: inc/template-tags.php:41
+msgid ", "
+msgstr ""
+
+#: inc/template-tags.php:46
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#: inc/template-tags.php:58
+#, php-format
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: inc/template-tags.php:71 template-parts/content-page.php:37
+#, php-format
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr ""
+
+#: inc/template-functions.php:379
+msgid "Search Results"
+msgstr ""
+
+#: inc/template-functions.php:382
+msgid "Error 404"
+msgstr ""
+
+#: inc/template-functions.php:385
+msgid "Post"
+msgstr ""
+
+#: inc/template-functions.php:396
+msgid "Studios"
+msgstr ""
+
+#: inc/template-functions.php:398
+msgid "Page"
+msgstr ""
+
+#: inc/template-functions.php:404
+msgid "Category"
+msgstr ""
+
+#: inc/template-functions.php:407
+msgid "Tag"
+msgstr ""
+
+#: inc/template-functions.php:413 inc/template-functions.php:415
+msgid "Archive"
+msgstr ""
+
+#: inc/template-functions.php:523
+msgid "Browse movie and TV studios from our catalog"
+msgstr ""
+
+#: comments.php:22
+#, php-format
+msgid "One comment on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#: comments.php:28
+#, php-format
+msgctxt "comments title"
+msgid "%1$s comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:53
+msgid "Comments are closed."
+msgstr ""
+
+#: header.php:36
+msgid "Skip to content"
+msgstr ""
+
+#: template-parts/content-none.php:12
+msgid "Nothing Found"
+msgstr ""
+
+#: template-parts/content-none.php:21
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:28
+msgid ""
+"Sorry, nothing matched your search terms. Please try again with different "
+"keywords."
+msgstr ""
+
+#: template-parts/content-none.php:33
+msgid ""
+"It seems we can't find what you're looking for. Perhaps searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:24 single.php:48
+msgid "Pages:"
+msgstr ""
+
+#: single.php:61
+msgid "Previous:"
+msgstr ""
+
+#: single.php:62
+msgid "Next:"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:192
+msgid "Colors & Background"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:203
+msgid "Header Background (Default)"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:204
+msgid "Applies to solid headers and initial transparent header state."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:215
+msgid "Fixed / Scrolled Header Background"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:216
+msgid "Background color and opacity when header is fixed/scrolled down."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:227
+msgid "Dropdown & Mega Menu Background"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:228
+msgid "Background for submenu dropdowns, mega menu panels, and side-rail flyouts."
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:239
+msgid "Menu Link Color"
+msgstr ""
+
+#: inc/customizer/sections/class-hello-movieengine-header-section.php:250
+msgid "Menu Link Hover Color"
 msgstr ""

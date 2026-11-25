@@ -99,7 +99,28 @@ function hello_movieengine_inline_custom_css() {
 
 	if ( '' !== $header_bg ) {
 		$root_vars .= '--hello-movieengine-header-bg:' . esc_attr( $header_bg ) . ';';
+	}
+
+	$header_bg_scroll = get_theme_mod( 'hello_movieengine_header_bg_scroll_color', '' );
+	if ( '' !== $header_bg_scroll ) {
+		$root_vars .= '--hello-movieengine-header-bg-scroll:' . esc_attr( $header_bg_scroll ) . ';';
+	} elseif ( '' !== $header_bg ) {
 		$root_vars .= '--hello-movieengine-header-bg-scroll:' . esc_attr( $header_bg ) . ';';
+	}
+
+	$dropdown_bg = get_theme_mod( 'hello_movieengine_menu_dropdown_bg', '' );
+	if ( '' !== $dropdown_bg ) {
+		$root_vars .= '--hello-movieengine-dropdown-bg:' . esc_attr( $dropdown_bg ) . ';';
+	}
+
+	$nav_color = get_theme_mod( 'hello_movieengine_menu_link_color', '' );
+	if ( '' !== $nav_color ) {
+		$root_vars .= '--hello-movieengine-nav-link-color:' . esc_attr( $nav_color ) . ';';
+	}
+
+	$nav_hover = get_theme_mod( 'hello_movieengine_menu_link_hover_color', '' );
+	if ( '' !== $nav_hover ) {
+		$root_vars .= '--hello-movieengine-nav-link-hover:' . esc_attr( $nav_hover ) . ';';
 	}
 
 	$pt_bg = get_theme_mod( 'hello_movieengine_page_title_bg', '' );

@@ -19,7 +19,7 @@
 	--hm-ott-content-x: calc(var(--hm-side-rail-compact) + var(--hm-ott-row-inset));
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
 	body.hello-movieengine-has-side-rail {
 		--hm-ott-gutter: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pl, 1.25rem));
 	}
@@ -340,8 +340,16 @@
 	transform: none;
 }
 
-.hello-movieengine-has-side-rail .hello-movieengine-header {
-	display: none !important;
+@media (min-width: 1025px) {
+	.hello-movieengine-has-side-rail .hello-movieengine-header {
+		display: none !important;
+	}
+}
+
+@media (max-width: 1024px) {
+	body.hello-movieengine-has-side-rail .hello-movieengine-header {
+		display: block !important;
+	}
 }
 
 body.admin-bar .hello-movieengine-side-rail {
@@ -399,7 +407,7 @@ body.admin-bar .hello-movieengine-side-rail {
 	inset: 0 0 0 12px;
 	z-index: -1;
 	border-radius: 14px;
-	background: rgba(16, 16, 20, 0.94);
+	background: var(--hello-movieengine-dropdown-bg, rgba(16, 16, 20, 0.94));
 	border: 1px solid rgba(255, 255, 255, 0.08);
 	box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
 	backdrop-filter: blur(14px);
@@ -1255,16 +1263,27 @@ body.is-fullscreen .hello-movieengine-side-rail {
 	visibility: hidden;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
 	body.hello-movieengine-has-side-rail #page {
-		padding-left: 0;
+		padding-left: 0 !important;
 	}
 
 	.hello-movieengine-side-rail {
-		display: none;
+		display: none !important;
 	}
 
 	body.hello-movieengine-has-side-rail .hello-movieengine-bottom-nav {
 		display: flex !important;
+	}
+
+	body.hello-movieengine-has-side-rail .movie-engine-hero-section,
+	body.hello-movieengine-has-side-rail .movie-engine-hero,
+	body.hello-movieengine-has-side-rail .movie-engine-movie-hero,
+	body.hello-movieengine-has-side-rail .me-hero,
+	body.hello-movieengine-has-side-rail .hme-watch-hero {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		width: 100% !important;
+		max-width: 100% !important;
 	}
 }

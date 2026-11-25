@@ -17,9 +17,18 @@ class Hello_Movie_Engine_Layout_Section {
 	public static function register( $wp_customize ) {
 
 		$wp_customize->add_section( 'hello_movieengine_layout_section', array(
-			'title' => esc_html__( 'Layout', 'hello-movieengine' ),
-			'panel' => 'hello_movieengine_panel',
+			'title'    => esc_html__( 'Sidebar & Layout', 'hello-movieengine' ),
+			'priority' => 8,
 		) );
+
+		/* Astra-style Section Tabs (GENERAL vs DESIGN) */
+		$wp_customize->add_setting( 'hello_movieengine_layout_tabs_nav', array(
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Section_Tabs_Control( $wp_customize, 'hello_movieengine_layout_tabs_nav', array(
+			'section'  => 'hello_movieengine_layout_section',
+			'priority' => 1,
+		) ) );
 
 		/* --- Heading: Container --- */
 		$wp_customize->add_setting( 'hello_movieengine_heading_container', array(
@@ -59,15 +68,14 @@ class Hello_Movie_Engine_Layout_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_select',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( 'hello_movieengine_content_layout', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Button_Group_Control( $wp_customize, 'hello_movieengine_content_layout', array(
 			'label'   => esc_html__( 'Content Style', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_layout_section',
-			'type'    => 'select',
 			'choices' => array(
 				'boxed'     => esc_html__( 'Boxed', 'hello-movieengine' ),
 				'fullwidth' => esc_html__( 'Full Width', 'hello-movieengine' ),
 			),
-		) );
+		) ) );
 
 		/* Content padding */
 		$wp_customize->add_setting( 'hello_movieengine_content_padding', array(
@@ -109,15 +117,21 @@ class Hello_Movie_Engine_Layout_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_select',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( 'hello_movieengine_sidebar_position', array(
-			'label'   => esc_html__( 'Sidebar Position', 'hello-movieengine' ),
-			'section' => 'hello_movieengine_layout_section',
-			'type'    => 'select',
-			'choices' => array(
-				'right' => esc_html__( 'Right', 'hello-movieengine' ),
-				'left'  => esc_html__( 'Left', 'hello-movieengine' ),
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Visual_Radio_Control( $wp_customize, 'hello_movieengine_sidebar_position', array(
+			'label'       => esc_html__( 'Sidebar Position', 'hello-movieengine' ),
+			'description' => esc_html__( 'Select sidebar position for archive and single post pages.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_layout_section',
+			'choices'     => array(
+				'left'  => array(
+					'label' => esc_html__( 'Left Sidebar', 'hello-movieengine' ),
+					'svg'   => '<svg viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="50" rx="3" fill="#F8FAFC" stroke="#CBD5E1"/><rect x="6" y="6" width="22" height="38" rx="2" fill="#3B82F6"/><rect x="32" y="6" width="42" height="38" rx="2" fill="#E2E8F0"/></svg>',
+				),
+				'right' => array(
+					'label' => esc_html__( 'Right Sidebar', 'hello-movieengine' ),
+					'svg'   => '<svg viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="50" rx="3" fill="#F8FAFC" stroke="#CBD5E1"/><rect x="6" y="6" width="42" height="38" rx="2" fill="#E2E8F0"/><rect x="52" y="6" width="22" height="38" rx="2" fill="#3B82F6"/></svg>',
+				),
 			),
-		) );
+		) ) );
 
 		/* Sidebar width */
 		$wp_customize->add_setting( 'hello_movieengine_sidebar_width', array(

@@ -22,8 +22,8 @@ class Hello_Movie_Engine_Footer_Section {
 	public static function register( $wp_customize ) {
 
 		$wp_customize->add_section( 'hello_movieengine_footer_section', array(
-			'title' => esc_html__( 'Footer', 'hello-movieengine' ),
-			'panel' => 'hello_movieengine_panel',
+			'title'    => esc_html__( 'Footer', 'hello-movieengine' ),
+			'priority' => 6,
 		) );
 
 		/* --- Heading: Content --- */

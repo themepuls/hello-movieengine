@@ -1116,6 +1116,176 @@ li:first-child .hello-movieengine-heading-control {
 	gap: 6px;
 }
 
+/* ==========================================================
+   Section Tabs (GENERAL vs DESIGN) - Astra Style
+   ========================================================== */
+li.customize-control-hello-movieengine-section-tabs {
+	margin: -14px -12px 14px -12px !important;
+	padding: 0 !important;
+	border: none !important;
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+.hello-movieengine-section-tabs-wrap {
+	width: 100%;
+	background: #f1f5f9;
+	border-bottom: 1px solid #e2e8f0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.hello-movieengine-section-tabs-nav {
+	display: flex;
+	width: 100%;
+}
+
+.hello-movieengine-section-tab-btn {
+	flex: 1;
+	border: none;
+	background: transparent;
+	padding: 12px 10px;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	color: #64748b;
+	cursor: pointer;
+	text-align: center;
+	text-transform: uppercase;
+	transition: all 0.2s ease;
+	position: relative;
+	border-bottom: 2px solid transparent;
+}
+
+.hello-movieengine-section-tab-btn:hover {
+	color: #1e293b;
+	background: rgba(255, 255, 255, 0.4);
+}
+
+.hello-movieengine-section-tab-btn.is-active {
+	background: #ffffff;
+	color: #1d4ed8;
+	font-weight: 800;
+	border-bottom: 2px solid #2563eb;
+	box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.02);
+}
+
+/* ==========================================================
+   Visual Radio Cards (SVG Wireframe Cards) - Astra Style
+   ========================================================== */
+.hello-movieengine-visual-radio-control {
+	margin-bottom: 4px;
+}
+
+.hello-movieengine-visual-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	gap: 8px;
+	margin-top: 6px;
+}
+
+.hello-movieengine-visual-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	padding: 10px 6px;
+	cursor: pointer;
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	box-sizing: border-box;
+	text-align: center;
+	user-select: none;
+}
+
+.hello-movieengine-visual-card:hover {
+	border-color: #93c5fd;
+	background: #f8fafc;
+	transform: translateY(-1px);
+	box-shadow: 0 2px 6px rgba(37, 99, 235, 0.08);
+}
+
+.hello-movieengine-visual-card.is-active {
+	border-color: #2563eb !important;
+	background: #eff6ff !important;
+	box-shadow: 0 0 0 2px #2563eb, 0 2px 6px rgba(37, 99, 235, 0.15) !important;
+}
+
+.hello-movieengine-visual-card__preview {
+	width: 100%;
+	height: 52px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 6px;
+}
+
+.hello-movieengine-visual-card__preview svg {
+	width: 100%;
+	max-height: 48px;
+	display: block;
+}
+
+.hello-movieengine-visual-card__label {
+	font-size: 11px;
+	font-weight: 600;
+	color: #334155;
+	line-height: 1.25;
+}
+
+.hello-movieengine-visual-card.is-active .hello-movieengine-visual-card__label {
+	color: #1d4ed8;
+	font-weight: 700;
+}
+
+/* ==========================================================
+   Button Group (Segmented Pill Switcher)
+   ========================================================== */
+.hello-movieengine-button-group-control {
+	margin-bottom: 6px;
+}
+
+.hello-movieengine-btn-group {
+	display: flex;
+	align-items: center;
+	background: #f1f5f9;
+	border: 1px solid #e2e8f0;
+	border-radius: 7px;
+	padding: 3px;
+	gap: 3px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.hello-movieengine-btn-group-item {
+	flex: 1;
+	border: none;
+	background: transparent;
+	color: #475569;
+	font-size: 11.5px;
+	font-weight: 600;
+	padding: 7px 8px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+	white-space: nowrap;
+	transition: all 0.18s ease;
+	line-height: 1.2;
+}
+
+.hello-movieengine-btn-group-item:hover {
+	color: #0f172a;
+	background: rgba(255, 255, 255, 0.6);
+}
+
+.hello-movieengine-btn-group-item.is-active {
+	background: #2563eb !important;
+	color: #ffffff !important;
+	box-shadow: 0 1px 3px rgba(37, 99, 235, 0.28) !important;
+}
+
 .hello-movieengine-custom-class-field {
 	flex: 1;
 	padding: 6px 8px !important;
@@ -1123,5 +1293,615 @@ li:first-child .hello-movieengine-heading-control {
 	border: 1px solid #c3c4c7 !important;
 	border-radius: 4px !important;
 }
+
+/* ==========================================================
+   Premium Customizer Theme Shell (Astra / Blocksy Polish)
+   ========================================================== */
+
+/* Main Panel Header */
+#accordion-panel-hello_movieengine_panel > .accordion-section-title {
+	background: #0f172a !important;
+	color: #f8fafc !important;
+	border-left: 4px solid #3b82f6 !important;
+	font-weight: 700 !important;
+	font-size: 14px !important;
+	letter-spacing: 0.3px !important;
+	padding: 16px 14px !important;
+	display: flex !important;
+	align-items: center !important;
+	transition: background 0.2s ease !important;
+}
+
+#accordion-panel-hello_movieengine_panel > .accordion-section-title::before {
+	content: "🎬";
+	margin-right: 8px;
+	font-size: 17px;
+	line-height: 1;
+}
+
+#accordion-panel-hello_movieengine_panel > .accordion-section-title:hover {
+	background: #1e293b !important;
+	color: #ffffff !important;
+}
+
+/* Sections inside Hello Movie Engine Panel */
+#sub-accordion-panel-hello_movieengine_panel .control-section .accordion-section-title {
+	padding: 13px 14px !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	color: #334155 !important;
+	background: #ffffff !important;
+	border-bottom: 1px solid #f1f5f9 !important;
+	display: flex !important;
+	align-items: center !important;
+	transition: all 0.18s ease !important;
+}
+
+#sub-accordion-panel-hello_movieengine_panel .control-section .accordion-section-title:hover {
+	background: #f8fafc !important;
+	color: #2563eb !important;
+	padding-left: 17px !important;
+}
+
+#sub-accordion-panel-hello_movieengine_panel .control-section.open .accordion-section-title {
+	background: #eff6ff !important;
+	color: #1d4ed8 !important;
+	border-left: 3px solid #3b82f6 !important;
+}
+
+/* Section Icons */
+#accordion-section-hello_movieengine_site_style_section > .accordion-section-title::before { content: "🎭"; margin-right: 9px; font-size: 14px; }
+#accordion-panel-hello_movieengine_ott_panel > .accordion-section-title::before { content: "🍿"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_single_movie_section > .accordion-section-title::before { content: "🎬"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_tv_series_section > .accordion-section-title::before { content: "📺"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_movie_archive_section > .accordion-section-title::before { content: "🗂️"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_player_section > .accordion-section-title::before { content: "🎥"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_header_section > .accordion-section-title::before { content: "🧭"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_colors_section > .accordion-section-title::before { content: "🎨"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_layout_section > .accordion-section-title::before { content: "📐"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_blog_section > .accordion-section-title::before { content: "📰"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_page_title_section > .accordion-section-title::before { content: "🏷️"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_bottom_nav_section > .accordion-section-title::before { content: "📱"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_404_section > .accordion-section-title::before { content: "⚠️"; margin-right: 9px; font-size: 14px; }
+#accordion-section-hello_movieengine_footer_section > .accordion-section-title::before { content: "🔻"; margin-right: 9px; font-size: 14px; }
+
+/* ==========================================================
+   Blocksy-Style Customizer Root Layout & Group Headings
+   ========================================================== */
+li.hello-movieengine-customizer-group-heading {
+	padding: 24px 16px 8px 16px !important;
+	font-size: 11px !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.08em !important;
+	text-transform: uppercase !important;
+	color: #64748b !important;
+	border-top: 1px solid #e2e8f0 !important;
+	margin-top: 10px !important;
+	background: transparent !important;
+	pointer-events: none !important;
+	list-style: none !important;
+}
+
+li.hello-movieengine-customizer-group-heading:first-of-type {
+	border-top: none !important;
+	margin-top: 0 !important;
+	padding-top: 16px !important;
+}
+
+li.hello-movieengine-customizer-group-heading span {
+	display: block !important;
+	line-height: 1.2 !important;
+}
+
+/* Root level sections styled like Blocksy cards */
+#customize-theme-controls #accordion-section-hello_movieengine_site_style_section .accordion-section-title,
+#customize-theme-controls #accordion-panel-hello_movieengine_ott_panel .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_single_movie_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_tv_series_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_movie_archive_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_player_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_header_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_footer_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_layout_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_colors_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_bottom_nav_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_blog_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_page_title_section .accordion-section-title,
+#customize-theme-controls #accordion-section-hello_movieengine_404_section .accordion-section-title {
+	padding: 13px 16px !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	color: #1e293b !important;
+	background: #ffffff !important;
+	border-bottom: 1px solid #f1f5f9 !important;
+	display: flex !important;
+	align-items: center !important;
+	transition: all 0.18s ease !important;
+}
+
+/* Child Sections inside OTT Feed Panel (Blocksy Sub-Menu Style) */
+#sub-accordion-panel-hello_movieengine_ott_panel .control-section .accordion-section-title {
+	padding: 12px 16px !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	color: #334155 !important;
+	background: #ffffff !important;
+	border-bottom: 1px solid #f1f5f9 !important;
+	display: flex !important;
+	align-items: center !important;
+	transition: all 0.15s ease !important;
+}
+
+#sub-accordion-panel-hello_movieengine_ott_panel .control-section:hover > .accordion-section-title {
+	background: #f8fafc !important;
+	color: #2563eb !important;
+	padding-left: 20px !important;
+}
+
+#sub-accordion-panel-hello_movieengine_ott_panel .control-section.open .accordion-section-title {
+	background: #eff6ff !important;
+	color: #1d4ed8 !important;
+	border-left: 3px solid #3b82f6 !important;
+}
+
+#accordion-section-hello_movieengine_ott_nav_section > .accordion-section-title::before { content: "🧭"; margin-right: 9px; font-size: 13px; }
+#accordion-section-hello_movieengine_ott_home_section > .accordion-section-title::before { content: "🏠"; margin-right: 9px; font-size: 13px; }
+#accordion-section-hello_movieengine_ott_rows_section > .accordion-section-title::before { content: "🎞️"; margin-right: 9px; font-size: 13px; }
+#accordion-section-hello_movieengine_ott_hero_section > .accordion-section-title::before { content: "🌟"; margin-right: 9px; font-size: 13px; }
+
+#customize-theme-controls .control-section:hover > .accordion-section-title {
+	background: #f8fafc !important;
+	color: #2563eb !important;
+	padding-left: 20px !important;
+}
+
+#customize-theme-controls .control-section.open > .accordion-section-title {
+	background: #eff6ff !important;
+	color: #1d4ed8 !important;
+	border-left: 3px solid #2563eb !important;
+}
+
+/* Control Section Content Canvas */
+#customize-theme-controls .control-section-content {
+	background: #f8fafc !important;
+	padding: 14px 12px !important;
+}
+
+/* Card Boxes for Individual Controls */
+#customize-theme-controls .control-section-content > li.customize-control:not(.customize-control-hello-movieengine-heading) {
+	background: #ffffff !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 8px !important;
+	padding: 12px 14px !important;
+	margin-bottom: 10px !important;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#customize-theme-controls .control-section-content > li.customize-control:not(.customize-control-hello-movieengine-heading):hover {
+	border-color: #cbd5e1 !important;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Modern Heading Pill Divider */
+.hello-movieengine-heading-control {
+	margin: 20px 0 10px !important;
+	padding: 9px 12px !important;
+	background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+	border-radius: 6px !important;
+	border-left: 3px solid #3b82f6 !important;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+}
+
+li:first-child .hello-movieengine-heading-control {
+	margin-top: 4px !important;
+}
+
+.hello-movieengine-heading-title {
+	font-size: 11.5px !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.05em !important;
+	color: #0f172a !important;
+	text-transform: uppercase !important;
+}
+
+.hello-movieengine-heading-desc {
+	font-size: 11px !important;
+	color: #64748b !important;
+	margin-top: 2px !important;
+}
+
+/* Control Titles & Descriptions */
+.customize-control-title {
+	font-size: 12.5px !important;
+	font-weight: 600 !important;
+	color: #1e293b !important;
+	margin-bottom: 4px !important;
+	display: block !important;
+}
+
+.customize-control-description {
+	font-size: 11px !important;
+	line-height: 1.45 !important;
+	color: #64748b !important;
+	margin-top: 2px !important;
+	margin-bottom: 8px !important;
+}
+
+/* Form Inputs, Number, Select */
+#customize-theme-controls input[type="text"],
+#customize-theme-controls input[type="number"],
+#customize-theme-controls select {
+	height: 34px !important;
+	border-radius: 6px !important;
+	border: 1px solid #d1d5db !important;
+	background-color: #ffffff !important;
+	padding: 0 10px !important;
+	font-size: 12px !important;
+	color: #1f2937 !important;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+	transition: all 0.15s ease-in-out !important;
+}
+
+#customize-theme-controls input[type="text"]:focus,
+#customize-theme-controls input[type="number"]:focus,
+#customize-theme-controls select:focus {
+	border-color: #3b82f6 !important;
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18) !important;
+	outline: none !important;
+}
+
+/* Range Slider */
+#customize-theme-controls input[type="range"] {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	height: 5px !important;
+	border-radius: 4px !important;
+	background: #e2e8f0 !important;
+	outline: none !important;
+	margin: 10px 0 !important;
+	cursor: pointer !important;
+}
+
+#customize-theme-controls input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	width: 16px !important;
+	height: 16px !important;
+	border-radius: 50% !important;
+	background: #3b82f6 !important;
+	border: 2px solid #ffffff !important;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
+	cursor: pointer !important;
+	transition: transform 0.15s ease, background 0.15s ease !important;
+}
+
+#customize-theme-controls input[type="range"]::-webkit-slider-thumb:hover {
+	transform: scale(1.18) !important;
+	background: #2563eb !important;
+}
+
+/* Modern iOS-Style Toggle Switch */
+.hello-movieengine-toggle-track {
+	width: 38px !important;
+	height: 20px !important;
+	border-radius: 10px !important;
+	background: #cbd5e1 !important;
+	transition: background 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hello-movieengine-toggle-thumb {
+	width: 16px !important;
+	height: 16px !important;
+	top: 2px !important;
+	left: 2px !important;
+	border-radius: 50% !important;
+	background: #ffffff !important;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18) !important;
+	transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hello-movieengine-toggle-input:checked + .hello-movieengine-toggle-track {
+	background: #3b82f6 !important;
+}
+
+.hello-movieengine-toggle-input:checked + .hello-movieengine-toggle-track .hello-movieengine-toggle-thumb {
+	transform: translateX(18px) !important;
+}
+
+/* Page Multi-Select Control */
+.hello-movieengine-page-select-search {
+	border-radius: 6px !important;
+	border: 1px solid #e2e8f0 !important;
+	background: #f8fafc url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>') no-repeat 10px center !important;
+	padding-left: 32px !important;
+	margin-bottom: 8px !important;
+}
+
+.hello-movieengine-page-select-list {
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 6px !important;
+	background: #ffffff !important;
+	max-height: 180px !important;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+}
+
+.hello-movieengine-page-select-item {
+	padding: 7px 10px !important;
+	border-bottom: 1px solid #f8fafc !important;
+	transition: background 0.15s ease !important;
+}
+
+.hello-movieengine-page-select-item:hover {
+	background: #f1f5f9 !important;
+}
+
+/* Buttons in Customizer */
+#customize-theme-controls .button {
+	border-radius: 6px !important;
+	font-size: 11.5px !important;
+	font-weight: 600 !important;
+	padding: 4px 12px !important;
+	height: auto !important;
+	line-height: 24px !important;
+	transition: all 0.15s ease !important;
+}
+
+#customize-theme-controls .button-primary {
+	background: #3b82f6 !important;
+	border-color: #2563eb !important;
+	box-shadow: 0 1px 2px rgba(37, 99, 235, 0.25) !important;
+}
+
+#customize-theme-controls .button-primary:hover {
+	background: #2563eb !important;
+}
+
+/* ==========================================================
+   Homepage Drag & Drop Section Builder Control
+   ========================================================== */
+.hello-movieengine-section-builder-control {
+	margin-top: 8px;
+}
+
+.hello-movieengine-section-builder-items {
+	margin-bottom: 12px;
+}
+
+.hello-movieengine-builder-row {
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	margin-bottom: 8px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+	transition: all 0.18s ease;
+}
+
+.hello-movieengine-builder-row:hover {
+	border-color: #cbd5e1;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.hello-movieengine-builder-row.is-disabled {
+	opacity: 0.6;
+	background: #f8fafc;
+}
+
+.hello-movieengine-builder-header {
+	display: flex;
+	align-items: center;
+	padding: 10px 12px;
+	cursor: pointer;
+	user-select: none;
+	gap: 8px;
+}
+
+.hello-movieengine-builder-drag {
+	cursor: grab;
+	color: #94a3b8;
+	display: flex;
+	align-items: center;
+	padding: 2px;
+	transition: color 0.15s ease;
+}
+
+.hello-movieengine-builder-drag:hover {
+	color: #3b82f6;
+}
+
+.hello-movieengine-builder-eye {
+	background: none;
+	border: none;
+	padding: 2px;
+	cursor: pointer;
+	color: #64748b;
+	display: flex;
+	align-items: center;
+	transition: color 0.15s ease;
+}
+
+.hello-movieengine-builder-eye:hover {
+	color: #2563eb;
+}
+
+.hello-movieengine-builder-row.is-disabled .hello-movieengine-builder-eye {
+	color: #94a3b8;
+}
+
+.hello-movieengine-builder-title {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	overflow: hidden;
+}
+
+.hello-movieengine-builder-title-text {
+	font-size: 12px;
+	font-weight: 600;
+	color: #1e293b;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.hello-movieengine-builder-type-badge {
+	font-size: 9.5px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	padding: 1px 6px;
+	border-radius: 4px;
+	background: #eff6ff;
+	color: #2563eb;
+	white-space: nowrap;
+}
+
+.hello-movieengine-builder-actions {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.hello-movieengine-builder-toggle-edit,
+.hello-movieengine-builder-delete {
+	background: none;
+	border: none;
+	padding: 3px;
+	cursor: pointer;
+	color: #94a3b8;
+	display: flex;
+	align-items: center;
+	border-radius: 4px;
+	transition: all 0.15s ease;
+}
+
+.hello-movieengine-builder-toggle-edit:hover {
+	color: #1e293b;
+	background: #f1f5f9;
+}
+
+.hello-movieengine-builder-delete:hover {
+	color: #ef4444;
+	background: #fef2f2;
+}
+
+.hello-movieengine-builder-body {
+	padding: 12px 14px;
+	border-top: 1px solid #f1f5f9;
+	background: #fafafa;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.hello-movieengine-builder-field {
+	margin-bottom: 10px;
+}
+
+.hello-movieengine-builder-field:last-child {
+	margin-bottom: 0;
+}
+
+.hello-movieengine-builder-field label {
+	display: block;
+	font-size: 11px;
+	font-weight: 600;
+	color: #475569;
+	margin-bottom: 4px;
+}
+
+.hello-movieengine-builder-field input[type="text"],
+.hello-movieengine-builder-field input[type="number"],
+.hello-movieengine-builder-field select,
+.hello-movieengine-builder-field textarea {
+	width: 100%;
+	font-size: 12px;
+	height: 32px;
+	border-radius: 6px;
+	border: 1px solid #d1d5db;
+	background: #ffffff;
+	padding: 0 8px;
+}
+
+.hello-movieengine-builder-field textarea {
+	height: auto;
+	padding: 6px 8px;
+}
+
+.hello-movieengine-builder-row-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+.hello-movieengine-builder-row-grid-3 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 8px;
+}
+
+.hello-movieengine-builder-group-title {
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #2563eb;
+	background: #eff6ff;
+	border: 1px solid #dbeafe;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin: 12px 0 8px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.hello-movieengine-builder-group-title:first-child {
+	margin-top: 2px;
+}
+
+.hello-movieengine-builder-group-title .dashicons {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	color: #3b82f6;
+}
+
+.hello-movieengine-builder-toggle-field label {
+	display: flex !important;
+	align-items: center;
+	gap: 6px;
+	font-size: 11.5px !important;
+	color: #1e293b !important;
+	cursor: pointer;
+}
+
+.hello-movieengine-builder-footer {
+	display: flex;
+	gap: 8px;
+	margin-top: 10px;
+}
+
+.hello-movieengine-builder-add-btn {
+	background: #3b82f6 !important;
+	color: #ffffff !important;
+	border-color: #2563eb !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 4px !important;
+	flex: 1;
+	justify-content: center;
+}
+
+.hello-movieengine-builder-add-btn:hover {
+	background: #2563eb !important;
+}
+
+.hello-movieengine-builder-reset-btn {
+	color: #64748b !important;
+}
+
+
 
 

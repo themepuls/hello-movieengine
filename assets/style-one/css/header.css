@@ -115,7 +115,7 @@
 	display: flex;
 	align-items: center;
 	padding: 10px 16px;
-	color: var(--hello-movieengine-text-color);
+	color: var(--hello-movieengine-nav-link-color, var(--hello-movieengine-text-color));
 	font-size: 20px;
 	font-weight: 600;
 	letter-spacing: 0.01em;
@@ -127,7 +127,7 @@
 .hello-movieengine-nav-menu>li>a:hover,
 .hello-movieengine-nav-menu>li.current-menu-item>a,
 .hello-movieengine-nav-menu>li.current-menu-ancestor>a {
-	color: var(--hello-movieengine-primary-color);
+	color: var(--hello-movieengine-nav-link-hover, var(--hello-movieengine-primary-color));
 	background: transparent;
 }
 
@@ -189,7 +189,7 @@
 	top: 100%;
 	left: 0;
 	min-width: 200px;
-	background: var(--hello-movieengine-surface-color);
+	background: var(--hello-movieengine-dropdown-bg, var(--hello-movieengine-surface-color));
 	border: 1px solid var(--hello-movieengine-border-color);
 	border-radius: var(--hello-movieengine-radius);
 	padding: 6px 0;

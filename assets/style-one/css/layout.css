@@ -4,6 +4,13 @@
  * @package Hello_Movie Engine
  */
 
+#page,
+.site-main,
+.hello-me-home-feed {
+	max-width: 100%;
+	overflow-x: clip;
+}
+
 /* --------------------------------------------------------
    Container
    -------------------------------------------------------- */

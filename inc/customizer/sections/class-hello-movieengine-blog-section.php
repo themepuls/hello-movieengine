@@ -17,9 +17,18 @@ class Hello_Movie_Engine_Blog_Section {
 	public static function register( $wp_customize ) {
 
 		$wp_customize->add_section( 'hello_movieengine_blog_section', array(
-			'title' => esc_html__( 'Blog', 'hello-movieengine' ),
-			'panel' => 'hello_movieengine_panel',
+			'title'    => esc_html__( 'Blog Posts', 'hello-movieengine' ),
+			'priority' => 42,
 		) );
+
+		/* Astra-style Section Tabs (GENERAL vs DESIGN) */
+		$wp_customize->add_setting( 'hello_movieengine_blog_tabs_nav', array(
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Section_Tabs_Control( $wp_customize, 'hello_movieengine_blog_tabs_nav', array(
+			'section'  => 'hello_movieengine_blog_section',
+			'priority' => 1,
+		) ) );
 
 		/* --- Heading: Post Image --- */
 		$wp_customize->add_setting( 'hello_movieengine_heading_blog_image', array(

@@ -22,8 +22,8 @@ class Hello_Movie_Engine_Colors_Section {
 	public static function register( $wp_customize ) {
 
 		$wp_customize->add_section( 'hello_movieengine_colors_section', array(
-			'title' => esc_html__( 'Colors', 'hello-movieengine' ),
-			'panel' => 'hello_movieengine_panel',
+			'title'    => esc_html__( 'Colors', 'hello-movieengine' ),
+			'priority' => 10,
 		) );
 
 		/* --- Heading: Brand --- */

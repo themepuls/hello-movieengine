@@ -22,9 +22,18 @@ class Hello_Movie_Engine_Header_Section {
 	public static function register( $wp_customize ) {
 
 		$wp_customize->add_section( 'hello_movieengine_header_section', array(
-			'title' => esc_html__( 'Header', 'hello-movieengine' ),
-			'panel' => 'hello_movieengine_panel',
+			'title'    => esc_html__( 'Header', 'hello-movieengine' ),
+			'priority' => 4,
 		) );
+
+		/* Astra-style Section Tabs (GENERAL vs DESIGN) */
+		$wp_customize->add_setting( 'hello_movieengine_header_tabs_nav', array(
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Section_Tabs_Control( $wp_customize, 'hello_movieengine_header_tabs_nav', array(
+			'section'  => 'hello_movieengine_header_section',
+			'priority' => 1,
+		) ) );
 
 		/* --- Heading: Layout --- */
 		$wp_customize->add_setting( 'hello_movieengine_heading_header_layout', array(
@@ -41,16 +50,15 @@ class Hello_Movie_Engine_Header_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_select',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( 'hello_movieengine_header_style', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Button_Group_Control( $wp_customize, 'hello_movieengine_header_style', array(
 			'label'       => esc_html__( 'Header Style', 'hello-movieengine' ),
-			'description' => esc_html__( 'Transparent uses a fixed overlay on pages selected in “Fixed Header On”. Solid is always a normal header.', 'hello-movieengine' ),
+			'description' => esc_html__( 'Transparent uses a fixed overlay on selected pages. Solid is always a normal header.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_header_section',
-			'type'        => 'select',
 			'choices'     => array(
-				'solid'       => esc_html__( 'Solid (Dark)', 'hello-movieengine' ),
-				'transparent' => esc_html__( 'Transparent (Overlay)', 'hello-movieengine' ),
+				'solid'       => esc_html__( 'Solid', 'hello-movieengine' ),
+				'transparent' => esc_html__( 'Transparent', 'hello-movieengine' ),
 			),
-		) );
+		) ) );
 
 		/* Header width */
 		$wp_customize->add_setting( 'hello_movieengine_header_width', array(
@@ -58,16 +66,15 @@ class Hello_Movie_Engine_Header_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_select',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( 'hello_movieengine_header_width', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Button_Group_Control( $wp_customize, 'hello_movieengine_header_width', array(
 			'label'       => esc_html__( 'Header Width', 'hello-movieengine' ),
 			'description' => esc_html__( 'Boxed keeps the logo and menu inside a max width. Full Width spans the screen with side padding only.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_header_section',
-			'type'        => 'select',
 			'choices'     => array(
 				'boxed'     => esc_html__( 'Boxed', 'hello-movieengine' ),
 				'fullwidth' => esc_html__( 'Full Width', 'hello-movieengine' ),
 			),
-		) );
+		) ) );
 
 		$wp_customize->add_setting( 'hello_movieengine_header_container_width', array(
 			'default'           => 0,
@@ -177,12 +184,12 @@ class Hello_Movie_Engine_Header_Section {
 			'section' => 'hello_movieengine_header_section',
 		) ) );
 
-		/* --- Heading: Background --- */
+		/* --- Heading: Background & Colors --- */
 		$wp_customize->add_setting( 'hello_movieengine_heading_header_bg', array(
 			'sanitize_callback' => 'sanitize_text_field',
 		) );
 		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Heading_Control( $wp_customize, 'hello_movieengine_heading_header_bg', array(
-			'label'   => esc_html__( 'Background', 'hello-movieengine' ),
+			'label'   => esc_html__( 'Colors & Background', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_header_section',
 		) ) );
 
@@ -193,8 +200,54 @@ class Hello_Movie_Engine_Header_Section {
 			'transport'         => 'refresh',
 		) );
 		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_header_bg_color', array(
-			'label'       => esc_html__( 'Header Background', 'hello-movieengine' ),
-			'description' => esc_html__( 'Applies to both solid and transparent (scrolled) headers.', 'hello-movieengine' ),
+			'label'       => esc_html__( 'Header Background (Default)', 'hello-movieengine' ),
+			'description' => esc_html__( 'Applies to solid headers and initial transparent header state.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_header_section',
+		) ) );
+
+		/* Fixed / Scrolled Header background color (alpha) */
+		$wp_customize->add_setting( 'hello_movieengine_header_bg_scroll_color', array(
+			'default'           => '',
+			'sanitize_callback' => 'hello_movieengine_sanitize_color_alpha',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_header_bg_scroll_color', array(
+			'label'       => esc_html__( 'Fixed / Scrolled Header Background', 'hello-movieengine' ),
+			'description' => esc_html__( 'Background color and opacity when header is fixed/scrolled down.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_header_section',
+		) ) );
+
+		/* Dropdown & Mega Menu background color (alpha) */
+		$wp_customize->add_setting( 'hello_movieengine_menu_dropdown_bg', array(
+			'default'           => '',
+			'sanitize_callback' => 'hello_movieengine_sanitize_color_alpha',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Alpha_Color_Control( $wp_customize, 'hello_movieengine_menu_dropdown_bg', array(
+			'label'       => esc_html__( 'Dropdown & Mega Menu Background', 'hello-movieengine' ),
+			'description' => esc_html__( 'Background for submenu dropdowns, mega menu panels, and side-rail flyouts.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_header_section',
+		) ) );
+
+		/* Menu Link color */
+		$wp_customize->add_setting( 'hello_movieengine_menu_link_color', array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hello_movieengine_menu_link_color', array(
+			'label'       => esc_html__( 'Menu Link Color', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_header_section',
+		) ) );
+
+		/* Menu Link Hover color */
+		$wp_customize->add_setting( 'hello_movieengine_menu_link_hover_color', array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'hello_movieengine_menu_link_hover_color', array(
+			'label'       => esc_html__( 'Menu Link Hover Color', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_header_section',
 		) ) );
 	}

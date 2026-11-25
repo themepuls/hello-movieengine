@@ -209,7 +209,47 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 	}
 }
 
-.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section .movie-engine-cast-item {
+/* Cast row: compact cards in slider, grid columns in static layout */
+.hmestyle-style-two .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
+.hmestyle-style-two .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
+.hmestyle-style-two .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
+.hmestyle-style-two .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item,
+.hmestyle-style-two .movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-item-card,
+.hmestyle-style-two .movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-cast-item,
+.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
+.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
+.hello-me-home-person-wrap .movie-engine-items-grid > .movie-engine-movie-card,
+.hello-me-home-person-wrap .movie-engine-items-grid > .movie-engine-person-card {
+	flex: 0 0 clamp(120px, 12vw, 170px) !important;
+	width: clamp(120px, 12vw, 170px) !important;
+	max-width: 180px !important;
+	min-width: 110px !important;
+	box-sizing: border-box !important;
+}
+
+.hmestyle-style-two .movie-engine-cast-thumb,
+.movie-engine-cast-thumb,
+.hmestyle-style-two .movie-engine-cast-avatar,
+.movie-engine-cast-avatar {
+	width: 100% !important;
+	aspect-ratio: 2 / 3 !important;
+	max-height: 250px !important;
+	border-radius: 10px !important;
+	overflow: hidden !important;
+	background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.hmestyle-style-two .movie-engine-cast-thumb img,
+.movie-engine-cast-thumb img,
+.hmestyle-style-two .movie-engine-cast-avatar img,
+.movie-engine-cast-avatar img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	display: block !important;
+}
+
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-item {
 	width: 100%;
 	max-width: none;
 	background: transparent;
@@ -342,34 +382,261 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 		linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 18%) !important;
 }
 
-/* Hero arrows: both on the right, stacked (next above prev) */
-.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav {
-	left: auto !important;
-	right: 28px !important;
-	top: 50%;
-	transform: none;
+/* Hero arrows: desktop only — stacked on the right (next above prev) */
+@media (min-width: 768px) {
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav {
+		left: auto !important;
+		right: 28px !important;
+		top: 50%;
+		transform: none;
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-next {
+		transform: translateY(calc(-100% - 10px));
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-prev {
+		transform: translateY(10px);
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav:hover {
+		background: rgba(255, 255, 255, 0.16);
+		border-color: rgba(255, 255, 255, 0.28);
+		color: #fff;
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-next:hover {
+		transform: translateY(calc(-100% - 10px)) scale(1.06);
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-prev:hover {
+		transform: translateY(10px) scale(1.06);
+	}
 }
 
-.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-next {
-	transform: translateY(calc(-100% - 10px));
-}
+/* Mobile & tablet hero / sections fullwidth fixes */
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-hero-section,
+	.hmestyle-style-two .movie-engine-hero {
+		min-height: clamp(380px, 62svh, 540px) !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 !important;
+		border-radius: 0 !important;
+	}
 
-.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-prev {
-	transform: translateY(10px);
-}
+	.hmestyle-style-two .movie-engine-hero-section .me-hero-slider.movie-engine-items-grid {
+		width: 100% !important;
+		max-width: 100% !important;
+		border-radius: 0 !important;
+	}
 
-.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav:hover {
-	background: rgba(255, 255, 255, 0.16);
-	border-color: rgba(255, 255, 255, 0.28);
-	color: #fff;
-}
+	.hmestyle-style-two .movie-engine-hero-section .me-hero-item {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-height: clamp(380px, 62svh, 540px) !important;
+		border-radius: 0 !important;
+		box-sizing: border-box !important;
+		padding: 24px 16px 28px !important;
+	}
 
-.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-next:hover {
-	transform: translateY(calc(-100% - 10px)) scale(1.06);
-}
+	/* Hero actions mobile: flex layout, clean button dimensions, no clashing */
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-hero-actions,
+	.hmestyle-style-two .movie-engine-hero-actions {
+		display: block !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-top: 16px !important;
+	}
 
-.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav.movie-engine-slider-prev:hover {
-	transform: translateY(10px) scale(1.06);
+	.hmestyle-style-two .movie-engine-hero-section .me-primary-actions,
+	.hmestyle-style-two .movie-engine-hero-actions .me-primary-actions {
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: wrap !important;
+		align-items: center !important;
+		gap: 10px !important;
+		width: 100% !important;
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-btn.movie-engine-btn-play,
+	.hmestyle-style-two .movie-engine-hero-actions .movie-engine-btn.movie-engine-btn-play {
+		grid-column: auto !important;
+		grid-row: auto !important;
+		flex: 1 1 auto !important;
+		min-width: 130px !important;
+		max-width: none !important;
+		height: 44px !important;
+		min-height: 44px !important;
+		border-radius: 8px !important;
+		padding: 0 18px !important;
+		font-size: 14px !important;
+		font-weight: 700 !important;
+		white-space: nowrap !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 8px !important;
+		box-sizing: border-box !important;
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section .me-hero-see-more,
+	.hmestyle-style-two .movie-engine-hero-actions .me-hero-see-more {
+		grid-column: auto !important;
+		grid-row: auto !important;
+		flex: 1 1 auto !important;
+		min-width: 125px !important;
+		max-width: none !important;
+		height: 44px !important;
+		min-height: 44px !important;
+		border-radius: 8px !important;
+		padding: 0 16px !important;
+		font-size: 13.5px !important;
+		font-weight: 600 !important;
+		white-space: nowrap !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 8px !important;
+		border: 1px solid rgba(255, 255, 255, 0.4) !important;
+		background: rgba(255, 255, 255, 0.08) !important;
+		color: #fff !important;
+		box-sizing: border-box !important;
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-btn.movie-engine-watchlist-btn,
+	.hmestyle-style-two .movie-engine-hero-actions .movie-engine-btn.movie-engine-watchlist-btn {
+		grid-column: auto !important;
+		grid-row: auto !important;
+		flex: 0 0 44px !important;
+		width: 44px !important;
+		min-width: 44px !important;
+		height: 44px !important;
+		border-radius: 8px !important;
+		padding: 0 !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		box-sizing: border-box !important;
+	}
+
+	/* Section titles & View All on mobile */
+	.hmestyle-style-two .movie-engine-section-title,
+	.hmestyle-style-two .me-section-header,
+	.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-section-title,
+	.hmestyle-style-two.hello-movieengine-has-side-rail .me-section-header {
+		display: flex !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		width: 100% !important;
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+		margin-top: 24px !important;
+		margin-bottom: 14px !important;
+		box-sizing: border-box !important;
+	}
+
+	.hmestyle-style-two .movie-engine-section-title h2,
+	.hmestyle-style-two .me-section-header h2,
+	.hmestyle-style-two .me-section-header h3 {
+		font-size: 1.15rem !important;
+		margin: 0 !important;
+		line-height: 1.3 !important;
+	}
+
+	.hmestyle-style-two .me-view-all,
+	.hmestyle-style-two .movie-engine-view-all {
+		font-size: 0.85rem !important;
+		white-space: nowrap !important;
+		margin-left: auto !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		gap: 4px !important;
+	}
+
+	/* Hide intrusive slider arrows on mobile — touch swiping is native and smooth */
+	.hmestyle-style-two .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-section .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-library-container .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-taxonomy-shortcode .movie-engine-slider-nav,
+	.hmestyle-style-two .me-slider-layout .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav {
+		display: none !important;
+	}
+
+	.hmestyle-style-two .movie-engine-section {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
+	/* Horizontal swipe grids */
+	.hmestyle-style-two .movie-engine-items-grid {
+		display: flex !important;
+		flex-wrap: nowrap !important;
+		overflow-x: auto !important;
+		overflow-y: hidden !important;
+		-webkit-overflow-scrolling: touch !important;
+		scroll-behavior: smooth !important;
+		gap: 12px !important;
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+		padding-top: 4px !important;
+		padding-bottom: 12px !important;
+		scrollbar-width: none !important;
+	}
+
+	.hmestyle-style-two .movie-engine-items-grid::-webkit-scrollbar {
+		display: none !important;
+	}
+
+	/* Studio cards mobile: horizontal 16:9 cards with neat logos, never squished matchsticks */
+	.hmestyle-style-two .me-term-card.me-studio-card,
+	.hmestyle-style-two .me-studio-card,
+	.hmestyle-style-two .movie-engine-studios-slider .me-term-card,
+	.hmestyle-style-two .movie-engine-taxonomy-slider .me-term-card,
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .me-term-card,
+	.hmestyle-style-two .movie-engine-taxonomy-shortcode .me-term-card {
+		flex: 0 0 clamp(110px, 32vw, 140px) !important;
+		width: clamp(110px, 32vw, 140px) !important;
+		min-width: 100px !important;
+		max-width: 150px !important;
+		height: 72px !important;
+		aspect-ratio: 16 / 9 !important;
+		border-radius: 10px !important;
+		overflow: hidden !important;
+		box-sizing: border-box !important;
+	}
+
+	.hmestyle-style-two .me-studio-card-logo-wrap {
+		width: 100% !important;
+		height: 100% !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		padding: 8px !important;
+		box-sizing: border-box !important;
+	}
+
+	.hmestyle-style-two .me-studio-card-logo {
+		max-width: 80% !important;
+		max-height: 42px !important;
+		object-fit: contain !important;
+	}
+
+	/* Movie / Series cards on mobile slider rows */
+	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card,
+	.hmestyle-style-two .movie-engine-section .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-section .movie-engine-items-grid > .movie-engine-card {
+		flex: 0 0 clamp(130px, 38vw, 160px) !important;
+		width: clamp(130px, 38vw, 160px) !important;
+		min-width: 120px !important;
+		max-width: 170px !important;
+		box-sizing: border-box !important;
+	}
 }
 
 .hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-thumb-nav-btns .movie-engine-slider-nav,

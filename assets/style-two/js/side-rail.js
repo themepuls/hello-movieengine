@@ -85,28 +85,19 @@
 			checkFullscreen
 		);
 
-		function fitHero() {
-			if ( ! window.matchMedia( '(min-width: 768px)' ).matches ) {
-				return;
-			}
-
+		function cleanHeroInlineStyles() {
 			var heroes = document.querySelectorAll(
 				'.movie-engine-hero-section, .movie-engine-hero, .movie-engine-movie-hero, .me-hero'
 			);
 
 			heroes.forEach( function ( hero ) {
-				hero.style.setProperty( 'margin-left', '0px', 'important' );
-				hero.style.setProperty( 'width', document.documentElement.clientWidth + 'px', 'important' );
-				hero.style.setProperty(
-					'margin-left',
-					( -hero.getBoundingClientRect().left ) + 'px',
-					'important'
-				);
+				hero.style.removeProperty( 'margin-left' );
+				hero.style.removeProperty( 'width' );
 			} );
 		}
 
-		fitHero();
-		window.addEventListener( 'resize', fitHero );
+		cleanHeroInlineStyles();
+		window.addEventListener( 'resize', cleanHeroInlineStyles );
 
 		var flyHideTimer = null;
 

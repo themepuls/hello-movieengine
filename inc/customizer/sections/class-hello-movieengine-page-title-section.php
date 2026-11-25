@@ -17,8 +17,8 @@ class Hello_Movie_Engine_Page_Title_Section {
 	public static function register( $wp_customize ) {
 
 		$wp_customize->add_section( 'hello_movieengine_page_title_section', array(
-			'title' => esc_html__( 'Page Title', 'hello-movieengine' ),
-			'panel' => 'hello_movieengine_panel',
+			'title'    => esc_html__( 'Page Title', 'hello-movieengine' ),
+			'priority' => 44,
 		) );
 
 		/* --- Heading: Visibility --- */
@@ -106,16 +106,15 @@ class Hello_Movie_Engine_Page_Title_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_select',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( 'hello_movieengine_page_title_align', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Button_Group_Control( $wp_customize, 'hello_movieengine_page_title_align', array(
 			'label'   => esc_html__( 'Text Alignment', 'hello-movieengine' ),
 			'section' => 'hello_movieengine_page_title_section',
-			'type'    => 'select',
 			'choices' => array(
 				'left'   => esc_html__( 'Left', 'hello-movieengine' ),
 				'center' => esc_html__( 'Center', 'hello-movieengine' ),
 				'right'  => esc_html__( 'Right', 'hello-movieengine' ),
 			),
-		) );
+		) ) );
 
 		/* --- Heading: Background --- */
 		$wp_customize->add_setting( 'hello_movieengine_heading_page_title_background', array(

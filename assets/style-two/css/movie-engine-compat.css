@@ -244,3 +244,12 @@ html.hmestyle-style-two .movie-engine-nav-item.active {
 		border-radius: 99px;
 	}
 }
+
+/* TV Series & Episodes layout safety fallbacks */
+.movie-engine-episodes-section img,
+.movie-engine-episode-card img,
+.movie-engine-episode-list-item img {
+	max-width: 100%;
+	height: auto;
+}
+

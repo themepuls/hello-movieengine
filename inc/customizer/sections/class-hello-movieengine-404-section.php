@@ -18,8 +18,8 @@ class Hello_Movie_Engine_404_Section {
 
 		$wp_customize->add_section( 'hello_movieengine_404_section', array(
 			'title'       => esc_html__( '404 Page', 'hello-movieengine' ),
-			'panel'       => 'hello_movieengine_panel',
 			'description' => esc_html__( 'Customize the "Page Not Found" error page.', 'hello-movieengine' ),
+			'priority'    => 46,
 		) );
 
 		/* Title */

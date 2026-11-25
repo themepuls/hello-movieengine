@@ -25,8 +25,7 @@ class Hello_Movie_Engine_Bottom_Nav_Section {
 		$wp_customize->add_section( 'hello_movieengine_bottom_nav_section', array(
 			'title'       => esc_html__( 'Mobile Bottom Navigation', 'hello-movieengine' ),
 			'description' => esc_html__( 'Menu items here power Style One mobile bottom navigation and Style Two fixed left navigation on all pages.', 'hello-movieengine' ),
-			'panel'       => 'hello_movieengine_panel',
-			'priority'    => 45,
+			'priority'    => 24,
 		) );
 
 		/* --------------------------------------------------------
@@ -58,16 +57,15 @@ class Hello_Movie_Engine_Bottom_Nav_Section {
 			'sanitize_callback' => 'hello_movieengine_sanitize_select',
 			'transport'         => 'refresh',
 		) );
-		$wp_customize->add_control( 'hello_movieengine_bottom_nav_breakpoint', array(
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Button_Group_Control( $wp_customize, 'hello_movieengine_bottom_nav_breakpoint', array(
 			'label'       => esc_html__( 'Display On', 'hello-movieengine' ),
 			'description' => esc_html__( 'Choose screen sizes where navigation should be visible.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_bottom_nav_section',
-			'type'        => 'select',
 			'choices'     => array(
-				'mobile' => esc_html__( 'Mobile Only (≤ 767px)', 'hello-movieengine' ),
-				'tablet' => esc_html__( 'Mobile & Tablet (≤ 1024px)', 'hello-movieengine' ),
+				'mobile' => esc_html__( 'Mobile (≤ 767px)', 'hello-movieengine' ),
+				'tablet' => esc_html__( 'Mobile + Tablet', 'hello-movieengine' ),
 			),
-		) );
+		) ) );
 
 		/* Show / Hide Text Labels */
 		$wp_customize->add_setting( 'hello_movieengine_bottom_nav_show_labels', array(
