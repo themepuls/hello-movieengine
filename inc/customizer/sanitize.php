@@ -37,6 +37,37 @@ function hello_movieengine_sanitize_toggle( $value ) {
 	return (bool) $value;
 }
 
+function hello_movieengine_sanitize_color_preset( $value ) {
+	$value   = sanitize_key( (string) $value );
+	$allowed = array( 'netflix', 'hulu', 'prime', 'custom' );
+	return in_array( $value, $allowed, true ) ? $value : 'netflix';
+}
+
+function hello_movieengine_sanitize_container_width( $value ) {
+	$width = absint( $value );
+	if ( $width < 800 ) {
+		return 800;
+	}
+	if ( $width > 3840 ) {
+		return 3840;
+	}
+	return $width;
+}
+
+function hello_movieengine_sanitize_border_radius( $value ) {
+	$radius = absint( $value );
+	if ( $radius > 50 ) {
+		return 50;
+	}
+	return $radius;
+}
+
+function hello_movieengine_sanitize_animation_intensity( $value ) {
+	$value   = sanitize_key( (string) $value );
+	$allowed = array( 'subtle', 'balanced', 'cinematic' );
+	return in_array( $value, $allowed, true ) ? $value : 'balanced';
+}
+
 function hello_movieengine_sanitize_spacing( $value ) {
 	$decoded = json_decode( $value, true );
 	if ( ! is_array( $decoded ) ) {

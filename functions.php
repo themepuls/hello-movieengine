@@ -36,6 +36,11 @@ Hello_Movie_Engine_Style_Registry::init();
 require HELLO_MOVIEENGINE_DIR . '/inc/ott-feed/functions.php';
 
 /**
+ * Animation / motion (Customizer-controlled).
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/motion.php';
+
+/**
  * Enqueue styles and scripts.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/enqueue.php';

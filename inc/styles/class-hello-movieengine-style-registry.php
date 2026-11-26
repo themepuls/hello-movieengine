@@ -177,7 +177,6 @@ class Hello_Movie_Engine_Style_Registry {
 		}
 
 		if ( 'style-two' === $style ) {
-			$files[] = 'motion';
 			$files[] = 'home-feed';
 			$files[] = 'archive-browse';
 			$files[] = 'single-watch';

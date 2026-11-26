@@ -7,10 +7,28 @@
 ( function () {
 	'use strict';
 
-	var SELECTOR = '.movie-engine-section:not(.movie-engine-hero-section), .movie-engine-taxonomies-wrapper, .movie-engine-library-container, .movie-engine-pricing-table-container, .movie-engine-dashboard-wrapper';
+	var SELECTOR = '.hme-motion-scope, .hme-motion-section, .movie-engine-section:not(.movie-engine-hero-section), .movie-engine-taxonomies-wrapper, .movie-engine-library-container, .movie-engine-pricing-table-container, .movie-engine-dashboard-wrapper';
+	var config = window.helloMovieEngineMotionConfig || { enabled: true, scrollReveal: true };
+
+	function motionFlagOff( val ) {
+		return val === false || val === 0 || val === '0' || val === '';
+	}
+
+	function motionFlagOn( val ) {
+		return ! motionFlagOff( val );
+	}
 
 	function reduceMotion() {
 		return window.matchMedia && window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+	}
+
+	function isStyleTwoPack() {
+		var root = document.documentElement;
+		var body = document.body;
+		return (
+			( root && root.classList.contains( 'hmestyle-style-two' ) ) ||
+			( body && body.classList.contains( 'hello-movieengine-style-two' ) )
+		);
 	}
 
 	function mark( el ) {
@@ -80,7 +98,7 @@
 		var tracked = [];
 		var i;
 
-		if ( reduceMotion() || ! ( 'IntersectionObserver' in window ) ) {
+		if ( ! motionFlagOn( config.scrollReveal ) || reduceMotion() || ! ( 'IntersectionObserver' in window ) ) {
 			for ( i = 0; i < nodes.length; i++ ) {
 				reveal( nodes[ i ] );
 			}
@@ -103,17 +121,30 @@
 			threshold: 0.04
 		} );
 
+		var aboveFoldIndex = 0;
+		var vhBind = window.innerHeight || document.documentElement.clientHeight;
+
 		for ( i = 0; i < nodes.length; i++ ) {
 			if ( nodes[ i ].closest( '.movie-engine-hero-section' ) ) {
 				continue;
 			}
-			/* Reference parity: content already on screen at bind time is left
-			   alone (no class, no animation). Elements without a layout box live
-			   in closed panels — keep marking those so they fade in when opened. */
+			/* Rows already on screen: stagger in on load so enabling motion is obvious. */
 			if (
 				nodes[ i ].getClientRects().length &&
-				nodes[ i ].getBoundingClientRect().top < ( window.innerHeight || document.documentElement.clientHeight ) * 0.92
+				nodes[ i ].getBoundingClientRect().top < vhBind &&
+				nodes[ i ].getBoundingClientRect().bottom > 0
 			) {
+				if ( reduceMotion() ) {
+					reveal( nodes[ i ] );
+				} else {
+					mark( nodes[ i ] );
+					( function ( el, idx ) {
+						window.setTimeout( function () {
+							reveal( el );
+						}, Math.min( idx * 85, 510 ) );
+					} )( nodes[ i ], aboveFoldIndex );
+					aboveFoldIndex++;
+				}
 				continue;
 			}
 			/* A library inside an outer reveal target fades with its parent — do not nest transforms. */
@@ -146,6 +177,11 @@
 	}
 
 	function enhanceFilterDrawer() {
+		/* Browse filter drawer UI + styles live in Style Two (archive-browse.css). */
+		if ( ! isStyleTwoPack() ) {
+			return;
+		}
+
 		var containers = document.querySelectorAll( '.movie-engine-library-container.me-filter-sidebar' );
 		var i;
 
@@ -212,14 +248,29 @@
 		}
 	}
 
+	function tagMotionSections( root ) {
+		var scope = root || document;
+		scope.querySelectorAll( '.hme-motion-scope .movie-engine-section:not(.movie-engine-hero-section)' ).forEach( function ( section ) {
+			section.classList.add( 'hme-motion-section' );
+		} );
+	}
+
 	function start() {
+		if ( motionFlagOff( config.enabled ) || document.body.classList.contains( 'hello-movieengine-motion-off' ) ) {
+			enhanceFilterDrawer();
+			return;
+		}
+
+		tagMotionSections( document );
 		bind( document );
 		enhanceFilterDrawer();
 
 		/* Public API — lets the plugin re-trigger motion after AJAX updates. */
 		window.movieEngineMotion = {
 			refresh: function ( root ) {
-				bind( root || document );
+				var ctx = root || document;
+				tagMotionSections( ctx );
+				bind( ctx );
 				flushPendingReveals();
 			},
 			flush: flushPendingReveals

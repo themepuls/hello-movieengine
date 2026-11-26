@@ -48,6 +48,7 @@ function hello_movieengine_customize_register( $wp_customize ) {
 	require_once $dir . '/sections/class-hello-movieengine-player-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-header-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-colors-section.php';
+	require_once $dir . '/sections/class-hello-movieengine-animation-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-layout-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-blog-section.php';
 	require_once $dir . '/sections/class-hello-movieengine-page-title-section.php';
@@ -67,6 +68,7 @@ function hello_movieengine_customize_register( $wp_customize ) {
 	Hello_Movie_Engine_Footer_Section::register( $wp_customize );
 	Hello_Movie_Engine_Layout_Section::register( $wp_customize );
 	Hello_Movie_Engine_Colors_Section::register( $wp_customize );
+	Hello_Movie_Engine_Animation_Section::register( $wp_customize );
 
 	/* --- Group Heading 2: Movie & OTT Streaming --- */
 	$wp_customize->add_section( new Hello_Movie_Engine_Customize_Divider_Section( $wp_customize, 'hello_movieengine_group_movie', array(

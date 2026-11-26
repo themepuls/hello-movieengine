@@ -1358,6 +1358,7 @@ li.customize-control-hello-movieengine-section-tabs {
 #accordion-section-hello_movieengine_player_section > .accordion-section-title::before { content: "🎥"; margin-right: 9px; font-size: 14px; }
 #accordion-section-hello_movieengine_header_section > .accordion-section-title::before { content: "🧭"; margin-right: 9px; font-size: 14px; }
 #accordion-section-hello_movieengine_colors_section > .accordion-section-title::before { content: "🎨"; margin-right: 9px; font-size: 14px; }
+#accordion-panel-hello_movieengine_animation_panel > .accordion-section-title::before { content: "✨"; margin-right: 9px; font-size: 14px; }
 #accordion-section-hello_movieengine_layout_section > .accordion-section-title::before { content: "📐"; margin-right: 9px; font-size: 14px; }
 #accordion-section-hello_movieengine_blog_section > .accordion-section-title::before { content: "📰"; margin-right: 9px; font-size: 14px; }
 #accordion-section-hello_movieengine_page_title_section > .accordion-section-title::before { content: "🏷️"; margin-right: 9px; font-size: 14px; }

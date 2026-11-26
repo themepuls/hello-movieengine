@@ -111,6 +111,44 @@ function hello_movieengine_movie_engine_archive_title( $title ) {
 add_filter( 'get_the_archive_title', 'hello_movieengine_movie_engine_archive_title' );
 
 /**
+ * Output live Movie Engine palette CSS from current design settings.
+ *
+ * The plugin caches tokens in uploads/custom-style.css; that file can lag behind
+ * Customizer preview or unsaved changes. Inline CSS from get_option() (preview-aware)
+ * overrides the cached file so preset/tab changes apply immediately.
+ */
+function hello_movieengine_enqueue_movie_engine_design_palette() {
+	if ( ! hello_movieengine_is_movie_engine_active() || ! class_exists( 'MovieEngine\\Core\\Cache' ) ) {
+		return;
+	}
+
+	$design = get_option( 'movie_engine_design_settings', array() );
+	if ( ! is_array( $design ) ) {
+		$design = array();
+	}
+
+	$css = \MovieEngine\Core\Cache::generate_design_css( $design );
+	if ( empty( $css ) ) {
+		return;
+	}
+
+	$handles = array( 'movie-engine-custom', 'movie-engine', 'hello-movieengine-base' );
+	$handle  = '';
+	foreach ( $handles as $candidate ) {
+		if ( wp_style_is( $candidate, 'enqueued' ) ) {
+			$handle = $candidate;
+			break;
+		}
+	}
+	if ( '' === $handle ) {
+		return;
+	}
+
+	wp_add_inline_style( $handle, $css );
+}
+add_action( 'wp_enqueue_scripts', 'hello_movieengine_enqueue_movie_engine_design_palette', 100 );
+
+/**
  * Sanitize Movie Engine design settings to prevent layout breakdowns.
  *
  * Cine Movie Engine series episodes template only supports 'list' and 'grid'.

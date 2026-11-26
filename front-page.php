@@ -61,7 +61,13 @@ $style_attr = ! empty( $main_styles ) ? ' style="' . esc_attr( implode( ' ', $ma
 			switch ( $sec_type ) {
 				case 'hero':
 					$hero_style     = $sec['hero_style'] ?? 'style1';
-					$hero_type      = $sec['hero_type'] ?? 'trending';
+					$hero_query     = class_exists( 'Hello_Movie_Engine_Customize_Section_Builder_Control' )
+						? Hello_Movie_Engine_Customize_Section_Builder_Control::hero_query_shortcode_parts( $sec )
+						: array(
+							'type'  => $sec['hero_type'] ?? 'trending',
+							'extra' => '',
+						);
+					$hero_type      = $hero_query['type'];
 					$hero_height    = $sec['hero_height'] ?? '70vh';
 					$hero_limit     = absint( $sec['hero_limit'] ?? 5 );
 					$hero_post_type = $sec['hero_post_type'] ?? 'movie_engine_movie,movie_engine_series';
@@ -89,6 +95,7 @@ $style_attr = ! empty( $main_styles ) ? ' style="' . esc_attr( implode( ' ', $ma
 					if ( ! empty( $hero_year ) ) {
 						$hero_extra .= sprintf( ' year="%s"', esc_attr( $hero_year ) );
 					}
+					$hero_extra .= $hero_query['extra'];
 
 					echo do_shortcode( sprintf(
 						'[movie_engine_hero type="%s" style="%s" height="%s" limit="%d" post_type="%s" autoplay="%s" autoplay_speed="%d" loop="%s" pause_on_hover="%s" show_nav="%s" show_dots="%s" show_imdb_badge="%s" show_description="%s" show_trailer="%s" show_watchlist="%s"%s]',
@@ -135,8 +142,15 @@ $style_attr = ! empty( $main_styles ) ? ' style="' . esc_attr( implode( ' ', $ma
 					$slider_loop  = ! empty( $sec['slider_loop'] ) ? 'true' : 'false';
 					$slider_pause = ! isset( $sec['slider_pause'] ) || ! empty( $sec['slider_pause'] ) ? 'true' : 'false';
 					$slider_dots  = ! empty( $sec['slider_dots'] ) ? 'true' : 'false';
+					$top10_query  = class_exists( 'Hello_Movie_Engine_Customize_Section_Builder_Control' )
+						? Hello_Movie_Engine_Customize_Section_Builder_Control::library_query_shortcode_parts( $sec )
+						: array(
+							'type'      => $sec['query_type'] ?? 'trending',
+							'tmdb_attr' => '',
+						);
 					echo do_shortcode( sprintf(
-						'[movie_engine_top10 limit="%d" layout="%s" post_type="%s" autoplay="%s" autoplay_speed="%d" loop="%s" pause_on_hover="%s" show_dots="%s"%s]',
+						'[movie_engine_top10 type="%s" limit="%d" layout="%s" post_type="%s" autoplay="%s" autoplay_speed="%d" loop="%s" pause_on_hover="%s" show_dots="%s"%s%s]',
+						esc_attr( $top10_query['type'] ),
 						$count,
 						esc_attr( $slider ),
 						esc_attr( $post_type ),
@@ -145,12 +159,19 @@ $style_attr = ! empty( $main_styles ) ? ' style="' . esc_attr( implode( ' ', $ma
 						esc_attr( $slider_loop ),
 						esc_attr( $slider_pause ),
 						esc_attr( $slider_dots ),
+						$top10_query['tmdb_attr'],
 						$title_attr
 					) );
 					break;
 
 				case 'library':
-					$query_type   = $sec['query_type'] ?? 'trending';
+					$lib_query    = class_exists( 'Hello_Movie_Engine_Customize_Section_Builder_Control' )
+						? Hello_Movie_Engine_Customize_Section_Builder_Control::library_query_shortcode_parts( $sec )
+						: array(
+							'type'      => $sec['query_type'] ?? 'trending',
+							'tmdb_attr' => '',
+						);
+					$query_type   = $lib_query['type'];
 					$post_type    = $sec['post_type'] ?? 'movie_engine_movie';
 					$count        = absint( $sec['count'] ?? 12 );
 					$columns      = absint( $sec['columns'] ?? 6 );
@@ -186,7 +207,7 @@ $style_attr = ! empty( $main_styles ) ? ' style="' . esc_attr( implode( ' ', $ma
 					}
 
 					echo do_shortcode( sprintf(
-						'[movie_engine_library type="%s" post_type="%s" limit="%d" columns="%d" layout="%s" orderby="%s" order="%s" autoplay="%s" autoplay_speed="%d" loop="%s" pause_on_hover="%s" show_dots="%s" show_rating="%s" show_year="%s" show_quality="%s" show_view_all="%s" pagination="false"%s%s]',
+						'[movie_engine_library type="%s" post_type="%s" limit="%d" columns="%d" layout="%s" orderby="%s" order="%s" autoplay="%s" autoplay_speed="%d" loop="%s" pause_on_hover="%s" show_dots="%s" show_rating="%s" show_year="%s" show_quality="%s" show_view_all="%s" pagination="false"%s%s%s]',
 						esc_attr( $query_type ),
 						esc_attr( $post_type ),
 						$count,
@@ -204,6 +225,7 @@ $style_attr = ! empty( $main_styles ) ? ' style="' . esc_attr( implode( ' ', $ma
 						esc_attr( $show_quality ),
 						esc_attr( $show_v_all ),
 						$lib_extra,
+						$lib_query['tmdb_attr'],
 						$title_attr
 					) );
 					break;
@@ -217,24 +239,28 @@ $style_attr = ! empty( $main_styles ) ? ' style="' . esc_attr( implode( ' ', $ma
 					$person_autoplay = ! empty( $sec['person_autoplay'] ) ? 'true' : 'false';
 					$person_speed    = absint( $sec['person_speed'] ?? 3000 );
 					$person_loop     = ! empty( $sec['person_loop'] ) ? 'true' : 'false';
+					$person_style    = isset( $sec['person_style'] ) ? $sec['person_style'] : 'overlay';
+					if ( ! in_array( $person_style, array( 'overlay', 'stacked' ), true ) ) {
+						$person_style = 'overlay';
+					}
+					$person_card_style = ( 'stacked' === $person_style ) ? 'classic' : 'overlay';
+					$person_wrap_class = sprintf( 'hello-me-home-person-wrap hello-me-person-style-%s', $person_style );
 
 					$dept_attr  = ! empty( $department ) ? sprintf( ' department="%s"', esc_attr( $department ) ) : '';
-					echo '<div class="movie-engine-section hello-me-home-person-wrap">';
-					if ( ! empty( $sec_title ) ) {
-						echo '<div class="movie-engine-section-title me-section-header"><h2>' . esc_html( $sec_title ) . '</h2></div>';
-					}
 					echo do_shortcode( sprintf(
-						'[movie_engine_person_list limit="%d" columns="%d" layout="%s" orderby="%s" autoplay="%s" autoplay_speed="%d" loop="%s"%s]',
+						'[movie_engine_person_list limit="%d" columns="%d" layout="%s" orderby="%s" style="%s" ratio="portrait" autoplay="%s" autoplay_speed="%d" loop="%s" custom_class="%s"%s%s]',
 						$count,
 						$columns,
 						esc_attr( $slider ),
 						esc_attr( $orderby ),
+						esc_attr( $person_card_style ),
 						esc_attr( $person_autoplay ),
 						$person_speed,
 						esc_attr( $person_loop ),
-						$dept_attr
+						esc_attr( $person_wrap_class ),
+						$dept_attr,
+						$title_attr
 					) );
-					echo '</div>';
 					break;
 
 				case 'genres':
@@ -296,12 +322,12 @@ $style_attr = ! empty( $main_styles ) ? ' style="' . esc_attr( implode( ' ', $ma
 				case 'shortcode':
 					$shortcode = $sec['shortcode'] ?? '';
 					if ( ! empty( $shortcode ) ) {
-						echo '<div class="movie-engine-section hello-me-home-custom-shortcode">';
-						if ( ! empty( $sec_title ) ) {
-							echo '<div class="movie-engine-section-title me-section-header"><h2>' . esc_html( $sec_title ) . '</h2></div>';
+						// If the builder title is set, inject it into known Movie Engine shortcodes
+						// so the heading stays inside the same section wrapper as the grid (home-feed alignment).
+						if ( ! empty( $sec_title ) && ! preg_match( '/\btitle\s*=/i', $shortcode ) ) {
+							$shortcode = preg_replace( '/^\[(\s*movie_engine_[\w]+)/', '[${1} title="' . esc_attr( $sec_title ) . '"', $shortcode, 1 );
 						}
 						echo do_shortcode( $shortcode );
-						echo '</div>';
 					}
 					break;
 			}

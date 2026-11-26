@@ -139,7 +139,7 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 	display: none;
 }
 
-.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
 .hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
 .hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card {
 	flex: 0 0 clamp(var(--hm-feed-card-min-width, 140px), 12.4vw, 220px) !important;
@@ -209,22 +209,182 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 	}
 }
 
-/* Cast row: compact cards in slider, grid columns in static layout */
-.hmestyle-style-two .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
-.hmestyle-style-two .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
-.hmestyle-style-two .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
-.hmestyle-style-two .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item,
+/* Single-title cast slider only (not home builder person list) */
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
+.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item,
 .hmestyle-style-two .movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-item-card,
-.hmestyle-style-two .movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-cast-item,
-.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
-.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
-.hello-me-home-person-wrap .movie-engine-items-grid > .movie-engine-movie-card,
-.hello-me-home-person-wrap .movie-engine-items-grid > .movie-engine-person-card {
-	flex: 0 0 clamp(120px, 12vw, 170px) !important;
-	width: clamp(120px, 12vw, 170px) !important;
-	max-width: 180px !important;
-	min-width: 110px !important;
+.hmestyle-style-two .movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-cast-item {
+	flex: 0 0 clamp(132px, 13.5vw, 188px) !important;
+	width: clamp(132px, 13.5vw, 188px) !important;
+	max-width: 200px !important;
+	min-width: 118px !important;
 	box-sizing: border-box !important;
+}
+
+/* Home builder Cast slider: builder Columns (--grid-columns); beats legacy clamp bundles */
+html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
+html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
+html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
+	flex: 0 0 auto !important;
+	width: calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 6)) - 1) * 20px) / var(--grid-columns, var(--me-grid-columns-desktop, 6))) !important;
+	max-width: none !important;
+	min-width: 0 !important;
+	box-sizing: border-box !important;
+}
+
+@media (max-width: 1440px) {
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
+		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * 20px) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+	}
+}
+
+@media (max-width: 1200px) {
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4)) - 1) * 20px) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4))) !important;
+	}
+}
+
+@media (max-width: 768px) {
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3)) - 1) * 15px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3))) !important;
+	}
+}
+
+/* ------------------------------------------------------------------
+   Home feed — Cast & Stars card styles (Style Two home builder only)
+   Style 1: overlay (name + role on gradient)
+   Style 2: stacked (photo + caption below)
+   ------------------------------------------------------------------ */
+
+.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-person-card {
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	padding: 0;
+}
+
+.hmestyle-style-two .hello-me-home-person-wrap .me-person-poster,
+.hmestyle-style-two .hello-me-home-person-wrap .me-person-poster img {
+	border-radius: 12px;
+}
+
+/* Style 1 — gradient overlay */
+.hmestyle-style-two .hello-me-person-style-overlay .movie-engine-person-card.me-style-overlay {
+	position: relative;
+	overflow: hidden;
+	border-radius: 12px;
+	aspect-ratio: 2 / 3;
+	height: auto !important;
+}
+
+.hmestyle-style-two .hello-me-person-style-overlay .movie-engine-person-card.me-style-overlay .me-person-poster {
+	display: block;
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.hmestyle-style-two .hello-me-person-style-overlay .movie-engine-person-card.me-style-overlay .me-person-poster img,
+.hmestyle-style-two .hello-me-person-style-overlay .movie-engine-person-card.me-style-overlay .me-person-placeholder {
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	object-fit: cover;
+	border-radius: 12px;
+}
+
+.hmestyle-style-two .hello-me-person-style-overlay .movie-engine-person-card.me-style-overlay .movie-engine-card-content {
+	position: absolute;
+	inset: auto 0 0 0;
+	z-index: 2;
+	padding: 52px 14px 14px;
+	text-align: left;
+	background: linear-gradient(
+		to top,
+		rgba(0, 0, 0, 0.94) 0%,
+		rgba(0, 0, 0, 0.72) 38%,
+		rgba(0, 0, 0, 0.15) 72%,
+		rgba(0, 0, 0, 0) 100%
+	);
+	pointer-events: none;
+}
+
+.hmestyle-style-two .hello-me-person-style-overlay .movie-engine-person-card.me-style-overlay .movie-engine-card-title {
+	margin: 0 0 4px;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.25;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+}
+
+.hmestyle-style-two .hello-me-person-style-overlay .movie-engine-person-card.me-style-overlay .movie-engine-card-title a {
+	pointer-events: auto;
+	color: #fff;
+}
+
+.hmestyle-style-two .hello-me-person-style-overlay .movie-engine-person-card.me-style-overlay .me-person-dept {
+	display: block;
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.72);
+}
+
+/* Style 2 — name & role below the portrait */
+.hmestyle-style-two .hello-me-person-style-stacked .movie-engine-person-card.me-style-classic .me-person-poster {
+	display: block;
+	aspect-ratio: 2 / 3;
+	overflow: hidden;
+	margin: 0;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.hmestyle-style-two .hello-me-person-style-stacked .movie-engine-person-card.me-style-classic .me-person-poster img,
+.hmestyle-style-two .hello-me-person-style-stacked .movie-engine-person-card.me-style-classic .me-person-placeholder {
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.hmestyle-style-two .hello-me-person-style-stacked .movie-engine-person-card.me-style-classic .movie-engine-card-content {
+	padding: 10px 2px 0;
+	text-align: left;
+}
+
+.hmestyle-style-two .hello-me-person-style-stacked .movie-engine-person-card.me-style-classic .movie-engine-card-title {
+	margin: 0 0 5px;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+.hmestyle-style-two .hello-me-person-style-stacked .movie-engine-person-card.me-style-classic .movie-engine-card-title a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.hmestyle-style-two .hello-me-person-style-stacked .movie-engine-person-card.me-style-classic .movie-engine-card-title a:hover {
+	color: var(--hello-movieengine-primary-color, #00a8e1);
+}
+
+.hmestyle-style-two .hello-me-person-style-stacked .movie-engine-person-card.me-style-classic .me-person-dept {
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.48);
 }
 
 .hmestyle-style-two .movie-engine-cast-thumb,
@@ -626,16 +786,26 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 	}
 
 	/* Movie / Series cards on mobile slider rows */
-	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
 	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
 	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card,
-	.hmestyle-style-two .movie-engine-section .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-section .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
 	.hmestyle-style-two .movie-engine-section .movie-engine-items-grid > .movie-engine-card {
 		flex: 0 0 clamp(130px, 38vw, 160px) !important;
 		width: clamp(130px, 38vw, 160px) !important;
 		min-width: 120px !important;
 		max-width: 170px !important;
 		box-sizing: border-box !important;
+	}
+
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
+		flex: 0 0 auto !important;
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3)) - 1) * 12px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3))) !important;
+		max-width: none !important;
+		min-width: 0 !important;
 	}
 }
 

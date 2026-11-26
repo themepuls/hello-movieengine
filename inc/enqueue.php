@@ -59,7 +59,9 @@ function hello_movieengine_inline_custom_css() {
 	$css       = '';
 	$root_vars = '';
 
-	if ( '#E50914' !== $primary_color ) {
+	$plugin_handles_colors = function_exists( 'hello_movieengine_is_movie_engine_active' ) && hello_movieengine_is_movie_engine_active();
+
+	if ( ! $plugin_handles_colors && '#E50914' !== $primary_color ) {
 		$hex = sanitize_hex_color( $primary_color );
 		if ( ! $hex ) {
 			$hex = '#E50914';

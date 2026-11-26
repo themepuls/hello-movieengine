@@ -18,7 +18,7 @@ class Hello_Movie_Engine_Bottom_Nav {
 	 * Hook initialization.
 	 */
 	public static function init() {
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ), 30 );
 		add_filter( 'body_class', array( __CLASS__, 'filter_body_class' ) );
 	}
 
@@ -163,7 +163,14 @@ class Hello_Movie_Engine_Bottom_Nav {
 		}
 
 		$style_deps = array( 'hello-movieengine-base' );
-		if ( 'style-two' === hello_movieengine_get_active_style() ) {
+		if (
+			function_exists( 'hello_movieengine_animation_enabled' )
+			&& hello_movieengine_animation_enabled()
+			&& (
+				wp_style_is( 'hello-movieengine-motion', 'registered' )
+				|| wp_style_is( 'hello-movieengine-motion', 'enqueued' )
+			)
+		) {
 			$style_deps[] = 'hello-movieengine-motion';
 		}
 

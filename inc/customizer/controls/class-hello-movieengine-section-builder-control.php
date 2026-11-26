@@ -44,6 +44,88 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 	}
 
 	/**
+	 * Allowed TMDb list keys for library / hero builder rows.
+	 *
+	 * @return string[]
+	 */
+	public static function get_tmdb_type_options() {
+		return array( 'day', 'week', 'now_playing', 'popular', 'top_rated', 'upcoming' );
+	}
+
+	/**
+	 * Map saved section row to movie_engine_library type + tmdb_type shortcode fragment.
+	 *
+	 * @param array $section Saved JSON section.
+	 * @return array{type: string, tmdb_attr: string}
+	 */
+	public static function library_query_shortcode_parts( $section ) {
+		$section   = is_array( $section ) ? $section : array();
+		$ids       = trim( $section['ids'] ?? '' );
+		$query_type = $section['query_type'] ?? 'trending';
+
+		if ( $ids !== '' ) {
+			return array(
+				'type'      => $query_type,
+				'tmdb_attr' => '',
+			);
+		}
+
+		$source = isset( $section['query_source'] ) ? (string) $section['query_source'] : 'site';
+		if ( 'tmdb' !== $source ) {
+			return array(
+				'type'      => $query_type,
+				'tmdb_attr' => '',
+			);
+		}
+
+		$tmdb_type = isset( $section['tmdb_type'] ) ? sanitize_key( $section['tmdb_type'] ) : '';
+		if ( ! in_array( $tmdb_type, self::get_tmdb_type_options(), true ) ) {
+			$tmdb_type = 'day';
+		}
+
+		return array(
+			'type'      => '',
+			'tmdb_attr' => sprintf( ' tmdb_type="%s"', esc_attr( $tmdb_type ) ),
+		);
+	}
+
+	/**
+	 * Hero row query: site preset type or TMDb list.
+	 *
+	 * @param array $section Saved JSON section.
+	 * @return array{type: string, extra: string}
+	 */
+	public static function hero_query_shortcode_parts( $section ) {
+		$section = is_array( $section ) ? $section : array();
+		$ids     = trim( $section['hero_ids'] ?? '' );
+
+		if ( $ids !== '' ) {
+			return array(
+				'type'  => $section['hero_type'] ?? 'trending',
+				'extra' => '',
+			);
+		}
+
+		$source = isset( $section['hero_query_source'] ) ? (string) $section['hero_query_source'] : 'site';
+		if ( 'tmdb' !== $source ) {
+			return array(
+				'type'  => $section['hero_type'] ?? 'trending',
+				'extra' => '',
+			);
+		}
+
+		$tmdb_type = isset( $section['hero_tmdb_type'] ) ? sanitize_key( $section['hero_tmdb_type'] ) : '';
+		if ( ! in_array( $tmdb_type, self::get_tmdb_type_options(), true ) ) {
+			$tmdb_type = 'day';
+		}
+
+		return array(
+			'type'  => 'trending',
+			'extra' => sprintf( ' tmdb_type="%s"', esc_attr( $tmdb_type ) ),
+		);
+	}
+
+	/**
 	 * Default OTT Homepage Sections.
 	 *
 	 * @return array
@@ -91,13 +173,15 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 				'show_view_all' => 1,
 			),
 			array(
-				'id'          => 'top10_movies',
-				'type'        => 'top10',
-				'enabled'     => 1,
-				'title'       => esc_html__( 'Top 10 in Movies Today', 'hello-movieengine' ),
-				'post_type'   => 'movie_engine_movie',
-				'count'       => 10,
-				'slider'      => 1,
+				'id'           => 'top10_movies',
+				'type'         => 'top10',
+				'enabled'      => 1,
+				'title'        => esc_html__( 'Top 10 in Movies Today', 'hello-movieengine' ),
+				'post_type'    => 'movie_engine_movie',
+				'query_source' => 'tmdb',
+				'tmdb_type'    => 'day',
+				'count'        => 10,
+				'slider'       => 1,
 			),
 			array(
 				'id'          => 'popular_series',
@@ -110,6 +194,17 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 				'columns'     => 6,
 				'slider'      => 1,
 				'show_view_all' => 1,
+			),
+			array(
+				'id'           => 'top10_series',
+				'type'         => 'top10',
+				'enabled'      => 1,
+				'title'        => esc_html__( 'Top 10 in TV Today', 'hello-movieengine' ),
+				'post_type'    => 'movie_engine_series',
+				'query_source' => 'tmdb',
+				'tmdb_type'    => 'day',
+				'count'        => 10,
+				'slider'       => 1,
 			),
 			array(
 				'id'          => 'new_releases',
@@ -169,6 +264,14 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 					// Hero parameters
 					$hero_style     = isset( $section['hero_style'] ) ? $section['hero_style'] : 'style1';
 					$hero_type      = isset( $section['hero_type'] ) ? $section['hero_type'] : 'trending';
+					$hero_query_source = isset( $section['hero_query_source'] ) ? (string) $section['hero_query_source'] : 'site';
+					if ( ! in_array( $hero_query_source, array( 'site', 'tmdb' ), true ) ) {
+						$hero_query_source = 'site';
+					}
+					$hero_tmdb_type = isset( $section['hero_tmdb_type'] ) ? sanitize_key( $section['hero_tmdb_type'] ) : 'day';
+					if ( ! in_array( $hero_tmdb_type, self::get_tmdb_type_options(), true ) ) {
+						$hero_tmdb_type = 'day';
+					}
 					$hero_ids       = isset( $section['hero_ids'] ) ? $section['hero_ids'] : '';
 					$hero_genre     = isset( $section['hero_genre'] ) ? $section['hero_genre'] : '';
 					$hero_year      = isset( $section['hero_year'] ) ? $section['hero_year'] : '';
@@ -188,6 +291,14 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 
 					// Library parameters
 					$query_type     = isset( $section['query_type'] ) ? $section['query_type'] : 'trending';
+					$query_source   = isset( $section['query_source'] ) ? (string) $section['query_source'] : 'site';
+					if ( ! in_array( $query_source, array( 'site', 'tmdb' ), true ) ) {
+						$query_source = 'site';
+					}
+					$tmdb_type      = isset( $section['tmdb_type'] ) ? sanitize_key( $section['tmdb_type'] ) : 'day';
+					if ( ! in_array( $tmdb_type, self::get_tmdb_type_options(), true ) ) {
+						$tmdb_type = 'day';
+					}
 					$post_type      = isset( $section['post_type'] ) ? $section['post_type'] : 'movie_engine_movie';
 					$count          = isset( $section['count'] ) ? absint( $section['count'] ) : 12;
 					$columns        = isset( $section['columns'] ) ? absint( $section['columns'] ) : 6;
@@ -211,6 +322,10 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 					// Person parameters
 					$department      = isset( $section['department'] ) ? $section['department'] : '';
 					$person_orderby  = isset( $section['person_orderby'] ) ? $section['person_orderby'] : 'title';
+					$person_style    = isset( $section['person_style'] ) ? $section['person_style'] : 'overlay';
+					if ( ! in_array( $person_style, array( 'overlay', 'stacked' ), true ) ) {
+						$person_style = 'overlay';
+					}
 					$person_autoplay = ! empty( $section['person_autoplay'] );
 					$person_speed    = isset( $section['person_speed'] ) ? absint( $section['person_speed'] ) : 3000;
 					$person_loop     = ! empty( $section['person_loop'] );
@@ -288,10 +403,23 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 							     ============================== -->
 							<div class="hello-movieengine-fields-library" style="<?php echo in_array( $type, array( 'library', 'top10' ), true ) ? '' : 'display: none;'; ?>">
 								<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-filter"></span><?php esc_html_e( 'Content Query & Filters', 'hello-movieengine' ); ?></div>
+								<?php if ( 'top10' === $type ) : ?>
+									<p class="description" style="font-size: 11px; color: #64748b; margin: 0 0 10px;">
+										<?php esc_html_e( 'Top 10 supports Website presets (type) or TMDb lists (tmdb_type). Use Movies or TV Series post type below.', 'hello-movieengine' ); ?>
+									</p>
+								<?php endif; ?>
 
-								<?php if ( 'top10' !== $type ) : ?>
+								<div class="hello-movieengine-builder-field">
+									<label><?php esc_html_e( 'List data source', 'hello-movieengine' ); ?></label>
+									<select class="hello-movieengine-section-query-source">
+										<option value="site" <?php selected( $query_source, 'site' ); ?>><?php esc_html_e( 'Website — views, dates & ratings on your site', 'hello-movieengine' ); ?></option>
+										<option value="tmdb" <?php selected( $query_source, 'tmdb' ); ?>><?php esc_html_e( 'TMDb — live list (imported titles only)', 'hello-movieengine' ); ?></option>
+									</select>
+								</div>
+
+								<div class="hello-movieengine-query-site" style="<?php echo ( 'site' === $query_source ) ? '' : 'display: none;'; ?>">
 									<div class="hello-movieengine-builder-field">
-										<label><?php esc_html_e( 'Content Query Source', 'hello-movieengine' ); ?></label>
+										<label><?php esc_html_e( 'Website preset (type)', 'hello-movieengine' ); ?></label>
 										<select class="hello-movieengine-section-query">
 											<option value="trending" <?php selected( $query_type, 'trending' ); ?>><?php esc_html_e( 'Trending Now', 'hello-movieengine' ); ?></option>
 											<option value="new_releases" <?php selected( $query_type, 'new_releases' ); ?>><?php esc_html_e( 'New Releases', 'hello-movieengine' ); ?></option>
@@ -300,7 +428,22 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 											<option value="top_rated" <?php selected( $query_type, 'top_rated' ); ?>><?php esc_html_e( 'Top Rated', 'hello-movieengine' ); ?></option>
 										</select>
 									</div>
-								<?php endif; ?>
+								</div>
+
+								<div class="hello-movieengine-query-tmdb" style="<?php echo ( 'tmdb' === $query_source ) ? '' : 'display: none;'; ?>">
+									<div class="hello-movieengine-builder-field">
+										<label><?php esc_html_e( 'TMDb list (tmdb_type)', 'hello-movieengine' ); ?></label>
+										<select class="hello-movieengine-section-tmdb-type">
+											<option value="day" <?php selected( $tmdb_type, 'day' ); ?>><?php esc_html_e( 'Trending today', 'hello-movieengine' ); ?></option>
+											<option value="week" <?php selected( $tmdb_type, 'week' ); ?>><?php esc_html_e( 'Trending this week', 'hello-movieengine' ); ?></option>
+											<option value="now_playing" <?php selected( $tmdb_type, 'now_playing' ); ?>><?php esc_html_e( 'Now playing / On the air', 'hello-movieengine' ); ?></option>
+											<option value="popular" <?php selected( $tmdb_type, 'popular' ); ?>><?php esc_html_e( 'Popular', 'hello-movieengine' ); ?></option>
+											<option value="top_rated" <?php selected( $tmdb_type, 'top_rated' ); ?>><?php esc_html_e( 'Top rated', 'hello-movieengine' ); ?></option>
+											<option value="upcoming" <?php selected( $tmdb_type, 'upcoming' ); ?>><?php esc_html_e( 'Upcoming', 'hello-movieengine' ); ?></option>
+										</select>
+										<span class="description" style="display:block;font-size:11px;color:#64748b;margin-top:4px;"><?php esc_html_e( 'Order matches TMDb. Only titles already imported appear.', 'hello-movieengine' ); ?></span>
+									</div>
+								</div>
 
 								<div class="hello-movieengine-builder-field">
 									<label><?php esc_html_e( 'Post Type', 'hello-movieengine' ); ?></label>
@@ -317,7 +460,7 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 								</div>
 
 								<?php if ( 'top10' !== $type ) : ?>
-									<div class="hello-movieengine-builder-row-grid-3">
+									<div class="hello-movieengine-builder-row-grid-3 hello-movieengine-query-site-only" style="<?php echo ( 'site' === $query_source ) ? '' : 'display: none;'; ?>">
 										<div class="hello-movieengine-builder-field">
 											<label><?php esc_html_e( 'Genre Slug', 'hello-movieengine' ); ?></label>
 											<input type="text" class="hello-movieengine-section-genre" value="<?php echo esc_attr( $genre ); ?>" placeholder="e.g. action" />
@@ -332,7 +475,7 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										</div>
 									</div>
 
-									<div class="hello-movieengine-builder-row-grid">
+									<div class="hello-movieengine-builder-row-grid hello-movieengine-query-site-only" style="<?php echo ( 'site' === $query_source ) ? '' : 'display: none;'; ?>">
 										<div class="hello-movieengine-builder-field">
 											<label><?php esc_html_e( 'Order By', 'hello-movieengine' ); ?></label>
 											<select class="hello-movieengine-section-orderby">
@@ -481,9 +624,17 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 									<span class="description" style="font-size: 11px; color: #64748b;"><?php esc_html_e( 'Overrides preset below when entered.', 'hello-movieengine' ); ?></span>
 								</div>
 
-								<div class="hello-movieengine-builder-row-grid">
+								<div class="hello-movieengine-builder-field">
+									<label><?php esc_html_e( 'List data source', 'hello-movieengine' ); ?></label>
+									<select class="hello-movieengine-section-hero-query-source">
+										<option value="site" <?php selected( $hero_query_source, 'site' ); ?>><?php esc_html_e( 'Website — views, dates & ratings on your site', 'hello-movieengine' ); ?></option>
+										<option value="tmdb" <?php selected( $hero_query_source, 'tmdb' ); ?>><?php esc_html_e( 'TMDb — live list (imported titles only)', 'hello-movieengine' ); ?></option>
+									</select>
+								</div>
+
+								<div class="hello-movieengine-hero-query-site" style="<?php echo ( 'site' === $hero_query_source ) ? '' : 'display: none;'; ?>">
 									<div class="hello-movieengine-builder-field">
-										<label><?php esc_html_e( 'Preset Source', 'hello-movieengine' ); ?></label>
+										<label><?php esc_html_e( 'Website preset (type)', 'hello-movieengine' ); ?></label>
 										<select class="hello-movieengine-section-hero-type">
 											<option value="trending" <?php selected( $hero_type, 'trending' ); ?>><?php esc_html_e( 'Trending Spotlight', 'hello-movieengine' ); ?></option>
 											<option value="new_releases" <?php selected( $hero_type, 'new_releases' ); ?>><?php esc_html_e( 'Latest Releases', 'hello-movieengine' ); ?></option>
@@ -492,14 +643,29 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 											<option value="upcoming" <?php selected( $hero_type, 'upcoming' ); ?>><?php esc_html_e( 'Upcoming', 'hello-movieengine' ); ?></option>
 										</select>
 									</div>
+								</div>
+
+								<div class="hello-movieengine-hero-query-tmdb" style="<?php echo ( 'tmdb' === $hero_query_source ) ? '' : 'display: none;'; ?>">
 									<div class="hello-movieengine-builder-field">
-										<label><?php esc_html_e( 'Post Type', 'hello-movieengine' ); ?></label>
-										<select class="hello-movieengine-section-hero-post-type">
-											<option value="movie_engine_movie,movie_engine_series" <?php selected( $hero_post_type, 'movie_engine_movie,movie_engine_series' ); ?>><?php esc_html_e( 'Both', 'hello-movieengine' ); ?></option>
-											<option value="movie_engine_movie" <?php selected( $hero_post_type, 'movie_engine_movie' ); ?>><?php esc_html_e( 'Movies Only', 'hello-movieengine' ); ?></option>
-											<option value="movie_engine_series" <?php selected( $hero_post_type, 'movie_engine_series' ); ?>><?php esc_html_e( 'TV Series Only', 'hello-movieengine' ); ?></option>
+										<label><?php esc_html_e( 'TMDb list (tmdb_type)', 'hello-movieengine' ); ?></label>
+										<select class="hello-movieengine-section-hero-tmdb-type">
+											<option value="day" <?php selected( $hero_tmdb_type, 'day' ); ?>><?php esc_html_e( 'Trending today', 'hello-movieengine' ); ?></option>
+											<option value="week" <?php selected( $hero_tmdb_type, 'week' ); ?>><?php esc_html_e( 'Trending this week', 'hello-movieengine' ); ?></option>
+											<option value="now_playing" <?php selected( $hero_tmdb_type, 'now_playing' ); ?>><?php esc_html_e( 'Now playing / On the air', 'hello-movieengine' ); ?></option>
+											<option value="popular" <?php selected( $hero_tmdb_type, 'popular' ); ?>><?php esc_html_e( 'Popular', 'hello-movieengine' ); ?></option>
+											<option value="top_rated" <?php selected( $hero_tmdb_type, 'top_rated' ); ?>><?php esc_html_e( 'Top rated', 'hello-movieengine' ); ?></option>
+											<option value="upcoming" <?php selected( $hero_tmdb_type, 'upcoming' ); ?>><?php esc_html_e( 'Upcoming', 'hello-movieengine' ); ?></option>
 										</select>
 									</div>
+								</div>
+
+								<div class="hello-movieengine-builder-field">
+									<label><?php esc_html_e( 'Post Type', 'hello-movieengine' ); ?></label>
+									<select class="hello-movieengine-section-hero-post-type">
+										<option value="movie_engine_movie,movie_engine_series" <?php selected( $hero_post_type, 'movie_engine_movie,movie_engine_series' ); ?>><?php esc_html_e( 'Both', 'hello-movieengine' ); ?></option>
+										<option value="movie_engine_movie" <?php selected( $hero_post_type, 'movie_engine_movie' ); ?>><?php esc_html_e( 'Movies Only', 'hello-movieengine' ); ?></option>
+										<option value="movie_engine_series" <?php selected( $hero_post_type, 'movie_engine_series' ); ?>><?php esc_html_e( 'TV Series Only', 'hello-movieengine' ); ?></option>
+									</select>
 								</div>
 
 								<div class="hello-movieengine-builder-row-grid">
@@ -614,10 +780,17 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										<option value="rand" <?php selected( $person_orderby, 'rand' ); ?>><?php esc_html_e( 'Random', 'hello-movieengine' ); ?></option>
 									</select>
 								</div>
+								<div class="hello-movieengine-builder-field">
+									<label><?php esc_html_e( 'Card Style', 'hello-movieengine' ); ?></label>
+									<select class="hello-movieengine-section-person-style">
+										<option value="overlay" <?php selected( $person_style, 'overlay' ); ?>><?php esc_html_e( 'Style 1 — Gradient overlay on photo', 'hello-movieengine' ); ?></option>
+										<option value="stacked" <?php selected( $person_style, 'stacked' ); ?>><?php esc_html_e( 'Style 2 — Name & role below photo', 'hello-movieengine' ); ?></option>
+									</select>
+								</div>
 								<div class="hello-movieengine-builder-row-grid">
 									<div class="hello-movieengine-builder-field">
 										<label><?php esc_html_e( 'Stars Count', 'hello-movieengine' ); ?></label>
-										<input type="number" class="hello-movieengine-section-person-count" value="<?php echo esc_attr( $count ); ?>" min="4" max="30" step="1" />
+										<input type="number" class="hello-movieengine-section-person-count" value="<?php echo esc_attr( $count ); ?>" min="3" max="30" step="1" />
 									</div>
 									<div class="hello-movieengine-builder-field">
 										<label><?php esc_html_e( 'Columns', 'hello-movieengine' ); ?></label>

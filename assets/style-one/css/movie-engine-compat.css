@@ -24,6 +24,13 @@
 	--hello-movieengine-text-color: var(--movie-engine-body-color, #d0d0cf);
 }
 
+/* Style Two motion.js must not inject filter drawer chrome on Style One. */
+.hmestyle-style-one .hme-filters-backdrop,
+.hmestyle-style-one .hme-filters-toggle,
+.hmestyle-style-one .hme-filters-close {
+	display: none !important;
+}
+
 /* --------------------------------------------------------
    Movie Engine pages: let plugin control the layout
    -------------------------------------------------------- */
@@ -274,10 +281,10 @@
 	}
 
 	/* Movie / Series cards on mobile slider rows */
-	.movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
 	.movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
 	.movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card,
-	.movie-engine-section .movie-engine-items-grid > .movie-engine-movie-card,
+	.movie-engine-section .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
 	.movie-engine-section .movie-engine-items-grid > .movie-engine-card {
 		flex: 0 0 clamp(130px, 38vw, 160px) !important;
 		width: clamp(130px, 38vw, 160px) !important;
@@ -287,20 +294,51 @@
 	}
 }
 
-/* Cast cards & avatar sizing: compact cards, never blow up to 100% width */
+/* Single movie/series cast row — compact fixed cards in horizontal slider */
 .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
 .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
 .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
 .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item,
 .movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-item-card,
-.movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-cast-item,
-.hello-me-home-person-wrap .movie-engine-items-grid > .movie-engine-movie-card,
-.hello-me-home-person-wrap .movie-engine-items-grid > .movie-engine-person-card {
+.movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-cast-item {
 	flex: 0 0 clamp(120px, 12vw, 170px) !important;
 	width: clamp(120px, 12vw, 170px) !important;
 	max-width: 180px !important;
 	min-width: 110px !important;
 	box-sizing: border-box !important;
+}
+
+/* Home builder Cast & Stars — respect shortcode/builder column count in slider (not fixed clamp) */
+.hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+.hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
+.hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
+.hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
+	flex: 0 0 auto !important;
+	width: calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 6)) - 1) * 20px) / var(--grid-columns, var(--me-grid-columns-desktop, 6))) !important;
+	max-width: none !important;
+	min-width: 0 !important;
+	box-sizing: border-box !important;
+}
+
+@media (max-width: 1440px) {
+	.hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	.hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
+		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * 20px) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+	}
+}
+
+@media (max-width: 1200px) {
+	.hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	.hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4)) - 1) * 20px) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4))) !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	.hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3)) - 1) * 15px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3))) !important;
+	}
 }
 
 .movie-engine-cast-thumb,

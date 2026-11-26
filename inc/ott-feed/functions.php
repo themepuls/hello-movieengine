@@ -27,12 +27,22 @@ function hello_movieengine_customize_is_style_two() {
  *
  * @return bool
  */
-function hello_movieengine_is_feed_page() {
-	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
+/**
+ * Front page using the Home Feed builder (Style One or Two).
+ *
+ * @return bool
+ */
+function hello_movieengine_is_home_feed_builder() {
+	if ( ! is_front_page() ) {
 		return false;
 	}
 
-	return is_front_page();
+	$mode = get_theme_mod( 'hello_movieengine_home_mode', 'editor' );
+	return in_array( $mode, array( 'builder', 'hybrid' ), true );
+}
+
+function hello_movieengine_is_feed_page() {
+	return hello_movieengine_is_home_feed_builder();
 }
 
 /**
@@ -127,12 +137,14 @@ function hello_movieengine_show_site_footer() {
  * @return string[]
  */
 function hello_movieengine_ott_feed_body_class( $classes ) {
-	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
-		return $classes;
-	}
+	$is_style_two = ( 'style-two' === hello_movieengine_get_active_style() );
 
 	if ( hello_movieengine_is_feed_page() ) {
 		$classes[] = 'hello-movieengine-feed-page';
+	}
+
+	if ( ! $is_style_two ) {
+		return $classes;
 	}
 
 	if ( hello_movieengine_is_style_two_browse() ) {
@@ -196,48 +208,6 @@ function hello_movieengine_ott_feed_root_vars() {
 
 	return $vars;
 }
-
-/**
- * First-paint hide + fade-in (Style Two). Mirrors the cmes-ready idea
- * without using cmes class names.
- */
-function hello_movieengine_ott_feed_paint_head() {
-	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
-		return;
-	}
-
-	if ( is_customize_preview() ) {
-		return;
-	}
-
-	echo '<style id="hello-movieengine-paint">html.hmestyle-style-two:not(.hmestyle-ready) #page{opacity:0}html.hmestyle-ready #page{opacity:1;transition:opacity .28s ease}@media (prefers-reduced-motion:reduce){html.hmestyle-style-two #page{opacity:1!important;transition:none!important}}</style>' . "\n";
-	echo '<script>!function(){function r(){document.documentElement.classList.add("hmestyle-ready")}if("complete"===document.readyState)r();else{document.addEventListener("DOMContentLoaded",function(){requestAnimationFrame(r)});window.addEventListener("load",r)}setTimeout(r,2500)}();</script>' . "\n";
-	echo '<noscript><style>html.hmestyle-style-two #page{opacity:1}</style></noscript>' . "\n";
-}
-add_action( 'wp_head', 'hello_movieengine_ott_feed_paint_head', 1 );
-
-/**
- * Section fade-in as rows enter the viewport (Style Two).
- */
-function hello_movieengine_ott_feed_enqueue_motion() {
-	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
-		return;
-	}
-
-	$path = Hello_Movie_Engine_Style_Registry::style_path( 'js/motion.js' );
-	if ( ! file_exists( $path ) ) {
-		return;
-	}
-
-	wp_enqueue_script(
-		'hello-movieengine-motion',
-		Hello_Movie_Engine_Style_Registry::style_uri( 'js/motion.js' ),
-		array(),
-		filemtime( $path ),
-		true
-	);
-}
-add_action( 'wp_enqueue_scripts', 'hello_movieengine_ott_feed_enqueue_motion' );
 
 /**
  * Studio taxonomy type tabs (Style Two).

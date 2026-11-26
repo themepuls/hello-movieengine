@@ -593,6 +593,22 @@
 		closeIconPicker();
 	} );
 
+	/**
+	 * Push hidden/linked control values into the Customizer API (required for dirty state + preview).
+	 *
+	 * @param {jQuery} $input Linked input with data-customize-setting-link.
+	 */
+	function syncCustomizeLinkedInput( $input ) {
+		var val       = $input.val();
+		var settingId = $input.data( 'customize-setting-link' );
+
+		$input.trigger( 'change' );
+
+		if ( settingId && typeof wp !== 'undefined' && wp.customize && wp.customize( settingId ) ) {
+			wp.customize( settingId ).set( val );
+		}
+	}
+
 	/* ==========================================================
 	   Button Group Control (Segmented Pill Switcher)
 	   ========================================================== */
@@ -607,7 +623,12 @@
 		$group.find( '.hello-movieengine-btn-group-item' ).removeClass( 'is-active' );
 		$btn.addClass( 'is-active' );
 
-		$input.val( val ).trigger( 'change' );
+		$input.val( val );
+		syncCustomizeLinkedInput( $input );
+
+		if ( $input.data( 'customize-setting-link' ) === 'movie_engine_design_settings[color_preset]' ) {
+			toggleMeCustomColorControls();
+		}
 	} );
 
 	/* ==========================================================
@@ -624,7 +645,8 @@
 		$grid.find( '.hello-movieengine-visual-card' ).removeClass( 'is-active' ).attr( 'aria-checked', 'false' );
 		$card.addClass( 'is-active' ).attr( 'aria-checked', 'true' );
 
-		$input.val( val ).trigger( 'change' );
+		$input.val( val );
+		syncCustomizeLinkedInput( $input );
 	} );
 
 	/* ==========================================================
@@ -720,6 +742,20 @@
 		} );
 	}
 
+	function updateRowQuerySourceUI( $row ) {
+		if ( ! $row || ! $row.length ) {
+			return;
+		}
+		var libSource = $row.find( '.hello-movieengine-section-query-source' ).val() || 'site';
+		$row.find( '.hello-movieengine-query-site' ).toggle( libSource === 'site' );
+		$row.find( '.hello-movieengine-query-tmdb' ).toggle( libSource === 'tmdb' );
+		$row.find( '.hello-movieengine-query-site-only' ).toggle( libSource === 'site' );
+
+		var heroSource = $row.find( '.hello-movieengine-section-hero-query-source' ).val() || 'site';
+		$row.find( '.hello-movieengine-hero-query-site' ).toggle( heroSource === 'site' );
+		$row.find( '.hello-movieengine-hero-query-tmdb' ).toggle( heroSource === 'tmdb' );
+	}
+
 	function syncSectionBuilder( $wrap ) {
 		if ( ! $wrap || ! $wrap.length ) {
 			return;
@@ -729,12 +765,26 @@
 			var $row = $( this );
 			var type = $row.find( '.hello-movieengine-section-type' ).val() || 'library';
 			var isEnabled = $row.find( '.hello-movieengine-builder-eye' ).data( 'enabled' ) == 1;
+
+			var sectionCount  = parseInt( $row.find( '.hello-movieengine-section-count' ).val(), 10 ) || 12;
+			var sectionCols   = parseInt( $row.find( '.hello-movieengine-section-columns' ).val(), 10 ) || 6;
+			var sectionSlider = $row.find( '.hello-movieengine-section-slider' ).is( ':checked' ) ? 1 : 0;
+			if ( type === 'person_list' ) {
+				var personCountVal = parseInt( $row.find( '.hello-movieengine-section-person-count' ).val(), 10 );
+				var personColsVal  = parseInt( $row.find( '.hello-movieengine-section-person-columns' ).val(), 10 );
+				sectionCount  = ! isNaN( personCountVal ) ? personCountVal : 12;
+				sectionCols   = ! isNaN( personColsVal ) ? personColsVal : 6;
+				sectionSlider = $row.find( '.hello-movieengine-section-person-slider' ).is( ':checked' ) ? 1 : 0;
+			}
+
 			var sec = {
 				id: $row.data( 'id' ) || 'sec_' + Math.random().toString( 36 ).substr( 2, 9 ),
 				type: type,
 				enabled: isEnabled ? 1 : 0,
 				title: $row.find( '.hello-movieengine-section-title' ).val() || '',
+				query_source: $row.find( '.hello-movieengine-section-query-source' ).val() || 'site',
 				query_type: $row.find( '.hello-movieengine-section-query' ).val() || 'trending',
+				tmdb_type: $row.find( '.hello-movieengine-section-tmdb-type' ).val() || 'day',
 				post_type: $row.find( '.hello-movieengine-section-post-type' ).val() || 'movie_engine_movie',
 				ids: $row.find( '.hello-movieengine-section-ids' ).val() || '',
 				genre: $row.find( '.hello-movieengine-section-genre' ).val() || '',
@@ -742,9 +792,9 @@
 				language: $row.find( '.hello-movieengine-section-language' ).val() || '',
 				orderby: $row.find( '.hello-movieengine-section-orderby' ).val() || 'date',
 				order: $row.find( '.hello-movieengine-section-order' ).val() || 'DESC',
-				count: parseInt( $row.find( '.hello-movieengine-section-count' ).val(), 10 ) || 12,
-				columns: parseInt( $row.find( '.hello-movieengine-section-columns' ).val(), 10 ) || 6,
-				slider: $row.find( '.hello-movieengine-section-slider' ).is( ':checked' ) ? 1 : 0,
+				count: sectionCount,
+				columns: sectionCols,
+				slider: sectionSlider,
 				show_view_all: $row.find( '.hello-movieengine-section-view-all' ).length ? ( $row.find( '.hello-movieengine-section-view-all' ).is( ':checked' ) ? 1 : 0 ) : 1,
 				slider_autoplay: $row.find( '.hello-movieengine-section-slider-autoplay' ).is( ':checked' ) ? 1 : 0,
 				slider_speed: parseInt( $row.find( '.hello-movieengine-section-slider-speed' ).val(), 10 ) || 3000,
@@ -756,11 +806,14 @@
 				show_quality: $row.find( '.hello-movieengine-section-show-quality' ).length ? ( $row.find( '.hello-movieengine-section-show-quality' ).is( ':checked' ) ? 1 : 0 ) : 1,
 				department: $row.find( '.hello-movieengine-section-department' ).val() || '',
 				person_orderby: $row.find( '.hello-movieengine-section-person-orderby' ).val() || 'title',
+				person_style: $row.find( '.hello-movieengine-section-person-style' ).val() || 'overlay',
 				person_autoplay: $row.find( '.hello-movieengine-section-person-autoplay' ).length ? ( $row.find( '.hello-movieengine-section-person-autoplay' ).is( ':checked' ) ? 1 : 0 ) : 0,
 				person_speed: parseInt( $row.find( '.hello-movieengine-section-person-speed' ).val(), 10 ) || 3000,
 				hero_style: $row.find( '.hello-movieengine-section-hero-style' ).val() || 'style1',
 				hero_ids: $row.find( '.hello-movieengine-section-hero-ids' ).val() || '',
+				hero_query_source: $row.find( '.hello-movieengine-section-hero-query-source' ).val() || 'site',
 				hero_type: $row.find( '.hello-movieengine-section-hero-type' ).val() || 'trending',
+				hero_tmdb_type: $row.find( '.hello-movieengine-section-hero-tmdb-type' ).val() || 'day',
 				hero_height: $row.find( '.hello-movieengine-section-hero-height' ).val() || '70vh',
 				hero_limit: parseInt( $row.find( '.hello-movieengine-section-hero-limit' ).val(), 10 ) || 5,
 				hero_post_type: $row.find( '.hello-movieengine-section-hero-post-type' ).val() || 'movie_engine_movie,movie_engine_series',
@@ -874,6 +927,13 @@
 		$row.find( '.hello-movieengine-fields-shortcode' ).toggle( type === 'shortcode' );
 		$row.find( '.hello-movieengine-fields-page-content' ).toggle( type === 'page_content' );
 
+		updateRowQuerySourceUI( $row );
+		syncSectionBuilder( $row.closest( '.hello-movieengine-section-builder-control' ) );
+	} );
+
+	$( document ).on( 'change', '.hello-movieengine-section-query-source, .hello-movieengine-section-hero-query-source', function () {
+		var $row = $( this ).closest( '.hello-movieengine-builder-row' );
+		updateRowQuerySourceUI( $row );
 		syncSectionBuilder( $row.closest( '.hello-movieengine-section-builder-control' ) );
 	} );
 
@@ -936,15 +996,17 @@
 				'<!-- 1. Library & Top10 -->' +
 				'<div class="hello-movieengine-fields-library">' +
 					'<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-filter"></span>Content Query & Filters</div>' +
-					'<div class="hello-movieengine-builder-field"><label>Content Query Source</label><select class="hello-movieengine-section-query"><option value="trending" selected>Trending Now</option><option value="new_releases">New Releases</option><option value="upcoming">Upcoming Releases</option><option value="popular">Most Popular</option><option value="top_rated">Top Rated</option></select></div>' +
+					'<div class="hello-movieengine-builder-field"><label>List data source</label><select class="hello-movieengine-section-query-source"><option value="site" selected>Website — views, dates &amp; ratings</option><option value="tmdb">TMDb — live list (imported only)</option></select></div>' +
+					'<div class="hello-movieengine-query-site"><div class="hello-movieengine-builder-field"><label>Website preset (type)</label><select class="hello-movieengine-section-query"><option value="trending" selected>Trending Now</option><option value="new_releases">New Releases</option><option value="upcoming">Upcoming Releases</option><option value="popular">Most Popular</option><option value="top_rated">Top Rated</option></select></div></div>' +
+					'<div class="hello-movieengine-query-tmdb" style="display:none;"><div class="hello-movieengine-builder-field"><label>TMDb list (tmdb_type)</label><select class="hello-movieengine-section-tmdb-type"><option value="day" selected>Trending today</option><option value="week">Trending this week</option><option value="now_playing">Now playing / On the air</option><option value="popular">Popular</option><option value="top_rated">Top rated</option><option value="upcoming">Upcoming</option></select></div></div>' +
 					'<div class="hello-movieengine-builder-field"><label>Post Type</label><select class="hello-movieengine-section-post-type"><option value="movie_engine_movie" selected>Movies Only</option><option value="movie_engine_series">TV Series Only</option><option value="movie_engine_movie,movie_engine_series">Both Movies & TV Series</option></select></div>' +
 					'<div class="hello-movieengine-builder-field"><label>Specific Post IDs (optional)</label><input type="text" class="hello-movieengine-section-ids" value="" placeholder="e.g. 101, 204, 315 (leave blank for dynamic query)" /></div>' +
-					'<div class="hello-movieengine-builder-row-grid-3">' +
+					'<div class="hello-movieengine-builder-row-grid-3 hello-movieengine-query-site-only">' +
 						'<div class="hello-movieengine-builder-field"><label>Genre Slug</label><input type="text" class="hello-movieengine-section-genre" value="" placeholder="e.g. action" /></div>' +
 						'<div class="hello-movieengine-builder-field"><label>Year</label><input type="text" class="hello-movieengine-section-year" value="" placeholder="e.g. 2025" /></div>' +
 						'<div class="hello-movieengine-builder-field"><label>Language</label><input type="text" class="hello-movieengine-section-language" value="" placeholder="e.g. en, ko" /></div>' +
 					'</div>' +
-					'<div class="hello-movieengine-builder-row-grid">' +
+					'<div class="hello-movieengine-builder-row-grid hello-movieengine-query-site-only">' +
 						'<div class="hello-movieengine-builder-field"><label>Order By</label><select class="hello-movieengine-section-orderby"><option value="date" selected>Release Date</option><option value="views">Views Count</option><option value="title">Title (A-Z)</option><option value="rand">Random</option></select></div>' +
 						'<div class="hello-movieengine-builder-field"><label>Sort Direction</label><select class="hello-movieengine-section-order"><option value="DESC" selected>Descending</option><option value="ASC">Ascending</option></select></div>' +
 					'</div>' +
@@ -985,10 +1047,10 @@
 					'</div>' +
 					'<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-filter"></span>Content Source & Query</div>' +
 					'<div class="hello-movieengine-builder-field"><label>Specific Post IDs (optional)</label><input type="text" class="hello-movieengine-section-hero-ids" value="" placeholder="e.g. 101, 204, 315 (leave blank for preset)" /><span class="description" style="font-size: 11px; color: #64748b;">Overrides preset below when entered.</span></div>' +
-					'<div class="hello-movieengine-builder-row-grid">' +
-						'<div class="hello-movieengine-builder-field"><label>Preset Source</label><select class="hello-movieengine-section-hero-type"><option value="trending" selected>Trending Spotlight</option><option value="new_releases">Latest Releases</option><option value="popular">Most Popular</option><option value="top_rated">Top Rated</option><option value="upcoming">Upcoming</option></select></div>' +
-						'<div class="hello-movieengine-builder-field"><label>Post Type</label><select class="hello-movieengine-section-hero-post-type"><option value="movie_engine_movie,movie_engine_series" selected>Both</option><option value="movie_engine_movie">Movies Only</option><option value="movie_engine_series">TV Series Only</option></select></div>' +
-					'</div>' +
+					'<div class="hello-movieengine-builder-field"><label>List data source</label><select class="hello-movieengine-section-hero-query-source"><option value="site" selected>Website — views, dates &amp; ratings</option><option value="tmdb">TMDb — live list (imported only)</option></select></div>' +
+					'<div class="hello-movieengine-hero-query-site"><div class="hello-movieengine-builder-field"><label>Website preset (type)</label><select class="hello-movieengine-section-hero-type"><option value="trending" selected>Trending Spotlight</option><option value="new_releases">Latest Releases</option><option value="popular">Most Popular</option><option value="top_rated">Top Rated</option><option value="upcoming">Upcoming</option></select></div></div>' +
+					'<div class="hello-movieengine-hero-query-tmdb" style="display:none;"><div class="hello-movieengine-builder-field"><label>TMDb list (tmdb_type)</label><select class="hello-movieengine-section-hero-tmdb-type"><option value="day" selected>Trending today</option><option value="week">Trending this week</option><option value="now_playing">Now playing / On the air</option><option value="popular">Popular</option><option value="top_rated">Top rated</option><option value="upcoming">Upcoming</option></select></div></div>' +
+					'<div class="hello-movieengine-builder-field"><label>Post Type</label><select class="hello-movieengine-section-hero-post-type"><option value="movie_engine_movie,movie_engine_series" selected>Both</option><option value="movie_engine_movie">Movies Only</option><option value="movie_engine_series">TV Series Only</option></select></div>' +
 					'<div class="hello-movieengine-builder-row-grid">' +
 						'<div class="hello-movieengine-builder-field"><label>Genre Slug (optional)</label><input type="text" class="hello-movieengine-section-hero-genre" value="" placeholder="e.g. action" /></div>' +
 						'<div class="hello-movieengine-builder-field"><label>Year (optional)</label><input type="text" class="hello-movieengine-section-hero-year" value="" placeholder="e.g. 2025" /></div>' +
@@ -1022,11 +1084,12 @@
 					'<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-admin-users"></span>Cast & Stars Query</div>' +
 					'<div class="hello-movieengine-builder-field"><label>Department / Role</label><select class="hello-movieengine-section-department"><option value="" selected>All Roles (Actors, Directors, etc.)</option><option value="Acting">Acting (Actors)</option><option value="Directing">Directing (Directors)</option><option value="Writing">Writing (Writers)</option></select></div>' +
 					'<div class="hello-movieengine-builder-field"><label>Order By</label><select class="hello-movieengine-section-person-orderby"><option value="title" selected>Name (A to Z)</option><option value="date">Recently Added</option><option value="rand">Random</option></select></div>' +
+					'<div class="hello-movieengine-builder-field"><label>Card Style</label><select class="hello-movieengine-section-person-style"><option value="overlay" selected>Style 1 — Gradient overlay on photo</option><option value="stacked">Style 2 — Name &amp; role below photo</option></select></div>' +
 					'<div class="hello-movieengine-builder-row-grid">' +
-						'<div class="hello-movieengine-builder-field"><label>Stars Count</label><input type="number" class="hello-movieengine-section-count" value="12" min="4" max="30" /></div>' +
-						'<div class="hello-movieengine-builder-field"><label>Columns</label><input type="number" class="hello-movieengine-section-columns" value="6" min="3" max="8" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Stars Count</label><input type="number" class="hello-movieengine-section-person-count" value="12" min="3" max="30" step="1" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Columns</label><input type="number" class="hello-movieengine-section-person-columns" value="6" min="3" max="8" step="1" /></div>' +
 					'</div>' +
-					'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-slider" value="1" checked /> Enable Horizontal Slider Carousel</label></div>' +
+					'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-person-slider" value="1" checked /> Enable Horizontal Slider Carousel</label></div>' +
 					'<div class="hello-movieengine-builder-row-grid">' +
 						'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-person-autoplay" value="1" /> Auto-slide</label></div>' +
 						'<div class="hello-movieengine-builder-field"><label>Speed (ms)</label><input type="number" class="hello-movieengine-section-person-speed" value="3000" min="1500" max="10000" step="500" /></div>' +
@@ -1090,25 +1153,105 @@
 				'<!-- 10. Page Content -->' +
 				'<div class="hello-movieengine-fields-page-content" style="display: none;">' +
 					'<p class="description" style="margin: 4px 0 8px; font-size: 11.5px; color: #64748b;">This block will render any text, Gutenberg blocks, or Elementor content written inside your homepage editor.</p>' +
-				'</div>' + +
+				'</div>' +
 			'</div>' +
 		'</div>';
 
 		$container.append( tpl );
+		var $newRow = $container.children( '.hello-movieengine-builder-row' ).last();
+		updateRowQuerySourceUI( $newRow );
 		initSectionBuilderSortable();
 		syncSectionBuilder( $wrap );
 	} );
 
+	function initSectionBuilderQueryUI() {
+		$( '.hello-movieengine-builder-row' ).each( function () {
+			updateRowQuerySourceUI( $( this ) );
+		} );
+	}
+
 	$( window ).on( 'load', function () {
 		setTimeout( initNavRepeaterSortable, 400 );
-		setTimeout( initSectionBuilderSortable, 500 );
+		setTimeout( function () {
+			initSectionBuilderSortable();
+			initSectionBuilderQueryUI();
+		}, 500 );
 	} );
 
 	if ( typeof wp !== 'undefined' && wp.customize && wp.customize.section ) {
 		wp.customize.section.each( function ( section ) {
 			section.expanded.bind( function ( isExpanded ) {
 				if ( isExpanded ) {
-					setTimeout( initSectionBuilderSortable, 200 );
+					setTimeout( function () {
+						initSectionBuilderSortable();
+						initSectionBuilderQueryUI();
+					}, 200 );
+				}
+			} );
+		} );
+	}
+
+	/* ==========================================================
+	   Movie Engine color preset → custom pickers visibility
+	   ========================================================== */
+
+	var meCustomColorSettingIds = [
+		'movie_engine_design_settings[primary_color]',
+		'movie_engine_design_settings[primary_hover_color]',
+		'movie_engine_design_settings[text_color]',
+		'movie_engine_design_settings[gray_color]',
+		'movie_engine_design_settings[border_color]',
+		'movie_engine_design_settings[background_color]',
+		'movie_engine_design_settings[surface_color]'
+	];
+
+	function getMeColorPreset() {
+		var preset = 'netflix';
+		if ( typeof wp !== 'undefined' && wp.customize ) {
+			var setting = wp.customize( 'movie_engine_design_settings[color_preset]' );
+			if ( setting ) {
+				preset = setting.get() || preset;
+			}
+		}
+		var $input = $( '#customize-control-movie_engine_design_settings-color_preset .hello-movieengine-btn-group-value' );
+		if ( $input.length ) {
+			preset = $input.val() || preset;
+		}
+		return preset;
+	}
+
+	function toggleMeCustomColorControls() {
+		var show = getMeColorPreset() === 'custom';
+		var hasApi = typeof wp !== 'undefined' && wp.customize && wp.customize.control;
+
+		meCustomColorSettingIds.forEach( function ( settingId ) {
+			if ( hasApi ) {
+				var control = wp.customize.control( settingId );
+				if ( control && control.container ) {
+					control.container.toggle( show );
+					return;
+				}
+			}
+		} );
+
+		$( '#customize-theme-controls .hello-movieengine-me-custom-color' ).toggle( show );
+	}
+
+	$( document ).on( 'change', '#customize-control-movie_engine_design_settings-color_preset .hello-movieengine-btn-group-value', toggleMeCustomColorControls );
+
+	if ( typeof wp !== 'undefined' && wp.customize ) {
+		wp.customize.bind( 'ready', function () {
+			var setting = wp.customize( 'movie_engine_design_settings[color_preset]' );
+			if ( setting ) {
+				setting.bind( toggleMeCustomColorControls );
+			}
+			toggleMeCustomColorControls();
+		} );
+
+		wp.customize.section( 'hello_movieengine_colors_section', function ( section ) {
+			section.expanded.bind( function ( isExpanded ) {
+				if ( isExpanded ) {
+					setTimeout( toggleMeCustomColorControls, 50 );
 				}
 			} );
 		} );
