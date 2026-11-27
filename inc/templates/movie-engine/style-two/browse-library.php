@@ -30,11 +30,40 @@ $hello_me_title = $hello_me_is_series
 		'</span>'
 	);
 
-$hello_me_desc = $hello_me_is_series
-	? esc_html__( 'Discover, search and filter from our complete TV series collection', 'hello-movieengine' )
-	: esc_html__( 'Discover, search and filter from our complete movie collection', 'hello-movieengine' );
+$hello_me_pt_align = get_theme_mod( 'hello_movieengine_page_title_align', 'center' );
+if ( ! in_array( $hello_me_pt_align, array( 'left', 'center', 'right' ), true ) ) {
+	$hello_me_pt_align = 'center';
+}
+$hello_me_title_align_cl = 'hello-movieengine-title-content--align-' . sanitize_html_class( $hello_me_pt_align );
 
 $movie_engine_design_settings = get_option( 'movie_engine_design_settings', array() );
+
+$hello_me_browse_desc_page_id = 0;
+if ( is_page() ) {
+	$hello_me_browse_desc_page_id = (int) get_queried_object_id();
+} elseif ( $hello_me_is_series && ! empty( $movie_engine_design_settings['series_archive_page'] ) ) {
+	$hello_me_browse_desc_page_id = absint( $movie_engine_design_settings['series_archive_page'] );
+} elseif ( ! $hello_me_is_series && ! empty( $movie_engine_design_settings['movie_archive_page'] ) ) {
+	$hello_me_browse_desc_page_id = absint( $movie_engine_design_settings['movie_archive_page'] );
+} elseif ( ! empty( $movie_engine_design_settings['browse_page'] ) ) {
+	$hello_me_browse_desc_page_id = absint( $movie_engine_design_settings['browse_page'] );
+}
+
+$hello_me_desc = function_exists( 'hello_movieengine_get_page_title_description' )
+	? hello_movieengine_get_page_title_description( $hello_me_browse_desc_page_id )
+	: '';
+
+$hello_me_hero_bg_url = function_exists( 'hello_movieengine_get_page_title_bg_image_url' )
+	? hello_movieengine_get_page_title_bg_image_url( $hello_me_browse_desc_page_id )
+	: '';
+$hello_me_hero_classes = 'hello-me-browse__hero hello-movieengine-page-title-section--cinema';
+$hello_me_hero_style   = '';
+if ( '' !== $hello_me_hero_bg_url ) {
+	$hello_me_hero_classes .= ' hello-movieengine-page-title-section--has-photo';
+	$hello_me_hero_style    = function_exists( 'hello_movieengine_page_title_bg_inline_style' )
+		? hello_movieengine_page_title_bg_inline_style( $hello_me_hero_bg_url, true )
+		: '';
+}
 $hello_me_columns_desktop     = ! empty( $movie_engine_design_settings['archive_columns_desktop'] ) ? absint( $movie_engine_design_settings['archive_columns_desktop'] ) : 6;
 $hello_me_columns_laptop      = ! empty( $movie_engine_design_settings['archive_columns_laptop'] ) ? absint( $movie_engine_design_settings['archive_columns_laptop'] ) : 4;
 $hello_me_columns_tablet      = ! empty( $movie_engine_design_settings['archive_columns_tablet'] ) ? absint( $movie_engine_design_settings['archive_columns_tablet'] ) : 3;
@@ -61,12 +90,22 @@ get_header();
 ?>
 
 <main id="primary" class="site-main hello-me-browse">
-	<div class="hello-me-browse__hero hello-movieengine-page-title-section--cinema">
+	<div class="<?php echo esc_attr( $hello_me_hero_classes ); ?>"<?php echo $hello_me_hero_style ? ' style="' . esc_attr( $hello_me_hero_style ) . '"' : ''; ?>>
 		<div class="hello-movieengine-page-title-section__overlay" aria-hidden="true"></div>
-		<div class="hello-me-browse__hero-inner">
+		<?php
+		if ( function_exists( 'hello_movieengine_get_browse_archive_back_html' ) ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in helper.
+			echo hello_movieengine_get_browse_archive_back_html();
+		}
+		?>
+		<div class="hello-movieengine-page-title-section__wrap">
+			<div class="hello-me-browse__hero-inner hello-movieengine-title-content <?php echo esc_attr( $hello_me_title_align_cl ); ?>">
 			<p class="hello-me-browse__eyebrow"><?php echo esc_html( $hello_me_eyebrow ); ?></p>
 			<h1 class="hello-me-browse__title"><?php echo wp_kses( $hello_me_title, array( 'span' => array() ) ); ?></h1>
+			<?php if ( $hello_me_desc ) : ?>
 			<p class="hello-me-browse__desc"><?php echo esc_html( $hello_me_desc ); ?></p>
+			<?php endif; ?>
+			</div>
 		</div>
 	</div>
 	<div class="hello-me-browse__body">

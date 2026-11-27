@@ -230,9 +230,8 @@
         if (C.phoneBanner === false) return;
         hero.classList.add('cmes-mhero');
         var fitM = function () {
-          hero.style.setProperty('margin-left', '0px', 'important');
-          hero.style.setProperty('width', doc.documentElement.clientWidth + 'px', 'important');
-          hero.style.setProperty('margin-left', (-hero.getBoundingClientRect().left) + 'px', 'important');
+          hero.style.removeProperty('margin-left');
+          hero.style.removeProperty('width');
         };
         fitM();
         window.addEventListener('resize', fitM);
@@ -250,11 +249,12 @@
         return;
       }
       hero.classList.add('cmes-hero');
-      // full width under the sidebar, wherever the page's container starts
       var fitHero = function () {
-        hero.style.setProperty('margin-left', '0px', 'important');
-        hero.style.setProperty('width', doc.documentElement.clientWidth + 'px', 'important');
-        hero.style.setProperty('margin-left', (-hero.getBoundingClientRect().left) + 'px', 'important');
+        if (window.innerWidth <= 1024) {
+          hero.style.removeProperty('margin-left');
+          hero.style.removeProperty('width');
+          return;
+        }
       };
       fitHero();
       window.addEventListener('resize', fitHero);

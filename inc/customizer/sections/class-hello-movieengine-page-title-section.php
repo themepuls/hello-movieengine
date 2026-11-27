@@ -116,6 +116,17 @@ class Hello_Movie_Engine_Page_Title_Section {
 			),
 		) ) );
 
+		$wp_customize->add_setting( 'hello_movieengine_page_title_show_description', array(
+			'default'           => true,
+			'sanitize_callback' => 'hello_movieengine_sanitize_toggle',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( new Hello_Movie_Engine_Customize_Toggle_Control( $wp_customize, 'hello_movieengine_page_title_show_description', array(
+			'label'       => esc_html__( 'Show description line', 'hello-movieengine' ),
+			'description' => esc_html__( 'Subtitle under the title. On pages: custom sidebar text, else first paragraph with real text (shortcodes ignored). Hidden when empty.', 'hello-movieengine' ),
+			'section'     => 'hello_movieengine_page_title_section',
+		) ) );
+
 		/* --- Heading: Background --- */
 		$wp_customize->add_setting( 'hello_movieengine_heading_page_title_background', array(
 			'sanitize_callback' => 'sanitize_text_field',
@@ -144,7 +155,7 @@ class Hello_Movie_Engine_Page_Title_Section {
 		) );
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hello_movieengine_page_title_bg_image', array(
 			'label'       => esc_html__( 'Default Background Image', 'hello-movieengine' ),
-			'description' => esc_html__( 'Used as fallback. Pages can override this with their own featured image.', 'hello-movieengine' ),
+			'description' => esc_html__( 'Fallback when a page has no banner image. Per-page: Page title banner sidebar, else featured image.', 'hello-movieengine' ),
 			'section'     => 'hello_movieengine_page_title_section',
 		) ) );
 

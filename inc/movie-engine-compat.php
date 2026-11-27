@@ -149,6 +149,179 @@ function hello_movieengine_enqueue_movie_engine_design_palette() {
 add_action( 'wp_enqueue_scripts', 'hello_movieengine_enqueue_movie_engine_design_palette', 100 );
 
 /**
+ * Style Two: watch-page hero Back (fullwidth plugin hero + inline cinema).
+ * Plugin templates are not modified; Style Two wraps them via movie_engine_get_template_part.
+ */
+
+/**
+ * Fallback URL for watch-page hero Back (archive / browse / home).
+ *
+ * @param string $context `movie` or `series`.
+ * @return string
+ */
+function hello_movieengine_get_watch_back_href( $context = 'movie' ) {
+	$design = get_option( 'movie_engine_design_settings', array() );
+	$href   = '';
+
+	if ( 'series' === $context ) {
+		$href = get_post_type_archive_link( 'movie_engine_series' );
+		if ( ! empty( $design['series_archive_page'] ) ) {
+			$page_href = get_permalink( (int) $design['series_archive_page'] );
+			if ( $page_href ) {
+				$href = $page_href;
+			}
+		}
+	} else {
+		$href = get_post_type_archive_link( 'movie_engine_movie' );
+		if ( ! empty( $design['movie_archive_page'] ) ) {
+			$page_href = get_permalink( (int) $design['movie_archive_page'] );
+			if ( $page_href ) {
+				$href = $page_href;
+			}
+		}
+	}
+
+	if ( empty( $href ) && ! empty( $design['browse_page'] ) ) {
+		$browse_href = get_permalink( (int) $design['browse_page'] );
+		if ( $browse_href ) {
+			$href = $browse_href;
+		}
+	}
+
+	if ( empty( $href ) ) {
+		$href = home_url( '/' );
+	}
+
+	return $href;
+}
+
+/**
+ * Home URL for browse archive Back control.
+ *
+ * @return string
+ */
+function hello_movieengine_get_home_back_href() {
+	$front_page_id = (int) get_option( 'page_on_front' );
+	if ( $front_page_id > 0 ) {
+		$permalink = get_permalink( $front_page_id );
+		if ( $permalink ) {
+			return $permalink;
+		}
+	}
+
+	return home_url( '/' );
+}
+
+/**
+ * Back link markup for single movie / series heroes.
+ *
+ * @param string $context `movie` or `series`.
+ * @return string
+ */
+function hello_movieengine_get_watch_hero_back_html( $context = 'movie' ) {
+	$href = hello_movieengine_get_watch_back_href( $context );
+
+	ob_start();
+	?>
+	<a
+		class="hme-watch-hero__back"
+		href="<?php echo esc_url( $href ); ?>"
+		data-fallback-href="<?php echo esc_url( $href ); ?>"
+		data-back-mode="fallback">
+		<span class="fa-solid fa-arrow-left" aria-hidden="true"></span>
+		<?php esc_html_e( 'Back', 'hello-movieengine' ); ?>
+	</a>
+	<?php
+	return ob_get_clean();
+}
+
+/**
+ * Back link for Style Two movie / TV series browse archives (→ home).
+ *
+ * @return string
+ */
+function hello_movieengine_get_browse_archive_back_html() {
+	$href = hello_movieengine_get_home_back_href();
+
+	ob_start();
+	?>
+	<a
+		class="hme-watch-hero__back hme-browse-archive__back"
+		href="<?php echo esc_url( $href ); ?>"
+		data-fallback-href="<?php echo esc_url( $href ); ?>"
+		data-back-mode="fallback">
+		<span class="fa-solid fa-arrow-left" aria-hidden="true"></span>
+		<?php esc_html_e( 'Back', 'hello-movieengine' ); ?>
+	</a>
+	<?php
+	return ob_get_clean();
+}
+
+/**
+ * Inject Back link immediately inside the plugin hero root element.
+ *
+ * @param string $html    Rendered plugin hero HTML.
+ * @param string $context `movie` or `series`.
+ * @return string
+ */
+function hello_movieengine_inject_watch_hero_back( $html, $context = 'movie' ) {
+	if ( false !== strpos( $html, 'hme-watch-hero__back' ) ) {
+		return $html;
+	}
+
+	$markup = hello_movieengine_get_watch_hero_back_html( $context );
+	if ( '' === $markup ) {
+		return $html;
+	}
+
+	$count    = 0;
+	$replaced = preg_replace(
+		'#(<div class="movie-engine-movie-hero"[^>]*>)#',
+		'$1' . $markup,
+		$html,
+		1,
+		$count
+	);
+
+	return ( $count > 0 && null !== $replaced ) ? $replaced : $html;
+}
+
+/**
+ * Enqueue hero Back behavior on single movie & TV series pages.
+ */
+function hello_movieengine_enqueue_watch_hero_back_script() {
+	if ( 'style-two' !== hello_movieengine_get_active_style() ) {
+		return;
+	}
+
+	if ( ! hello_movieengine_is_movie_engine_active() ) {
+		return;
+	}
+
+	$is_player_endpoint = isset( $_SERVER['REQUEST_URI'] ) && preg_match( '#/player/?(\?|$)#', sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) );
+	$is_watch_singular  = is_singular( array( 'movie_engine_movie', 'movie_engine_series', 'movie_engine_episode' ) );
+	$is_me_archive      = is_post_type_archive( array( 'movie_engine_movie', 'movie_engine_series' ) );
+
+	if ( ! $is_watch_singular && ! $is_player_endpoint && ! $is_me_archive ) {
+		return;
+	}
+
+	$path = HELLO_MOVIEENGINE_DIR . '/assets/core/js/watch-hero-back.js';
+	if ( ! file_exists( $path ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'hello-movieengine-watch-hero-back',
+		get_template_directory_uri() . '/assets/core/js/watch-hero-back.js',
+		array(),
+		filemtime( $path ),
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'hello_movieengine_enqueue_watch_hero_back_script', 25 );
+
+/**
  * Sanitize Movie Engine design settings to prevent layout breakdowns.
  *
  * Cine Movie Engine series episodes template only supports 'list' and 'grid'.
@@ -162,8 +335,44 @@ function hello_movieengine_sanitize_design_settings( $settings ) {
 		if ( isset( $settings['series_seasons_layout'] ) && ! in_array( $settings['series_seasons_layout'], array( 'list', 'grid' ), true ) ) {
 			$settings['series_seasons_layout'] = 'list';
 		}
+		if ( isset( $settings['movie_watch_hero_height_vh'] ) ) {
+			$settings['movie_watch_hero_height_vh'] = hello_movieengine_sanitize_watch_hero_height_vh( $settings['movie_watch_hero_height_vh'] );
+		}
+		if ( isset( $settings['series_watch_hero_height_vh'] ) ) {
+			$settings['series_watch_hero_height_vh'] = hello_movieengine_sanitize_watch_hero_height_vh( $settings['series_watch_hero_height_vh'] );
+		}
 	}
 	return $settings;
+}
+
+/**
+ * CSS custom properties for single movie / TV series watch heroes.
+ *
+ * @return string Declarations without selector wrapper.
+ */
+function hello_movieengine_watch_hero_root_vars() {
+	if ( ! hello_movieengine_is_movie_engine_active() ) {
+		return '';
+	}
+
+	$design = get_option( 'movie_engine_design_settings', array() );
+	if ( ! is_array( $design ) ) {
+		return '';
+	}
+
+	$vars = '';
+
+	$movie_vh = isset( $design['movie_watch_hero_height_vh'] ) ? hello_movieengine_sanitize_watch_hero_height_vh( $design['movie_watch_hero_height_vh'] ) : 0;
+	if ( $movie_vh >= 40 ) {
+		$vars .= '--me-watch-movie-hero-height:' . $movie_vh . 'vh;';
+	}
+
+	$series_vh = isset( $design['series_watch_hero_height_vh'] ) ? hello_movieengine_sanitize_watch_hero_height_vh( $design['series_watch_hero_height_vh'] ) : 0;
+	if ( $series_vh >= 40 ) {
+		$vars .= '--me-watch-series-hero-height:' . $series_vh . 'vh;';
+	}
+
+	return $vars;
 }
 add_filter( 'option_movie_engine_design_settings', 'hello_movieengine_sanitize_design_settings' );
 add_filter( 'default_option_movie_engine_design_settings', 'hello_movieengine_sanitize_design_settings' );

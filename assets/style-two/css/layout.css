@@ -98,6 +98,19 @@
 	margin-inline-end: 48px;
 }
 
+/* Homepage builder: backdrop stays full width; optional cap on inner .movie-engine-container */
+.hello-me-hero-content-scope {
+	display: contents;
+}
+
+.hello-me-home-feed .hello-me-hero-content-scope--box .movie-engine-hero-section .movie-engine-container {
+	max-width: var(--hello-me-hero-content-max, var(--movie-engine-container-width, 1170px));
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	box-sizing: border-box;
+}
+
 /* Full-width content layout: expand content-area beyond container */
 .hello-movieengine-content-fullwidth .hello-movieengine-content-area {
 	max-width: 100%;
@@ -140,10 +153,38 @@
 	z-index: 1;
 }
 
-.hello-movieengine-page-title-section__content {
+.hello-movieengine-page-title-section__wrap {
 	position: relative;
 	z-index: 2;
 	width: 100%;
+}
+
+.hello-movieengine-page-title-section__content,
+.hello-movieengine-title-content {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+}
+
+.hello-movieengine-title-content--align-left {
+	text-align: left;
+}
+
+.hello-movieengine-title-content--align-center {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hello-movieengine-title-content--align-center .hello-movieengine-page-title-section__desc {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hello-movieengine-title-content--align-right {
+	text-align: right;
+	margin-left: auto;
+	margin-right: 0;
 }
 
 .hello-movieengine-page-title-section.has-bg-image {

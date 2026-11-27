@@ -220,6 +220,21 @@ class Hello_Movie_Engine_Tv_Series_Section {
 		   -------------------------------------------------------- */
 
 		// Series Hero Overlay
+		$wp_customize->add_setting( 'movie_engine_design_settings[series_watch_hero_height_vh]', array(
+			'type'              => 'option',
+			'default'           => 0,
+			'sanitize_callback' => 'hello_movieengine_sanitize_watch_hero_height_vh',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( 'movie_engine_design_settings[series_watch_hero_height_vh]', array(
+			'label'       => esc_html__( 'Series hero section height (vh)', 'hello-movieengine' ),
+			'description' => esc_html__( 'Viewport height for the TV series watch page hero (40–100). Leave 0 to use the theme default (100vh).', 'hello-movieengine' ),
+			'section'     => $section_id,
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 0, 'max' => 100, 'step' => 1 ),
+			'priority'    => 98,
+		) );
+
 		$wp_customize->add_setting( 'movie_engine_design_settings[series_hero_overlay_opacity]', array(
 			'type'              => 'option',
 			'default'           => 70,

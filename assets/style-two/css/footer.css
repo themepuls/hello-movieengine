@@ -8,13 +8,48 @@
    Footer wrapper
    -------------------------------------------------------- */
 .hello-movieengine-footer {
-	background: var(--hello-movieengine-black);
-	border-top: 1px solid var(--hello-movieengine-border-color);
+	background-color: var(--hello-movieengine-footer-bg-color, var(--hello-movieengine-black));
+	border-top: 1px solid var(--hello-movieengine-footer-border-color, var(--hello-movieengine-border-color));
 	color: var(--hello-movieengine-text-muted);
-	/* Sticky footer: in the #page flex column this only takes effect when
-	   the viewport is taller than the content (auto = 0 otherwise), so tall
-	   pages are unaffected. */
-	margin-top: auto;
+	margin-top: var(--hello-movieengine-footer-mt, auto);
+	margin-right: var(--hello-movieengine-footer-mr, 0);
+	margin-bottom: var(--hello-movieengine-footer-mb, 0);
+	margin-left: var(--hello-movieengine-footer-ml, 0);
+	padding: var(--hello-movieengine-footer-pt, 0) var(--hello-movieengine-footer-pr, 0) var(--hello-movieengine-footer-pb, 0) var(--hello-movieengine-footer-pl, 0);
+	/* Sticky footer when custom top margin is not set (see --hello-movieengine-footer-mt). */
+}
+
+.hello-movieengine-footer.has-bg-image {
+	position: relative;
+	background-image: none;
+	overflow: hidden;
+}
+
+.hello-movieengine-footer.has-bg-image::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background-image: var(--hello-movieengine-footer-bg-image);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: var(--hello-movieengine-footer-bg-image-opacity, 1);
+	pointer-events: none;
+}
+
+.hello-movieengine-footer.has-bg-image::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background-color: var(--hello-movieengine-footer-bg-overlay, transparent);
+	pointer-events: none;
+}
+
+.hello-movieengine-footer.has-bg-image > * {
+	position: relative;
+	z-index: 2;
 }
 
 /* --------------------------------------------------------
@@ -78,7 +113,7 @@
    Bottom bar
    -------------------------------------------------------- */
 .hello-movieengine-footer__bottom {
-	border-top: 1px solid var(--hello-movieengine-border-color);
+	border-top: 1px solid var(--hello-movieengine-footer-border-color, var(--hello-movieengine-border-color));
 	padding: 20px 0;
 }
 

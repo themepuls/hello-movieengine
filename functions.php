@@ -51,6 +51,11 @@ require HELLO_MOVIEENGINE_DIR . '/inc/enqueue.php';
 require HELLO_MOVIEENGINE_DIR . '/inc/template-functions.php';
 
 /**
+ * Page title: per-page show/hide (block editor).
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/page-title-meta.php';
+
+/**
  * Mega Menu (Appearance → Menus fields).
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/mega-menu.php';
@@ -64,6 +69,11 @@ require HELLO_MOVIEENGINE_DIR . '/inc/menu-icons.php';
  * Side rail WP menu walker.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/class-hello-movieengine-side-rail-walker.php';
+
+/**
+ * Header mega menu walker (banner + movie rows).
+ */
+require HELLO_MOVIEENGINE_DIR . '/inc/class-hello-movieengine-header-mega-walker.php';
 
 /**
  * Template tags.

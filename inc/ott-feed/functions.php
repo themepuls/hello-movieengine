@@ -261,9 +261,42 @@ function hello_movieengine_enqueue_single_watch() {
 	wp_enqueue_script(
 		'hello-movieengine-single-watch',
 		Hello_Movie_Engine_Style_Registry::style_uri( 'js/single-watch.js' ),
-		array(),
+		array( 'hello-movieengine-watch-hero-back' ),
 		filemtime( $path ),
 		true
 	);
 }
 add_action( 'wp_enqueue_scripts', 'hello_movieengine_enqueue_single_watch' );
+
+/**
+ * Style Two only: swap plugin watch heroes for theme wrappers that inject Back (plugin files untouched).
+ *
+ * @param string $template Resolved template path.
+ * @param string $slug     Template slug.
+ * @param string $name     Template name.
+ * @return string
+ */
+function hello_movieengine_style_two_watch_hero_template_part( $template, $slug, $name ) {
+	if ( 'style-two' !== hello_movieengine_get_active_style() || ! $template ) {
+		return $template;
+	}
+
+	$base = wp_basename( $template );
+
+	if ( 'hero-fullwidth.php' === $base && false !== strpos( $template, 'single-movie' ) ) {
+		$theme_wrapper = HELLO_MOVIEENGINE_DIR . '/inc/templates/movie-engine/style-two/watch-hero-fullwidth-movie.php';
+		if ( is_readable( $theme_wrapper ) ) {
+			return $theme_wrapper;
+		}
+	}
+
+	if ( 'hero.php' === $base && false !== strpos( $template, 'single-series' ) ) {
+		$theme_wrapper = HELLO_MOVIEENGINE_DIR . '/inc/templates/movie-engine/style-two/watch-hero-fullwidth-series.php';
+		if ( is_readable( $theme_wrapper ) ) {
+			return $theme_wrapper;
+		}
+	}
+
+	return $template;
+}
+add_filter( 'movie_engine_get_template_part', 'hello_movieengine_style_two_watch_hero_template_part', 10, 3 );

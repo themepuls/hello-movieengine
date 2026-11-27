@@ -22,6 +22,16 @@ function hello_movieengine_scripts() {
 
 	Hello_Movie_Engine_Style_Registry::enqueue_styles( $v );
 
+	$mega_rich_css = HELLO_MOVIEENGINE_DIR . '/assets/core/css/mega-menu-rich.css';
+	if ( file_exists( $mega_rich_css ) ) {
+		wp_enqueue_style(
+			'hello-movieengine-mega-rich',
+			Hello_Movie_Engine_Style_Registry::core_uri( 'css/mega-menu-rich.css' ),
+			array( 'hello-movieengine-header' ),
+			filemtime( $mega_rich_css )
+		);
+	}
+
 	wp_enqueue_style( 'hello-movieengine-style', get_stylesheet_uri(), array(), $v );
 
 	wp_enqueue_script(
@@ -59,34 +69,53 @@ function hello_movieengine_inline_custom_css() {
 	$css       = '';
 	$root_vars = '';
 
-	$plugin_handles_colors = function_exists( 'hello_movieengine_is_movie_engine_active' ) && hello_movieengine_is_movie_engine_active();
+	if ( class_exists( 'Hello_Movie_Engine_Colors_Section' ) ) {
+		$palette = Hello_Movie_Engine_Colors_Section::get_color_palette();
 
-	if ( ! $plugin_handles_colors && '#E50914' !== $primary_color ) {
-		$hex = sanitize_hex_color( $primary_color );
-		if ( ! $hex ) {
-			$hex = '#E50914';
-		}
-		$r = hexdec( substr( $hex, 1, 2 ) );
-		$g = hexdec( substr( $hex, 3, 2 ) );
-		$b = hexdec( substr( $hex, 5, 2 ) );
+		$hex2rgb = function( $hex ) {
+			$h = ltrim( (string) $hex, '#' );
+			if ( 3 === strlen( $h ) ) {
+				$r = hexdec( substr( $h, 0, 1 ) . substr( $h, 0, 1 ) );
+				$g = hexdec( substr( $h, 1, 1 ) . substr( $h, 1, 1 ) );
+				$b = hexdec( substr( $h, 2, 1 ) . substr( $h, 2, 1 ) );
+			} elseif ( 6 === strlen( $h ) ) {
+				$r = hexdec( substr( $h, 0, 2 ) );
+				$g = hexdec( substr( $h, 2, 2 ) );
+				$b = hexdec( substr( $h, 4, 2 ) );
+			} else {
+				return '229, 9, 20';
+			}
+			return "{$r}, {$g}, {$b}";
+		};
 
-		$hover_r = max( 0, $r - 30 );
-		$hover_g = max( 0, $g - 30 );
-		$hover_b = max( 0, $b - 30 );
-		$hover   = sprintf( '#%02x%02x%02x', $hover_r, $hover_g, $hover_b );
+		$primary_rgb = $hex2rgb( $palette['primary'] );
+		$bg_rgb      = $hex2rgb( $palette['bg'] );
+		$surface_rgb = $hex2rgb( $palette['surface'] );
 
-		$root_vars .= '--hello-movieengine-primary-color:' . $hex . ';';
-		$root_vars .= '--hello-movieengine-primary-hover:' . $hover . ';';
-		$root_vars .= '--hello-movieengine-primary-rgb:' . "{$r},{$g},{$b}" . ';';
+		$root_vars .= '--movie-engine-primary-color:' . $palette['primary'] . ';';
+		$root_vars .= '--movie-engine-primary-hover-color:' . $palette['hover'] . ';';
+		$root_vars .= '--movie-engine-primary-rgb:' . $primary_rgb . ';';
+		$root_vars .= '--movie-engine-body-color:' . $palette['text'] . ';';
+		$root_vars .= '--movie-engine-muted-color:' . $palette['gray'] . ';';
+		$root_vars .= '--movie-engine-border-color:' . $palette['border'] . ';';
+		$root_vars .= '--movie-engine-bg-color:' . $palette['bg'] . ';';
+		$root_vars .= '--movie-engine-bg-rgb:' . $bg_rgb . ';';
+		$root_vars .= '--movie-engine-surface-color:' . $palette['surface'] . ';';
+		$root_vars .= '--movie-engine-black-color:' . $palette['surface'] . ';';
+		$root_vars .= '--movie-engine-black-rgb:' . $surface_rgb . ';';
+		$root_vars .= '--movie-engine-container-width:' . $palette['container_width'] . 'px;';
+		$root_vars .= '--movie-engine-border-radius:' . $palette['border_radius'] . 'px;';
 
-		$css .= 'body.hello-movieengine-has-movie-engine{'
-			. '--hello-movieengine-primary-color:' . $hex . ';'
-			. '--hello-movieengine-primary-hover:' . $hover . ';'
-			. '--hello-movieengine-primary-rgb:' . "{$r},{$g},{$b}" . ';'
-			. '--movie-engine-primary-color:' . $hex . ';'
-			. '--movie-engine-primary-hover-color:' . $hover . ';'
-			. '--movie-engine-primary-rgb:' . "{$r},{$g},{$b}" . ';'
-			. '}';
+		$root_vars .= '--hello-movieengine-primary-color:' . $palette['primary'] . ';';
+		$root_vars .= '--hello-movieengine-primary-hover:' . $palette['hover'] . ';';
+		$root_vars .= '--hello-movieengine-primary-rgb:' . $primary_rgb . ';';
+		$root_vars .= '--hello-movieengine-bg-color:' . $palette['bg'] . ';';
+		$root_vars .= '--hello-movieengine-surface-color:' . $palette['surface'] . ';';
+		$root_vars .= '--hello-movieengine-border-color:' . $palette['border'] . ';';
+		$root_vars .= '--hello-movieengine-text-color:' . $palette['text'] . ';';
+		$root_vars .= '--hello-movieengine-muted-color:' . $palette['gray'] . ';';
+		$root_vars .= '--hello-movieengine-radius:' . $palette['border_radius'] . 'px;';
+		$root_vars .= '--hello-movieengine-container-width:' . $palette['container_width'] . 'px;';
 	}
 
 	$pt = isset( $pad_data['top'] )    ? floatval( $pad_data['top'] )    : 0;
@@ -205,6 +234,20 @@ function hello_movieengine_inline_custom_css() {
 		$ott_vars = hello_movieengine_ott_feed_root_vars();
 		if ( $ott_vars ) {
 			$root_vars .= $ott_vars;
+		}
+	}
+
+	if ( function_exists( 'hello_movieengine_watch_hero_root_vars' ) ) {
+		$watch_hero_vars = hello_movieengine_watch_hero_root_vars();
+		if ( $watch_hero_vars ) {
+			$root_vars .= $watch_hero_vars;
+		}
+	}
+
+	if ( function_exists( 'hello_movieengine_footer_root_vars' ) ) {
+		$footer_vars = hello_movieengine_footer_root_vars();
+		if ( $footer_vars ) {
+			$root_vars .= $footer_vars;
 		}
 	}
 

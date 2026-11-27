@@ -90,14 +90,28 @@
 				'.movie-engine-hero-section, .movie-engine-hero, .movie-engine-movie-hero, .me-hero'
 			);
 
+			var isMobile = ( window.innerWidth <= 1024 );
+
 			heroes.forEach( function ( hero ) {
-				hero.style.removeProperty( 'margin-left' );
-				hero.style.removeProperty( 'width' );
+				if ( isMobile || ( hero.style.width && parseInt( hero.style.width, 10 ) > window.innerWidth ) ) {
+					hero.style.removeProperty( 'margin-left' );
+					hero.style.removeProperty( 'width' );
+				}
 			} );
 		}
 
 		cleanHeroInlineStyles();
 		window.addEventListener( 'resize', cleanHeroInlineStyles );
+		window.addEventListener( 'orientationchange', cleanHeroInlineStyles );
+
+		if ( typeof MutationObserver !== 'undefined' ) {
+			var heroObserver = new MutationObserver( function () {
+				cleanHeroInlineStyles();
+			} );
+			document.querySelectorAll( '.movie-engine-hero-section, .movie-engine-hero' ).forEach( function ( h ) {
+				heroObserver.observe( h, { attributes: true, attributeFilter: [ 'style' ] } );
+			} );
+		}
 
 		var flyHideTimer = null;
 

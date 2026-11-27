@@ -92,43 +92,6 @@
 		}
 	}
 
-	function canGoBackInHistory() {
-		var ref = document.referrer;
-		if (!ref || ref.indexOf(window.location.origin) !== 0) {
-			return false;
-		}
-		try {
-			var refUrl = new URL(ref);
-			var curUrl = new URL(window.location.href);
-			if (refUrl.pathname === curUrl.pathname && refUrl.search === curUrl.search) {
-				return false;
-			}
-		} catch (err) {
-			return false;
-		}
-		return window.history.length > 1;
-	}
-
-	function navigateBack(fallbackHref) {
-		if (canGoBackInHistory()) {
-			window.history.back();
-			return;
-		}
-		if (fallbackHref) {
-			window.location.href = fallbackHref;
-		}
-	}
-
-	function onHeroBackClick(e) {
-		var back = e.target.closest('.hme-watch-hero__back');
-		if (!back || !document.querySelector('.hme-single-cinema')) {
-			return;
-		}
-		e.preventDefault();
-		var fallback = back.getAttribute('data-fallback-href') || back.getAttribute('href') || '/';
-		navigateBack(fallback);
-	}
-
 	function onPlayClick(e) {
 		var trigger = e.target.closest('.hme-watch-hero__play, .me-inline-play-now');
 		if (!trigger || !document.querySelector('.hme-single-cinema')) {
@@ -148,7 +111,6 @@
 		}, 80);
 	}
 
-	document.addEventListener('click', onHeroBackClick);
 	document.addEventListener('click', onPlayClick);
 
 	document.addEventListener('click', function (e) {

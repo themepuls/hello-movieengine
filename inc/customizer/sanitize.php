@@ -21,6 +21,20 @@ function hello_movieengine_sanitize_feed_title_size( $value ) {
 	return round( $size, 4 );
 }
 
+/**
+ * Watch-page hero height in viewport units (40–100). 0 = theme default per layout.
+ *
+ * @param mixed $value Raw input.
+ * @return int
+ */
+function hello_movieengine_sanitize_watch_hero_height_vh( $value ) {
+	$vh = absint( $value );
+	if ( $vh < 40 ) {
+		return 0;
+	}
+	return min( 100, $vh );
+}
+
 function hello_movieengine_sanitize_site_style( $value ) {
 	$value  = sanitize_key( (string) $value );
 	$styles = Hello_Movie_Engine_Style_Registry::get_styles();

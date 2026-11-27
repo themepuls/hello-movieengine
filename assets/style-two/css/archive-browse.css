@@ -4,6 +4,18 @@
  */
 
 /* Style Two — cinematic page title banner (all pages + archive browse hero) */
+.hmestyle-style-two .hello-me-browse__hero .hme-watch-hero__back,
+.hmestyle-style-two .hello-me-browse__hero .hme-browse-archive__back {
+	position: absolute;
+	top: 1.15rem;
+	left: var(--hm-feed-row-padding-x, 1.25rem);
+	z-index: 4;
+}
+
+body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-me-browse__hero .hme-watch-hero__back {
+	left: var(--hm-ott-row-inset, 56px);
+}
+
 .hmestyle-style-two .hello-movieengine-page-title-section--cinema,
 .hmestyle-style-two .hello-me-browse__hero.hello-movieengine-page-title-section--cinema {
 	--hme-cinema-floor: var(--hello-movieengine-bg-color, var(--movie-engine-bg-color, #141414));
@@ -21,10 +33,10 @@
 			var(--hme-cinema-floor) 100%
 		);
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
-	padding: 0 !important;
-	padding-bottom: clamp(18px, 3vh, 32px) !important;
+	padding: clamp(20px, 3.5vh, 36px) 0 !important;
 	width: 100%;
 	box-sizing: border-box;
 }
@@ -46,6 +58,22 @@
 		color-mix(in srgb, var(--hme-cinema-floor) 45%, transparent) 42%,
 		var(--hme-cinema-floor) 100%
 	);
+}
+
+.hmestyle-style-two .hello-movieengine-page-title-section--cinema.hello-movieengine-page-title-section--has-photo,
+.hmestyle-style-two .hello-me-browse__hero.hello-movieengine-page-title-section--cinema.hello-movieengine-page-title-section--has-photo {
+	background-image:
+		linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.35) 45%, var(--hme-cinema-floor) 92%),
+		radial-gradient(ellipse 95% 80% at 72% 38%, rgba(22, 102, 185, 0.22), transparent 58%),
+		var(--hme-page-title-photo);
+	background-size: auto, auto, cover;
+	background-position: center, center, center;
+	background-repeat: no-repeat;
+}
+
+.hmestyle-style-two .hello-movieengine-page-title-section--cinema.hello-movieengine-page-title-section--has-photo::after,
+.hmestyle-style-two .hello-me-browse__hero.hello-movieengine-page-title-section--cinema.hello-movieengine-page-title-section--has-photo::after {
+	display: none;
 }
 
 .hmestyle-style-two .hello-movieengine-page-title-section--cinema::after,
@@ -76,23 +104,71 @@
 	z-index: 2;
 }
 
-.hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-container,
-.hmestyle-style-two .hello-me-browse__hero-inner {
-	max-width: min(560px, 100%);
-	margin: 0;
+.hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__wrap,
+.hmestyle-style-two .hello-me-browse__hero.hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__wrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 	width: 100%;
-	flex: 0 1 auto;
-	align-self: center;
+	min-height: inherit;
+	flex: 1 1 auto;
 	box-sizing: border-box;
-	padding: 14px var(--hm-feed-row-padding-x, 1.25rem);
-	text-align: left !important;
+	padding: 0 var(--hm-feed-row-padding-x, 1.25rem);
 	z-index: 3;
 	position: relative;
 }
 
+.hmestyle-style-two .hello-movieengine-title-content,
+.hmestyle-style-two .hello-me-browse__hero-inner.hello-movieengine-title-content {
+	max-width: min(560px, 100%);
+	margin: 0;
+	width: 100%;
+	flex: 0 1 auto;
+	box-sizing: border-box;
+}
+
+.hmestyle-style-two .hello-movieengine-title-content--align-left {
+	text-align: left;
+	border-left: 3px solid var(--hello-movieengine-primary-color, var(--movie-engine-primary-color, #3b9eff));
+	padding-left: 15px;
+}
+
+.hmestyle-style-two .hello-movieengine-page-title-section__wrap:has(.hello-movieengine-title-content--align-center) {
+	justify-content: center;
+}
+
+.hmestyle-style-two .hello-movieengine-page-title-section__wrap:has(.hello-movieengine-title-content--align-right) {
+	justify-content: flex-end;
+}
+
+.hmestyle-style-two .hello-movieengine-title-content--align-center {
+	text-align: center;
+	max-width: min(720px, 100%);
+}
+
+.hmestyle-style-two .hello-movieengine-title-content--align-center .hello-movieengine-page-title-section__label,
+.hmestyle-style-two .hello-movieengine-title-content--align-center .hello-me-browse__eyebrow {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.hmestyle-style-two .hello-movieengine-title-content--align-right {
+	text-align: right;
+	margin-left: auto;
+	margin-right: 0;
+	max-width: min(560px, 100%);
+	border-left: 0;
+	padding-left: 0;
+}
+
+.hmestyle-style-two .hello-movieengine-title-content--align-center {
+	border-left: 0;
+	padding-left: 0;
+}
+
 /* #page already adds --hm-side-rail-compact; use row inset only (same as library / filter bar). */
-body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-container,
-body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-me-browse__hero-inner {
+body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__wrap,
+body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-me-browse__hero .hello-movieengine-page-title-section__wrap {
 	padding-left: var(--hm-ott-row-inset, 56px);
 	padding-right: var(--hm-ott-row-inset, 56px);
 }
@@ -100,7 +176,7 @@ body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-me-browse__hero-i
 .hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__label,
 .hmestyle-style-two .hello-me-browse__eyebrow {
 	display: block;
-	margin: 0 0 8px 18px;
+	margin: 0 0 8px;
 	color: rgba(255, 255, 255, 0.55);
 	font-size: 0.68rem;
 	font-weight: 700;
@@ -111,8 +187,8 @@ body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-me-browse__hero-i
 .hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__title,
 .hmestyle-style-two .hello-me-browse__title {
 	position: relative;
-	padding-left: 18px;
 	margin: 0;
+	padding: 0;
 	font-size: clamp(1.85rem, 3.4vw, 2.65rem);
 	font-weight: 800;
 	letter-spacing: -0.03em;
@@ -122,19 +198,8 @@ body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-me-browse__hero-i
 
 .hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__title::before,
 .hmestyle-style-two .hello-me-browse__title::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	top: 0.12em;
-	bottom: 0.12em;
-	width: 3px;
-	border-radius: 2px;
-	background: var(--hello-movieengine-primary-color, var(--movie-engine-primary-color, #3b9eff));
-}
-
-.hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__content:has(.hello-movieengine-page-title-section__desc) .hello-movieengine-page-title-section__title::before,
-.hmestyle-style-two .hello-me-browse__hero-inner:has(.hello-me-browse__desc) .hello-me-browse__title::before {
-	bottom: -1.55em;
+	content: none;
+	display: none;
 }
 
 .hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__title span,
@@ -144,15 +209,34 @@ body.hello-movieengine-has-side-rail.hmestyle-style-two .hello-me-browse__hero-i
 
 .hmestyle-style-two .hello-movieengine-page-title-section--cinema .hello-movieengine-page-title-section__desc,
 .hmestyle-style-two .hello-me-browse__desc {
-	padding-left: 18px;
 	margin-top: 8px;
 	margin-bottom: 0;
-	max-width: 460px;
-	margin-left: 0;
-	margin-right: 0;
+	max-width: min(460px, 100%);
+	padding: 0;
 	font-size: 0.92rem;
 	line-height: 1.55;
 	color: rgba(255, 255, 255, 0.7);
+}
+
+.hmestyle-style-two .hello-movieengine-title-content--align-left .hello-movieengine-page-title-section__desc,
+.hmestyle-style-two .hello-movieengine-title-content--align-left .hello-me-browse__desc {
+	margin-left: 0;
+	margin-right: 0;
+	text-align: left;
+}
+
+.hmestyle-style-two .hello-movieengine-title-content--align-center .hello-movieengine-page-title-section__desc,
+.hmestyle-style-two .hello-movieengine-title-content--align-center .hello-me-browse__desc {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.hmestyle-style-two .hello-movieengine-title-content--align-right .hello-movieengine-page-title-section__desc,
+.hmestyle-style-two .hello-movieengine-title-content--align-right .hello-me-browse__desc {
+	margin-left: auto;
+	margin-right: 0;
+	text-align: right;
 }
 
 /* MovieEngine Container Fluid pages (Studios, etc.) — avoid empty black band + align grid with side rail */
@@ -720,6 +804,12 @@ body.hello-movieengine-has-side-rail.hmestyle-style-two.movie-engine-tax-studio 
 }
 
 @media (max-width: 768px) {
+	.hmestyle-style-two.movie-engine-tax-studio .hello-me-studio-tax-archive .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-tablet, var(--grid-columns-tablet, 3)), minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 767px) {
 	.hmestyle-style-two.movie-engine-tax-studio .hello-me-studio-tax-archive .movie-engine-items-grid {
 		grid-template-columns: repeat(var(--me-grid-columns-mobile, var(--grid-columns-mobile, 2)), minmax(0, 1fr));
 	}

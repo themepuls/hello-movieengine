@@ -1,6 +1,6 @@
 <?php
 /**
- * Mega menu rich blocks (banner + movie row) for Style Two side rail.
+ * Mega menu rich blocks (banner + movie row) — header, mobile, Style Two side rail.
  *
  * @package Hello_Movie Engine
  * @since 1.2.0

@@ -53,15 +53,9 @@ if ( $movie_engine_is_logged_in ) {
 }
 $movie_engine_watchlist_icon = $movie_engine_is_in_watchlist ? 'fa-solid fa-check' : 'fa-solid fa-plus';
 
-$movie_engine_back_href = get_post_type_archive_link( 'movie_engine_movie' );
-if ( ! empty( $movie_engine_design['movie_archive_page'] ) ) {
-	$movie_engine_back_href = get_permalink( $movie_engine_design['movie_archive_page'] );
-} elseif ( ! empty( $movie_engine_design['browse_page'] ) ) {
-	$movie_engine_back_href = get_permalink( $movie_engine_design['browse_page'] );
-}
-if ( ! $movie_engine_back_href ) {
-	$movie_engine_back_href = home_url( '/' );
-}
+$movie_engine_back_href = function_exists( 'hello_movieengine_get_watch_back_href' )
+	? hello_movieengine_get_watch_back_href( 'movie' )
+	: home_url( '/' );
 
 $movie_engine_hero_title = get_the_title();
 ?>
@@ -72,7 +66,8 @@ $movie_engine_hero_title = get_the_title();
 			<a
 				class="hme-watch-hero__back"
 				href="<?php echo esc_url( $movie_engine_back_href ); ?>"
-				data-fallback-href="<?php echo esc_url( $movie_engine_back_href ); ?>">
+				data-fallback-href="<?php echo esc_url( $movie_engine_back_href ); ?>"
+				data-back-mode="fallback">
 				<span class="fa-solid fa-arrow-left" aria-hidden="true"></span>
 				<?php esc_html_e( 'Back', 'hello-movieengine' ); ?>
 			</a>

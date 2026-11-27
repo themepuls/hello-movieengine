@@ -38,14 +38,7 @@ $hello_movieengine_container_cl = hello_movieengine_header_container_class();
 
 		<nav id="site-navigation" class="hello-movieengine-header__nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'hello-movieengine' ); ?>">
 			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'primary',
-				'menu_id'        => 'primary-menu',
-				'menu_class'     => 'hello-movieengine-nav-menu',
-				'container'      => false,
-				'fallback_cb'    => false,
-				'depth'          => 0,
-			) );
+			hello_movieengine_render_primary_nav_menu();
 			?>
 		</nav>
 

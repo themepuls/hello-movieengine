@@ -16,7 +16,7 @@ $hello_movieengine_has_footer_widgets = is_active_sidebar( 'footer-1' )
 	|| is_active_sidebar( 'footer-4' );
 ?>
 
-<footer id="colophon" class="hello-movieengine-footer" role="contentinfo">
+<footer id="colophon" class="<?php echo hello_movieengine_get_footer_class_attribute(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" role="contentinfo">
 
 	<?php if ( $hello_movieengine_has_footer_widgets ) : ?>
 	<div class="hello-movieengine-footer__widgets">

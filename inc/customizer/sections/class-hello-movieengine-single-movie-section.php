@@ -300,6 +300,21 @@ class Hello_Movie_Engine_Single_Movie_Section {
 		   DESIGN TAB: Dimensions, Counts & Overlay
 		   -------------------------------------------------------- */
 
+		$wp_customize->add_setting( 'movie_engine_design_settings[movie_watch_hero_height_vh]', array(
+			'type'              => 'option',
+			'default'           => 0,
+			'sanitize_callback' => 'hello_movieengine_sanitize_watch_hero_height_vh',
+			'transport'         => 'refresh',
+		) );
+		$wp_customize->add_control( 'movie_engine_design_settings[movie_watch_hero_height_vh]', array(
+			'label'       => esc_html__( 'Hero section height (vh)', 'hello-movieengine' ),
+			'description' => esc_html__( 'Viewport height for the watch page hero (40–100). Leave 0 for defaults: Fullwidth 100vh, Inline Cinema 74vh.', 'hello-movieengine' ),
+			'section'     => $section_id,
+			'type'        => 'number',
+			'input_attrs' => array( 'min' => 0, 'max' => 100, 'step' => 1 ),
+			'priority'    => 98,
+		) );
+
 		// Hero Overlay Opacity
 		$wp_customize->add_setting( 'movie_engine_design_settings[movie_hero_overlay_opacity]', array(
 			'type'              => 'option',

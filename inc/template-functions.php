@@ -291,6 +291,16 @@ function hello_movieengine_show_page_title() {
 		return false;
 	}
 
+	if ( is_page() && function_exists( 'hello_movieengine_get_page_title_mode' ) ) {
+		$page_mode = hello_movieengine_get_page_title_mode();
+		if ( 'hide' === $page_mode ) {
+			return false;
+		}
+		if ( 'show' === $page_mode ) {
+			return true;
+		}
+	}
+
 	$default   = wp_json_encode( array( 'blog', 'archives', 'search', 'author' ) );
 	$locations = json_decode( get_theme_mod( 'hello_movieengine_page_title_locations', $default ), true );
 
@@ -500,33 +510,320 @@ function hello_movieengine_get_page_title_text() {
 }
 
 /**
- * Get the page title description for the current context.
+ * @return bool
+ */
+function hello_movieengine_page_title_show_description() {
+	return (bool) get_theme_mod( 'hello_movieengine_page_title_show_description', true );
+}
+
+/**
+ * Plain text suitable for page-title description (no shortcodes or bracket-only tokens).
  *
+ * @param string $raw Raw HTML or text.
  * @return string
  */
-function hello_movieengine_get_page_title_description() {
-	if ( is_page() && function_exists( 'hello_movieengine_is_style_two_browse' ) && hello_movieengine_is_style_two_browse() ) {
-		$post = get_post();
-		if ( $post && $post->post_excerpt ) {
-			return $post->post_excerpt;
-		}
-		if ( $post && false !== strpos( $post->post_content, 'movie_engine_series' ) ) {
-			return esc_html__( 'Discover, search and filter from our complete TV series collection', 'hello-movieengine' );
-		}
-		return esc_html__( 'Discover, search and filter from our complete movie collection', 'hello-movieengine' );
+function hello_movieengine_normalize_banner_description_text( $raw ) {
+	$text = wp_strip_all_tags( (string) $raw );
+	$text = strip_shortcodes( $text );
+	$text = trim( preg_replace( '/\s+/u', ' ', $text ) );
+	if ( '' === $text ) {
+		return '';
 	}
-	if ( is_page() && function_exists( 'hello_movieengine_is_studios_page' ) && hello_movieengine_is_studios_page() ) {
-		$post = get_post();
-		if ( $post && $post->post_excerpt ) {
-			return $post->post_excerpt;
+	if ( preg_match( '/^\[[^\]]+\]$/', $text ) ) {
+		return '';
+	}
+	return $text;
+}
+
+/**
+ * First paragraph text from post content (block or classic).
+ *
+ * @param int $post_id Post ID.
+ * @return string
+ */
+function hello_movieengine_get_first_content_paragraph( $post_id = 0 ) {
+	$post_id = $post_id ? (int) $post_id : (int) get_queried_object_id();
+	if ( $post_id < 1 ) {
+		return '';
+	}
+
+	$post = get_post( $post_id );
+	if ( ! $post || ! $post->post_content ) {
+		return '';
+	}
+
+	if ( function_exists( 'parse_blocks' ) ) {
+		$blocks = parse_blocks( $post->post_content );
+		$text   = hello_movieengine_find_first_paragraph_in_blocks( $blocks );
+		if ( '' !== $text ) {
+			return $text;
 		}
-		return esc_html__( 'Browse movie and TV studios from our catalog', 'hello-movieengine' );
 	}
-	if ( is_category() || is_tag() || is_tax() ) {
-		return get_the_archive_description();
+
+	if ( preg_match_all( '/<p[^>]*>(.*?)<\/p>/is', $post->post_content, $matches ) && ! empty( $matches[1] ) ) {
+		foreach ( $matches[1] as $chunk ) {
+			$text = hello_movieengine_normalize_banner_description_text( $chunk );
+			if ( '' !== $text ) {
+				return $text;
+			}
+		}
 	}
-	if ( is_author() ) {
-		return get_the_author_meta( 'description' );
+
+	return '';
+}
+
+/**
+ * @param array $blocks Parsed blocks.
+ * @return string
+ */
+function hello_movieengine_find_first_paragraph_in_blocks( $blocks ) {
+	foreach ( $blocks as $block ) {
+		if ( empty( $block ) || ! is_array( $block ) ) {
+			continue;
+		}
+		$name = isset( $block['blockName'] ) ? (string) $block['blockName'] : '';
+		if ( 'core/paragraph' === $name ) {
+			$inner = '';
+			if ( ! empty( $block['innerHTML'] ) ) {
+				$inner = $block['innerHTML'];
+			} elseif ( ! empty( $block['innerContent'] ) && is_array( $block['innerContent'] ) ) {
+				$inner = implode( '', $block['innerContent'] );
+			}
+			$text = hello_movieengine_normalize_banner_description_text( $inner );
+			if ( '' !== $text ) {
+				return $text;
+			}
+		}
+		if ( ! empty( $block['innerBlocks'] ) && is_array( $block['innerBlocks'] ) ) {
+			$nested = hello_movieengine_find_first_paragraph_in_blocks( $block['innerBlocks'] );
+			if ( '' !== $nested ) {
+				return $nested;
+			}
+		}
 	}
 	return '';
+}
+
+/**
+ * Page-level custom banner description (editor sidebar).
+ *
+ * @param int $post_id Post ID.
+ * @return string
+ */
+function hello_movieengine_get_page_title_custom_description( $post_id = 0 ) {
+	$post_id = $post_id ? (int) $post_id : (int) get_queried_object_id();
+	if ( $post_id < 1 ) {
+		return '';
+	}
+	$custom = get_post_meta( $post_id, HELLO_MOVIEENGINE_PAGE_TITLE_DESC_META, true );
+	return is_string( $custom ) ? trim( $custom ) : '';
+}
+
+/**
+ * Get the page title description for the current context.
+ *
+ * Priority for pages: custom sidebar text → first real paragraph (no shortcodes).
+ * Returns empty when none (banner hides the line) or Customizer disables descriptions.
+ *
+ * @param int $post_id Optional post ID.
+ * @return string
+ */
+function hello_movieengine_get_page_title_description( $post_id = 0 ) {
+	if ( ! hello_movieengine_page_title_show_description() ) {
+		return '';
+	}
+
+	if ( is_page() || $post_id ) {
+		$post_id = $post_id ? (int) $post_id : (int) get_queried_object_id();
+		if ( $post_id > 0 ) {
+			$custom = hello_movieengine_get_page_title_custom_description( $post_id );
+			if ( '' !== $custom ) {
+				return $custom;
+			}
+			$from_content = hello_movieengine_get_first_content_paragraph( $post_id );
+			if ( '' !== $from_content ) {
+				return $from_content;
+			}
+		}
+		return '';
+	}
+
+	if ( is_category() || is_tag() || is_tax() ) {
+		$desc = get_the_archive_description();
+		return is_string( $desc ) ? wp_strip_all_tags( $desc ) : '';
+	}
+	if ( is_author() ) {
+		$desc = get_the_author_meta( 'description' );
+		return is_string( $desc ) ? trim( $desc ) : '';
+	}
+	return '';
+}
+
+/**
+ * Attachment ID for per-page page-title banner background (editor sidebar).
+ *
+ * @param int $post_id Page ID.
+ * @return int
+ */
+function hello_movieengine_get_page_title_custom_bg_id( $post_id = 0 ) {
+	$post_id = $post_id ? (int) $post_id : (int) get_queried_object_id();
+	if ( $post_id < 1 || ! defined( 'HELLO_MOVIEENGINE_PAGE_TITLE_BG_META' ) ) {
+		return 0;
+	}
+	$id = (int) get_post_meta( $post_id, HELLO_MOVIEENGINE_PAGE_TITLE_BG_META, true );
+	if ( $id < 1 || 'attachment' !== get_post_type( $id ) ) {
+		return 0;
+	}
+	return $id;
+}
+
+/**
+ * Page title banner background URL.
+ *
+ * Priority: sidebar image → featured image (pages) → Customizer default.
+ *
+ * @param int $post_id Optional page ID.
+ * @return string
+ */
+function hello_movieengine_get_page_title_bg_image_url( $post_id = 0 ) {
+	$post_id = $post_id ? (int) $post_id : 0;
+	if ( $post_id < 1 && is_singular() ) {
+		$post_id = (int) get_queried_object_id();
+	}
+
+	if ( $post_id > 0 ) {
+		$custom_id = hello_movieengine_get_page_title_custom_bg_id( $post_id );
+		if ( $custom_id > 0 ) {
+			$url = wp_get_attachment_image_url( $custom_id, 'full' );
+			if ( is_string( $url ) && '' !== $url ) {
+				return $url;
+			}
+		}
+
+		if ( 'page' === get_post_type( $post_id ) && has_post_thumbnail( $post_id ) ) {
+			$url = get_the_post_thumbnail_url( $post_id, 'full' );
+			if ( is_string( $url ) && '' !== $url ) {
+				return $url;
+			}
+		}
+	}
+
+	$default = get_theme_mod( 'hello_movieengine_page_title_bg_image', '' );
+	if ( is_string( $default ) && '' !== trim( $default ) ) {
+		return esc_url_raw( $default );
+	}
+
+	return '';
+}
+
+/**
+ * Inline style for page-title banner background.
+ *
+ * @param string $url           Image URL.
+ * @param bool   $is_style_two  Active site style is Style Two.
+ * @return string
+ */
+function hello_movieengine_page_title_bg_inline_style( $url, $is_style_two ) {
+	if ( '' === $url ) {
+		return '';
+	}
+	if ( $is_style_two ) {
+		return '--hme-page-title-photo:url(' . esc_url( $url ) . ');';
+	}
+	return 'background-image:url(' . esc_url( $url ) . ');';
+}
+
+/**
+ * Footer wrapper class list (background image state).
+ *
+ * @return string Escaped class attribute value.
+ */
+function hello_movieengine_get_footer_class_attribute() {
+	$classes = array( 'hello-movieengine-footer' );
+	$image   = get_theme_mod( 'hello_movieengine_footer_bg_image', '' );
+	if ( is_string( $image ) && '' !== trim( $image ) ) {
+		$classes[] = 'has-bg-image';
+	}
+	return esc_attr( implode( ' ', $classes ) );
+}
+
+/**
+ * CSS custom properties for footer background and spacing.
+ *
+ * @return string Declaration block contents (no braces).
+ */
+function hello_movieengine_footer_root_vars() {
+	$vars = '';
+
+	$bg_color = get_theme_mod( 'hello_movieengine_footer_bg_color', '' );
+	if ( is_string( $bg_color ) && '' !== trim( $bg_color ) ) {
+		$vars .= '--hello-movieengine-footer-bg-color:' . esc_attr( $bg_color ) . ';';
+	}
+
+	$bg_image = get_theme_mod( 'hello_movieengine_footer_bg_image', '' );
+	if ( is_string( $bg_image ) && '' !== trim( $bg_image ) ) {
+		$vars .= '--hello-movieengine-footer-bg-image:url(' . esc_url( $bg_image ) . ');';
+	}
+
+	$img_opacity = (int) get_theme_mod( 'hello_movieengine_footer_bg_image_opacity', 100 );
+	if ( $img_opacity < 100 ) {
+		$vars .= '--hello-movieengine-footer-bg-image-opacity:' . ( $img_opacity / 100 ) . ';';
+	}
+
+	$overlay = get_theme_mod( 'hello_movieengine_footer_bg_overlay', '' );
+	if ( is_string( $overlay ) && '' !== trim( $overlay ) ) {
+		$vars .= '--hello-movieengine-footer-bg-overlay:' . esc_attr( $overlay ) . ';';
+	}
+
+	$border_color = get_theme_mod( 'hello_movieengine_footer_border_color', '' );
+	if ( is_string( $border_color ) && '' !== trim( $border_color ) ) {
+		$vars .= '--hello-movieengine-footer-border-color:' . esc_attr( $border_color ) . ';';
+	}
+
+	$spacing_zero = array(
+		'top' => '0', 'right' => '0', 'bottom' => '0', 'left' => '0', 'unit' => 'px', 'linked' => true,
+	);
+	$margin_raw  = get_theme_mod( 'hello_movieengine_footer_margin', wp_json_encode( $spacing_zero ) );
+	$margin_data = json_decode( $margin_raw, true );
+	$margin_custom = is_array( $margin_data ) && (
+		floatval( $margin_data['top'] ?? 0 ) !== 0
+		|| floatval( $margin_data['right'] ?? 0 ) !== 0
+		|| floatval( $margin_data['bottom'] ?? 0 ) !== 0
+		|| floatval( $margin_data['left'] ?? 0 ) !== 0
+		|| ( isset( $margin_data['unit'] ) && 'px' !== $margin_data['unit'] )
+	);
+	if ( $margin_custom ) {
+		$mu = isset( $margin_data['unit'] ) ? $margin_data['unit'] : 'px';
+		$mt = isset( $margin_data['top'] ) ? floatval( $margin_data['top'] ) : 0;
+		$mr = isset( $margin_data['right'] ) ? floatval( $margin_data['right'] ) : 0;
+		$mb = isset( $margin_data['bottom'] ) ? floatval( $margin_data['bottom'] ) : 0;
+		$ml = isset( $margin_data['left'] ) ? floatval( $margin_data['left'] ) : 0;
+		$vars .= '--hello-movieengine-footer-mt:' . $mt . $mu . ';';
+		$vars .= '--hello-movieengine-footer-mr:' . $mr . $mu . ';';
+		$vars .= '--hello-movieengine-footer-mb:' . $mb . $mu . ';';
+		$vars .= '--hello-movieengine-footer-ml:' . $ml . $mu . ';';
+	}
+
+	$pad_raw  = get_theme_mod( 'hello_movieengine_footer_padding', wp_json_encode( $spacing_zero ) );
+	$pad_data = json_decode( $pad_raw, true );
+	$pad_custom = is_array( $pad_data ) && (
+		floatval( $pad_data['top'] ?? 0 ) !== 0
+		|| floatval( $pad_data['right'] ?? 0 ) !== 0
+		|| floatval( $pad_data['bottom'] ?? 0 ) !== 0
+		|| floatval( $pad_data['left'] ?? 0 ) !== 0
+		|| ( isset( $pad_data['unit'] ) && 'px' !== $pad_data['unit'] )
+	);
+	if ( $pad_custom ) {
+		$pu = isset( $pad_data['unit'] ) ? $pad_data['unit'] : 'px';
+		$pt = isset( $pad_data['top'] ) ? floatval( $pad_data['top'] ) : 0;
+		$pr = isset( $pad_data['right'] ) ? floatval( $pad_data['right'] ) : 0;
+		$pb = isset( $pad_data['bottom'] ) ? floatval( $pad_data['bottom'] ) : 0;
+		$pl = isset( $pad_data['left'] ) ? floatval( $pad_data['left'] ) : 0;
+		$vars .= '--hello-movieengine-footer-pt:' . $pt . $pu . ';';
+		$vars .= '--hello-movieengine-footer-pr:' . $pr . $pu . ';';
+		$vars .= '--hello-movieengine-footer-pb:' . $pb . $pu . ';';
+		$vars .= '--hello-movieengine-footer-pl:' . $pl . $pu . ';';
+	}
+
+	return $vars;
 }

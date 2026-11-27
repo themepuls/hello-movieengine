@@ -108,6 +108,13 @@
 		box-sizing: border-box;
 	}
 
+	body.hello-movieengine-has-side-rail .hello-me-hero-content-scope--box .movie-engine-hero-section .movie-engine-container {
+		max-width: var(--hello-me-hero-content-max, var(--movie-engine-container-width, 1170px)) !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		width: 100% !important;
+	}
+
 	/* One column: rail (on #page) + 56px row inset — not container gutter + content pad */
 	body.hello-movieengine-has-side-rail .me-hero-content,
 	body.hello-movieengine-has-side-rail .movie-engine-hero-content,

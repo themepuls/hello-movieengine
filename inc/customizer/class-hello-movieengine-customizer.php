@@ -146,10 +146,12 @@ function hello_movieengine_customize_controls_assets() {
 	$css_ver  = file_exists( $css_file ) ? (string) filemtime( $css_file ) : HELLO_MOVIEENGINE_VERSION;
 	$js_ver   = file_exists( $js_file ) ? (string) filemtime( $js_file ) : HELLO_MOVIEENGINE_VERSION;
 
+	wp_enqueue_style( 'dashicons' );
+
 	wp_enqueue_style(
 		'hello-movieengine-customizer-controls',
 		HELLO_MOVIEENGINE_URI . '/assets/admin/css/customizer-controls.css',
-		array(),
+		array( 'dashicons' ),
 		$css_ver
 	);
 
@@ -162,3 +164,29 @@ function hello_movieengine_customize_controls_assets() {
 	);
 }
 add_action( 'customize_controls_enqueue_scripts', 'hello_movieengine_customize_controls_assets' );
+
+/**
+ * Customizer device sizes: desktop (full), laptop 1280, tablet 720, mobile 320.
+ * Laptop is not a core device, so the Laptop column control had no preview.
+ *
+ * @param array $devices Previewable devices.
+ * @return array
+ */
+function hello_movieengine_previewable_devices( $devices ) {
+	$laptop = array(
+		'label'   => __( 'Laptop', 'hello-movieengine' ),
+		'default' => false,
+	);
+	$ordered = array();
+	foreach ( $devices as $key => $device ) {
+		$ordered[ $key ] = $device;
+		if ( 'desktop' === $key ) {
+			$ordered['laptop'] = $laptop;
+		}
+	}
+	if ( ! isset( $ordered['laptop'] ) ) {
+		$ordered['laptop'] = $laptop;
+	}
+	return $ordered;
+}
+add_filter( 'customize_previewable_devices', 'hello_movieengine_previewable_devices' );

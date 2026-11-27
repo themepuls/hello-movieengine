@@ -37,7 +37,6 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 			'genres'       => esc_html__( 'Genre Category Bar', 'hello-movieengine' ),
 			'history'      => esc_html__( 'Continue Watching (User History)', 'hello-movieengine' ),
 			'years'        => esc_html__( 'Release Years Filter', 'hello-movieengine' ),
-			'live_search'  => esc_html__( 'Interactive Live Search Bar', 'hello-movieengine' ),
 			'page_content' => esc_html__( 'Page Content (From Editor)', 'hello-movieengine' ),
 			'shortcode'    => esc_html__( 'Custom Shortcode', 'hello-movieengine' ),
 		);
@@ -234,6 +233,276 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 	}
 
 	/**
+	 * Optional responsive column attrs for Movie Engine shortcodes.
+	 *
+	 * @param array $sec Section row JSON.
+	 * @return string
+	 */
+	public static function builder_responsive_columns_shortcode_attrs( array $sec ) {
+		$out = '';
+		foreach ( array( 'columns_laptop', 'columns_tablet', 'columns_mobile' ) as $key ) {
+			if ( ! isset( $sec[ $key ] ) || ! is_numeric( $sec[ $key ] ) ) {
+				continue;
+			}
+			$val = absint( $sec[ $key ] );
+			if ( $val < 1 ) {
+				continue;
+			}
+			$out .= sprintf( ' %s="%d"', esc_attr( $key ), $val );
+		}
+		return $out;
+	}
+
+	/**
+	 * @param array $sec Section row JSON.
+	 * @return string
+	 */
+	public static function builder_gap_shortcode_attr( array $sec ) {
+		if ( empty( $sec['gap'] ) ) {
+			return '';
+		}
+		return sprintf( ' gap="%d"', absint( $sec['gap'] ) );
+	}
+
+	/**
+	 * @param array $sec Section row JSON.
+	 * @param bool  $default_show Default when show_view_all key is absent.
+	 * @return string
+	 */
+	public static function builder_view_all_shortcode_attrs( array $sec, $default_show = true ) {
+		$show = ! isset( $sec['show_view_all'] ) ? $default_show : ! empty( $sec['show_view_all'] );
+		$out  = sprintf( ' show_view_all="%s"', $show ? 'true' : 'false' );
+		if ( ! empty( $sec['view_all_url'] ) ) {
+			$out .= sprintf( ' view_all_url="%s"', esc_url( $sec['view_all_url'] ) );
+		}
+		if ( ! empty( $sec['view_all_text'] ) ) {
+			$out .= sprintf( ' view_all_text="%s"', esc_attr( $sec['view_all_text'] ) );
+		}
+		return $out;
+	}
+
+	/**
+	 * @param array $sec Section row JSON.
+	 * @return string
+	 */
+	public static function builder_slider_shortcode_attrs( array $sec ) {
+		$autoplay = ! empty( $sec['slider_autoplay'] ) ? 'true' : 'false';
+		$loop     = ! empty( $sec['slider_loop'] ) ? 'true' : 'false';
+		$pause    = ! isset( $sec['slider_pause'] ) || ! empty( $sec['slider_pause'] ) ? 'true' : 'false';
+		$dots     = ! empty( $sec['slider_dots'] ) ? 'true' : 'false';
+		$speed    = absint( $sec['slider_speed'] ?? 3000 );
+		return sprintf(
+			' autoplay="%s" autoplay_speed="%d" loop="%s" pause_on_hover="%s" show_dots="%s"',
+			esc_attr( $autoplay ),
+			$speed,
+			esc_attr( $loop ),
+			esc_attr( $pause ),
+			esc_attr( $dots )
+		);
+	}
+
+	/**
+	 * Taxonomy include/exclude and order.
+	 *
+	 * @param array $sec Section row JSON.
+	 * @return string
+	 */
+	public static function builder_taxonomy_pick_shortcode_attrs( array $sec ) {
+		$out = '';
+		if ( ! empty( $sec['term_include'] ) ) {
+			$out .= sprintf( ' include="%s"', esc_attr( $sec['term_include'] ) );
+		}
+		if ( ! empty( $sec['term_exclude'] ) ) {
+			$out .= sprintf( ' exclude="%s"', esc_attr( $sec['term_exclude'] ) );
+		}
+		if ( ! empty( $sec['tax_orderby'] ) ) {
+			$out .= sprintf( ' orderby="%s"', esc_attr( sanitize_key( $sec['tax_orderby'] ) ) );
+		}
+		if ( ! empty( $sec['tax_order'] ) ) {
+			$out .= sprintf( ' order="%s"', esc_attr( strtoupper( $sec['tax_order'] ) === 'ASC' ? 'ASC' : 'DESC' ) );
+		}
+		return $out;
+	}
+
+	/**
+	 * Studio / taxonomy card logo ratio.
+	 *
+	 * @param array $sec Section row JSON.
+	 * @return string
+	 */
+	public static function builder_logo_ratio_shortcode_attrs( array $sec ) {
+		$ratio = ! empty( $sec['logo_ratio'] ) ? sanitize_key( $sec['logo_ratio'] ) : 'custom';
+		$out   = sprintf( ' ratio="%s"', esc_attr( $ratio ) );
+		if ( 'custom' === $ratio && ! empty( $sec['logo_custom_ratio'] ) ) {
+			$out .= sprintf( ' custom_ratio="%s"', esc_attr( $sec['logo_custom_ratio'] ) );
+		}
+		return $out;
+	}
+
+	/**
+	 * Shared responsive columns + gap + view-all URL markup.
+	 *
+	 * @param array $section Saved row.
+	 */
+	private function render_shared_grid_header_controls( $section ) {
+		$columns_laptop = isset( $section['columns_laptop'] ) ? absint( $section['columns_laptop'] ) : 0;
+		$columns_tablet = isset( $section['columns_tablet'] ) ? absint( $section['columns_tablet'] ) : 0;
+		$columns_mobile = isset( $section['columns_mobile'] ) ? absint( $section['columns_mobile'] ) : 0;
+		$gap            = isset( $section['gap'] ) ? absint( $section['gap'] ) : 0;
+		$show_view_all  = ! isset( $section['show_view_all'] ) || ! empty( $section['show_view_all'] );
+		$view_all_url   = isset( $section['view_all_url'] ) ? (string) $section['view_all_url'] : '';
+		$view_all_text  = isset( $section['view_all_text'] ) ? (string) $section['view_all_text'] : '';
+		?>
+		<p class="description" style="margin: 0 0 8px;">
+			<?php esc_html_e( 'Use the preview devices: Laptop (1280px), Tablet (720px), Phone (320px). Desktop is the full preview. 0 = automatic.', 'hello-movieengine' ); ?>
+		</p>
+		<div class="hello-movieengine-builder-row-grid hello-movieengine-builder-row-grid-3">
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'Columns (Laptop)', 'hello-movieengine' ); ?></label>
+				<input type="number" class="hello-movieengine-section-columns-laptop" value="<?php echo esc_attr( $columns_laptop ); ?>" min="0" max="8" step="1" placeholder="<?php esc_attr_e( '0 = auto', 'hello-movieengine' ); ?>" />
+			</div>
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'Columns (Tablet)', 'hello-movieengine' ); ?></label>
+				<input type="number" class="hello-movieengine-section-columns-tablet" value="<?php echo esc_attr( $columns_tablet ); ?>" min="0" max="8" step="1" placeholder="<?php esc_attr_e( '0 = auto', 'hello-movieengine' ); ?>" />
+			</div>
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'Columns (Mobile)', 'hello-movieengine' ); ?></label>
+				<input type="number" class="hello-movieengine-section-columns-mobile" value="<?php echo esc_attr( $columns_mobile ); ?>" min="0" max="6" step="1" placeholder="<?php esc_attr_e( '0 = auto', 'hello-movieengine' ); ?>" />
+			</div>
+		</div>
+		<div class="hello-movieengine-builder-row-grid">
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'Gap between items (px)', 'hello-movieengine' ); ?></label>
+				<input type="number" class="hello-movieengine-section-gap" value="<?php echo esc_attr( $gap ); ?>" min="0" max="60" step="1" placeholder="<?php esc_attr_e( '0 = default', 'hello-movieengine' ); ?>" />
+			</div>
+			<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+				<label>
+					<input type="checkbox" class="hello-movieengine-section-view-all" value="1" <?php checked( $show_view_all, true ); ?> />
+					<?php esc_html_e( 'Show "View All" link', 'hello-movieengine' ); ?>
+				</label>
+			</div>
+		</div>
+		<div class="hello-movieengine-builder-row-grid">
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'View All URL (optional)', 'hello-movieengine' ); ?></label>
+				<input type="url" class="hello-movieengine-section-view-all-url" value="<?php echo esc_attr( $view_all_url ); ?>" placeholder="<?php esc_attr_e( 'Leave blank for default archive', 'hello-movieengine' ); ?>" />
+			</div>
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'View All label', 'hello-movieengine' ); ?></label>
+				<input type="text" class="hello-movieengine-section-view-all-text" value="<?php echo esc_attr( $view_all_text ); ?>" placeholder="<?php esc_attr_e( 'Default: View All', 'hello-movieengine' ); ?>" />
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Slider carousel options (shared CSS classes for JS sync).
+	 *
+	 * @param array $section Saved row.
+	 */
+	private function render_shared_slider_controls( $section ) {
+		$slider_autoplay = ! empty( $section['slider_autoplay'] );
+		$slider_speed    = isset( $section['slider_speed'] ) ? absint( $section['slider_speed'] ) : 3000;
+		$slider_loop     = ! empty( $section['slider_loop'] );
+		$slider_pause    = ! isset( $section['slider_pause'] ) || ! empty( $section['slider_pause'] );
+		$slider_dots     = ! empty( $section['slider_dots'] );
+		?>
+		<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-controls-play"></span><?php esc_html_e( 'Slider & Carousel Options', 'hello-movieengine' ); ?></div>
+		<div class="hello-movieengine-builder-row-grid">
+			<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+				<label>
+					<input type="checkbox" class="hello-movieengine-section-slider-autoplay" value="1" <?php checked( $slider_autoplay, true ); ?> />
+					<?php esc_html_e( 'Auto-slide carousel', 'hello-movieengine' ); ?>
+				</label>
+			</div>
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'Speed (ms)', 'hello-movieengine' ); ?></label>
+				<input type="number" class="hello-movieengine-section-slider-speed" value="<?php echo esc_attr( $slider_speed ); ?>" min="1500" max="10000" step="500" />
+			</div>
+		</div>
+		<div class="hello-movieengine-builder-row-grid">
+			<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+				<label>
+					<input type="checkbox" class="hello-movieengine-section-slider-loop" value="1" <?php checked( $slider_loop, true ); ?> />
+					<?php esc_html_e( 'Infinite Loop', 'hello-movieengine' ); ?>
+				</label>
+			</div>
+			<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+				<label>
+					<input type="checkbox" class="hello-movieengine-section-slider-pause" value="1" <?php checked( $slider_pause, true ); ?> />
+					<?php esc_html_e( 'Pause on Hover', 'hello-movieengine' ); ?>
+				</label>
+			</div>
+		</div>
+		<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+			<label>
+				<input type="checkbox" class="hello-movieengine-section-slider-dots" value="1" <?php checked( $slider_dots, true ); ?> />
+				<?php esc_html_e( 'Show Dot Indicators', 'hello-movieengine' ); ?>
+			</label>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Taxonomy-specific: order, include/exclude, logo ratio.
+	 *
+	 * @param array  $section Saved row.
+	 * @param string $order_default ASC or DESC.
+	 */
+	private function render_shared_taxonomy_controls( $section, $order_default = 'ASC' ) {
+		$tax_orderby       = isset( $section['tax_orderby'] ) ? sanitize_key( $section['tax_orderby'] ) : 'name';
+		$tax_order         = isset( $section['tax_order'] ) ? strtoupper( (string) $section['tax_order'] ) : $order_default;
+		$term_include      = isset( $section['term_include'] ) ? (string) $section['term_include'] : '';
+		$term_exclude      = isset( $section['term_exclude'] ) ? (string) $section['term_exclude'] : '';
+		$logo_ratio        = isset( $section['logo_ratio'] ) ? sanitize_key( $section['logo_ratio'] ) : 'custom';
+		$logo_custom_ratio = isset( $section['logo_custom_ratio'] ) ? (string) $section['logo_custom_ratio'] : '16/9';
+		?>
+		<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-sort"></span><?php esc_html_e( 'Query & Specific Items', 'hello-movieengine' ); ?></div>
+		<div class="hello-movieengine-builder-row-grid">
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'Order by', 'hello-movieengine' ); ?></label>
+				<select class="hello-movieengine-section-tax-orderby">
+					<option value="name" <?php selected( $tax_orderby, 'name' ); ?>><?php esc_html_e( 'Name', 'hello-movieengine' ); ?></option>
+					<option value="count" <?php selected( $tax_orderby, 'count' ); ?>><?php esc_html_e( 'Item count', 'hello-movieengine' ); ?></option>
+					<option value="slug" <?php selected( $tax_orderby, 'slug' ); ?>><?php esc_html_e( 'Slug', 'hello-movieengine' ); ?></option>
+					<option value="rand" <?php selected( $tax_orderby, 'rand' ); ?>><?php esc_html_e( 'Random', 'hello-movieengine' ); ?></option>
+				</select>
+			</div>
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'Sort direction', 'hello-movieengine' ); ?></label>
+				<select class="hello-movieengine-section-tax-order">
+					<option value="ASC" <?php selected( $tax_order, 'ASC' ); ?>><?php esc_html_e( 'Ascending', 'hello-movieengine' ); ?></option>
+					<option value="DESC" <?php selected( $tax_order, 'DESC' ); ?>><?php esc_html_e( 'Descending', 'hello-movieengine' ); ?></option>
+				</select>
+			</div>
+		</div>
+		<div class="hello-movieengine-builder-field">
+			<label><?php esc_html_e( 'Include only (term IDs or slugs)', 'hello-movieengine' ); ?></label>
+			<input type="text" class="hello-movieengine-section-term-include" value="<?php echo esc_attr( $term_include ); ?>" placeholder="<?php esc_attr_e( 'e.g. warner-bros, 42', 'hello-movieengine' ); ?>" />
+		</div>
+		<div class="hello-movieengine-builder-field">
+			<label><?php esc_html_e( 'Exclude (term IDs or slugs)', 'hello-movieengine' ); ?></label>
+			<input type="text" class="hello-movieengine-section-term-exclude" value="<?php echo esc_attr( $term_exclude ); ?>" placeholder="<?php esc_attr_e( 'Optional', 'hello-movieengine' ); ?>" />
+		</div>
+		<div class="hello-movieengine-builder-row-grid">
+			<div class="hello-movieengine-builder-field">
+				<label><?php esc_html_e( 'Logo / card aspect ratio', 'hello-movieengine' ); ?></label>
+				<select class="hello-movieengine-section-logo-ratio">
+					<option value="custom" <?php selected( $logo_ratio, 'custom' ); ?>><?php esc_html_e( 'Custom', 'hello-movieengine' ); ?></option>
+					<option value="landscape" <?php selected( $logo_ratio, 'landscape' ); ?>><?php esc_html_e( 'Landscape', 'hello-movieengine' ); ?></option>
+					<option value="square" <?php selected( $logo_ratio, 'square' ); ?>><?php esc_html_e( 'Square', 'hello-movieengine' ); ?></option>
+					<option value="portrait" <?php selected( $logo_ratio, 'portrait' ); ?>><?php esc_html_e( 'Portrait', 'hello-movieengine' ); ?></option>
+				</select>
+			</div>
+			<div class="hello-movieengine-builder-field hello-movieengine-logo-custom-ratio" style="<?php echo ( 'custom' === $logo_ratio ) ? '' : 'display:none;'; ?>">
+				<label><?php esc_html_e( 'Custom ratio (W/H)', 'hello-movieengine' ); ?></label>
+				<input type="text" class="hello-movieengine-section-logo-custom-ratio" value="<?php echo esc_attr( $logo_custom_ratio ); ?>" placeholder="16/9" />
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
 	 * Render control content.
 	 */
 	public function render_content() {
@@ -243,6 +512,15 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 		if ( ! is_array( $sections ) || empty( $sections ) ) {
 			$sections = self::get_default_sections();
 		}
+
+		$sections = array_values(
+			array_filter(
+				$sections,
+				static function ( $sec ) {
+					return ( $sec['type'] ?? '' ) !== 'live_search';
+				}
+			)
+		);
 
 		$types = self::get_section_types();
 		?>
@@ -276,6 +554,18 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 					$hero_genre     = isset( $section['hero_genre'] ) ? $section['hero_genre'] : '';
 					$hero_year      = isset( $section['hero_year'] ) ? $section['hero_year'] : '';
 					$hero_height    = isset( $section['hero_height'] ) ? $section['hero_height'] : '70vh';
+					$hero_content_width = 'box';
+					if ( ! empty( $section['hero_content_width'] ) && 'full' === $section['hero_content_width'] ) {
+						$hero_content_width = 'full';
+					} elseif ( ! empty( $section['hero_width'] ) && 'full' === $section['hero_width'] ) {
+						$hero_content_width = 'full';
+					} elseif ( ! empty( $section['hero_width'] ) && 'box' === $section['hero_width'] ) {
+						$hero_content_width = 'box';
+					}
+					$hero_content_max = isset( $section['hero_content_max_width'] ) ? absint( $section['hero_content_max_width'] ) : 0;
+					if ( ! $hero_content_max && ! empty( $section['hero_box_width'] ) ) {
+						$hero_content_max = absint( $section['hero_box_width'] );
+					}
 					$hero_limit     = isset( $section['hero_limit'] ) ? absint( $section['hero_limit'] ) : 5;
 					$hero_post_type = isset( $section['hero_post_type'] ) ? $section['hero_post_type'] : 'movie_engine_movie,movie_engine_series';
 					$hero_speed     = isset( $section['hero_speed'] ) ? absint( $section['hero_speed'] ) : 5000;
@@ -349,10 +639,6 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 					$year_layout     = isset( $section['year_layout'] ) ? $section['year_layout'] : 'pills';
 					$year_limit      = isset( $section['year_limit'] ) ? absint( $section['year_limit'] ) : 10;
 					$year_order      = isset( $section['year_order'] ) ? $section['year_order'] : 'DESC';
-
-					// Search parameters
-					$search_placeholder = isset( $section['search_placeholder'] ) ? $section['search_placeholder'] : '';
-					$search_icon        = ! isset( $section['search_icon'] ) || ! empty( $section['search_icon'] );
 
 					// Shortcode
 					$shortcode      = isset( $section['shortcode'] ) ? $section['shortcode'] : '';
@@ -508,59 +794,16 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 									</div>
 								</div>
 
-								<div class="hello-movieengine-builder-row-grid">
-									<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
-										<label>
-											<input type="checkbox" class="hello-movieengine-section-slider" value="1" <?php checked( $slider, 1 ); ?> />
-											<?php esc_html_e( 'Slider Carousel', 'hello-movieengine' ); ?>
-										</label>
-									</div>
-									<?php if ( 'top10' !== $type ) : ?>
-										<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
-											<label>
-												<input type="checkbox" class="hello-movieengine-section-view-all" value="1" <?php checked( $show_view_all, 1 ); ?> />
-												<?php esc_html_e( 'Show "View All" link', 'hello-movieengine' ); ?>
-											</label>
-										</div>
-									<?php endif; ?>
-								</div>
-
-								<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-controls-play"></span><?php esc_html_e( 'Slider & Carousel Options', 'hello-movieengine' ); ?></div>
-
-								<div class="hello-movieengine-builder-row-grid">
-									<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
-										<label>
-											<input type="checkbox" class="hello-movieengine-section-slider-autoplay" value="1" <?php checked( $slider_autoplay, 1 ); ?> />
-											<?php esc_html_e( 'Auto-slide carousel', 'hello-movieengine' ); ?>
-										</label>
-									</div>
-									<div class="hello-movieengine-builder-field">
-										<label><?php esc_html_e( 'Speed (ms)', 'hello-movieengine' ); ?></label>
-										<input type="number" class="hello-movieengine-section-slider-speed" value="<?php echo esc_attr( $slider_speed ); ?>" min="1500" max="10000" step="500" />
-									</div>
-								</div>
-
-								<div class="hello-movieengine-builder-row-grid">
-									<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
-										<label>
-											<input type="checkbox" class="hello-movieengine-section-slider-loop" value="1" <?php checked( $slider_loop, 1 ); ?> />
-											<?php esc_html_e( 'Infinite Loop', 'hello-movieengine' ); ?>
-										</label>
-									</div>
-									<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
-										<label>
-											<input type="checkbox" class="hello-movieengine-section-slider-pause" value="1" <?php checked( $slider_pause, 1 ); ?> />
-											<?php esc_html_e( 'Pause on Hover', 'hello-movieengine' ); ?>
-										</label>
-									</div>
-								</div>
+								<?php $this->render_shared_grid_header_controls( $section ); ?>
 
 								<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
 									<label>
-										<input type="checkbox" class="hello-movieengine-section-slider-dots" value="1" <?php checked( $slider_dots, 1 ); ?> />
-										<?php esc_html_e( 'Show Dot Indicators', 'hello-movieengine' ); ?>
+										<input type="checkbox" class="hello-movieengine-section-slider" value="1" <?php checked( $slider, 1 ); ?> />
+										<?php esc_html_e( 'Slider Carousel', 'hello-movieengine' ); ?>
 									</label>
 								</div>
+
+								<?php $this->render_shared_slider_controls( $section ); ?>
 
 								<?php if ( 'top10' !== $type ) : ?>
 									<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-visibility"></span><?php esc_html_e( 'Card Badges & Meta', 'hello-movieengine' ); ?></div>
@@ -603,6 +846,21 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										<option value="style4" <?php selected( $hero_style, 'style4' ); ?>><?php esc_html_e( 'Style 4 — Cinema Poster Cards', 'hello-movieengine' ); ?></option>
 										<option value="style5" <?php selected( $hero_style, 'style5' ); ?>><?php esc_html_e( 'Style 5 — Arc / Curved Thumbnails Rail', 'hello-movieengine' ); ?></option>
 									</select>
+								</div>
+
+								<div class="hello-movieengine-builder-row-grid">
+									<div class="hello-movieengine-builder-field">
+										<label><?php esc_html_e( 'Content width', 'hello-movieengine' ); ?></label>
+										<select class="hello-movieengine-section-hero-content-width">
+											<option value="full" <?php selected( $hero_content_width, 'full' ); ?>><?php esc_html_e( 'Full width', 'hello-movieengine' ); ?></option>
+											<option value="box" <?php selected( $hero_content_width, 'box' ); ?>><?php esc_html_e( 'Boxed', 'hello-movieengine' ); ?></option>
+										</select>
+										<span class="description" style="font-size: 11px; color: #64748b;"><?php esc_html_e( 'Backdrop stays edge-to-edge; this controls title, text, and buttons only.', 'hello-movieengine' ); ?></span>
+									</div>
+									<div class="hello-movieengine-builder-field hello-movieengine-hero-content-max" style="<?php echo ( 'box' === $hero_content_width ) ? '' : 'display: none;'; ?>">
+										<label><?php esc_html_e( 'Content box width (px)', 'hello-movieengine' ); ?></label>
+										<input type="number" class="hello-movieengine-section-hero-content-max-width" value="<?php echo esc_attr( $hero_content_max ); ?>" min="0" max="2400" step="10" placeholder="<?php esc_attr_e( '0 = theme default', 'hello-movieengine' ); ?>" />
+									</div>
 								</div>
 
 								<div class="hello-movieengine-builder-row-grid">
@@ -787,22 +1045,28 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										<option value="stacked" <?php selected( $person_style, 'stacked' ); ?>><?php esc_html_e( 'Style 2 — Name & role below photo', 'hello-movieengine' ); ?></option>
 									</select>
 								</div>
+								<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-layout"></span><?php esc_html_e( 'Layout & Display', 'hello-movieengine' ); ?></div>
 								<div class="hello-movieengine-builder-row-grid">
 									<div class="hello-movieengine-builder-field">
 										<label><?php esc_html_e( 'Stars Count', 'hello-movieengine' ); ?></label>
 										<input type="number" class="hello-movieengine-section-person-count" value="<?php echo esc_attr( $count ); ?>" min="3" max="30" step="1" />
 									</div>
 									<div class="hello-movieengine-builder-field">
-										<label><?php esc_html_e( 'Columns', 'hello-movieengine' ); ?></label>
+										<label><?php esc_html_e( 'Columns (Desktop)', 'hello-movieengine' ); ?></label>
 										<input type="number" class="hello-movieengine-section-person-columns" value="<?php echo esc_attr( $columns ); ?>" min="3" max="8" step="1" />
 									</div>
 								</div>
+								<?php $this->render_shared_grid_header_controls( $section ); ?>
 								<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
 									<label>
 										<input type="checkbox" class="hello-movieengine-section-person-slider" value="1" <?php checked( $slider, 1 ); ?> />
 										<?php esc_html_e( 'Enable Horizontal Slider Carousel', 'hello-movieengine' ); ?>
 									</label>
 								</div>
+								<?php
+								$person_pause = ! isset( $section['person_pause'] ) || ! empty( $section['person_pause'] );
+								$person_dots  = ! empty( $section['person_dots'] );
+								?>
 								<div class="hello-movieengine-builder-row-grid">
 									<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
 										<label>
@@ -814,6 +1078,26 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										<label><?php esc_html_e( 'Speed (ms)', 'hello-movieengine' ); ?></label>
 										<input type="number" class="hello-movieengine-section-person-speed" value="<?php echo esc_attr( $person_speed ); ?>" min="1500" max="10000" step="500" />
 									</div>
+								</div>
+								<div class="hello-movieengine-builder-row-grid">
+									<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+										<label>
+											<input type="checkbox" class="hello-movieengine-section-person-loop" value="1" <?php checked( $person_loop, true ); ?> />
+											<?php esc_html_e( 'Infinite Loop', 'hello-movieengine' ); ?>
+										</label>
+									</div>
+									<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+										<label>
+											<input type="checkbox" class="hello-movieengine-section-person-pause" value="1" <?php checked( $person_pause, true ); ?> />
+											<?php esc_html_e( 'Pause on Hover', 'hello-movieengine' ); ?>
+										</label>
+									</div>
+								</div>
+								<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+									<label>
+										<input type="checkbox" class="hello-movieengine-section-person-dots" value="1" <?php checked( $person_dots, true ); ?> />
+										<?php esc_html_e( 'Show Dot Indicators', 'hello-movieengine' ); ?>
+									</label>
 								</div>
 							</div>
 
@@ -848,6 +1132,9 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										</label>
 									</div>
 								</div>
+								<?php $this->render_shared_grid_header_controls( $section ); ?>
+								<?php $this->render_shared_taxonomy_controls( $section, 'ASC' ); ?>
+								<?php $this->render_shared_slider_controls( $section ); ?>
 							</div>
 
 							<!-- ==============================
@@ -870,12 +1157,21 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										<input type="number" class="hello-movieengine-section-genre-limit" value="<?php echo esc_attr( $genre_limit ); ?>" min="4" max="30" />
 									</div>
 								</div>
+								<div class="hello-movieengine-builder-row-grid">
+									<div class="hello-movieengine-builder-field">
+										<label><?php esc_html_e( 'Columns (Desktop)', 'hello-movieengine' ); ?></label>
+										<input type="number" class="hello-movieengine-section-genre-columns" value="<?php echo esc_attr( isset( $section['genre_columns'] ) ? absint( $section['genre_columns'] ) : 6 ); ?>" min="3" max="8" step="1" />
+									</div>
+								</div>
 								<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
 									<label>
 										<input type="checkbox" class="hello-movieengine-section-genre-count" value="1" <?php checked( $genre_count, 1 ); ?> />
 										<?php esc_html_e( 'Show Title Counts (e.g. Action (42))', 'hello-movieengine' ); ?>
 									</label>
 								</div>
+								<?php $this->render_shared_grid_header_controls( $section ); ?>
+								<?php $this->render_shared_taxonomy_controls( $section, 'ASC' ); ?>
+								<?php $this->render_shared_slider_controls( $section ); ?>
 							</div>
 
 							<!-- ==============================
@@ -896,6 +1192,18 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										<label><?php esc_html_e( 'Columns (Desktop)', 'hello-movieengine' ); ?></label>
 										<input type="number" class="hello-movieengine-section-history-columns" value="<?php echo esc_attr( $history_columns ); ?>" min="2" max="6" />
 									</div>
+								</div>
+								<?php $this->render_shared_grid_header_controls( $section ); ?>
+								<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
+									<label>
+										<input type="checkbox" class="hello-movieengine-section-slider" value="1" <?php checked( $slider, 1 ); ?> />
+										<?php esc_html_e( 'Slider Carousel', 'hello-movieengine' ); ?>
+									</label>
+								</div>
+								<?php $this->render_shared_slider_controls( $section ); ?>
+								<div class="hello-movieengine-builder-field">
+									<label><?php esc_html_e( 'View All URL (dashboard history)', 'hello-movieengine' ); ?></label>
+									<input type="url" class="hello-movieengine-section-history-view-all" value="<?php echo esc_attr( $section['history_view_all'] ?? '' ); ?>" placeholder="<?php esc_attr_e( 'Optional — defaults to user dashboard history', 'hello-movieengine' ); ?>" />
 								</div>
 							</div>
 
@@ -918,28 +1226,19 @@ class Hello_Movie_Engine_Customize_Section_Builder_Control extends WP_Customize_
 										<input type="number" class="hello-movieengine-section-year-limit" value="<?php echo esc_attr( $year_limit ); ?>" min="4" max="30" />
 									</div>
 								</div>
+								<div class="hello-movieengine-builder-row-grid">
+									<div class="hello-movieengine-builder-field">
+										<label><?php esc_html_e( 'Columns (Desktop)', 'hello-movieengine' ); ?></label>
+										<input type="number" class="hello-movieengine-section-year-columns" value="<?php echo esc_attr( isset( $section['year_columns'] ) ? absint( $section['year_columns'] ) : 6 ); ?>" min="3" max="8" step="1" />
+									</div>
+								</div>
+								<?php $this->render_shared_grid_header_controls( $section ); ?>
+								<?php $this->render_shared_taxonomy_controls( $section, 'DESC' ); ?>
+								<?php $this->render_shared_slider_controls( $section ); ?>
 							</div>
 
 							<!-- ==============================
-							     8. Live Search Fields
-							     ============================== -->
-							<div class="hello-movieengine-fields-live_search" style="<?php echo ( 'live_search' === $type ) ? '' : 'display: none;'; ?>">
-								<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-search"></span><?php esc_html_e( 'Live Search Bar Settings', 'hello-movieengine' ); ?></div>
-
-								<div class="hello-movieengine-builder-field">
-									<label><?php esc_html_e( 'Search Input Placeholder', 'hello-movieengine' ); ?></label>
-									<input type="text" class="hello-movieengine-section-search-placeholder" value="<?php echo esc_attr( $search_placeholder ); ?>" placeholder="<?php esc_attr_e( 'Search movies & TV series...', 'hello-movieengine' ); ?>" />
-								</div>
-								<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field">
-									<label>
-										<input type="checkbox" class="hello-movieengine-section-search-icon" value="1" <?php checked( $search_icon, 1 ); ?> />
-										<?php esc_html_e( 'Show Search Icon', 'hello-movieengine' ); ?>
-									</label>
-								</div>
-							</div>
-
-							<!-- ==============================
-							     9. Custom Shortcode Field
+							     8. Custom Shortcode Field
 							     ============================== -->
 							<div class="hello-movieengine-fields-shortcode" style="<?php echo ( 'shortcode' === $type ) ? '' : 'display: none;'; ?>">
 								<div class="hello-movieengine-builder-field">

@@ -382,6 +382,28 @@ JS;
 add_action( 'admin_enqueue_scripts', 'hello_movieengine_mega_menu_admin_assets' );
 
 /**
- * Rich mega blocks (banner, movie row) – Style Two side rail.
+ * Rich mega blocks (banner, movie row) – header, mobile, Style Two side rail.
  */
 require HELLO_MOVIEENGINE_DIR . '/inc/mega-menu-blocks.php';
+
+/**
+ * Primary header navigation (walker outputs mega banner / movie blocks).
+ *
+ * @param array $args wp_nav_menu() overrides.
+ */
+function hello_movieengine_render_primary_nav_menu( $args = array() ) {
+	$defaults = array(
+		'theme_location' => 'primary',
+		'menu_id'        => 'primary-menu',
+		'menu_class'     => 'hello-movieengine-nav-menu',
+		'container'      => false,
+		'fallback_cb'    => false,
+		'depth'          => 0,
+	);
+
+	if ( class_exists( 'Hello_Movie_Engine_Header_Mega_Walker' ) ) {
+		$defaults['walker'] = new Hello_Movie_Engine_Header_Mega_Walker();
+	}
+
+	wp_nav_menu( array_merge( $defaults, $args ) );
+}

@@ -379,4 +379,31 @@
 			} );
 		} );
 	}
+
+	/* Prevent broken desktop breakout inline styles (margin-left: -80px, width: 2552px) on mobile */
+	function cleanHeroInlineStyles() {
+		var isMobile = ( window.innerWidth <= 1024 );
+		var heroes = document.querySelectorAll(
+			'.movie-engine-hero-section, .movie-engine-hero, .movie-engine-movie-hero, .me-hero'
+		);
+		heroes.forEach( function ( hero ) {
+			if ( isMobile || ( hero.style.width && parseInt( hero.style.width, 10 ) > window.innerWidth ) ) {
+				hero.style.removeProperty( 'margin-left' );
+				hero.style.removeProperty( 'width' );
+			}
+		} );
+	}
+
+	cleanHeroInlineStyles();
+	window.addEventListener( 'resize', cleanHeroInlineStyles );
+	window.addEventListener( 'orientationchange', cleanHeroInlineStyles );
+
+	if ( typeof MutationObserver !== 'undefined' ) {
+		var heroObserver = new MutationObserver( function () {
+			cleanHeroInlineStyles();
+		} );
+		document.querySelectorAll( '.movie-engine-hero-section, .movie-engine-hero' ).forEach( function ( h ) {
+			heroObserver.observe( h, { attributes: true, attributeFilter: [ 'style' ] } );
+		} );
+	}
 } )();

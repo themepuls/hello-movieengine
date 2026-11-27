@@ -742,6 +742,26 @@
 		} );
 	}
 
+	function builderFieldsScope( $row, type ) {
+		var scopes = {
+			library: '.hello-movieengine-fields-library',
+			top10: '.hello-movieengine-fields-library',
+			person_list: '.hello-movieengine-fields-person',
+			studios: '.hello-movieengine-fields-studios',
+			genres: '.hello-movieengine-fields-genres',
+			history: '.hello-movieengine-fields-history',
+			years: '.hello-movieengine-fields-years'
+		};
+		var sel = scopes[ type ] || '';
+		if ( sel ) {
+			var $scope = $row.find( sel ).first();
+			if ( $scope.length ) {
+				return $scope;
+			}
+		}
+		return $row;
+	}
+
 	function updateRowQuerySourceUI( $row ) {
 		if ( ! $row || ! $row.length ) {
 			return;
@@ -777,6 +797,16 @@
 				sectionSlider = $row.find( '.hello-movieengine-section-person-slider' ).is( ':checked' ) ? 1 : 0;
 			}
 
+			var $fieldScope = builderFieldsScope( $row, type );
+
+			if ( type === 'history' ) {
+				var histCountVal = parseInt( $fieldScope.find( '.hello-movieengine-section-history-count' ).val(), 10 );
+				var histColsVal  = parseInt( $fieldScope.find( '.hello-movieengine-section-history-columns' ).val(), 10 );
+				sectionCount   = ! isNaN( histCountVal ) ? histCountVal : 6;
+				sectionCols    = ! isNaN( histColsVal ) ? histColsVal : 4;
+				sectionSlider  = $fieldScope.find( '.hello-movieengine-section-slider' ).is( ':checked' ) ? 1 : 0;
+			}
+
 			var sec = {
 				id: $row.data( 'id' ) || 'sec_' + Math.random().toString( 36 ).substr( 2, 9 ),
 				type: type,
@@ -794,8 +824,20 @@
 				order: $row.find( '.hello-movieengine-section-order' ).val() || 'DESC',
 				count: sectionCount,
 				columns: sectionCols,
+				columns_laptop: parseInt( $fieldScope.find( '.hello-movieengine-section-columns-laptop' ).val(), 10 ) || 0,
+				columns_tablet: parseInt( $fieldScope.find( '.hello-movieengine-section-columns-tablet' ).val(), 10 ) || 0,
+				columns_mobile: parseInt( $fieldScope.find( '.hello-movieengine-section-columns-mobile' ).val(), 10 ) || 0,
+				gap: parseInt( $fieldScope.find( '.hello-movieengine-section-gap' ).val(), 10 ) || 0,
+				view_all_url: $fieldScope.find( '.hello-movieengine-section-view-all-url' ).val() || '',
+				view_all_text: $fieldScope.find( '.hello-movieengine-section-view-all-text' ).val() || '',
 				slider: sectionSlider,
-				show_view_all: $row.find( '.hello-movieengine-section-view-all' ).length ? ( $row.find( '.hello-movieengine-section-view-all' ).is( ':checked' ) ? 1 : 0 ) : 1,
+				show_view_all: $fieldScope.find( '.hello-movieengine-section-view-all' ).length ? ( $fieldScope.find( '.hello-movieengine-section-view-all' ).is( ':checked' ) ? 1 : 0 ) : 1,
+				tax_orderby: $row.find( '.hello-movieengine-section-tax-orderby' ).val() || '',
+				tax_order: $row.find( '.hello-movieengine-section-tax-order' ).val() || '',
+				term_include: $row.find( '.hello-movieengine-section-term-include' ).val() || '',
+				term_exclude: $row.find( '.hello-movieengine-section-term-exclude' ).val() || '',
+				logo_ratio: $row.find( '.hello-movieengine-section-logo-ratio' ).val() || '',
+				logo_custom_ratio: $row.find( '.hello-movieengine-section-logo-custom-ratio' ).val() || '',
 				slider_autoplay: $row.find( '.hello-movieengine-section-slider-autoplay' ).is( ':checked' ) ? 1 : 0,
 				slider_speed: parseInt( $row.find( '.hello-movieengine-section-slider-speed' ).val(), 10 ) || 3000,
 				slider_loop: $row.find( '.hello-movieengine-section-slider-loop' ).length ? ( $row.find( '.hello-movieengine-section-slider-loop' ).is( ':checked' ) ? 1 : 0 ) : 0,
@@ -809,12 +851,17 @@
 				person_style: $row.find( '.hello-movieengine-section-person-style' ).val() || 'overlay',
 				person_autoplay: $row.find( '.hello-movieengine-section-person-autoplay' ).length ? ( $row.find( '.hello-movieengine-section-person-autoplay' ).is( ':checked' ) ? 1 : 0 ) : 0,
 				person_speed: parseInt( $row.find( '.hello-movieengine-section-person-speed' ).val(), 10 ) || 3000,
+				person_loop: $row.find( '.hello-movieengine-section-person-loop' ).length ? ( $row.find( '.hello-movieengine-section-person-loop' ).is( ':checked' ) ? 1 : 0 ) : 0,
+				person_pause: $row.find( '.hello-movieengine-section-person-pause' ).length ? ( $row.find( '.hello-movieengine-section-person-pause' ).is( ':checked' ) ? 1 : 0 ) : 1,
+				person_dots: $row.find( '.hello-movieengine-section-person-dots' ).length ? ( $row.find( '.hello-movieengine-section-person-dots' ).is( ':checked' ) ? 1 : 0 ) : 0,
 				hero_style: $row.find( '.hello-movieengine-section-hero-style' ).val() || 'style1',
 				hero_ids: $row.find( '.hello-movieengine-section-hero-ids' ).val() || '',
 				hero_query_source: $row.find( '.hello-movieengine-section-hero-query-source' ).val() || 'site',
 				hero_type: $row.find( '.hello-movieengine-section-hero-type' ).val() || 'trending',
 				hero_tmdb_type: $row.find( '.hello-movieengine-section-hero-tmdb-type' ).val() || 'day',
 				hero_height: $row.find( '.hello-movieengine-section-hero-height' ).val() || '70vh',
+				hero_content_width: $row.find( '.hello-movieengine-section-hero-content-width' ).val() || 'box',
+				hero_content_max_width: parseInt( $row.find( '.hello-movieengine-section-hero-content-max-width' ).val(), 10 ) || 0,
 				hero_limit: parseInt( $row.find( '.hello-movieengine-section-hero-limit' ).val(), 10 ) || 5,
 				hero_post_type: $row.find( '.hello-movieengine-section-hero-post-type' ).val() || 'movie_engine_movie,movie_engine_series',
 				hero_genre: $row.find( '.hello-movieengine-section-hero-genre' ).val() || '',
@@ -835,13 +882,14 @@
 				studio_title: $row.find( '.hello-movieengine-section-studio-title' ).is( ':checked' ) ? 1 : 0,
 				genre_layout: $row.find( '.hello-movieengine-section-genre-layout' ).val() || 'pills',
 				genre_limit: parseInt( $row.find( '.hello-movieengine-section-genre-limit' ).val(), 10 ) || 12,
+				genre_columns: parseInt( $row.find( '.hello-movieengine-section-genre-columns' ).val(), 10 ) || 6,
 				genre_count: $row.find( '.hello-movieengine-section-genre-count' ).length ? ( $row.find( '.hello-movieengine-section-genre-count' ).is( ':checked' ) ? 1 : 0 ) : 1,
 				history_count: parseInt( $row.find( '.hello-movieengine-section-history-count' ).val(), 10 ) || 6,
 				history_columns: parseInt( $row.find( '.hello-movieengine-section-history-columns' ).val(), 10 ) || 4,
+				history_view_all: $row.find( '.hello-movieengine-section-history-view-all' ).val() || '',
 				year_layout: $row.find( '.hello-movieengine-section-year-layout' ).val() || 'pills',
 				year_limit: parseInt( $row.find( '.hello-movieengine-section-year-limit' ).val(), 10 ) || 10,
-				search_placeholder: $row.find( '.hello-movieengine-section-search-placeholder' ).val() || '',
-				search_icon: $row.find( '.hello-movieengine-section-search-icon' ).length ? ( $row.find( '.hello-movieengine-section-search-icon' ).is( ':checked' ) ? 1 : 0 ) : 1,
+				year_columns: parseInt( $row.find( '.hello-movieengine-section-year-columns' ).val(), 10 ) || 6,
 				shortcode: $row.find( '.hello-movieengine-section-shortcode' ).val() || ''
 			};
 			data.push( sec );
@@ -923,12 +971,28 @@
 		$row.find( '.hello-movieengine-fields-genres' ).toggle( type === 'genres' );
 		$row.find( '.hello-movieengine-fields-history' ).toggle( type === 'history' );
 		$row.find( '.hello-movieengine-fields-years' ).toggle( type === 'years' );
-		$row.find( '.hello-movieengine-fields-live_search' ).toggle( type === 'live_search' );
 		$row.find( '.hello-movieengine-fields-shortcode' ).toggle( type === 'shortcode' );
 		$row.find( '.hello-movieengine-fields-page-content' ).toggle( type === 'page_content' );
 
 		updateRowQuerySourceUI( $row );
 		syncSectionBuilder( $row.closest( '.hello-movieengine-section-builder-control' ) );
+	} );
+
+	function updateHeroWidthUI( $row ) {
+		var mode = $row.find( '.hello-movieengine-section-hero-content-width' ).val() || 'box';
+		$row.find( '.hello-movieengine-hero-content-max' ).toggle( mode === 'box' );
+	}
+
+	$( document ).on( 'change', '.hello-movieengine-section-hero-content-width', function () {
+		var $row = $( this ).closest( '.hello-movieengine-builder-row' );
+		updateHeroWidthUI( $row );
+		syncSectionBuilder( $row.closest( '.hello-movieengine-section-builder-control' ) );
+	} );
+
+	$( document ).on( 'change', '.hello-movieengine-section-logo-ratio', function () {
+		var $row = $( this ).closest( '.hello-movieengine-builder-row' );
+		var mode = $( this ).val() || 'custom';
+		$row.find( '.hello-movieengine-logo-custom-ratio' ).toggle( mode === 'custom' );
 	} );
 
 	$( document ).on( 'change', '.hello-movieengine-section-query-source, .hello-movieengine-section-hero-query-source', function () {
@@ -987,7 +1051,6 @@
 					'<option value="genres">Genre Category Bar</option>' +
 					'<option value="history">Continue Watching (User History)</option>' +
 					'<option value="years">Release Years Filter</option>' +
-					'<option value="live_search">Interactive Live Search Bar</option>' +
 					'<option value="page_content">Page Content (From Editor)</option>' +
 					'<option value="shortcode">Custom Shortcode</option>' +
 				'</select></div>' +
@@ -1015,6 +1078,14 @@
 						'<div class="hello-movieengine-builder-field"><label>Items Count</label><input type="number" class="hello-movieengine-section-count" value="12" min="3" max="40" /></div>' +
 						'<div class="hello-movieengine-builder-field"><label>Columns (Desktop)</label><input type="number" class="hello-movieengine-section-columns" value="6" min="3" max="8" /></div>' +
 					'</div>' +
+					'<div class="hello-movieengine-builder-row-grid hello-movieengine-builder-row-grid-3">' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Laptop)</label><input type="number" class="hello-movieengine-section-columns-laptop" value="0" min="0" max="8" step="1" placeholder="0 = auto" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Tablet)</label><input type="number" class="hello-movieengine-section-columns-tablet" value="0" min="0" max="8" step="1" placeholder="0 = auto" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Mobile)</label><input type="number" class="hello-movieengine-section-columns-mobile" value="0" min="0" max="6" step="1" placeholder="0 = auto" /></div>' +
+					'</div>' +
+					'<div class="hello-movieengine-builder-row-grid">' +
+						'<div class="hello-movieengine-builder-field"><label>Gap between items (px)</label><input type="number" class="hello-movieengine-section-gap" value="0" min="0" max="60" step="1" placeholder="0 = default" /></div>' +
+					'</div>' +
 					'<div class="hello-movieengine-builder-row-grid">' +
 						'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-slider" value="1" checked /> Slider Carousel</label></div>' +
 						'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-view-all" value="1" checked /> Show "View All" link</label></div>' +
@@ -1041,6 +1112,10 @@
 				'<div class="hello-movieengine-fields-hero" style="display: none;">' +
 					'<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-layout"></span>Hero Style & Layout</div>' +
 					'<div class="hello-movieengine-builder-field"><label>Hero Banner Style</label><select class="hello-movieengine-section-hero-style"><option value="style1" selected>Style 1 — Classic Fullwidth Billboard</option><option value="style2">Style 2 — Bottom Thumbnail Slider</option><option value="style3">Style 3 — Compact Thumbnail Strip</option><option value="style4">Style 4 — Cinema Poster Cards</option><option value="style5">Style 5 — Arc / Curved Thumbnails Rail</option></select></div>' +
+					'<div class="hello-movieengine-builder-row-grid">' +
+						'<div class="hello-movieengine-builder-field"><label>Content width</label><select class="hello-movieengine-section-hero-content-width"><option value="full">Full width</option><option value="box" selected>Boxed</option></select><span class="description" style="font-size: 11px; color: #64748b;">Backdrop stays full bleed; titles and buttons follow this setting.</span></div>' +
+						'<div class="hello-movieengine-builder-field hello-movieengine-hero-content-max"><label>Content box width (px)</label><input type="number" class="hello-movieengine-section-hero-content-max-width" value="0" min="0" max="2400" step="10" placeholder="0 = theme default" /></div>' +
+					'</div>' +
 					'<div class="hello-movieengine-builder-row-grid">' +
 						'<div class="hello-movieengine-builder-field"><label>Slides Count</label><input type="number" class="hello-movieengine-section-hero-limit" value="5" min="1" max="15" /></div>' +
 						'<div class="hello-movieengine-builder-field"><label>Hero Height (vh or px)</label><input type="text" class="hello-movieengine-section-hero-height" value="70vh" placeholder="70vh" /></div>' +
@@ -1085,9 +1160,20 @@
 					'<div class="hello-movieengine-builder-field"><label>Department / Role</label><select class="hello-movieengine-section-department"><option value="" selected>All Roles (Actors, Directors, etc.)</option><option value="Acting">Acting (Actors)</option><option value="Directing">Directing (Directors)</option><option value="Writing">Writing (Writers)</option></select></div>' +
 					'<div class="hello-movieengine-builder-field"><label>Order By</label><select class="hello-movieengine-section-person-orderby"><option value="title" selected>Name (A to Z)</option><option value="date">Recently Added</option><option value="rand">Random</option></select></div>' +
 					'<div class="hello-movieengine-builder-field"><label>Card Style</label><select class="hello-movieengine-section-person-style"><option value="overlay" selected>Style 1 — Gradient overlay on photo</option><option value="stacked">Style 2 — Name &amp; role below photo</option></select></div>' +
+					'<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-layout"></span>Layout &amp; Display</div>' +
 					'<div class="hello-movieengine-builder-row-grid">' +
 						'<div class="hello-movieengine-builder-field"><label>Stars Count</label><input type="number" class="hello-movieengine-section-person-count" value="12" min="3" max="30" step="1" /></div>' +
-						'<div class="hello-movieengine-builder-field"><label>Columns</label><input type="number" class="hello-movieengine-section-person-columns" value="6" min="3" max="8" step="1" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Desktop)</label><input type="number" class="hello-movieengine-section-person-columns" value="6" min="3" max="8" step="1" /></div>' +
+					'</div>' +
+					'<p class="description" style="margin: 0 0 8px;">Use the preview devices: Laptop (1280px), Tablet (720px), Phone (320px). Desktop is the full preview. 0 = automatic.</p>' +
+					'<div class="hello-movieengine-builder-row-grid hello-movieengine-builder-row-grid-3">' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Laptop)</label><input type="number" class="hello-movieengine-section-columns-laptop" value="0" min="0" max="8" step="1" placeholder="0 = auto" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Tablet)</label><input type="number" class="hello-movieengine-section-columns-tablet" value="0" min="0" max="8" step="1" placeholder="0 = auto" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Mobile)</label><input type="number" class="hello-movieengine-section-columns-mobile" value="0" min="0" max="6" step="1" placeholder="0 = auto" /></div>' +
+					'</div>' +
+					'<div class="hello-movieengine-builder-row-grid">' +
+						'<div class="hello-movieengine-builder-field"><label>Gap between items (px)</label><input type="number" class="hello-movieengine-section-gap" value="0" min="0" max="60" step="1" placeholder="0 = default" /></div>' +
+						'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-view-all" value="1" checked /> Show "View All" link</label></div>' +
 					'</div>' +
 					'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-person-slider" value="1" checked /> Enable Horizontal Slider Carousel</label></div>' +
 					'<div class="hello-movieengine-builder-row-grid">' +
@@ -1127,6 +1213,17 @@
 						'<div class="hello-movieengine-builder-field"><label>Max History Items</label><input type="number" class="hello-movieengine-section-history-count" value="6" min="2" max="20" /></div>' +
 						'<div class="hello-movieengine-builder-field"><label>Columns (Desktop)</label><input type="number" class="hello-movieengine-section-history-columns" value="4" min="2" max="6" /></div>' +
 					'</div>' +
+					'<p class="description" style="margin: 0 0 8px;">Use the preview devices: Laptop (1280px), Tablet (720px), Phone (320px). Desktop is the full preview. 0 = automatic.</p>' +
+					'<div class="hello-movieengine-builder-row-grid hello-movieengine-builder-row-grid-3">' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Laptop)</label><input type="number" class="hello-movieengine-section-columns-laptop" value="0" min="0" max="8" step="1" placeholder="0 = auto" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Tablet)</label><input type="number" class="hello-movieengine-section-columns-tablet" value="0" min="0" max="8" step="1" placeholder="0 = auto" /></div>' +
+						'<div class="hello-movieengine-builder-field"><label>Columns (Mobile)</label><input type="number" class="hello-movieengine-section-columns-mobile" value="0" min="0" max="6" step="1" placeholder="0 = auto" /></div>' +
+					'</div>' +
+					'<div class="hello-movieengine-builder-row-grid">' +
+						'<div class="hello-movieengine-builder-field"><label>Gap between items (px)</label><input type="number" class="hello-movieengine-section-gap" value="0" min="0" max="60" step="1" placeholder="0 = default" /></div>' +
+						'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-view-all" value="1" checked /> Show "View All" link</label></div>' +
+					'</div>' +
+					'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-slider" value="1" checked /> Slider Carousel</label></div>' +
 				'</div>' +
 
 				'<!-- 7. Years -->' +
@@ -1138,14 +1235,7 @@
 					'</div>' +
 				'</div>' +
 
-				'<!-- 8. Live Search -->' +
-				'<div class="hello-movieengine-fields-live_search" style="display: none;">' +
-					'<div class="hello-movieengine-builder-group-title"><span class="dashicons dashicons-search"></span>Live Search Bar Settings</div>' +
-					'<div class="hello-movieengine-builder-field"><label>Search Input Placeholder</label><input type="text" class="hello-movieengine-section-search-placeholder" value="" placeholder="Search movies & TV series..." /></div>' +
-					'<div class="hello-movieengine-builder-field hello-movieengine-builder-toggle-field"><label><input type="checkbox" class="hello-movieengine-section-search-icon" value="1" checked /> Show Search Icon</label></div>' +
-				'</div>' +
-
-				'<!-- 9. Shortcode -->' +
+				'<!-- 8. Shortcode -->' +
 				'<div class="hello-movieengine-fields-shortcode" style="display: none;">' +
 					'<div class="hello-movieengine-builder-field"><label>Custom Shortcode</label><textarea class="hello-movieengine-section-shortcode" rows="2" placeholder="[my_shortcode parameter=\'1\']"></textarea></div>' +
 				'</div>' +

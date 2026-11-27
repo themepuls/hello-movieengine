@@ -88,7 +88,7 @@
 	}
 }
 
-.hmestyle-style-two .movie-engine-items-grid {
+.hmestyle-style-two .movie-engine-items-grid:not(.me-hero-slider) {
 	padding-left: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pl, 1.25rem));
 	padding-right: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pr, 1.25rem));
 }
@@ -102,10 +102,10 @@
 }
 
 /* Plugin sets overflow-y:hidden on slider grids — allow hover scale / badges */
-html.hmestyle-style-two .movie-engine-slider-enabled .movie-engine-items-grid,
-html.hmestyle-style-two .me-slider-layout .movie-engine-items-grid,
-html.hmestyle-style-two .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid,
-html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid {
+html.hmestyle-style-two .movie-engine-slider-enabled .movie-engine-items-grid:not(.me-hero-slider),
+html.hmestyle-style-two .me-slider-layout .movie-engine-items-grid:not(.me-hero-slider),
+html.hmestyle-style-two .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid:not(.me-hero-slider),
+html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid:not(.me-hero-slider) {
 	padding-right: 0 !important;
 	padding-top: 22px;
 	padding-bottom: 14px;
@@ -141,9 +141,12 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 
 .hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
 .hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
-.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card {
-	flex: 0 0 clamp(var(--hm-feed-card-min-width, 140px), 12.4vw, 220px) !important;
-	width: auto !important;
+.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card,
+.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
+.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card {
+	flex: 0 0 calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 6)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns, var(--me-grid-columns-desktop, 6))) !important;
+	width: calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 6)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns, var(--me-grid-columns-desktop, 6))) !important;
 	max-width: none !important;
 	min-width: 0 !important;
 }
@@ -161,6 +164,13 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 	padding-left: var(--hm-ott-row-inset, 56px) !important;
 	padding-right: 0 !important;
 	box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+	.hmestyle-style-two.hello-movieengine-has-side-rail .movie-engine-single-movie-wrapper > .me-inline-watch-page > .me-main-content {
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+	}
 }
 
 .hmestyle-style-two .movie-engine-single-movie-wrapper .movie-engine-episodes-section .movie-engine-grid-layout,
@@ -198,7 +208,14 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 @media (max-width: 768px) {
 	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card,
 	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card {
-		width: calc((100% - (var(--grid-columns-mobile, 3) - 1) * 15px) / var(--grid-columns-mobile, 3));
+		width: calc((100% - (var(--grid-columns-tablet, 3) - 1) * 15px) / var(--grid-columns-tablet, 3));
+	}
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .hme-single-cinema .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card {
+		width: calc((100% - (var(--grid-columns-mobile, 2) - 1) * 12px) / var(--grid-columns-mobile, 2));
 	}
 }
 
@@ -223,36 +240,45 @@ html.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-ite
 	box-sizing: border-box !important;
 }
 
-/* Home builder Cast slider: builder Columns (--grid-columns); beats legacy clamp bundles */
-html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
-html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
-html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
-html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
-	flex: 0 0 auto !important;
-	width: calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 6)) - 1) * 20px) / var(--grid-columns, var(--me-grid-columns-desktop, 6))) !important;
+/* Home builder Cast slider — builder columns; laptop only above tablet (1024) so 720px preview uses tablet */
+html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
+html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
+html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
+	flex: 0 0 calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 6)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns, var(--me-grid-columns-desktop, 6))) !important;
+	width: calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 6)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns, var(--me-grid-columns-desktop, 6))) !important;
 	max-width: none !important;
 	min-width: 0 !important;
 	box-sizing: border-box !important;
 }
 
-@media (max-width: 1440px) {
-	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
-	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
-		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * 20px) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+@media (max-width: 1440px) and (min-width: 1025px) {
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
 	}
 }
 
-@media (max-width: 1200px) {
-	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
-	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
-		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4)) - 1) * 20px) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4))) !important;
+@media (max-width: 1024px) {
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4)) - 1) * var(--me-slider-gap, 16px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4))) !important;
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4)) - 1) * var(--me-slider-gap, 16px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4))) !important;
 	}
 }
 
-@media (max-width: 768px) {
-	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
-	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card {
-		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3)) - 1) * 15px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3))) !important;
+@media (max-width: 600px) {
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
+	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * var(--me-slider-gap, 12px)) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * var(--me-slider-gap, 12px)) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
 	}
 }
 
@@ -409,42 +435,62 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 	display: block !important;
 }
 
-.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-item {
+.hmestyle-style-two .movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-item,
+.movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-item {
 	width: 100%;
 	max-width: none;
 	background: transparent;
 }
 
-.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
-	display: grid;
-	grid-template-columns: repeat(var(--grid-columns, 6), minmax(0, 1fr));
-	gap: 20px;
+.hmestyle-style-two .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+.movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+	display: grid !important;
+	grid-template-columns: repeat(var(--grid-columns, 6), minmax(0, 1fr)) !important;
+	gap: 20px !important;
 }
 
 @media (max-width: 1440px) {
-	.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
-		grid-template-columns: repeat(var(--grid-columns-laptop, 5), minmax(0, 1fr));
+	.hmestyle-style-two .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+		grid-template-columns: repeat(var(--grid-columns-laptop, 5), minmax(0, 1fr)) !important;
 	}
 }
 
 @media (max-width: 1200px) {
-	.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
-		grid-template-columns: repeat(var(--grid-columns-tablet, 4), minmax(0, 1fr));
-		gap: 18px;
+	.hmestyle-style-two .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+		grid-template-columns: repeat(var(--grid-columns-tablet, 4), minmax(0, 1fr)) !important;
+		gap: 18px !important;
 	}
 }
 
 @media (max-width: 768px) {
-	.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
-		grid-template-columns: repeat(var(--grid-columns-mobile, 3), minmax(0, 1fr));
-		gap: 12px;
+	.hmestyle-style-two .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+		grid-template-columns: repeat(var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
+		gap: 14px !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+		grid-template-columns: repeat(var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+		gap: 12px !important;
 	}
 }
 
 @media (max-width: 480px) {
-	.hmestyle-style-two .hme-single-cinema .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 10px;
+	.hmestyle-style-two .movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+		grid-template-columns: repeat(var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+		gap: 10px !important;
 	}
 }
 
@@ -476,6 +522,20 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 	padding: 0;
 }
 
+/* Single movie & TV series watch heroes (Fullwidth layout) */
+.hmestyle-style-two .movie-engine-single-movie-wrapper .movie-engine-movie-hero {
+	min-height: clamp(440px, var(--me-watch-movie-hero-height, 100vh), 1080px);
+	height: var(--me-watch-movie-hero-height, 100vh);
+	max-height: 1080px;
+}
+
+.hmestyle-style-two .movie-engine-single-movie-wrapper.me-single-series .movie-engine-movie-hero,
+.hmestyle-style-two .movie-engine-single-series-wrapper .movie-engine-movie-hero {
+	min-height: clamp(440px, var(--me-watch-series-hero-height, 100vh), 1080px);
+	height: var(--me-watch-series-hero-height, 100vh);
+	max-height: 1080px;
+}
+
 .hmestyle-style-two .hello-movieengine-content-area,
 .hmestyle-style-two .site-main--me-fullwidth {
 	max-width: var(--hm-feed-container-width, 100%);
@@ -483,29 +543,60 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 
 .hmestyle-style-two .movie-engine-hero-section,
 .hmestyle-style-two .movie-engine-hero {
-	min-height: var(--hm-feed-hero-min-height, 100vh);
+	--hm-hero-section-height: max(var(--hm-feed-hero-min-height, 100vh), var(--me-hero-height, 700px));
+	min-height: var(--hm-hero-section-height);
 	overflow: hidden;
 }
 
-.hmestyle-style-two .movie-engine-hero-section .me-hero-slider.movie-engine-items-grid {
+/* Style 1–3: horizontal scroll track. Style 4/5 use plugin cross-fade (absolute stack) — excluded here. */
+.hmestyle-style-two .movie-engine-hero-section:not(.me-hero-style4):not(.me-hero-style5) .me-hero-slider.movie-engine-items-grid {
 	overflow-x: auto;
 	overflow-y: hidden !important;
 	padding-right: 0 !important;
 	overscroll-behavior-y: auto;
+	min-height: var(--hm-hero-section-height);
+	height: 100%;
+}
+
+/* Style 1 & 2: slide + overlay must fill the section (no bare strip above/below gradients) */
+.hmestyle-style-two .movie-engine-hero-section:not(.me-hero-style4):not(.me-hero-style5) .me-hero-item {
+	min-height: var(--hm-hero-section-height);
+	overflow: hidden;
+}
+
+.hmestyle-style-two .movie-engine-hero-section .me-hero-item .me-hero-bg,
+.hmestyle-style-two .movie-engine-hero-section .me-hero-item .me-hero-overlay {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
 }
 
 .hmestyle-style-two .movie-engine-hero-section.me-hero-style4,
-.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 {
-	position: relative;
-	/* Tallest of OTT feed setting, hero shortcode height, or full viewport */
-	min-height: max(var(--hm-feed-hero-min-height, 100vh), var(--me-hero-height, 700px));
+.hmestyle-style-two .movie-engine-hero-section.me-hero-style5,
+.movie-engine-hero-section.me-hero-style4,
+.movie-engine-hero-section.me-hero-style5 {
+	position: relative !important;
+	min-height: var(--hm-hero-section-height, var(--me-hero-height, 700px)) !important;
+	/* Explicit height so fade track (position:absolute; inset:0) has a containing block */
+	height: var(--hm-hero-section-height, var(--me-hero-height, 700px)) !important;
 }
 
 .hmestyle-style-two .movie-engine-hero-section.me-hero-style4 .me-hero-slider.movie-engine-items-grid,
 .hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-hero-slider.movie-engine-items-grid {
+	display: block !important;
+	flex-wrap: unset !important;
 	overflow: hidden !important;
-	height: 100%;
-	min-height: 100%;
+	overflow-x: hidden !important;
+	overflow-y: hidden !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	gap: unset !important;
+	-webkit-overflow-scrolling: unset !important;
+	scroll-behavior: auto !important;
 }
 
 /* Style 5: hide static “Featured Movie” kicker — eyebrow/genre stays */
@@ -538,8 +629,8 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 .hmestyle-style-two .movie-engine-hero-overlay {
 	background:
 		linear-gradient(90deg, color-mix(in srgb, var(--movie-engine-bg-color) 92%, transparent) 0%, color-mix(in srgb, var(--movie-engine-bg-color) 60%, transparent) 32%, transparent 68%),
-		linear-gradient(0deg, var(--movie-engine-bg-color) 0%, color-mix(in srgb, var(--movie-engine-bg-color) 45%, transparent) 22%, transparent 48%),
-		linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 18%) !important;
+		linear-gradient(0deg, var(--movie-engine-bg-color) 0%, color-mix(in srgb, var(--movie-engine-bg-color) 55%, transparent) 28%, transparent 52%),
+		linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.22) 12%, transparent 24%) !important;
 }
 
 /* Hero arrows: desktop only — stacked on the right (next above prev) */
@@ -578,26 +669,33 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 @media (max-width: 767px) {
 	.hmestyle-style-two .movie-engine-hero-section,
 	.hmestyle-style-two .movie-engine-hero {
-		min-height: clamp(380px, 62svh, 540px) !important;
+		--hm-hero-section-height: clamp(380px, 62svh, 540px);
+		min-height: var(--hm-hero-section-height) !important;
 		width: 100% !important;
 		max-width: 100% !important;
 		margin: 0 !important;
 		border-radius: 0 !important;
 	}
 
-	.hmestyle-style-two .movie-engine-hero-section .me-hero-slider.movie-engine-items-grid {
+	.hmestyle-style-two .movie-engine-hero-section:not(.me-hero-style4):not(.me-hero-style5) .me-hero-slider.movie-engine-items-grid {
 		width: 100% !important;
 		max-width: 100% !important;
 		border-radius: 0 !important;
+		min-height: var(--hm-hero-section-height) !important;
 	}
 
-	.hmestyle-style-two .movie-engine-hero-section .me-hero-item {
+	.hmestyle-style-two .movie-engine-hero-section:not(.me-hero-style4):not(.me-hero-style5) .me-hero-item {
 		width: 100% !important;
 		max-width: 100% !important;
-		min-height: clamp(380px, 62svh, 540px) !important;
+		min-height: var(--hm-hero-section-height) !important;
 		border-radius: 0 !important;
 		box-sizing: border-box !important;
 		padding: 24px 16px 28px !important;
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section.me-hero-style4,
+	.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 {
+		height: var(--hm-hero-section-height) !important;
 	}
 
 	/* Hero actions mobile: flex layout, clean button dimensions, no clashing */
@@ -715,15 +813,40 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 		gap: 4px !important;
 	}
 
-	/* Hide intrusive slider arrows on mobile — touch swiping is native and smooth */
-	.hmestyle-style-two .movie-engine-slider-nav,
-	.hmestyle-style-two .movie-engine-section .movie-engine-slider-nav,
-	.hmestyle-style-two .movie-engine-library-container .movie-engine-slider-nav,
-	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-slider-nav,
-	.hmestyle-style-two .movie-engine-taxonomy-shortcode .movie-engine-slider-nav,
-	.hmestyle-style-two .me-slider-layout .movie-engine-slider-nav,
+	/* Hero only: hide arrows on small screens (feed sliders keep nav; swipe + buttons) */
 	.hmestyle-style-two .movie-engine-hero-section .movie-engine-slider-nav {
 		display: none !important;
+	}
+
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section) .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section) .me-slider-layout .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-library-container .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-slider-nav,
+	.hmestyle-style-two .movie-engine-taxonomy-shortcode .movie-engine-slider-nav {
+		display: flex !important;
+		width: 36px !important;
+		height: 36px !important;
+		left: auto;
+		right: auto;
+		transform: translateY(-50%);
+		opacity: 1 !important;
+		pointer-events: auto !important;
+	}
+
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section) .movie-engine-slider-prev,
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section) .me-slider-layout .movie-engine-slider-prev,
+	.hmestyle-style-two .movie-engine-library-container .movie-engine-slider-prev,
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-slider-prev,
+	.hmestyle-style-two .movie-engine-taxonomy-shortcode .movie-engine-slider-prev {
+		left: 6px !important;
+	}
+
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section) .movie-engine-slider-next,
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-hero-section) .me-slider-layout .movie-engine-slider-next,
+	.hmestyle-style-two .movie-engine-library-container .movie-engine-slider-next,
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-slider-next,
+	.hmestyle-style-two .movie-engine-taxonomy-shortcode .movie-engine-slider-next {
+		right: 6px !important;
 	}
 
 	.hmestyle-style-two .movie-engine-section {
@@ -731,8 +854,13 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 		padding-right: 0 !important;
 	}
 
-	/* Horizontal swipe grids */
-	.hmestyle-style-two .movie-engine-items-grid {
+	/* Horizontal swipe: slider rows only (.me-grid-layout keeps responsive CSS grid) */
+	.hmestyle-style-two .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid:not(.me-hero-slider),
+	.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid:not(.me-hero-slider),
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-slider-enabled .movie-engine-items-grid:not(.me-hero-slider),
+	.hmestyle-style-two .movie-engine-library-container.me-slider-layout .movie-engine-items-grid:not(.me-hero-slider),
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper.movie-engine-slider-enabled .movie-engine-items-grid:not(.me-hero-slider),
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper.me-slider-layout .movie-engine-items-grid:not(.me-hero-slider) {
 		display: flex !important;
 		flex-wrap: nowrap !important;
 		overflow-x: auto !important;
@@ -747,21 +875,44 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 		scrollbar-width: none !important;
 	}
 
-	.hmestyle-style-two .movie-engine-items-grid::-webkit-scrollbar {
+	.hmestyle-style-two .movie-engine-section.movie-engine-slider-enabled .movie-engine-items-grid:not(.me-hero-slider)::-webkit-scrollbar,
+	.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid:not(.me-hero-slider)::-webkit-scrollbar,
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-slider-enabled .movie-engine-items-grid:not(.me-hero-slider)::-webkit-scrollbar,
+	.hmestyle-style-two .movie-engine-library-container.me-slider-layout .movie-engine-items-grid:not(.me-hero-slider)::-webkit-scrollbar {
 		display: none !important;
 	}
 
-	/* Studio cards mobile: horizontal 16:9 cards with neat logos, never squished matchsticks */
+	.hmestyle-style-two .movie-engine-hero-section.me-hero-style4,
+	.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 {
+		min-height: var(--hm-hero-section-height) !important;
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section.me-hero-style4 .me-hero-slider.movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-hero-slider.movie-engine-items-grid {
+		position: absolute !important;
+		inset: 0 !important;
+		width: 100% !important;
+		height: 100% !important;
+		min-height: 100% !important;
+		display: block !important;
+	}
+
+	.hmestyle-style-two .movie-engine-hero-section:not(.me-hero-style4):not(.me-hero-style5) .me-hero-slider.movie-engine-items-grid {
+		display: flex !important;
+		flex-wrap: nowrap !important;
+		overflow-x: auto !important;
+		overflow-y: hidden !important;
+		-webkit-overflow-scrolling: touch !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+		gap: 0 !important;
+	}
+
+	/* Studio logos keep a wide frame; width follows the column rules at the end of this file */
 	.hmestyle-style-two .me-term-card.me-studio-card,
-	.hmestyle-style-two .me-studio-card,
-	.hmestyle-style-two .movie-engine-studios-slider .me-term-card,
-	.hmestyle-style-two .movie-engine-taxonomy-slider .me-term-card,
-	.hmestyle-style-two .movie-engine-taxonomies-wrapper .me-term-card,
-	.hmestyle-style-two .movie-engine-taxonomy-shortcode .me-term-card {
-		flex: 0 0 clamp(110px, 32vw, 140px) !important;
-		width: clamp(110px, 32vw, 140px) !important;
-		min-width: 100px !important;
-		max-width: 150px !important;
+	.hmestyle-style-two .me-studio-card {
 		height: 72px !important;
 		aspect-ratio: 16 / 9 !important;
 		border-radius: 10px !important;
@@ -785,28 +936,6 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 		object-fit: contain !important;
 	}
 
-	/* Movie / Series cards on mobile slider rows */
-	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
-	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
-	.hmestyle-style-two .movie-engine-library-container .me-slider-layout .movie-engine-items-grid > .movie-engine-bulk-card,
-	.hmestyle-style-two .movie-engine-section .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
-	.hmestyle-style-two .movie-engine-section .movie-engine-items-grid > .movie-engine-card {
-		flex: 0 0 clamp(130px, 38vw, 160px) !important;
-		width: clamp(130px, 38vw, 160px) !important;
-		min-width: 120px !important;
-		max-width: 170px !important;
-		box-sizing: border-box !important;
-	}
-
-	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-person-card,
-	html.hmestyle-style-two .hello-me-home-person-wrap .movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card,
-	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-person-card,
-	html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card.movie-engine-person-card {
-		flex: 0 0 auto !important;
-		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3)) - 1) * 12px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 3))) !important;
-		max-width: none !important;
-		min-width: 0 !important;
-	}
 }
 
 .hmestyle-style-two .movie-engine-hero-section.me-hero-style5 .me-thumb-nav-btns .movie-engine-slider-nav,
@@ -826,7 +955,158 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 	height: auto !important;
 }
 
-/* Ranked Top 10: plugin [movie_engine_top10] / .movie-engine-top10 — ranks live in plugin CSS */
+/* Ranked Top 10: grid layout must honor builder columns (plugin SCSS targets all grids as flex) */
+.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid {
+	display: grid !important;
+	grid-template-columns: repeat(var(--grid-columns, 6), minmax(0, 1fr)) !important;
+	flex-wrap: wrap !important;
+	overflow-x: visible !important;
+	gap: clamp(18px, 2.5vw, 34px) !important;
+	padding-left: 0;
+}
+
+@media (max-width: 1199px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-laptop, var(--grid-columns, 6)), minmax(0, 1fr)) !important;
+	}
+}
+
+@media (max-width: 1200px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
+	}
+}
+
+@media (max-width: 991px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+	}
+}
+
+@media (max-width: 480px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+	}
+}
+
+.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-card,
+.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-card {
+	width: 100% !important;
+	max-width: 100% !important;
+	flex: initial !important;
+}
+
+.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-movie-card::before,
+.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-movie-card::before {
+	font-size: clamp(72px, 8vw, 140px);
+}
+
+/* Top 10 slider: --grid-columns = visible slides (plugin min CSS forces width:auto otherwise) */
+.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card {
+	flex: 0 0 calc((100% - (var(--grid-columns, 6) - 1) * 34px) / var(--grid-columns, 6)) !important;
+	width: calc((100% - (var(--grid-columns, 6) - 1) * 34px) / var(--grid-columns, 6)) !important;
+	max-width: calc((100% - (var(--grid-columns, 6) - 1) * 34px) / var(--grid-columns, 6)) !important;
+	box-sizing: border-box;
+	overflow: hidden;
+	container-type: inline-size;
+}
+
+@media (max-width: 1440px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * 34px) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * 34px) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+		max-width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * 34px) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+	}
+}
+
+@media (max-width: 1024px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * 34px) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * 34px) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+		max-width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * 34px) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+	}
+}
+
+@media (max-width: 600px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid {
+		gap: 28px !important;
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+	}
+
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * 28px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * 28px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		max-width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * 28px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		overflow: hidden !important;
+	}
+}
+
+.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card::before,
+.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card::before {
+	flex: 1 1 auto;
+	max-width: 42%;
+	min-width: 0;
+	font-size: clamp(36px, 34cqw, 120px);
+}
+
+.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card-poster,
+.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-card-poster {
+	flex: 0 0 auto;
+	width: 56cqw;
+	max-width: none;
+	min-width: 0;
+	height: auto;
+	aspect-ratio: 2 / 3;
+}
+
+@media (max-width: 600px) {
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card::before,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card::before {
+		max-width: 38%;
+		margin-right: -0.12em;
+		font-size: clamp(28px, 26cqw, 64px);
+	}
+
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card-poster,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-slider-layout .movie-engine-card-poster {
+		width: 85cqw;
+	}
+}
 
 /* Studio chip bar — target studios shortcode wrapper */
 .hello-movieengine-studio-chips .movie-engine-studios-slider,
@@ -834,4 +1114,498 @@ html.hmestyle-style-two .hello-me-home-person-wrap .me-slider-layout .movie-engi
 	gap: 0.5rem;
 	padding-left: var(--hm-feed-row-padding-x, 1.25rem);
 	padding-right: var(--hm-feed-row-padding-x, 1.25rem);
+}
+
+/* ==========================================================================
+   GLOBAL BUILDER SECTIONS RESPONSIVE SUITE (Mobile / Tablet / Desktop)
+   ========================================================================== */
+
+/* 1. Hero Content Scope Container */
+@media (max-width: 767px) {
+	.hello-me-hero-content-scope--box {
+		max-width: 100% !important;
+		padding: 0 16px !important;
+		box-sizing: border-box !important;
+	}
+}
+
+/* 2. Studios / Taxonomies Grid Mode */
+.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid {
+	display: grid !important;
+	grid-template-columns: repeat(var(--grid-columns, 6), minmax(0, 1fr)) !important;
+	flex-wrap: wrap !important;
+	overflow-x: visible !important;
+	gap: clamp(10px, 1.5vw, 20px) !important;
+}
+
+@media (max-width: 1200px) {
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid {
+		grid-template-columns: repeat(var(--grid-columns-laptop, 4), minmax(0, 1fr)) !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid {
+		grid-template-columns: repeat(var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
+		gap: 12px !important;
+		padding: 0 16px !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid {
+		grid-template-columns: repeat(var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+		gap: 10px !important;
+		padding: 0 16px !important;
+	}
+}
+
+@media (max-width: 480px) {
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid {
+		grid-template-columns: repeat(var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+		gap: 10px !important;
+		padding: 0 16px !important;
+	}
+
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid .me-term-card {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: initial !important;
+	}
+}
+
+/* 3. Genres & Years Pills Cloud */
+.hmestyle-style-two .movie-engine-genres-widget {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	gap: 8px !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	padding: 0 var(--hm-ott-row-inset, 56px) !important;
+}
+
+.hmestyle-style-two .movie-engine-genres-widget .me-genre-tag {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 6px !important;
+	padding: 6px 14px !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	line-height: 1.4 !important;
+	border-radius: 99px !important;
+	background: rgba(255, 255, 255, 0.08) !important;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+	color: #fff !important;
+	text-decoration: none !important;
+	transition: all 0.2s ease !important;
+}
+
+.hmestyle-style-two .movie-engine-genres-widget .me-genre-tag:hover {
+	background: var(--movie-engine-primary-color, #E50914) !important;
+	border-color: var(--movie-engine-primary-color, #E50914) !important;
+}
+
+.hmestyle-style-two .movie-engine-genres-widget .me-genre-tag .count {
+	font-size: 11px !important;
+	opacity: 0.6 !important;
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-genres-widget {
+		padding: 0 16px !important;
+	}
+}
+
+/* 4. Continue Watching — front-page builder only (boxed like library rows) */
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row.movie-engine-library-container {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow-x: clip;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-library-content {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: clip;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .hello-me-home-history-wrap {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	overflow-x: clip;
+	padding-top: 0;
+	margin-top: 0;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-section {
+	width: 100%;
+	max-width: 100%;
+	margin-top: 0;
+	padding-top: 0;
+	overflow-x: clip;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-section-title.me-section-header {
+	padding-left: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pl, 1.25rem)) !important;
+	padding-right: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pr, 1.25rem)) !important;
+	box-sizing: border-box;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .me-history-grid:not(.me-hero-slider) {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	padding-left: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pl, 1.25rem)) !important;
+	padding-right: var(--hm-feed-row-padding-x, var(--hello-movieengine-header-pr, 1.25rem)) !important;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-section.me-slider-layout .me-history-grid:not(.me-hero-slider),
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-section.movie-engine-slider-enabled .me-history-grid:not(.me-hero-slider) {
+	overflow-x: auto;
+	overflow-y: visible;
+	padding-top: 4px;
+	padding-bottom: 12px;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-section.me-grid-layout .me-history-grid {
+	display: grid !important;
+	overflow-x: visible !important;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .me-grid-layout .me-history-grid > .movie-engine-movie-card {
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 0 !important;
+	flex: initial !important;
+}
+
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .me-slider-layout .me-history-grid > .movie-engine-movie-card,
+.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-slider-enabled .me-history-grid > .movie-engine-movie-card {
+	flex: 0 0 calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 4)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns, var(--me-grid-columns-desktop, 4))) !important;
+	width: calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 4)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns, var(--me-grid-columns-desktop, 4))) !important;
+	max-width: none !important;
+	min-width: 0 !important;
+}
+
+@media (max-width: 1440px) and (min-width: 1025px) {
+	.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .me-slider-layout .me-history-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-slider-enabled .me-history-grid > .movie-engine-movie-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 4)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 4))) !important;
+		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 4)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 4))) !important;
+	}
+}
+
+@media (max-width: 1024px) {
+	.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .me-slider-layout .me-history-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-slider-enabled .me-history-grid > .movie-engine-movie-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * var(--me-slider-gap, 16px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * var(--me-slider-gap, 16px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+	}
+}
+
+@media (max-width: 600px) {
+	.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .me-slider-layout .me-history-grid > .movie-engine-movie-card,
+	.hmestyle-style-two .hello-me-home-feed .hello-me-home-history-feed-row .movie-engine-slider-enabled .me-history-grid > .movie-engine-movie-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * var(--me-slider-gap, 12px)) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * var(--me-slider-gap, 12px)) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+	}
+}
+
+/* Dashboard account history — keep dashboard padding */
+.hmestyle-style-two .movie-engine-dashboard-wrapper .me-history-grid {
+	padding: 0 var(--hm-ott-row-inset, 56px);
+}
+
+/* 5. Live Search Input & Dropdown Results */
+.hmestyle-style-two .movie-engine-live-search-wrapper {
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+	padding: 0 var(--hm-ott-row-inset, 56px) !important;
+	position: relative !important;
+}
+
+.hmestyle-style-two .movie-engine-ls-input-group {
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+.hmestyle-style-two .movie-engine-live-search-results {
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+	left: var(--hm-ott-row-inset, 56px) !important;
+	right: var(--hm-ott-row-inset, 56px) !important;
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-live-search-wrapper {
+		padding: 0 16px !important;
+	}
+
+	.hmestyle-style-two .movie-engine-live-search-results {
+		left: 16px !important;
+		right: 16px !important;
+	}
+}
+
+/* 6. Page Content & Shortcode Container */
+.hmestyle-style-two .hello-me-home-editor-content {
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+	padding: 24px var(--hm-ott-row-inset, 56px) !important;
+	overflow-wrap: break-word !important;
+}
+
+.hmestyle-style-two .hello-me-home-editor-content iframe,
+.hmestyle-style-two .hello-me-home-editor-content video,
+.hmestyle-style-two .hello-me-home-editor-content embed,
+.hmestyle-style-two .hello-me-home-editor-content img {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .hello-me-home-editor-content {
+		padding: 16px !important;
+	}
+}
+
+/* 7. TV Series Episodes Grid Safety */
+.movie-engine-episodes-section .movie-engine-grid-layout,
+.movie-engine-episodes-container.movie-engine-grid-layout {
+	display: grid !important;
+	grid-template-columns: repeat(var(--me-grid-columns-desktop, 4), minmax(0, 1fr)) !important;
+	gap: 20px !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+@media (max-width: 1200px) {
+	.movie-engine-episodes-section .movie-engine-grid-layout,
+	.movie-engine-episodes-container.movie-engine-grid-layout {
+		grid-template-columns: repeat(var(--me-grid-columns-laptop, 3), minmax(0, 1fr)) !important;
+		gap: 16px !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.movie-engine-episodes-section .movie-engine-grid-layout,
+	.movie-engine-episodes-container.movie-engine-grid-layout {
+		grid-template-columns: repeat(var(--me-grid-columns-tablet, 2), minmax(0, 1fr)) !important;
+		gap: 14px !important;
+	}
+}
+
+@media (max-width: 480px) {
+	.movie-engine-episodes-section .movie-engine-grid-layout,
+	.movie-engine-episodes-container.movie-engine-grid-layout {
+		grid-template-columns: repeat(var(--me-grid-columns-mobile, 1), minmax(0, 1fr)) !important;
+		gap: 12px !important;
+	}
+}
+
+.movie-engine-episode-card {
+	min-width: 0 !important;
+	max-width: 100% !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+}
+
+.movie-engine-episode-card .me-episode-thumb,
+.movie-engine-episode-card .me-episode-thumb-wrapper {
+	width: 100% !important;
+	aspect-ratio: 16 / 9 !important;
+	border-radius: 10px !important;
+	overflow: hidden !important;
+	position: relative !important;
+	display: block !important;
+	background: #101214 !important;
+}
+
+.movie-engine-episode-card .me-episode-thumb img,
+.movie-engine-episode-card .me-episode-thumb-wrapper img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	display: block !important;
+}
+
+/* Universal Non-Slider Grid Layout for all sections (Style Two) */
+.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
+	display: grid !important;
+	grid-template-columns: repeat(var(--me-grid-columns-desktop, var(--grid-columns, 6)), minmax(0, 1fr)) !important;
+	gap: var(--me-slider-gap, 20px) !important;
+	width: 100% !important;
+}
+
+@media (max-width: 1440px) {
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-laptop, var(--grid-columns-laptop, 5)), minmax(0, 1fr)) !important;
+	}
+}
+
+@media (max-width: 1200px) {
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-tablet, var(--grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
+		gap: 16px !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-tablet, var(--grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
+		gap: 14px !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-mobile, var(--grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+		gap: 12px !important;
+	}
+}
+
+@media (max-width: 480px) {
+	.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-mobile, var(--grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+		gap: 10px !important;
+	}
+}
+
+.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-card,
+.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-bulk-card,
+.hmestyle-style-two .movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-item-card,
+.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-card,
+.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-bulk-card,
+.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-item-card,
+.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-card,
+.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-bulk-card,
+.hmestyle-style-two .movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-item-card,
+.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid > .movie-engine-movie-card,
+.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid > .movie-engine-card,
+.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid > .movie-engine-bulk-card,
+.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid > .movie-engine-item-card {
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 0 !important;
+	flex: initial !important;
+}
+
+/*
+ * Builder columns vs Customizer devices.
+ * Core tablet preview is 720px (was matching the old ≤767px mobile rules).
+ * Phone preview is 320px. Laptop device is 1280px.
+ * 0 in the builder cascades in PHP; these queries only pick the matching variable.
+ */
+@media (max-width: 1440px) and (min-width: 1025px) {
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid,
+	.hmestyle-style-two .me-history-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-laptop, var(--grid-columns-laptop, 5)), minmax(0, 1fr)) !important;
+	}
+
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .me-term-grid > .me-term-card,
+	.hmestyle-style-two .me-history-grid > .movie-engine-movie-card {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		flex: initial !important;
+	}
+
+	.hmestyle-style-two .me-slider-layout .movie-engine-items-grid > .me-term-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+		max-width: none !important;
+		min-width: 0 !important;
+	}
+
+	.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
+	.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+	.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
+	.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card {
+		flex-basis: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 5))) !important;
+	}
+}
+
+@media (max-width: 1024px) {
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid,
+	.hmestyle-style-two .me-history-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-tablet, var(--grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
+	}
+
+	.hmestyle-style-two .me-slider-layout .movie-engine-items-grid > .me-term-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * var(--me-slider-gap, 16px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * var(--me-slider-gap, 16px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+		max-width: none !important;
+		min-width: 0 !important;
+	}
+
+	.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
+	.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+	.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
+	.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card {
+		flex-basis: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * var(--me-slider-gap, 16px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * var(--me-slider-gap, 16px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+	}
+}
+
+@media (max-width: 600px) {
+	.hmestyle-style-two .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.movie-engine-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-library-container.me-top10 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
+	.hmestyle-style-two .movie-engine-taxonomies-wrapper .movie-engine-items-grid.me-term-grid,
+	.hmestyle-style-two .me-history-grid {
+		grid-template-columns: repeat(var(--me-grid-columns-mobile, var(--grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
+	}
+
+	.hmestyle-style-two .me-slider-layout .movie-engine-items-grid > .me-term-card {
+		flex: 0 0 calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * var(--me-slider-gap, 12px)) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * var(--me-slider-gap, 12px)) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		max-width: none !important;
+		min-width: 0 !important;
+	}
+
+	.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
+	.hmestyle-style-two .movie-engine-library-container:not(.me-top10):not(.movie-engine-top10) .me-slider-layout .movie-engine-items-grid > .movie-engine-card,
+	.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-movie-card:not(.movie-engine-person-card),
+	.hmestyle-style-two .movie-engine-section.me-slider-layout .movie-engine-items-grid > .movie-engine-card {
+		flex-basis: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * var(--me-slider-gap, 12px)) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * var(--me-slider-gap, 12px)) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+	}
 }

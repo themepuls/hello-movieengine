@@ -18,7 +18,7 @@
 /* —— Hero —— */
 .hmestyle-style-two .hme-watch-hero {
 	position: relative;
-	min-height: clamp(440px, 74vh, 840px);
+	min-height: clamp(440px, var(--me-watch-movie-hero-height, 74vh), 840px);
 	display: flex;
 	align-items: flex-end;
 	background-color: var(--hme-watch-hero-floor);
@@ -50,11 +50,12 @@
 	);
 }
 
-.hmestyle-style-two .hme-watch-hero__back {
+.hmestyle-style-two .hme-watch-hero__back,
+.hmestyle-style-two .movie-engine-movie-hero .hme-watch-hero__back {
 	position: absolute;
 	top: 1.15rem;
 	left: var(--hm-feed-row-padding-x, 1.25rem);
-	z-index: 2;
+	z-index: 25;
 	display: inline-flex;
 	align-items: center;
 	gap: 0.55rem;
@@ -350,11 +351,43 @@
 }
 
 .hmestyle-style-two .hme-watch-player .movie-engine-affiliate-buttons {
-	justify-content: center;
-	padding: 10px 12px 8px;
-	background: transparent;
-	border-top: 0;
-	gap: 8px;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	justify-content: center !important;
+	align-items: center !important;
+	padding: 14px 20px !important;
+	background: rgba(14, 16, 20, 0.96) !important;
+	border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+	position: relative !important;
+	z-index: 10 !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	gap: 10px !important;
+}
+
+.hmestyle-style-two .hme-watch-player .movie-engine-affiliate-buttons .movie-engine-affiliate-btn {
+	flex: 0 1 auto !important;
+	max-width: 100% !important;
+	white-space: nowrap !important;
+	box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+	.hmestyle-style-two .hme-watch-player .movie-engine-affiliate-buttons {
+		padding: 10px 14px !important;
+		gap: 8px !important;
+		overflow-x: auto !important;
+		flex-wrap: nowrap !important;
+		justify-content: flex-start !important;
+		scrollbar-width: none !important;
+		-webkit-overflow-scrolling: touch !important;
+	}
+	.hmestyle-style-two .hme-watch-player .movie-engine-affiliate-buttons::-webkit-scrollbar {
+		display: none !important;
+	}
+	.hmestyle-style-two .hme-watch-player .movie-engine-affiliate-buttons .movie-engine-affiliate-btn {
+		flex: 0 0 auto !important;
+	}
 }
 
 .hmestyle-style-two .hme-watch-player .movie-engine-server-switcher {
@@ -372,7 +405,8 @@
 		max-width: min(820px, 58vw);
 	}
 
-	body.hello-movieengine-has-side-rail .hme-watch-hero__back {
+	body.hello-movieengine-has-side-rail .hme-watch-hero__back,
+	body.hello-movieengine-has-side-rail .movie-engine-movie-hero .hme-watch-hero__back {
 		left: var(--hm-ott-content-x, calc(80px + 56px));
 	}
 
@@ -384,7 +418,7 @@
 
 @media (max-width: 767px) {
 	.hmestyle-style-two .hme-watch-hero {
-		min-height: 65vh;
+		min-height: min(var(--me-watch-movie-hero-height, 74vh), 65vh);
 	}
 
 	.hmestyle-style-two .hme-watch-hero__inner {
