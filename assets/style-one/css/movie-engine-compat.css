@@ -311,18 +311,75 @@
 	}
 }
 
-/* Single movie/series cast row — compact fixed cards in horizontal slider */
+/* Single movie/series cast row — respect column controls in horizontal slider */
+.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid,
+.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid {
+	display: flex !important;
+	flex-wrap: nowrap !important;
+	overflow-x: auto !important;
+	overflow-y: hidden !important;
+	gap: var(--me-slider-gap, 20px) !important;
+}
+
 .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
 .movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
 .movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
-.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item,
-.movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-item-card,
-.movie-engine-cast-grid.movie-engine-items-grid > .movie-engine-cast-item {
-	flex: 0 0 clamp(120px, 12vw, 170px) !important;
-	width: clamp(120px, 12vw, 170px) !important;
-	max-width: 180px !important;
-	min-width: 110px !important;
+.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item {
+	flex: 0 0 calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 8)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns, var(--me-grid-columns-desktop, 8))) !important;
+	width: calc((100% - (var(--grid-columns, var(--me-grid-columns-desktop, 8)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns, var(--me-grid-columns-desktop, 8))) !important;
+	max-width: none !important;
+	min-width: 0 !important;
 	box-sizing: border-box !important;
+}
+
+@media (max-width: 1440px) {
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item {
+		flex: 0 0 calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 6)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 6))) !important;
+		width: calc((100% - (var(--grid-columns-laptop, var(--me-grid-columns-laptop, 6)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-laptop, var(--me-grid-columns-laptop, 6))) !important;
+	}
+}
+
+@media (max-width: 1200px) {
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item {
+		flex: 0 0 calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4))) !important;
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4)) - 1) * var(--me-slider-gap, 20px)) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 4))) !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid {
+		gap: 15px !important;
+	}
+
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item {
+		flex: 0 0 calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * 15px) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+		width: calc((100% - (var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)) - 1) * 15px) / var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3))) !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid {
+		gap: 12px !important;
+	}
+
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-item-card,
+	.movie-engine-cast-section.movie-engine-slider-enabled .movie-engine-items-grid > .movie-engine-cast-item,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-item-card,
+	.movie-engine-cast-section.me-slider-layout .movie-engine-items-grid > .movie-engine-cast-item {
+		flex: 0 0 calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * 12px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+		width: calc((100% - (var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)) - 1) * 12px) / var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2))) !important;
+	}
 }
 
 /* Home builder Cast & Stars — slider on; laptop breakpoint only above 1024px (Customizer tablet = 720px) */
@@ -483,7 +540,7 @@
 
 /* Cast cards global layout safety */
 .movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
-.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
 	display: grid !important;
 	grid-template-columns: repeat(var(--grid-columns, 6), minmax(0, 1fr)) !important;
 	gap: 20px !important;
@@ -492,14 +549,14 @@
 
 @media (max-width: 1440px) {
 	.movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
-	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
 		grid-template-columns: repeat(var(--grid-columns-laptop, 5), minmax(0, 1fr)) !important;
 	}
 }
 
 @media (max-width: 1200px) {
 	.movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
-	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
 		grid-template-columns: repeat(var(--grid-columns-tablet, 4), minmax(0, 1fr)) !important;
 		gap: 18px !important;
 	}
@@ -507,7 +564,7 @@
 
 @media (max-width: 768px) {
 	.movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
-	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
 		grid-template-columns: repeat(var(--grid-columns-tablet, var(--me-grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
 		gap: 14px !important;
 	}
@@ -515,7 +572,7 @@
 
 @media (max-width: 767px) {
 	.movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
-	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
 		grid-template-columns: repeat(var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
 		gap: 12px !important;
 	}
@@ -523,7 +580,7 @@
 
 @media (max-width: 480px) {
 	.movie-engine-cast-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
-	.movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-cast-grid:not(.movie-engine-slider-enabled):not(.me-slider-layout) {
 		grid-template-columns: repeat(var(--grid-columns-mobile, var(--me-grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
 		gap: 10px !important;
 	}
@@ -576,9 +633,9 @@
 }
 
 /* Universal Non-Slider Grid Layout for all sections */
-.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
 .movie-engine-section.me-grid-layout .movie-engine-items-grid,
-.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid,
 .movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
 	display: grid !important;
 	grid-template-columns: repeat(var(--me-grid-columns-desktop, var(--grid-columns, 6)), minmax(0, 1fr)) !important;
@@ -587,18 +644,18 @@
 }
 
 @media (max-width: 1440px) {
-	.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
 	.movie-engine-section.me-grid-layout .movie-engine-items-grid,
-	.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid,
 	.movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
 		grid-template-columns: repeat(var(--me-grid-columns-laptop, var(--grid-columns-laptop, 5)), minmax(0, 1fr)) !important;
 	}
 }
 
 @media (max-width: 1200px) {
-	.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
 	.movie-engine-section.me-grid-layout .movie-engine-items-grid,
-	.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid,
 	.movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
 		grid-template-columns: repeat(var(--me-grid-columns-tablet, var(--grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
 		gap: 16px !important;
@@ -606,9 +663,9 @@
 }
 
 @media (max-width: 768px) {
-	.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
 	.movie-engine-section.me-grid-layout .movie-engine-items-grid,
-	.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid,
 	.movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
 		grid-template-columns: repeat(var(--me-grid-columns-tablet, var(--grid-columns-tablet, 3)), minmax(0, 1fr)) !important;
 		gap: 14px !important;
@@ -616,9 +673,9 @@
 }
 
 @media (max-width: 767px) {
-	.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
 	.movie-engine-section.me-grid-layout .movie-engine-items-grid,
-	.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid,
 	.movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
 		grid-template-columns: repeat(var(--me-grid-columns-mobile, var(--grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
 		gap: 12px !important;
@@ -626,27 +683,27 @@
 }
 
 @media (max-width: 480px) {
-	.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid,
 	.movie-engine-section.me-grid-layout .movie-engine-items-grid,
-	.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid,
+	.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid,
 	.movie-engine-library-container.me-grid-layout .movie-engine-items-grid {
 		grid-template-columns: repeat(var(--me-grid-columns-mobile, var(--grid-columns-mobile, 2)), minmax(0, 1fr)) !important;
 		gap: 10px !important;
 	}
 }
 
-.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-movie-card,
-.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-card,
-.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-bulk-card,
-.movie-engine-section:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-item-card,
+.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid > .movie-engine-movie-card,
+.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid > .movie-engine-card,
+.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid > .movie-engine-bulk-card,
+.movie-engine-section:not(.movie-engine-slider-enabled):not(.me-slider-layout) .movie-engine-items-grid > .movie-engine-item-card,
 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-movie-card,
 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-card,
 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-bulk-card,
 .movie-engine-section.me-grid-layout .movie-engine-items-grid > .movie-engine-item-card,
-.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-movie-card,
-.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-card,
-.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-bulk-card,
-.movie-engine-library-container:not(.movie-engine-slider-enabled) .movie-engine-items-grid > .movie-engine-item-card,
+.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid > .movie-engine-movie-card,
+.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid > .movie-engine-card,
+.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid > .movie-engine-bulk-card,
+.movie-engine-library-container:not(.movie-engine-slider-enabled):not(:has(.movie-engine-slider-enabled, .me-slider-layout)) .movie-engine-items-grid > .movie-engine-item-card,
 .movie-engine-library-container.me-grid-layout .movie-engine-items-grid > .movie-engine-movie-card,
 .movie-engine-library-container.me-grid-layout .movie-engine-items-grid > .movie-engine-card,
 .movie-engine-library-container.me-grid-layout .movie-engine-items-grid > .movie-engine-bulk-card,
